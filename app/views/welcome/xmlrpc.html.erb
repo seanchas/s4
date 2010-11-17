@@ -1,0 +1,10 @@
+<%- @xmlrpc_methods.each do |m| -%>
+
+    <h1>
+        <%= m.signatures.join("<br />") -%>
+    </h1>
+    <p>
+        <%= textilize m.help %>
+    </p>
+
+<%- end -%>

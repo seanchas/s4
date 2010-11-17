@@ -1,0 +1,1 @@
+MicexXMLRPC.load_path += Dir[Rails.root.join('app', 'xml-rpc', '*.rb')]

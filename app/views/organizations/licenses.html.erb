@@ -1,0 +1,28 @@
+<h1>
+    <%= @organization.full_name %>
+</h1>
+
+<table class="properties sortable">
+    <thead>
+        <tr>
+            <%- S4::License.schema.attributes.each do |name, value| -%>
+                <td>
+                    <span>
+                        <%= h value %>
+                    </span>
+                </td>
+            <%- end -%>
+        </tr>
+    </thead>
+    <tbody>
+        <%- @licenses.each do |license| -%>
+            <tr class="<%= cycle("odd", "even") %>">
+                <%- S4::License.schema.attributes.each do |name, value| -%>
+                    <td>
+                        <%= h license.send(name) %>
+                    </td>
+                <%- end -%>
+            </tr>
+        <%- end -%>
+    </tbody>
+</table>

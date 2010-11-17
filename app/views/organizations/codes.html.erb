@@ -1,0 +1,14 @@
+<h1>
+    <%= @organization.full_name %>
+</h1>
+
+<dl class="properties">
+    <%- @organization_codes.attributes.each do |name, value| -%>
+        <dt>
+            <%= h S4::OrganizationCodes.label(name) %>
+        </dt>
+        <%- content_tag :dd, :class => value.present? ? nil : :empty do %>
+            <%= value.present? ? h(value) : t(".blank") %>
+        <%- end -%>
+    <%- end -%>
+</dl>

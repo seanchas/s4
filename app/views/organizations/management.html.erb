@@ -1,0 +1,92 @@
+<h1>
+    <%= @organization.full_name %>
+</h1>
+
+<h2>
+    <%= t ".ceo" %>
+</h2>
+
+<table class="properties">
+    <thead>
+        <tr>
+            <%- S4::CEO.schema.attributes.each do |name, value| -%>
+                <td>
+                    <span>
+                        <%= h value %>
+                    </span>
+                </td>
+            <%- end -%>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            <%- S4::CEO.schema.attributes.each do |name, value| -%>
+                <td>
+                    <%= h @ceo.send(name) %>
+                </td>
+            <%- end -%>
+        </tr>
+    </tbody>
+</table>
+
+<h2>
+    <%= t ".controllers" %>
+</h2>
+
+<table class="properties sortable">
+    <thead>
+        <tr>
+            <%- S4::Controller.schema.attributes.each do |name, value| -%>
+                <td>
+                    <span>
+                        <%= h value %>
+                    </span>
+                </td>
+            <%- end -%>
+        </tr>
+    </thead>
+    <tbody>
+        <%- @controllers.each do |controller| -%>
+            <tr class="<%= cycle("odd", "even") %>">
+                <%- S4::Controller.schema.attributes.each do |name, value| -%>
+                    <td>
+                        <%= h controller.send(name) %>
+                    </td>
+                <%- end -%>
+            </tr>
+        <%- end -%>
+    </tbody>
+</table>
+
+<%- reset_cycle -%>
+
+<h2>
+    <%= t ".signers" %>
+</h2>
+
+<table class="properties sortable">
+    <thead>
+        <tr>
+            <%- S4::Signer.schema.attributes.each do |name, value| -%>
+                <td>
+                    <span>
+                        <%= h value %>
+                    </span>
+                </td>
+            <%- end -%>
+        </tr>
+    </thead>
+    <tbody>
+        <%- @signers.each do |signer| -%>
+            <tr class="<%= cycle("odd", "even") %>">
+                <%- S4::Signer.schema.attributes.each do |name, value| -%>
+                    <td>
+                        <%= h signer.send(name) %>
+                    </td>
+                <%- end -%>
+            </tr>
+        <%- end -%>
+    </tbody>
+</table>
+
+<%- reset_cycle -%>

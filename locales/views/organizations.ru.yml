@@ -1,0 +1,12 @@
+ru:
+  organizations:
+    show:
+      blank: 'Отсутствует'
+    
+    codes:
+      blank: 'Отсутствует'
+    
+    management:
+      ceo:          'Единоличный исполнительный орган'
+      controllers:  'Контролеры'
+      signers:      'Подписанты'
