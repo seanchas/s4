@@ -1,0 +1,4 @@
+<%- resource = resource_as_table_row -%>
+<tr class="<%= cycle("odd", "even") %>">
+    <%= render :partial => "shared/s4/resource/column_as_table_cell", :collection => resource.class.schema.columns, :locals => { :resource => resource } -%>
+</tr>

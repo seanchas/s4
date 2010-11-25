@@ -60,28 +60,87 @@ a:hover {
 
 /* property list */
 
-dl.properties {
+div.resource {
+  font-size: 13px;
 }
 
-dl.properties dt {
+div.resource div.column {
+  margin: 0 0 1.5em;
+  overflow: hidden;
+  padding: 0;
+}
+
+div.resource div.column h4 {
   color: #4d4d4d;
-  font-size: 1em;
+  font-weight: normal;
   font-style: italic;
-  margin: 0 0 .25em;
+  margin: 0 0 .5em;
   padding: 0 2px;
 }
 
-dl.properties dd {
-  background: #e7e7e7;
+div.resource div.column p {
+  background: #eee;
+  margin: 0;
+  padding: .5em 10px;
+}
+
+div.resource div.column p.blank {
+  background: #fcc;
+}
+
+div.resource div.group {
+  overflow: hidden;
+}
+
+div.resource div.group_shift {
+  border-top: 1px solid #eee;
+  padding-top: 1em;
+}
+
+div.resource div.group h3 {
+  font-size: 15px;
+  font-weight: normal;
   margin: 0 0 1em;
-  padding: .5em 7px;
+  padding: 0;
 }
 
-dl.properties dd.empty {
-  background: #ffcccc;
+div.resource div.group div.column {
+  float: left;
+  margin-right: 20px;
+  white-space: nowrap;
 }
 
-/* properties table */
+/* resource table */
+
+
+table.resource {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+table.resource tr.odd td {
+  background-color: #eee;
+}
+
+table.resource td {
+  padding: .5em 20px;
+}
+
+table.resource thead td {
+  color: #4d4d4d;
+  font-style: italic;
+}
+
+table.sortable thead td span {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+table.resource td p {
+  margin: 0;
+  padding: 0;
+}
 
 table.properties {
   border-collapse: collapse;

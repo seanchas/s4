@@ -2,12 +2,12 @@ module S4
   
   class Resource < S4::Models::Base
     
-    def self.all(param)
-      parse_many(call_with_session("s4.listResources", resource_type.to_param, param.to_param)).collect { |attributes| new(attributes) }
+    def self.all(*params)
+      parse_many(call_with_session("s4.listResources", resource_type.to_param, *params.collect(&:to_param))).collect { |attributes| new(attributes) }
     end
     
-    def self.find(param)
-      new(parse_one(call_with_session("s4.getResource", resource_type.to_param, param.to_param)))
+    def self.find(*params)
+      new(parse_one(call_with_session("s4.getResource", resource_type.to_param, *params.collect(&:to_param))))
     end
     
     def self.resource_type=(resource_type)

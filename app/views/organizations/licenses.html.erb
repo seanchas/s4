@@ -2,27 +2,18 @@
     <%= @organization.full_name %>
 </h1>
 
-<table class="properties sortable">
+<table class="resource sortable">
     <thead>
         <tr>
-            <%- S4::License.schema.attributes.each do |name, value| -%>
-                <td>
-                    <span>
-                        <%= h value %>
-                    </span>
+            <%- S4::License.schema.each do |element| -%>
+                <td class="<%= element.name %>">
+                    <span><%= h element.title %></span>
                 </td>
             <%- end -%>
         </tr>
     </thead>
     <tbody>
-        <%- @licenses.each do |license| -%>
-            <tr class="<%= cycle("odd", "even") %>">
-                <%- S4::License.schema.attributes.each do |name, value| -%>
-                    <td>
-                        <%= h license.send(name) %>
-                    </td>
-                <%- end -%>
-            </tr>
-        <%- end -%>
+        <%= render :partial => "shared/s4/resource_as_table_row", :collection => @licenses %>
+        <%- reset_cycle -%>
     </tbody>
 </table>

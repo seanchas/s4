@@ -1,0 +1,6 @@
+<div class="column">
+    <h4>
+        <%= column.title %>
+    </h4>
+    <%= render :partial => "shared/s4/resource/value/#{column.type}", :locals => { :value => resource.send(column.name) } %>
+</div>

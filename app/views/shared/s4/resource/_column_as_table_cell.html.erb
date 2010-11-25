@@ -1,0 +1,4 @@
+<%- column = column_as_table_cell -%>
+<td>
+    <%= render :partial => "shared/s4/resource/value/#{column.type}", :locals => { :value => resource.send(column.name) } %>
+</td>

@@ -1,8 +1,26 @@
 <ul id="menu">
     <li>
-        <%= link_to t(".organization"), "" %>
+        <%= link_to t(".organization"), :organization %>
+        <ul>
+            <li>
+                <%= link_to t(".organization.management"), :management_organization %>
+            </li>
+            <li>
+                <%= link_to t(".organization.licenses"), :licenses_organization %>
+            </li>
+        </ul>
     </li>
     <li>
-        <%= link_to t(".markets"), "" %>
+        <%= link_to t(".markets"), :markets %>
+        <ul>
+            <%- S4::Market.all(s4_user).each do |market| -%>
+                <li>
+                    <%= link_to h(market.name), market_path(market) %>
+                </li>
+            <%- end -%>
+        </ul>
+    </li>
+    <li>
+        <%= link_to t(".documents"), :documents %>
     </li>
 </ul>

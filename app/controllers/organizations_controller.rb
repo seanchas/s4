@@ -1,24 +1,19 @@
 class OrganizationsController < ApplicationController
   
   def show
-    @organization = S4::Organization.find("8")
+    @organization = S4::Organization.find(s4_user)
   end
   
   def licenses
-    @organization = S4::Organization.find("8")
-    @licenses = S4::License.all("8")
+    @organization = S4::Organization.find(s4_user)
+    @licenses = S4::License.all(s4_user)
   end
   
   def management
-    @organization = S4::Organization.find("8")
-    @ceo          = S4::CEO.find("8")
-    @controllers  = S4::Controller.all("8")
-    @signers      = S4::Signer.all("8")
-  end
-  
-  def codes
-    @organization = S4::Organization.find("8")
-    @organization_codes = S4::OrganizationCodes.find("8")
+    @organization = S4::Organization.find(s4_user)
+    @ceo          = S4::CEO.find(s4_user)
+    @controllers  = S4::Controller.all(s4_user)
+    @signers      = S4::Signer.all(s4_user)
   end
   
 end

@@ -1,0 +1,9 @@
+<div class="group">
+    <%- if group.title? -%>
+        <h3>
+            <%= h group.title %>
+        </h3>
+    <%- end -%>
+
+    <%= render :partial => "shared/s4/resource/column", :collection => group.columns, :locals => { :resource => resource } %>
+</div>

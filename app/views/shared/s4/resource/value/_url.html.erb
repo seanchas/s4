@@ -1,0 +1,3 @@
+<p>
+    <%= link_to h(value), value.start_with?("http://") ? value : "http://#{value}" %>
+</p>
