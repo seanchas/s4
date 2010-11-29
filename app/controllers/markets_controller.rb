@@ -7,6 +7,7 @@ class MarketsController < ApplicationController
   def show
     @organization = S4::Organization.find(s4_user)
     @market = S4::Market.all(s4_user, params[:id]).first
+    @agents = S4::Agent.all(s4_user, @market.to_param)
   end
   
 end
