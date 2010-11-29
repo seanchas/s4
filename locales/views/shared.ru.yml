@@ -7,7 +7,7 @@ ru:
     menu:
       organization:   'Организация'
       organization_licenses: 'Лицензии'
-      organization_management: 'Руководитель, контроллер, подписанты'
+      organization_management: 'Руководитель, контролер, подписанты'
       markets:        'Рынки'
       documents:      'Документы организации'
       registrations:  'Регистрационные карточки участника'
