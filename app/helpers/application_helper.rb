@@ -1,13 +1,34 @@
 module ApplicationHelper
   
+  def domains_menu
+    current_url = "#{request.scheme}://#{request.host}"
+    navigation.ul :html => { :class => "tabbed_menu left" } do |ul|
+      t(:domains, :scope => [:shared, :headline]).each do |title, url|
+        ul.li h(title), url, url == current_url ? :all : :none
+      end
+    end
+  end
+
   def main_menu
     navigation.ul :html => { :class => :tabbed_menu } do |ul|
       ul.li t(:title, :scope => :organizations), organization_path, :organizations
       ul.li t(:title, :scope => :markets),      markets_path,       :markets
       ul.li t(:title, :scope => :documents),    documents_path,     :documents
-    end
+    end if s4_user
   end
   
+  def authentication_menu
+    navigation.ul :html => { :class => "tabbed_menu authentication_menu alt_links" } do |ul|
+      if authenticated?
+        ul.li h(authenticated_user.screen_name),  Passport::profile_url, :html => { :class => :user }
+        ul.li t(".logout"),                       Passport::logout_url + "?return_to=#{request.url}"
+      else
+        ul.li t(".login"),                        Passport::login_url + "?return_to=#{request.url}"
+        ul.li t(".registration"),                 Passport::registration_url
+      end
+    end
+  end
+
   def resource_table(schema, resources)
     reset_cycle
     content_tag(:table, :class => "resource") do

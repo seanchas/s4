@@ -24,7 +24,10 @@ end
 configuration = [
   'config/database.yml',
   'config/initializers/s4.rb',
+  'config/initializers/passport.rb',
   'config/initializers/cookie_verification_secret.rb',
+  'config/locales/ru.yml',
+  'config/locales/en.yml',
   'vendor/rails'
 ]
 

@@ -1,0 +1,39 @@
+ru:
+  shared:
+
+    headline:
+      domains:
+        - ['ММВБ',            'http://beta.micex.ru']
+        - ['Паспорт',         'http://passport-beta.micex.ru']
+        - ['Сервисы',         'http://services-local.micex.ru']
+        - ['Личный кабинет',  'http://cabinet-local.micex.ru']
+        - ['PDA',             'http://pda-beta.micex.ru']
+        - ['Форумы',          'http://forums-beta.micex.ru']
+        - ['Музей',           'http://museum.micex.ru']
+      locales:
+        - [:ru, 'Русский']
+        - [:en, 'English']
+    
+    header:
+      logo: 'ММВБ - MICEX'
+
+      registration: 'Регистрация'
+      login:        'Вход'
+      logout:       'Выход'
+
+    footer:
+      copyright: |
+        &copy; 1998-%{year} ЗАО &laquo;Московская межбанковская валютная биржа&raquo;
+        "Условия распространения информации":http://beta.micex.ru/services/marketdata/delayed_data
+      contacts: |
+        Телефон: +7 (495) 234-48-11, Факс: +7 (495) 705-96-22
+        "Отправить письмо на ММВБ":http://beta.micex.ru/group/profile/feedback
+      location: |
+        г. Москва, Большой Кисловский пер. д. 13
+        "Адрес на карте":http://adresa.yandex.ru/company.xml?company=105112633&region=1
+    
+    sidebar_links:
+      - ['Контакты',                            'http://www.micex.ru/services/marketdata/contacts']
+      - ['Образцы платежных документов',        'http://www.micex.ru/services/marketdata/payment_documents']
+      - ['Ответы на часто задаваемые вопросы',  'http://www.micex.ru/services/marketdata/faq']
+      - ['Micex Web Client',                    'http://www.micex.ru/services/marketdata/software/web_client']

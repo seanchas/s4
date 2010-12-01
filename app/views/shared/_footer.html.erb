@@ -1,2 +1,11 @@
 <div id="footer">
+    <p class="copyright">
+        <%= textilize_without_paragraph t(".copyright", :year => Time.now.year) %>
+    </p>
+    <p class="contacts">
+        <%= textilize_without_paragraph t(".contacts") %>
+    </p>
+    <p class="location">
+        <%= textilize_without_paragraph t(".location") %>
+    </p>
 </div>

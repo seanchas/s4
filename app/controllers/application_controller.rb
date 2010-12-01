@@ -1,17 +1,18 @@
 class ApplicationController < ActionController::Base
 
-  before_filter :set_s4_user
-  
+  before_filter :authenticate_with_s4!
+
   helper_method :s4_user
   
   def s4_user
-    session[:s4_user] ||= 1
+    authenticated_user.s4_key if authenticated?
   end
 
 private
 
-  def set_s4_user
-    session[:s4_user] = params[:user] if params[:user]
+  def authenticate_with_s4!
+    authenticate!
+    throw :warden unless s4_user
   end
 
 end

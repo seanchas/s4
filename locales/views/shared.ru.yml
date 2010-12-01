@@ -3,6 +3,9 @@ ru:
 
     header:
       title: 'Личный кабинет участника'
+      login: 'Вход'
+      registration: 'Регистрация'
+      logout: 'Выход'
     
     menu:
       organization:   'Организация'

@@ -1,8 +1,8 @@
 class WelcomeController < ApplicationController
+
+  skip_before_filter :authenticate_with_s4!
   
   include MicexXMLRPC::ControllerMixins
-  
-  layout nil
   
   def index
     redirect_to :organization
