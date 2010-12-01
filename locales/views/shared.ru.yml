@@ -1,5 +1,11 @@
 ru:
+  
+  resource_table:
+    cell:
+      blank: 'Отсутствует'
+  
   shared:
+
 
     header:
       title: 'Личный кабинет участника'
