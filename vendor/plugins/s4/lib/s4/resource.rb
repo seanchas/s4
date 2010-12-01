@@ -3,9 +3,7 @@ module S4
   class Resource < S4::Models::Base
     
     def self.all(*params)
-      Rails.cache.fetch("#{resource_type.to_param.pluralize}_#{params.collect(&:to_param).join("_")}", :expires_in => 1.hour) do
-        parse_many(call_with_session("s4.listResources", resource_type.to_param, *params.collect(&:to_param))).collect { |attributes| new(params.first, attributes) }
-      end
+      parse_many(call_with_session("s4.listResources", resource_type.to_param, *params.collect(&:to_param))).collect { |attributes| new(params.first, attributes) }
     end
     
     def self.find(*params)
