@@ -1,5 +1,7 @@
 ru:
   organizations:
+    title: 'Организация'
+    
     show:
       blank: 'Отсутствует'
     
@@ -10,3 +12,8 @@ ru:
       ceo:          'Единоличный исполнительный орган'
       controllers:  'Контролеры'
       signers:      'Подписанты'
+
+    contextual_menu:
+      information:  'Общие сведения'
+      licenses:     'Лицензии'
+      management:   'Руководитель, контролер, подписанты'

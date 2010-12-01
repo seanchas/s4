@@ -1,0 +1,104 @@
+/*
+  MARKETS.CSS
+*/
+
+div.list_item {
+  margin: 2em 0;
+  padding: 1px 0;
+}
+
+div.list_item h4 {
+  margin: 0 0 .5em;
+  padding: 0;
+}
+
+div.list_item div.description {
+  padding: 0 20px;
+}
+
+div.list_item p {
+  line-height: 1.5em;
+  margin: 0;
+  padding: 0;
+}
+
+
+div.list_item ul {
+  margin: 0;
+  padding: 0 20px;
+}
+
+div.list_item ul li {
+  list-style: none;
+  margin: .5em 0 0;
+  padding: 0;
+}
+
+/* resource */
+
+div.resource {
+  margin: 1.5em 0;
+}
+
+div.resource div.column {
+  overflow: hidden;
+  margin: 0 0 1.5em;
+}
+
+div.resource div.column h4 {
+  font-size: 1em;
+  margin: 0 0 .5em;
+  padding: 0 2px;
+}
+
+div.resource div.column p {
+  background-color: #eee;
+  margin: 0;
+  padding: .5em 10px;
+}
+
+div.resource div.column p.blank {
+  background-color: #fcc;
+}
+
+div.resource div.group {
+  overflow: hidden;
+}
+
+div.resource div.group h3 {
+  font-size: 1.1em;
+  margin: 1.5em 0;
+}
+
+div.resource div.group div.column {
+  float: left;
+  margin-right: 20px;
+}
+
+/* table */
+
+table.resource {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 1.5em 0;
+  width: 100%;
+}
+
+table.resource td {
+  padding: .5em 10px;
+  vertical-align: top;
+}
+
+table.resource td.nowrap {
+  white-space: nowrap;
+}
+
+table.resource thead td {
+  color: #4d4d4d;
+  font-size: .9em;
+  padding-top: 0;
+}
+
+table.resource tr.odd td {
+  background-color: #eee;
+}

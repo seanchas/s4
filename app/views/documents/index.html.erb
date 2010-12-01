@@ -5,14 +5,16 @@
 <%- document_types = @documents.collect(&:document).uniq -%>
 
 <%- document_types.each do |document_type| -%>
-    <h3>
-        <%= h document_type %>
-    </h3>
-    <ul>
-        <%- @documents.select { |document| document.document == document_type }.each do |document| -%>
-            <li>
-                <%= h document.title %>
-            </li>
-        <%- end -%>
-    </ul>
+    <div class="list_item">
+        <h4>
+            <%= h document_type %>
+        </h4>
+        <ul>
+            <%- @documents.select { |document| document.document == document_type }.each do |document| -%>
+                <li>
+                    <%= h document.title %>
+                </li>
+            <%- end -%>
+        </ul>
+    </div>
 <%- end -%>

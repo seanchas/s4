@@ -1,1 +1,10 @@
-<%= textilize market.description %>
+<div class="market list_item" data-market="<%= market.to_param %>" style="display: none;">
+    <h4>
+        <%= market.name %>
+    </h4>
+    <div class="description">
+        <%= textilize market.description %>
+        <%= resource_table(S4::Agent.schema, market.agents) unless market.agents.empty? %>
+    </div>
+</div>
+

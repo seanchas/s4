@@ -8,7 +8,7 @@ module S4
       attr_accessor :attributes
       
       def initialize(attributes = {})
-        @attributes = ActiveSupport::OrderedHash.new
+        @attributes = {}
         self.attributes = attributes
       end
       

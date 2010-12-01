@@ -4,6 +4,10 @@ module S4
     
     self.resource_type = :market_info
     
+    def agents
+      @agents ||= S4::Agent.all(@user, to_param)
+    end
+    
   end
   
 end

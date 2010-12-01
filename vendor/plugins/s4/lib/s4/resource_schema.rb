@@ -63,7 +63,7 @@ module S4
     
     class Column
       
-      attr_reader :name, :type, :title
+      attr_reader :name, :type, :title, :nowrap
       
       def initialize(xml)
         parse(xml)
@@ -72,12 +72,17 @@ module S4
       def element_type
         :column
       end
+      
+      def nowrap?
+        !!nowrap
+      end
     
     private
     
       def parse(xml)
         @name   = xml.attribute("name").try(:content)
         @type   = xml.attribute("type").try(:content)
+        @nowrap = xml.attribute("nowrap").try(:content)
         @title  = xml.content
       end
       

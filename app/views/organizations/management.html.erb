@@ -2,11 +2,13 @@
     <%= @organization.full_name %>
 </h1>
 
+<%= contextual_menu %>
+
 <div class="resource">
+    <h3>
+        <%= t ".ceo" %>
+    </h3>
     <div class="group">
-        <h3>
-            <%= t ".ceo" %>
-        </h3>
         <%- S4::CEO.schema.each do |element| -%>
             <%= render :partial => "shared/s4/resource/#{element.element_type}", :object => element, :locals => { :resource => @ceo } %>
         <%- end -%>
@@ -14,49 +16,15 @@
 </div>
 
 <div class="resource">
-    <div class="group group_shift">
-        <h3>
-            <%= t ".controllers" %>
-        </h3>
-    </div>
-    <table class="resource">
-        <thead>
-            <tr>
-                <%- S4::Controller.schema.each do |element| -%>
-                    <td class="<%= element.name %>">
-                        <%= h element.title %>
-                    </td>
-                <%- end -%>
-            </tr>
-        </thead>
-        <tbody>
-            <%= render :partial => "shared/s4/resource_as_table_row", :collection => @controllers %>
-            <%- reset_cycle -%>
-        </tbody>
-    </table>
+    <h3>
+        <%= t ".controllers" %>
+    </h3>
+    <%= resource_table S4::Controller.schema, @controllers %>
 </div>
 
-<%- unless @signers.empty? -%>
-    <div class="resource">
-        <div class="group group_shift">
-            <h3>
-                <%= t ".signers" %>
-            </h3>
-        </div>
-        <table class="resource sortable">
-            <thead>
-                <tr>
-                    <%- S4::Signer.schema.each do |element| -%>
-                        <td class="<%= element.name %>">
-                            <span><%= h element.title %></span>
-                        </td>
-                    <%- end -%>
-                </tr>
-            </thead>
-            <tbody>
-                <%= render :partial => "shared/s4/resource_as_table_row", :collection => @signers %>
-                <%- reset_cycle -%>
-            </tbody>
-        </table>
-    </div>
-<%- end -%>
+<div class="resource">
+    <h3>
+        <%= t ".signers" %>
+    </h3>
+    <%= resource_table S4::Signer.schema, @signers %>
+</div>

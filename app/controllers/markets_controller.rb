@@ -1,13 +1,13 @@
 class MarketsController < ApplicationController
   
   def index
-    redirect_to market_path(S4::Market.all(s4_user).first)
+    @organization = S4::Organization.find(s4_user)
   end
   
   def show
     @organization = S4::Organization.find(s4_user)
-    @market = S4::Market.all(s4_user, params[:id]).first
-    @agents = S4::Agent.all(s4_user, @market.to_param)
+    @market = @organization.markets.find { |market| market.to_param == params[:id] }
+    @agents = @market.agents
   end
   
 end

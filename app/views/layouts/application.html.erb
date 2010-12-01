@@ -2,17 +2,16 @@
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <%= stylesheet_link_tag "main", :cache => "s4" %>
-        <%= javascript_include_tag "prototype", "mx_sortable_table", :cache => "s4" %>
+        <%= stylesheet_link_tag "main", "markets", :cache => "s4" %>
+        <%= javascript_include_tag "prototype", :cache => "s4" %>
     </head>
     <body>
-        
         <div id="page_wrapper">
+            <%= render "shared/headline" %>
             <%= render "shared/header" %>
-            <div id="body">
-                <div id="sidebar">
-                    <%= render "shared/menu" %>
-                </div>
+            <%= render "shared/navigation" %>
+            
+            <div id="content_wrapper">
                 <div id="content">
                     <%= yield %>
                 </div>
@@ -22,6 +21,5 @@
         <div id="footer_wrapper">
             <%= render "shared/footer" %>
         </div>
-        
     </body>
 </html>

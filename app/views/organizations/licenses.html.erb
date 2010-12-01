@@ -2,18 +2,6 @@
     <%= @organization.full_name %>
 </h1>
 
-<table class="resource sortable">
-    <thead>
-        <tr>
-            <%- S4::License.schema.each do |element| -%>
-                <td class="<%= element.name %>">
-                    <span><%= h element.title %></span>
-                </td>
-            <%- end -%>
-        </tr>
-    </thead>
-    <tbody>
-        <%= render :partial => "shared/s4/resource_as_table_row", :collection => @licenses %>
-        <%- reset_cycle -%>
-    </tbody>
-</table>
+<%= contextual_menu %>
+
+<%= resource_table S4::License.schema, @licenses %>

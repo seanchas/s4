@@ -32,6 +32,9 @@ module S4
   mattr_accessor :session_pool_timeout
   @@session_pool_timeout = 1.second
   
+  mattr_accessor :expires_in
+  @@expires_in = 1.hour
+  
   
   def self.connection
     @@connection ||= S4::Utils::Connection.new(site)

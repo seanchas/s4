@@ -17,12 +17,10 @@ module S4
       end
       
       def pull_session
-        puts "pulling s4 session"
         @reserved[current_session_id] ||= checkout
       end
       
       def push_session
-        puts "pushing s4 session"
         session = @reserved.delete(current_session_id)
         checkin(session) if session
       end
@@ -50,14 +48,12 @@ module S4
       end
       
       def checkout_new_session
-        puts "checking out new session"
         session = open_session
         @sessions << session
         check_out_session(session)
       end
       
       def checkout_existing_session
-        puts "checking out existing session"
         session = (@sessions - @checked_out).first
         close_session(session) and return checkout_new_session unless check_session(session)
         check_out_session(session)
