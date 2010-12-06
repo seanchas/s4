@@ -1,0 +1,13 @@
+<h1>
+    <%= @organization.full_name %>
+</h1>
+
+<%= textilize t(".description") %>
+
+<ul class="cards">
+    <%- @cards.each do |card| -%>
+        <li>
+            <%= h card.title %>
+        </li>
+    <%- end -%>
+</ul>

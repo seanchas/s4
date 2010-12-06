@@ -102,3 +102,17 @@ table.resource thead td {
 table.resource tr.odd td {
   background-color: #eee;
 }
+
+/* cards */
+
+ul.cards {
+  margin: 2em 0 0;
+  padding: 0;
+}
+
+ul.cards li {
+  font-weight: bold;
+  list-style: none;
+  margin: 1em 0;
+  padding: 0;
+}

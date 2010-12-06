@@ -9,5 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :markets
 
   map.resources :documents
+  
+  map.resources :cards
 
 end
