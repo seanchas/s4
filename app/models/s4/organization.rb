@@ -5,7 +5,7 @@ module S4
     self.resource_type = :organization
     
     def free_markets
-      @free_markets ||= markets - grouped_markets
+      @free_markets ||= markets.select { |market| market.market_group.blank? }
     end
     
     def grouped_markets

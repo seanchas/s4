@@ -205,10 +205,10 @@ ul.tabbed_menu li {
   height: 24px;
   left: 8px;
   overflow: hidden;
-  padding-left: 198px;
   position: absolute;
   top: 13px;
-  width: 0;
+  text-indent: -1000px;
+  width: 198px;
 }
 
 #header .authentication_menu {
