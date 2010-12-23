@@ -2,4 +2,6 @@
     <%= t ".title" %>
 </h1>
 
-<%= textilize t(".description") %>
+<%= textilize t(".common") %>
+
+<%= textilize t(authenticated? ? ".unregistered" : ".unknown") %>
