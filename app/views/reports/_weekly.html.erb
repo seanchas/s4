@@ -1,0 +1,24 @@
+<table class="resource">
+    <thead>
+        <tr>
+            <td>&nbsp;</td>
+            <%- @weekly_reports.each do |r| -%>
+                <td class="icon">
+                    <%= h r.date %>
+                </td>
+            <%- end -%>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="odd">
+            <td class="string">
+                Данные о еженедельном отчете
+            </td>
+            <%- @weekly_reports.each do |r| -%>
+                <td class="string status_<%= r.status %>" title="<%= t(".title")[r.status] %>">
+                    &nbsp;
+                </td>
+            <%- end -%>
+        </tr>
+    </tbody>
+</table>

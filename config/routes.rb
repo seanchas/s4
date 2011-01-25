@@ -11,5 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :documents
   
   map.resources :cards
+  
+  map.resources :reports
 
 end

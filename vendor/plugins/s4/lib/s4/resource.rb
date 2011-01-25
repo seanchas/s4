@@ -3,11 +3,15 @@ module S4
   class Resource < S4::Models::Base
     
     def self.all(*params)
-      parse_many(call_with_session("s4.listResources", resource_type.to_param, *params.collect(&:to_param))).collect { |attributes| new(params.first, attributes) }
+      Rails.cache.fetch("S4::Resources::#{resource_type.to_param}::#{params.join("::")}", :expires_in => 1.minute) do
+        parse_many(call_with_session("s4.listResources", resource_type.to_param, *params.collect(&:to_param))).collect { |attributes| new(params.first, attributes) }
+      end
     end
     
     def self.find(*params)
-      new(params.first, parse_one(call_with_session("s4.getResource", resource_type.to_param, *params.collect(&:to_param))))
+      Rails.cache.fetch("S4::Resource::#{resource_type.to_param}::#{params.join("::")}", :expires_in => 1.minute) do
+        new(params.first, parse_one(call_with_session("s4.getResource", resource_type.to_param, *params.collect(&:to_param))))
+      end
     end
     
     def self.resource_type=(resource_type)

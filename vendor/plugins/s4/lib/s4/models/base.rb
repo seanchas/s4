@@ -37,6 +37,10 @@ module S4
             attributes.key?(name) ? attributes[name] : super
         end
       end
+      
+      def freeze
+        self
+      end
 
     protected
       

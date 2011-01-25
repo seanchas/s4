@@ -3,7 +3,9 @@ module S4
   class ResourceType < S4::Models::Base
     
     def self.all
-      parse(call_with_session("s4.listResourceTypes")).collect { |node| new(node) }
+      Rails.cache.fetch("S4::ResourceTypes", :expires_in => 1.minute) do
+        parse(call_with_session("s4.listResourceTypes")).collect { |node| new(node) }
+      end
     end
     
     def self.find(param)

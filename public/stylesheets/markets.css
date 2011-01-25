@@ -99,8 +99,22 @@ table.resource thead td {
   padding-top: 0;
 }
 
+table.resource td.icon {
+  text-align: center;
+}
+
 table.resource tr.odd td {
   background-color: #eee;
+}
+
+table.resource td.status_0 {
+  background: url(/images/minus.png) no-repeat center center;
+}
+
+table.resource td.status_1,
+table.resource td.status_2,
+table.resource td.status_3 {
+  background: url(/images/tick.png) no-repeat center center;
 }
 
 /* cards */

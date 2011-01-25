@@ -23,7 +23,9 @@ end
 
 configuration = [
   'config/database.yml',
+  'config/environments/production.rb',
   'config/initializers/s4.rb',
+  'config/initializers/reports.rb',
   'config/initializers/passport.rb',
   'config/initializers/cookie_verification_secret.rb',
   'config/locales/ru.yml',

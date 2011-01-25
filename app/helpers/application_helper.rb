@@ -15,6 +15,7 @@ module ApplicationHelper
       ul.li t(:title, :scope => :markets),      markets_path,       :markets
       ul.li t(:title, :scope => :documents),    documents_path,     :documents
       ul.li t(:title, :scope => :cards),        cards_path,         :cards
+      ul.li t(:title, :scope => :reports),      reports_path,       :reports
     end if s4_user
   end
   
@@ -38,7 +39,7 @@ module ApplicationHelper
   end
   
   def resource_table_schema(schema)
-    cells = schema.columns.collect { |column| puts column; content_tag(:td, column.title) }.join
+    cells = schema.columns.collect { |column| content_tag(:td, column.title) }.join
     content_tag(:thead) do
       content_tag(:tr, cells)
     end

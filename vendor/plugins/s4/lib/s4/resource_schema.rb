@@ -3,7 +3,9 @@ module S4
   class ResourceSchema < S4::Models::Base
     
     def self.find(resource_type)
-      new(call_with_session("s4.getResourceSchema", resource_type.to_param))
+      Rails.cache.fetch("S4::ResourceSchema::#{resource_type.to_param}", :expires_in => 1.minute) do
+        new(call_with_session("s4.getResourceSchema", resource_type.to_param))
+      end
     end
     
     def initialize(xml)
