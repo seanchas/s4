@@ -1,10 +1,10 @@
-<table class="resource">
+<table class="resource" data-context-target="weekly" style="display: none;">
     <thead>
         <tr>
             <td>&nbsp;</td>
             <%- @weekly_reports.each do |r| -%>
                 <td class="icon">
-                    <%= h r.date %>
+                    <%= l r.date, :format => :weekly %>
                 </td>
             <%- end -%>
         </tr>
@@ -12,10 +12,10 @@
     <tbody>
         <tr class="odd">
             <td class="string">
-                Данные о еженедельном отчете
+                <%= t ".name" %>
             </td>
             <%- @weekly_reports.each do |r| -%>
-                <td class="string status_<%= r.status %>" title="<%= t(".title")[r.status] %>">
+                <td class="string status_<%= r.status %>">
                     &nbsp;
                 </td>
             <%- end -%>

@@ -13,7 +13,7 @@ module Reports
     attr_reader :date, :status
     
     def initialize(date, status)
-      @date   = date
+      @date   = date.to_date
       @status = status.to_i
     end
     

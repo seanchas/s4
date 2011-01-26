@@ -107,15 +107,28 @@ table.resource tr.odd td {
   background-color: #eee;
 }
 
-table.resource td.status_0 {
+table.resource td.status_0,
+table.resource td.status_x,
+table.resource td.status_ {
   background: url(/images/minus.png) no-repeat center center;
 }
 
 table.resource td.status_1,
 table.resource td.status_2,
-table.resource td.status_3 {
+table.resource td.status_3,
+table.resource td.status_v {
   background: url(/images/tick.png) no-repeat center center;
 }
+
+table.resource td.monthly_status_0 {
+  background: url(/images/tick-circle-frame.png) no-repeat center center;
+}
+
+table.resource td.monthly_status_1,
+table.resource td.monthly_status_2 {
+  background: url(/images/exclamation-red-frame.png) no-repeat center center;
+}
+
 
 /* cards */
 

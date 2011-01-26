@@ -1,0 +1,43 @@
+<ul id="contextual_menu" class="tabbed_menu">
+    <li data-context-anchor="weekly" class="first">
+        <%= link_to t(".weekly"), reports_path(:anchor => "weekly") %>
+    </li>
+    <li data-context-anchor="monthly" class="last">
+        <%= link_to t(".monthly"), reports_path(:anchor => "monthly") %>
+    </li>
+</ul>
+
+<script type="text/javascript" charset="utf-8">
+
+    (function() {
+
+        var available_contexts  = $('contextual_menu').select("li[data-context-anchor]").collect(function(li) { return li.readAttribute("data-context-anchor"); })
+        var current_context     = null;
+
+        function check_context() {
+            var anchor  = window.location.hash.sub(/^\#/, '');
+            var context = available_contexts.include(anchor) ? anchor : available_contexts.first();
+
+            if (context == current_context) return;
+            
+            document.fire("context:switched", { context: context });
+        }
+        
+        document.on("context:switched", function(e) {
+            current_context = e.memo.context;
+            
+            $$('*[data-context-anchor]').invoke('removeClassName', 'current');
+            $$('*[data-context-anchor=' + current_context + ']').invoke('addClassName', 'current');
+            
+            $$('*[data-context-target]').invoke('hide');
+            $$('*[data-context-target=' + current_context + ']').invoke('show');
+
+        });
+        
+        check_context();
+        
+        new PeriodicalExecuter(check_context, .2);
+        
+    }).defer();
+
+</script>

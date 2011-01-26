@@ -1,0 +1,39 @@
+<table class="resource" data-context-target="monthly" style="display: none;">
+    <thead>
+        <tr>
+            <td>&nbsp;</td>
+            <%- @monthly_reports.each do |r| -%>
+                <td class="icon">
+                    <%= t("date.standalone_month_names")[r.date.month].mb_chars.downcase %>
+                    <%= r.date.year %>
+                </td>
+            <%- end -%>
+        </tr>
+    </thead>
+    <tbody>
+        <%- Reports::MonthlyReport.scheme.each_with_index do |s, i| -%>
+            <tr class="<%= cycle("odd", "even") %>">
+                <td>
+                    <%= h s %>
+                </td>
+                <%- @monthly_reports.each do |r| -%>
+                    <td class="icon status_<%= r.states[i] %>">
+                        &nbsp;
+                    </td>
+                <%- end -%>
+            </tr>
+        <%- end -%>
+        <tr class="<%= cycle("odd", "even") %>">
+            <td>
+                <strong>
+                    <%= t ".status" %>
+                </strong>
+            </td>
+            <%- @monthly_reports.each do |r| -%>
+                <td class="icon  monthly_status_<%= r.status %>">
+                    &nbsp;
+                </td>
+            <%- end -%>
+        </tr>
+    </tbody>
+</table>
