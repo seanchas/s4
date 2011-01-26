@@ -1,5 +1,9 @@
 ru:
   
+  layouts:
+    application:
+      title: 'Личный кабинет'
+  
   resource_table:
     cell:
       blank: 'Отсутствует'
