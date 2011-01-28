@@ -15,7 +15,7 @@ var Tips = {
   options: {
     paths: {                                // paths can be relative to this file or an absolute url
       images:     '/images/prototip/',
-      javascript: ''
+      javascript: '/javascripts/prototip/'
     },
     zIndex: 6000                            // raise if required
   }
