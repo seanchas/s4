@@ -6,7 +6,7 @@ ru:
       default:  "%d.%m.%Y"
       long:     "%d %B %Y"
       weekly:   "%d.%m"
-      monthly:  "%m.%Y"
+      monthly:  "%B %Y"
       
     day_names:      [воскресенье, понедельник, вторник, среда, четверг, пятница, суббота]
     abbr_day_names: [Вс, Пн, Вт, Ср, Чт, Пт, Сб]

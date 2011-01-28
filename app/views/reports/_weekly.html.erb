@@ -15,7 +15,7 @@
                 <%= t ".name" %>
             </td>
             <%- @weekly_reports.each do |r| -%>
-                <td class="string status_<%= r.status %>">
+                <td class="string status_<%= r.status %>" data-state="<%= r.status %>">
                     &nbsp;
                 </td>
             <%- end -%>

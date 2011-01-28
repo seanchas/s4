@@ -3,7 +3,7 @@
         <%= link_to t(".weekly"), reports_path(:anchor => "weekly") %>
     </li>
     <li data-context-anchor="monthly" class="last">
-        <%= link_to t(".monthly"), reports_path(:anchor => "monthly") %>
+        <%= link_to t(".monthly")[@monthly_reports.first.organization_type], reports_path(:anchor => "monthly") %>
     </li>
 </ul>
 

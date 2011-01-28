@@ -8,14 +8,15 @@ module Reports
     
     def self.new(value)
       puts value.inspect
-      super(value.first, value.last, value[1 .. -2])
+      super(value.first, value[1], value.last, value[2 .. -2])
     end
     
-    attr_reader :date, :status, :states
+    attr_reader :date, :organization_type, :status, :states
     
-    def initialize(date, status, states)
-      @date   = date.to_date
-      @status = case status
+    def initialize(date, organization_type, status, states)
+      @date               = date.to_date
+      @organization_type  = organization_type.to_i
+      @status             = case status
       when "OK"
         "0"
       when "NOT OK"
@@ -26,12 +27,12 @@ module Reports
       @states = states
     end
     
-    def self.scheme
-      @@scheme ||= Reports::Scheme.find("month")[1..-2]
+    def self.scheme(organization_type)
+      (@@scheme ||= {})[organization_type] ||= Reports::Scheme.find("month", organization_type)[2..-2]
     end
     
     def scheme
-      self.class.scheme
+      self.class.scheme(@organization_type)
     end
     
   end

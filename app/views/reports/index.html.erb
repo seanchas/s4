@@ -7,3 +7,33 @@
 <%= render "weekly" %>
 
 <%= render "monthly" %>
+
+<script type="text/javascript" charset="utf-8">
+    document.on("dom:loaded", function(e) {
+
+        var states = {
+            "0": "Форма не предоставлена",
+            "1": "Форма предоставлена",
+            "2": "Форма предоставлена без документального подтверждения",
+            "3": "Необязательная форма",
+            "v": "State v",
+            "x": "State x",
+            "":  "State undefined"
+        }
+
+        $$("td[data-state]").each(function(element) {
+            new Tip(element, states[element.readAttribute("data-state")], {
+                hook: {
+                    tip: 'topLeft',
+                    target: 'bottomMiddle'
+                },
+                offset: {
+                    x: 5,
+                    y: 5
+                },
+                width: 'auto'
+            });
+        });
+        
+    });
+</script>
