@@ -22,17 +22,19 @@
         }
 
         $$("td[data-state]").each(function(element) {
-            new Tip(element, states[element.readAttribute("data-state")], {
-                hook: {
-                    tip: 'topLeft',
-                    target: 'bottomMiddle'
-                },
-                offset: {
-                    x: 5,
-                    y: 5
-                },
-                width: 'auto'
-            });
+            if (parseInt(element.readAttribute("data-state")) != 3) {
+                new Tip(element, states[element.readAttribute("data-state")], {
+                    hook: {
+                        tip: 'topLeft',
+                        target: 'bottomMiddle'
+                    },
+                    offset: {
+                        x: 5,
+                        y: 5
+                    },
+                    width: 'auto'
+                });
+            }
         });
         
     });
