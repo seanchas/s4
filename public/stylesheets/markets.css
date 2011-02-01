@@ -121,7 +121,7 @@ table.resource td.status_2 {
 }
 
 table.resource td.status_3 {
-  background: url(/images/minus-grey.png) no-repeat center center;
+  /* background: url(/images/minus-grey.png) no-repeat center center; */
 }
 
 

@@ -7,7 +7,6 @@ module Reports
     end
     
     def self.new(value)
-      puts value.inspect
       super(value.first, value[1], value.last, value[2 .. -2])
     end
     
