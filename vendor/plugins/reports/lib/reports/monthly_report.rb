@@ -27,7 +27,7 @@ module Reports
     end
     
     def self.scheme(organization_type)
-      Reports::Scheme.find("month", organization_type)[2..-1]
+      Reports::Scheme.find("month", organization_type.to_s)[2..-1]
     end
     
     def scheme

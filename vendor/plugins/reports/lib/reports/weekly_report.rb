@@ -17,6 +17,14 @@ module Reports
       @status = status.to_i
     end
     
+    def self.scheme
+      Reports::Scheme.find("week").last
+    end
+    
+    def scheme
+      @scheme ||= self.class.scheme
+    end
+
   end
   
 end
