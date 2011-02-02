@@ -7,7 +7,7 @@ module Reports
     end
     
     def self.new(value)
-      super(value.first, value[1], value.last, value[2 .. -2])
+      super(value.first, value[1], value.last, value[2 .. -1])
     end
     
     attr_reader :date, :organization_type, :status, :states
@@ -27,11 +27,11 @@ module Reports
     end
     
     def self.scheme(organization_type)
-      (@@scheme ||= {})[organization_type] ||= Reports::Scheme.find("month", organization_type)[2..-2]
+      Reports::Scheme.find("month", organization_type)[2..-1]
     end
     
     def scheme
-      self.class.scheme(@organization_type)
+      @scheme ||= self.class.scheme(@organization_type)
     end
     
   end
