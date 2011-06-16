@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   def s4_user
     authenticated_user.s4_key if authenticated?
   end
-
+  
 private
 
   def authenticate_with_s4!
