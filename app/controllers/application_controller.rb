@@ -10,6 +10,15 @@ class ApplicationController < ActionController::Base
     authenticated_user.s4_key if authenticated?
   end
   
+  def rescue_action_in_public(exception)
+    case exception
+      when ActionController::UnknownAction, ActionController::RoutingError, ActiveRecord::RecordNotFound
+        render :template => 'welcome/404', :layout => 'error'
+      else
+        render :template => 'welcome/500', :layout => 'error'
+    end
+  end
+
 private
 
   def authenticate_with_s4!
