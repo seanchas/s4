@@ -1,5 +1,18 @@
 module ApplicationHelper
   
+  def title(title, title_visible = true)
+    content_for(:title, title)
+    @title_visible = title_visible
+  end
+  
+  def title_present?
+    !!@content_for_title
+  end
+  
+  def title_visible?
+    title_present? && @title_visible
+  end
+  
   def domains_menu
     current_url = "#{request.scheme}://#{request.host}"
     navigation.ul :html => { :class => "tabbed_menu left" } do |ul|
