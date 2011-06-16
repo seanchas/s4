@@ -9,9 +9,8 @@ set :deploy_via,  :copy
 
 set :scm, :git
 
-role :web, "dls8"
-role :app, "dls8"
-role :db,  "dls8", :primary => true
+set :bundle_cmd,  "/opt/gnu/ror/bin/bundle"
+require 'bundler/capistrano'
 
 namespace :deploy do
   task :start do ; end
