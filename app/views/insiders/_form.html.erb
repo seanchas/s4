@@ -1,0 +1,30 @@
+<%- form_tag :rat_insider, :multipart => true do -%>
+
+	<%- if @error.present? -%>
+		<ul class="errors">
+			<li>
+				<%= t @error %>
+			</li>
+		</ul>
+	<%- end -%>
+
+	<dl>
+
+		<dt>
+			<%= label_tag :file, t(".file_label") %>
+		</dt>
+		<dd>
+			<%= file_field_tag :file %>
+		</dd>
+		
+		<dd>
+			<%= recaptcha_tags %>
+		</dd>
+		
+		<dd>
+			<%= submit_tag t(".submit"), :disable_with => t(".disable_submit") %>
+		</dd>
+		
+	</dl>
+
+<%- end -%>

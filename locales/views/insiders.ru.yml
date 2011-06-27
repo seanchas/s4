@@ -1,0 +1,6 @@
+ru:
+  insiders:
+    form:
+      file_label:       'Файл'
+      submit:           'Выслать файл'
+      disable_submit:   'Подождите...'
