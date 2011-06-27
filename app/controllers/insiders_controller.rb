@@ -4,6 +4,7 @@ class InsidersController < ApplicationController
   
   def create
     if verify_recaptcha
+      @error = ".errors.file_missing" and render :new and return unless params[:file].present?
       render :new
     else
       @error = flash[:recaptcha_error]

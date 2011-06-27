@@ -1,6 +1,7 @@
 ru:
   insiders:
     form:
-      file_label:       'Файл'
-      submit:           'Выслать файл'
+      submit:           'Загрузить файл'
       disable_submit:   'Подождите...'
+      errors:
+        file_missing:     'Не выбран файл'
