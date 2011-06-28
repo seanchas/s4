@@ -23,7 +23,7 @@ private
 
   def authenticate_with_s4!
     authenticate!
-    throw :warden unless s4_user
+    throw :warden unless s4_user.present?
   end
   
   def cleanup_cache_control
