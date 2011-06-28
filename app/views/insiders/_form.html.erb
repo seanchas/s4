@@ -2,9 +2,15 @@
 
 	<ul>
 		
-		<%- if @error.present? -%>
+		<%- if flash[:error].present? -%>
 			<li class="error">
-				<%= t @error %>
+				<%= t flash[:error] %>
+			</li>
+		<%- end -%>
+
+		<%- if flash[:notice].present? -%>
+			<li class="success">
+				<%= t flash[:notice] %>
 			</li>
 		<%- end -%>
 

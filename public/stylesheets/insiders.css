@@ -14,7 +14,19 @@ form.insiders ul li {
 	padding: 0;
 }
 
-form.insiders ul li.error {
-	color: #f00;
+form.insiders ul li.error,
+form.insiders ul li.success {
 	font-weight: bold;
+	margin: 2em -10px;
+	padding: 1em 10px;
+}
+
+form.insiders ul li.error {
+	background-color: #fcc;
+	color: #900;
+}
+
+form.insiders ul li.success {
+	background-color: #cfc;
+	color: #060;
 }
