@@ -1,7 +1,10 @@
 ru:
   insiders:
+    title: 'Настучи на инсайдера'
     form:
       submit:           'Загрузить файл'
       disable_submit:   'Подождите...'
       errors:
         file_missing:     'Не выбран файл'
+    unauthenticated:
+      title: 'Сначала добейся!'

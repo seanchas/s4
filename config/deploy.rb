@@ -27,6 +27,8 @@ configuration = [
   'config/initializers/reports.rb',
   'config/initializers/passport.rb',
   'config/initializers/cookie_verification_secret.rb',
+  'config/initializers/mailer.rb',
+  'config/initializers/recaptcha.rb',
   'config/locales/ru.yml',
   'config/locales/en.yml',
   'vendor/rails'

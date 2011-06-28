@@ -24,12 +24,16 @@ module ApplicationHelper
 
   def main_menu
     navigation.ul :html => { :class => :tabbed_menu } do |ul|
-      ul.li t(:title, :scope => :organizations), organization_path, :organizations
-      ul.li t(:title, :scope => :markets),      markets_path,       :markets
-      ul.li t(:title, :scope => :documents),    documents_path,     :documents
-      ul.li t(:title, :scope => :cards),        cards_path,         :cards
+      if s4_user
+        ul.li t(:title, :scope => :organizations),  organization_path,  :organizations
+        ul.li t(:title, :scope => :markets),        markets_path,       :markets
+        ul.li t(:title, :scope => :documents),      documents_path,     :documents
+        ul.li t(:title, :scope => :cards),          cards_path,         :cards
+      end
+      ul.li t(:title, :scope => :welcome), organization_path, :organizations unless s4_user
+      ul.li t(:title, :scope => :insiders), insider_path, :insiders
       # ul.li t(:title, :scope => :reports),      reports_path,       :reports
-    end if s4_user
+    end 
   end
   
   def authentication_menu
