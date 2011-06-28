@@ -1,6 +1,8 @@
 ru:
   insiders:
-    title: 'Настучи на инсайдера'
+    title: &title 'Контроль за использованием инсайдерской информации'
+    new:
+      title: *title
     form:
       submit:           'Загрузить файл'
       disable_submit:   'Подождите...'
