@@ -32,7 +32,7 @@ module ApplicationHelper
       end
       ul.li t(:title, :scope => :welcome), organization_path, :organizations unless s4_user
       ul.li t(:title, :scope => :insiders), insider_path, :insiders
-      # ul.li t(:title, :scope => :reports),      reports_path,       :reports
+      #ul.li t(:title, :scope => :reports),      reports_path,       :reports
     end 
   end
   

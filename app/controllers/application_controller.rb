@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 
+  before_filter :authenticate
   before_filter :authenticate_with_s4!
   
   after_filter :cleanup_cache_control
