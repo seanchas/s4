@@ -5,10 +5,11 @@ module S4
     self.resource_type = :licence
 
     def date_begin=(date)
+      Rails.logger.debug "DATE: :#{date}:"
       attributes["date_begin"] = date.to_date
     rescue
       attributes["date_begin"] = nil
-      Rails.logger.error "INVALID DATE FORMAT: #{date}"
+      Rails.logger.error "INVALID DATE FORMAT: :#{date}:"
     end
     
     def date_end=(date)
