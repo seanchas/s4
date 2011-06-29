@@ -5,7 +5,6 @@ module S4
     self.resource_type = :licence
 
     def date_begin=(date)
-      Rails.logger.info "License date :#{date}:"
       attributes["date_begin"] = date.to_date
     end
     
