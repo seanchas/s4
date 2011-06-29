@@ -6,10 +6,13 @@ module S4
 
     def date_begin=(date)
       attributes["date_begin"] = date.to_date
+    rescue
+      attributes["date_begin"] = nil
+      Rails.logger.error "INVALID DATE FORMAT: #{date}"
     end
     
     def date_end=(date)
-      attributes["date_end"] = date.present? ? date.to_date : nil
+      attributes["date_end"] = date.present? ? date.to_date : nil rescue nil
     end
     
   end
