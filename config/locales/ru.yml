@@ -1,6 +1,9 @@
 ru:
   shared:
 
+    passport_js:  'http://passport-beta.micex.ru/javascripts/passport.js'
+    passport_css: 'http://passport-beta.micex.ru/stylesheets/passport.css'
+
     headline:
       domains:
         - ['ММВБ',            'http://beta.micex.ru']

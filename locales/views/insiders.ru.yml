@@ -1,0 +1,13 @@
+ru:
+  insiders:
+    title: &title 'Контроль за использованием инсайдерской информации'
+    new:
+      title: *title
+    form:
+      submit:           'Загрузить файл'
+      disable_submit:   'Подождите...'
+      errors:
+        file_missing:   'Не выбран файл'
+      success:          'Файл успешно загружен'
+    unauthenticated:
+      title: 'Сначала добейся!'

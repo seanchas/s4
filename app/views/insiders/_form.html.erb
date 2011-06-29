@@ -1,0 +1,31 @@
+<%- form_tag :rat_insider, :multipart => true, :class => :insiders do -%>
+
+	<ul>
+		
+		<%- if flash[:error].present? -%>
+			<li class="error">
+				<%= t flash[:error] %>
+			</li>
+		<%- end -%>
+
+		<%- if flash[:notice].present? -%>
+			<li class="success">
+				<%= t flash[:notice] %>
+			</li>
+		<%- end -%>
+
+		<li>
+			<%= file_field_tag :file %>
+		</li>
+		
+		<li>
+			<%= recaptcha_tags %>
+		</li>
+		
+		<li>
+			<%= submit_tag t(".submit"), :disable_with => t(".disable_submit") %>
+		</li>
+		
+	</ul>
+
+<%- end -%>

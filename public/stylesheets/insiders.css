@@ -1,0 +1,32 @@
+form.insiders {
+	margin: 0;
+	padding: 0;
+}
+
+form.insiders ul {
+	margin: 0;
+	padding: 0;
+}
+
+form.insiders ul li {
+	list-style: none;
+	margin: 1em 0;
+	padding: 0;
+}
+
+form.insiders ul li.error,
+form.insiders ul li.success {
+	font-weight: bold;
+	margin: 2em -10px;
+	padding: 1em 10px;
+}
+
+form.insiders ul li.error {
+	background-color: #fcc;
+	color: #900;
+}
+
+form.insiders ul li.success {
+	background-color: #cfc;
+	color: #060;
+}

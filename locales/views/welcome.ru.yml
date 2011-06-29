@@ -1,5 +1,7 @@
 ru:
   welcome:
+    title: 'Личный кабинет участника'
+    
     unauthenticated:
       title: 'Личный кабинет Участника'
     
