@@ -25,3 +25,15 @@ namespace :passport do
   end
   
 end
+
+namespace :futures do
+  
+  help "Insert new publication"
+  
+  signature :integer, :structure
+  
+  task :addPublication do |data|
+    return 12345
+  end
+  
+end
