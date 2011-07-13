@@ -15,10 +15,11 @@ module S4
     end
     
     def self.resource_type=(resource_type)
-      @resource_type = resource_type.is_a?(S4::ResourceType) ? resource_type : S4::ResourceType.find(resource_type)
+      @resource_type = resource_type
     end
     
     def self.resource_type
+      @resource_type = S4::ResourceType.find(@resource_type) if @resource_type.present? unless @resource_type.is_a?(S4::ResourceType)
       @resource_type
     end
     
