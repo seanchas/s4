@@ -1,5 +1,7 @@
 class OrganizationsController < ApplicationController
   
+  helper :members_menu
+  
   def show
     @organization = S4::Organization.find(s4_user)
   end

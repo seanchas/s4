@@ -2,8 +2,10 @@
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <%= stylesheet_link_tag "main", "markets", "prototip", :cache => "s4" %>
+        <%= stylesheet_link_tag "main", "markets", "insiders", "prototip", :cache => "s4" %>
+        <%= stylesheet_link_tag "#{t(:passport_css, :scope => :shared)}" %>
         <%= javascript_include_tag "prototype", "obfuscator", "prototip/prototip", :cache => "s4" %>
+		<%= javascript_include_tag "#{t(:passport_js, :scope => :shared)}" %>
         <title>
             <%= [t(".title"), s4_user ? t("title", :scope => [params[:controller]]) : nil].compact.join(" :: ") %>
         </title>
@@ -13,6 +15,8 @@
             <%= render "shared/headline" %>
             <%= render "shared/header" %>
             <%= render "shared/navigation" %>
+
+			<%= auxiliary_menu %>
             
             <div id="content_wrapper">
                 <div id="content">

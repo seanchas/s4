@@ -1,4 +1,6 @@
 class MarketsController < ApplicationController
+
+  helper :members_menu
   
   def index
     @organization = S4::Organization.find(s4_user)
