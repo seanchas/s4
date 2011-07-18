@@ -1,7 +1,7 @@
 class InsidersMailer < ActionMailer::Base
   
   def insider_file(author, file)
-    recipients  "insider-test@micex.com"
+    recipients  "insider@micex.com"
     from        "cabinet-no-reply@micex.com"
     subject     "Insiders"
     reply_to    author
