@@ -6,7 +6,7 @@ class InsidersMailer < ActionMailer::Base
     subject     "Insiders"
     reply_to    author
     
-    attachment :content_type => file.content_type, :body => file.read
+    attachment :content_type => file.content_type, :body => file.read, :filename => file.original_filename
   end
 
 end
