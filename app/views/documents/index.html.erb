@@ -12,7 +12,7 @@
         <ul>
             <%- @documents.select { |document| document.document == document_type }.each do |document| -%>
                 <li>
-                    <%= h document.title %>
+                    <%= h(document.title).gsub("\r\n", "\n").gsub("\n", "<br />") %>
                 </li>
             <%- end -%>
         </ul>
