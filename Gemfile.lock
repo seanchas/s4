@@ -12,6 +12,7 @@ GEM
     activeresource (2.3.12)
       activesupport (= 2.3.12)
     activesupport (2.3.12)
+    htmldoc (0.2.3)
     mysql (2.8.1)
     nokogiri (1.4.6)
     rack (1.1.2)
@@ -33,6 +34,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
+  htmldoc
   mysql
   nokogiri
   rails (~> 2.3)
