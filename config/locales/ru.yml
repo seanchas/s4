@@ -40,3 +40,13 @@ ru:
       - ['Образцы платежных документов',        'http://www.micex.ru/services/marketdata/payment_documents']
       - ['Ответы на часто задаваемые вопросы',  'http://www.micex.ru/services/marketdata/faq']
       - ['Micex Web Client',                    'http://www.micex.ru/services/marketdata/software/web_client']
+    activerecord:
+      errors:
+        template:
+          header: 'Форма заполнена с ошибками'
+          body: 'ошибки'
+        models:
+          senddocument:
+            attributes:
+              document:
+                blank: 'документ обязателене для загрузки'

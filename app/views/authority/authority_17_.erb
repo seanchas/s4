@@ -1,0 +1,7 @@
+<%= render :partial => 'header_authority', :locals => {'vars' => @vars} %>
+
+<div>объявлять (подавать в ЗАО «ФБ ММВБ») заявки с целью заключения сделок, а также заключать сделки на основании поданных в  ЗАО «ФБ ММВБ» заявок, проводить иные операции на фондовом рынке
+     ЗАО «ФБ ММВБ», от имени <ins>&nbsp;&nbsp;<%= @vars['organization_name'] %>&nbsp;&nbsp;</ins></div> 
+<div><%= "&nbsp;"*40 %><sup>(наименование организации - Участника торгов)</sup></div> 
+
+<%= render :partial => 'footer_authority', :locals => {'vars' => @vars} %>

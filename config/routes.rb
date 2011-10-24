@@ -17,4 +17,8 @@ ActionController::Routing::Routes.draw do |map|
   map.insider     "/insider", :controller => :insiders, :action => :new,    :conditions => { :method => :get }
   map.rat_insider "/insider", :controller => :insiders, :action => :create, :conditions => { :method => :post }
 
+  map.sendDocument     "send-document",     :controller => "senddocument", :action => "index"
+  map.sendDocumentList "send-document/list", :controller => "senddocument", :action => "list"
+  map.authority        "authority",         :controller => "authority",   :action => "index"
+
 end
