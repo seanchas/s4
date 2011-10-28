@@ -5,6 +5,7 @@ module OrganizationsHelper
       ul.li t(:information, :scope => [:organizations, :contextual_menu]), organization_path,             :organizations => :show
       ul.li t(:licenses,    :scope => [:organizations, :contextual_menu]), licenses_organization_path,    :organizations => :licenses
       ul.li t(:management,  :scope => [:organizations, :contextual_menu]), management_organization_path,  :organizations => :management
+      ul.li t(:manager,     :scope => [:organizations, :contextual_menu]), manager_organization_path,     :organizations => :manager
     end
   end
   

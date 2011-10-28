@@ -1,0 +1,33 @@
+<%= stylesheet_link_tag("senddocument2") %>
+
+<h1 class="senddocument_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1>
+
+<%= contextual_menu %>
+
+<h2 style="color: green;"><%= @complete_message %></h2>
+
+<%= error_messages_for :senddocument %>
+<div class="senddocument">
+<% form_for @senddocument, :html => { :multipart => true } do |f| %>
+  <div>
+      <div class="senddocument_label"><%= f.label :type_id, t(:type_label, :scope => [:shared, :senddocument, :columns]), :class => "required" %></div>
+      <div class="senddocument_field"><%= f.select(:type_id, @document_types.collect {|document| [document.name, document.id]}, {:include_blank => ''}) %><span class="star">*</span></div>
+  </div>
+  <div>
+      <div class="senddocument_label"><%= f.label :type_id, t(:document_label, :scope => [:shared, :senddocument, :columns]), :class => "required" %></div>
+      <div class="senddocument_field"><%= f.file_field :document %><span class="star">*</span></div>
+  </div>
+  <br>
+  <div>
+      <div class="senddocument_label">&nbsp;</div>
+      <div class="senddocument_field senddocument_button"><%= f.submit t(:send_button, :scope => [:shared, :senddocument]) %></div>
+  </div>
+<% end %>
+</div>
+<div class="legend">
+    <p>
+        <label>&nbsp;</label>
+         <span class="star">*</span>
+        Обязaтельные для заполнения поля
+    </p>
+</div>

@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.xmlrpc "/xml-rpc", :controller => :welcome, :action => :xmlrpc
 
-  map.resource :organization, :only => :show, :member => { :licenses => :get, :management => :get, :codes => :get }
+  map.resource :organization, :only => :show, :member => { :licenses => :get, :management => :get, :manager => :get, :codes => :get }
   
   map.resources :markets
 
@@ -14,11 +14,14 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :reports
   
+  map.resources :senddocuments, :collection => {
+    :list => :get,
+    :message => :get,
+    :form => :get,
+    :warrant => :get
+  }
+  map.resources :authorities
+  
   map.insider     "/insider", :controller => :insiders, :action => :new,    :conditions => { :method => :get }
   map.rat_insider "/insider", :controller => :insiders, :action => :create, :conditions => { :method => :post }
-
-  map.sendDocument     "send-document",     :controller => "senddocument", :action => "index"
-  map.sendDocumentList "send-document/list", :controller => "senddocument", :action => "list"
-  map.authority        "authority",         :controller => "authority",   :action => "index"
-
 end

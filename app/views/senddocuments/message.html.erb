@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag("senddocument2") %>
+
+<h1 class="senddocument_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1>
+
+<%= contextual_menu %>
+
+<%=@complete_message %>
+<%if @messageform %> 
+<% form_for @messageform, :method => "get", :url => { :action => "message"}, :html => { :method => "get" } do |f| %>
+
+	<div>
+		<p>
+			<span class="label_span">
+				<%= f.label :theme, t(:theme, :scope => [:shared, :message, :columns]) %>
+			</span>
+        	<%= f.text_field :theme %>
+		</p>
+	</div>
+	<div>
+		<p>
+			<span class="label_span"><%= f.label :text, t(:text, :scope => [:shared, :message, :columns]) %></span>
+		</p>
+	</div>
+	<div>
+		<p>
+			<span class="label_span">
+				&nbsp;
+			</span>
+        	<%= f.text_area :text %>
+		</p>
+	</div>
+	<div class="submit">
+		<p>
+			<span class="label_span"><label>&nbsp;</label></span>
+			<%= f.submit t(:create_button, :scope => [:shared, :message]) %>
+		</p>
+</div>
+<% end %>
+<% end %>

@@ -1,0 +1,73 @@
+<%= stylesheet_link_tag 'senddocument' %>
+<%= error_messages_for :documentfilter %>
+<h1 class="senddocument_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1>
+
+<%= contextual_menu %>
+
+<div id="form_finder_document" style="margin:0 0 20px 0;">
+<% form_for @documentfilter, :method => "get", :url => { :action => "list"}, :html => { :method => "get" } do |f| %>
+  <div class="date">
+    <p class="date_fields">
+      <span class="label_span"><label class="required">По дате:</label></span>
+        <%= f.label :by_date_start, t(:by_date_start, :scope => [:shared, :documentfilter, :columns]) %>
+        <%= f.text_field :by_date_start %>
+        <%= f.label :by_date_finish, t(:by_date_finish, :scope => [:shared, :documentfilter, :columns]) %>
+        <%= f.text_field :by_date_finish %>
+    </p>
+  </div>
+  <div>
+	<p>
+	    <span class="label_span"><%= f.label :by_type, t(:type_label, :scope => [:shared, :documentfilter, :columns]), :class => "required" %></span>
+	    <%= f.select(:by_type,@typesListing.collect {|typesListing| [typesListing.name, typesListing.id]}, {:include_blank => ''}) %>
+	</p>
+  </div>
+  <div>
+      <p>
+        <span class="label_span"><%= f.label :document_name, t(:document_name, :scope => [:shared, :documentfilter, :columns]) %></span>
+        <%= f.text_field :document_name %>
+      </p>
+  </div>
+  <div>
+     <p>
+       <span class="label_span"><%= f.label :by_sender, t(:by_sender, :scope => [:shared, :documentfilter, :columns]) %></span>
+       <%= f.select(:by_sender,@senderListing.collect {|senderListing| [senderListing.email, senderListing.sender_email_id]}, {:include_blank => ''}) %>
+     </p>
+  </div>
+  
+  <div class="submit">
+    <p>
+      <span class="label_span"><label>&nbsp;</label></span>
+      <%= f.submit t(:create_button, :scope => [:shared, :documentfilter]) %>
+      <input type="reset" value="Очистить" />
+    </p>
+  </div>
+<% end %>
+</div>
+
+<% if @documentListing.size != 0 %>
+<%= resource_table(S4::SendedForm.schema, @documentListing) %>
+<%else%>
+	<table class="resource">
+		<thead>
+			<tr>
+				<td>Код отправленного документа</td>
+				<td>Дата отправки</td>
+				<td>Заголовок сообщения</td>
+				<td>Текст сообщения</td>
+				<td>Тип процедуры (документа)</td>
+				<td>Дата, год-квартал</td>
+				<td>ФИО отправителя</td>
+				<td>Название файла</td>
+				<td>Статус</td>
+				<td>Комментарий сотрудника биржы</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="10">
+					Соответвующие вашему запросу документы отсутсвуют
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<%end%>

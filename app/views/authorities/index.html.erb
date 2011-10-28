@@ -1,0 +1,48 @@
+<%= stylesheet_link_tag("authority") %>
+<%= javascript_include_tag("authority") %>
+
+<h1 class="authority_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1>
+
+<%= contextual_menu %>
+
+<%= error_messages_for :authority %>
+<div class="authority">
+<% form_for @authority do |f| %>
+  <div>
+      <div class="authority_label"><%= f.label :type_id, t(:type_label, :scope => [:shared, :authority, :columns]), :class => "required" %></div>
+      <div class="authority_field"><%= f.select(:type_id, @warrant_types.collect {|warrant_type| [warrant_type.name, warrant_type.id]}, {:include_blank => ''}) %><span class="star">*</span></div>
+  </div>
+  <div>
+      <div class="authority_label"><%= f.label :user_id, t(:user_label, :scope => [:shared, :authority, :columns]), :class => "required" %><label class="required"></div>
+      <div class="authority_field"><%= f.select(:user_id, @warrant_agents.collect {|warrant_agent| [warrant_agent.name, warrant_agent.id]}, {:include_blank => 'Новый пользователь'}) %><span class="star">*</span></div>
+  </div>
+  <div>
+      <div class="authority_label"><%= f.label :lastname, t(:new_lastname_label, :scope => [:shared, :authority, :columns]) %></div>
+      <div class="authority_field"><%= f.text_field :lastname %></div>
+  </div>
+  <div>
+      <div class="authority_label"><%= f.label :firstname, t(:new_firstname_label, :scope => [:shared, :authority, :columns]) %></div>
+      <div class="authority_field"><%= f.text_field :firstname %></div>
+  </div>
+  <div>
+      <div class="authority_label"><%= f.label :middlename, t(:new_middlename_label, :scope => [:shared, :authority, :columns]) %></div>
+      <div class="authority_field"><%= f.text_field :middlename %></div>
+  </div>
+  <div>
+      <div class="authority_label"><%= f.label :position, t(:new_position_label, :scope => [:shared, :authority, :columns]) %></div>
+      <div class="authority_field"><%= f.text_field :position %></div>
+  </div>
+  <br>
+  <div>
+      <div class="authority_label">&nbsp;</div>
+      <div class="authority_field authority_button"><%= f.submit t(:create_button, :scope => [:shared, :authority]) %></div>
+  </div>
+<% end %>
+</div>
+<div class="legend">
+    <p>
+        <label>&nbsp;</label>
+         <span class="star">*</span>
+        Обязaтельные для заполнения поля
+    </p>
+</div>

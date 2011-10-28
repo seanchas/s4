@@ -1,0 +1,7 @@
+ru:
+  shared:
+    message:
+      columns:
+        theme: 'Тема сообщения: '
+        text: 'Текст сообщения: '
+      create_button: 'Отправить '

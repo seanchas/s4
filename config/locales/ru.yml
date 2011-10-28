@@ -1,4 +1,23 @@
 ru:
+  activerecord:
+    errors:
+      template:
+        header: 'Форма заполнена с ошибками'
+        body: ''
+      models:
+        senddocument:
+          attributes:
+            document:
+              blank: 'Не выбран документ'
+            type_id:
+              blank: 'Не выбран тип документа'
+        authority:
+          attributes:
+            type_id:
+              blank: 'Не выбран тип доверенности'
+            user_id:
+              blank: 'Не выбран пользователь'
+
   shared:
 
     passport_js:  'http://passport-beta.micex.ru/javascripts/passport.js'
@@ -40,13 +59,3 @@ ru:
       - ['Образцы платежных документов',        'http://www.micex.ru/services/marketdata/payment_documents']
       - ['Ответы на часто задаваемые вопросы',  'http://www.micex.ru/services/marketdata/faq']
       - ['Micex Web Client',                    'http://www.micex.ru/services/marketdata/software/web_client']
-    activerecord:
-      errors:
-        template:
-          header: 'Форма заполнена с ошибками'
-          body: 'ошибки'
-        models:
-          senddocument:
-            attributes:
-              document:
-                blank: 'документ обязателене для загрузки'

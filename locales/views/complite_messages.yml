@@ -1,0 +1,13 @@
+ru:
+  shared:
+    sendmessages:
+      header: 'Отправленные документы'
+      header_document: 'Отправить документ'
+      header_message: 'Отправить сообщение'
+      complete_message: 'Сообщение успешно отправлено!'
+      columns:
+        type_label: 'Тип документа: '
+        document_label: 'Документ: '
+      send_button: 'Отправить документ'
+      menu_title: 'Документооборот'
+      link_to_document: 'Отправить документ'

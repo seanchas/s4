@@ -1,0 +1,61 @@
+.senddocument_header {
+    color: #006299;
+    font: normal normal normal 20px/24px arial, sans-serif;
+}
+
+.senddocument,
+.senddocument div,
+.senddocument form {
+    float: left;
+    font: normal normal normal 12px/16px arial, sans-serif;
+}
+
+.senddocument_label {
+    width: 100px;
+    text-align: left;
+    margin-right: 5px;
+    font-size: 11px;
+    line-height: 24px;
+    margin-top: 3px;
+}
+
+.senddocument_field {
+    width: 400px;
+}
+
+.senddocument_field select,
+.senddocument_field input {
+    width: 390px;
+}
+
+.senddocument_field .star {
+    position: relative;
+    left: 6px;
+}
+
+.senddocument_button input {
+    width: auto;
+    margin-top: 10px;
+}
+
+.errorExplanation h2,
+.errorExplanation ul li {
+    color: red;
+}
+
+.star {
+    color: red;
+}
+
+label.required {
+    font-weight: bold;
+}
+
+.legend {
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+    border-top: 1px solid #DDD;
+    color: #999;
+    padding-left: 10px;
+}
