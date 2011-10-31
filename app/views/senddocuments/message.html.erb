@@ -1,32 +1,29 @@
 <%= stylesheet_link_tag("senddocument2") %>
+<%= stylesheet_link_tag 'senddocument' %>
+<%= stylesheet_link_tag("formstyling") %>
 
 <h1 class="senddocument_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1>
 
 <%= contextual_menu %>
 
-<%=@complete_message %>
+<h2 style="color: green;"><%=@complete_message %></h2>
 <%if @messageform %> 
+<div id="form_finder_document" class="formstyling" style="margin:0 0 20px 0;">
 <% form_for @messageform, :method => "get", :url => { :action => "message"}, :html => { :method => "get" } do |f| %>
-
-	<div>
+	<div class="l-field">
 		<p>
+		  <span class="star">*</span>
 			<span class="label_span">
-				<%= f.label :theme, t(:theme, :scope => [:shared, :message, :columns]) %>
+				<%= f.label :theme, t(:theme, :scope => [:shared, :message, :columns] ), :class => "required" %>
 			</span>
-        	<%= f.text_field :theme %>
+      <%= f.text_field :theme %>
 		</p>
 	</div>
-	<div>
+	<div class="l-field">
 		<p>
-			<span class="label_span"><%= f.label :text, t(:text, :scope => [:shared, :message, :columns]) %></span>
-		</p>
-	</div>
-	<div>
-		<p>
-			<span class="label_span">
-				&nbsp;
-			</span>
-        	<%= f.text_area :text %>
+		  <span class="star">*</span>
+			<span class="label_span"><%= f.label :text, t(:text, :scope => [:shared, :message, :columns]), :class => "required" %></span>
+      <%= f.text_area :text, :cols => 10, :rows => 10 %>
 		</p>
 	</div>
 	<div class="submit">
@@ -35,5 +32,13 @@
 			<%= f.submit t(:create_button, :scope => [:shared, :message]) %>
 		</p>
 </div>
+</div>
 <% end %>
+<div class="legend">
+    <p>
+        <label>&nbsp;</label>
+         <span class="star">*</span>
+        Обязaтельные для заполнения поля
+    </p>
+</div>
 <% end %>

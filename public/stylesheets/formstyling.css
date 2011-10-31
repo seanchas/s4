@@ -1,0 +1,66 @@
+	h1 {
+		color:#006299;
+	}
+div.formstyling {
+		  margin: 10px 0;
+		  padding: 0;
+	}
+	div.formstyling p {
+		  height: auto !important;
+		  margin: 10px 0;
+		  /* overflow: hidden; */
+		  padding: 0;
+		  position: relative;
+	}
+	div.formstyling p span.label_span, div.formstyling div.fieldWithErrors label, div.formstyling div.fieldWithErrors {
+		display:block;
+		float: left;
+		font-size: 11px;
+		line-height: 24px;
+		width: 170px;
+	}
+	
+	div.formstyling .required {
+		  font-weight: bold;
+	}
+	div.formstyling .star {
+		  color: #FF0000;
+		  float:right;
+		  height:1px;
+		  width:1px;
+		  margin-top:5px;
+	}
+	div.formstyling input, div.formstyling select, div.formstyling textarea {
+		  font-family: 'lucida grande',arial,sans-serif;
+		  font-size: 13px;
+		  margin: 3px;
+		  position: relative;
+	}
+	div.formstyling input {
+		  width: 390px;
+	}
+	div.formstyling select {
+		width: 396px;
+	}
+	div.formstyling p.date_fields input {
+		width:173px;	
+	}
+	div.formstyling input#feedback_occupation {
+		  width: 150px;
+	}
+	div.formstyling textarea {
+		  height: 10em;
+		  width: 390px;
+	}
+	div.formstyling div.submit {
+			clear:both;
+	}
+	div.formstyling div.submit input {
+		  width: auto;
+	}
+	div.formstyling div.fieldWithErrors {float:left;margin-bottom:8px;}
+
+div.l-field, div.submit {
+	width:575px;
+	clear:both;
+}

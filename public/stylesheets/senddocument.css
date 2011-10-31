@@ -1,57 +1,56 @@
-    h1 {
-        color:#006299;
-    }
-    #form_finder_document {
-          margin: 10px 0;
-          padding: 0;
-    }
-    #form_finder_document p {
-          height: auto !important;
-          margin: 10px 0;
-          overflow: hidden;
-          padding: 0;
-          position: relative;
-    }
-    #form_finder_document p span.label_span {
-        display:block;
-        float: left;
-        font-size: 11px;
-        line-height: 24px;
-        width: 170px;
-    }
-    #form_finder_document .required {
-          font-weight: bold;
-    }
-    #form_finder_document .star {
-          color: #FF0000;
-          position: absolute;
-          top: 5px;
-    }
-    #form_finder_document input, #form_finder_document select, #form_finder_document textarea {
-          font-family: 'lucida grande',arial,sans-serif;
-          font-size: 13px;
-          margin: 3px;
-          position: relative;
-    }
-    #form_finder_document input {
-          width: 363px;
-    }
-    #form_finder_document select {
-        width: 369px;
-    }
-    #form_finder_document p.date_fields input {
-        width:160px;    
-    }
-    #form_finder_document input#feedback_occupation {
-          width: 150px;
-    }
-    #form_finder_document textarea {
-          height: 10em;
-          width: 430px;
-    }
-    #form_finder_document div.submit {
-          margin: 15px 0;
-    }
-    #form_finder_document div.submit input {
-          width: auto;
-    }
+
+	/*
+	#form_finder_document {
+		  margin: 10px 0;
+		  padding: 0;
+	}
+	#form_finder_document p {
+		  height: auto !important;
+		  margin: 10px 0;
+		  overflow: hidden;
+		  padding: 0;
+		  position: relative;
+	}
+	#form_finder_document p span.label_span {
+		display:block;
+		float: left;
+		font-size: 11px;
+		line-height: 24px;
+		width: 170px;
+	}
+	#form_finder_document .required {
+		  //font-weight: bold;
+	}
+	#form_finder_document .star {
+		  color: #FF0000;
+		  position: absolute;
+		  top: 5px;
+	}
+	#form_finder_document input, #form_finder_document select, #form_finder_document textarea {
+		  font-family: 'lucida grande',arial,sans-serif;
+		  font-size: 13px;
+		  margin: 3px;
+		  position: relative;
+	}
+	#form_finder_document input {
+		  width: 390px;
+	}
+	#form_finder_document select {
+		width: 396px;
+	}
+	#form_finder_document p.date_fields input {
+		width:173px;	
+	}
+	#form_finder_document input#feedback_occupation {
+		  width: 150px;
+	}
+	#form_finder_document textarea {
+		  height: 10em;
+		  width: 390px;
+	}
+	#form_finder_document div.submit {
+		  margin: 15px 0;
+	}
+	#form_finder_document div.submit input {
+		  width: auto;
+	} */

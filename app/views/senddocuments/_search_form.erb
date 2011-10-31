@@ -1,0 +1,39 @@
+<div id="form_finder_document" class="formstyling" style="margin:0 0 20px 0;">
+<% form_for @documentfilter, :url => { :action => "list"}, :html => { :method => "get" } do |f| %>
+  <div class="date">
+    <p class="date_fields">
+      <span class="label_span"><label >По дате:</label></span>
+        <%= f.label :by_date_start, t(:by_date_start, :scope => [:shared, :documentfilter, :columns]), :id => "by_date_finish_input" %>
+        <%= f.text_field :by_date_start %>
+        <%= f.label :by_date_finish, t(:by_date_finish, :scope => [:shared, :documentfilter, :columns], :id => "by_date_finish_input") %>
+        <%= f.text_field :by_date_finish %>
+    </p>
+  </div>
+  <div>
+	<p>
+	    <span class="label_span"><%= f.label :by_type, t(:type_label, :scope => [:shared, :documentfilter, :columns]) %></span>
+	    <%= f.select(:by_type,@typesListing.collect {|typesListing| [typesListing.name, typesListing.id]}, {:include_blank => 'Все типы'}) %>
+	</p>
+  </div>
+  <div>
+      <p>
+        <span class="label_span"><%= f.label :document_name, t(:document_name, :scope => [:shared, :documentfilter, :columns]) %></span>
+        <%= f.text_field :document_name %>
+      </p>
+  </div>
+  <div>
+     <p>
+       <span class="label_span"><%= f.label :by_sender, t(:by_sender, :scope => [:shared, :documentfilter, :columns]) %></span>
+       <%= f.select(:by_sender,@senderListing.collect {|senderListing| [senderListing.email, senderListing.sender_email_id]}, {:include_blank => 'Все отправители'}) %>
+     </p>
+  </div>
+  
+  <div class="submit">
+    <p>
+      <span class="label_span"><label>&nbsp;</label></span>
+      <input type="reset" onclick="do_reset();return false;"  id="input_for_resetForm" name="reset_form" value="Очистить" />
+      <%= f.submit t(:create_button, :scope => [:shared, :documentfilter]) %>
+    </p>
+  </div>
+<% end %>
+</div>

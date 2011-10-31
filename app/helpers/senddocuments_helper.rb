@@ -33,13 +33,13 @@ module SenddocumentsHelper
     
     regex = /\d{2}\.\d{2}\.\d{4}/
 
-    if !documentfilter.nil? && (!documentfilter['by_date_start'].nil? && documentfilter['by_date_start'] != '' && documentfilter['by_date_start'] !~ regex)
+    if !documentfilter.nil? && (!documentfilter['by_date_start'].nil? && documentfilter['by_date_start'] != '' && documentfilter['by_date_start'] =~ regex)
       @by_date_start = documentfilter['by_date_start']
-    else 
-        @by_date_start = ''
+    else
+        @by_date_start = '01.01.2001'
     end
     
-    if !documentfilter.nil? && (!documentfilter['by_date_finish'].nil? && documentfilter['by_date_finish'] != '' && documentfilter['by_date_finish'] !~ regex)
+    if !documentfilter.nil? && (!documentfilter['by_date_finish'].nil? && documentfilter['by_date_finish'] != '' && documentfilter['by_date_finish'] =~ regex)
       @by_date_finish = documentfilter['by_date_finish']
     else 
         @by_date_finish = ''
@@ -69,8 +69,8 @@ module SenddocumentsHelper
       'end_date' => @by_date_finish,
       'sended_form_kind' => '5',
       'sended_form_type' => @by_type,
-      'sender' => @document_name,
-      'name' => @by_sender
+      'sender' => @by_sender,
+      'name' => @document_name
     }
     
     return @doc_params.delete_if {|key, value| value == "" }

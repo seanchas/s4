@@ -1,23 +1,4 @@
 ru:
-  activerecord:
-    errors:
-      template:
-        header: 'Форма заполнена с ошибками'
-        body: ''
-      models:
-        senddocument:
-          attributes:
-            document:
-              blank: 'Не выбран документ'
-            type_id:
-              blank: 'Не выбран тип документа'
-        authority:
-          attributes:
-            type_id:
-              blank: 'Не выбран тип доверенности'
-            user_id:
-              blank: 'Не выбран пользователь'
-
   shared:
 
     passport_js:  'http://passport-beta.micex.ru/javascripts/passport.js'

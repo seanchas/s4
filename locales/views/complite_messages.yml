@@ -4,7 +4,7 @@ ru:
       header: 'Отправленные документы'
       header_document: 'Отправить документ'
       header_message: 'Отправить сообщение'
-      complete_message: 'Сообщение успешно отправлено!'
+      complete_message: 'Сообщение успешно отправлено'
       columns:
         type_label: 'Тип документа: '
         document_label: 'Документ: '
