@@ -7,6 +7,7 @@ gem "nokogiri"
 gem "RedCloth"
 gem "warden"
 gem "htmldoc"
+gem "rchardet"
 
 gem "recaptcha", :require => "recaptcha/rails"
 
