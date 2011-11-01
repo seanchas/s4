@@ -11,3 +11,15 @@ ru:
         new_position_label: 'Должность: '
       create_button: 'Создать доверенность'
       menu_title: 'Создание доверенностей'
+  activerecord:
+    errors:
+      template:
+        header: 'Форма заполнена с ошибками'
+        body: ''
+      models:
+        senddocument:
+          attributes:
+            document:
+              blank: 'Не выбран документ'
+            type_id:
+              blank: 'Не выбран тип документа'

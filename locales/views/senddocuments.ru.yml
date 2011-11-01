@@ -11,3 +11,15 @@ ru:
       send_button: 'Отправить документ'
       menu_title: 'Документооборот'
       link_to_document: 'Отправить документ'
+  activerecord:
+    errors:
+      template:
+        header: 'Форма заполнена с ошибками'
+        body: ''
+      models:
+        authority:
+          attributes:
+            type_id:
+              blank: 'Не выбран тип доверенности'
+            user_id:
+              blank: 'Не выбран пользователь'
