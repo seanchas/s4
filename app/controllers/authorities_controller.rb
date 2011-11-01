@@ -36,7 +36,7 @@ class AuthoritiesController < ApplicationController
       send_data render_to_pdf({
         :action => "authority_#{authority[:type_id]}",
         :layout => false }
-      ), :filename => "authority_#{authority[:type_id]}"
+      ), :filename => "authority_#{authority[:type_id]}.pdf"
     else
       session['form'] = @authority
       redirect_to :action => 'index'
