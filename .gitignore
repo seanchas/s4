@@ -5,3 +5,5 @@ db/*.sqlite3
 config/database.yml
 config/initializers/s4.rb
 config/initializers/cookie_verification_secret.rb
+.project
+.gitignore
