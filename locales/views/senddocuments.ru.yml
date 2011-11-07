@@ -1,4 +1,6 @@
 ru:
+  senddocuments:
+    title: 'Документооборот'
   shared:
     senddocument:
       header: 'Отправленные документы'
