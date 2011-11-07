@@ -1,7 +1,7 @@
 parent_pdf.font_families.update(
-   "DejaVuSans" => { :bold        => "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf",
-                           :italic      => "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf",
-                           :bold_italic => "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf",
-                           :normal      => "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf" })
-parent_pdf.font "DejaVuSans", :style => :normal
+   "TimesNewRoman" => { :bold        => "#{RAILS_ROOT}/public/fonts/timesbd.ttf",
+                           :italic      => "#{RAILS_ROOT}/public/fonts/timesi.ttf",
+                           :bold_italic => "#{RAILS_ROOT}/public/fonts/timesbi.ttf",
+                           :normal      => "#{RAILS_ROOT}/public/fonts/times.ttf" })
+parent_pdf.font "TimesNewRoman", :style => :normal
 parent_pdf.font_size 12
