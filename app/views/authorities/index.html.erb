@@ -8,7 +8,7 @@
 
 <%= error_messages_for :authority %>
 <div class="authority formstyling">
-<% form_for @authority do |f| %>
+<% form_for @authority, :url => authorities_path(@authority, :format => 'pdf') do |f| %>
 <div class="l-field">
     <p>
       <span class="star">*</span>
