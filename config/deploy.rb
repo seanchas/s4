@@ -1,3 +1,8 @@
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+
+require "rvm/capistrano"
+require 'bundler/capistrano'
+
 set :application, "cabinet"
 set :repository,  "http://github.com/seanchas/s4.git"
 set :user,        :ror
@@ -9,8 +14,9 @@ set :deploy_via,  :copy
 
 set :scm, :git
 
-set :bundle_cmd,  "/opt/gnu/ror/bin/bundle"
-require 'bundler/capistrano'
+set :rvm_ruby_string, "1.9.2@s4"
+set :rvm_type,        :user
+
 
 namespace :deploy do
   task :start do ; end
