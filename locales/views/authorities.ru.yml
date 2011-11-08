@@ -1,4 +1,6 @@
 ru:
+  authorities:
+    title: 'Доверенности'
   shared:
     authority:
       header: 'Доверенности'

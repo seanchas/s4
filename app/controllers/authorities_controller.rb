@@ -1,3 +1,6 @@
+require 'prawn'
+require 'prawn/forms'
+
 class AuthoritiesController < ApplicationController
   include AuthoritiesHelper
   
@@ -32,14 +35,21 @@ class AuthoritiesController < ApplicationController
         @vars['agent_fio'] = "#{authority[:lastname]} #{authority[:firstname]} #{authority[:middlename]}"
         @vars['agent_position'] = "#{authority[:position]}"
       end
-      
-      send_data render_to_pdf({
-        :action => "authority_#{authority[:type_id]}",
-        :layout => false }
-      ), :filename => "authority_#{authority[:type_id]}.pdf"
+      @partial_template = "authority_#{authority[:type_id]}"
     else
       session['form'] = @authority
       redirect_to :action => 'index'
+    end
+    respond_to do |format|
+      format.html
+      format.pdf {
+        prawnto :prawn => {
+                  :page_size => 'A4'
+                },
+                :inline => false,
+                :filename => "authority_#{authority[:type_id]}.pdf"
+        render :layout=>false
+      }
     end
   end
 end
