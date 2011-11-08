@@ -1,7 +1,7 @@
 ru:
   table_listing:
     cell:
-      blank : ''
+      blank: ''
   shared:
     senddocument:
       header: 'Отправленные документы'
