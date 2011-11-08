@@ -1,30 +1,27 @@
+<%= stylesheet_link_tag 'managerStyle' %>
 <h1>
     <%= @organization.full_name %>
 </h1>
 <%= contextual_menu %>
 
-<%=@personal_managers.inspect%>
-
 <div class="resource">
-  <ul>
+  <div class="clients_list">
 	<% @documentList.each do |column| %>
-		  <li class='<%= cycle ('odd', 'even') %>' >
-				<div>
-					<img src="data:image/gif;base64,R0lGODlhUAAPAKIAAAsLav///88PD9WqsYmApmZmZtZfYmdakyH5BAQUAP8ALAAAAABQAA8AAAPb
-WLrc/jDKSVe4OOvNu/9gqARDSRBHegyGMahqO4R0bQcjIQ8E4BMCQc930JluyGRmdAAcdiigMLVr
-ApTYWy5FKM1IQe+Mp+L4rphz+qIOBAUYeCY4p2tGrJZeH9y79mZsawFoaIRxF3JyiYxuHiMGb5KT
-kpFvZj4ZbYeCiXaOiKBwnxh4fnt9e3ktgZyHhrChinONs3cFAShFF2JhvCZlG5uchYNun5eedRxM
-AF15XEFRXgZWWdciuM8GCmdSQ84lLQfY5R14wDB5Lyon4ubwS7jx9NcV9/j5+g4JADs=">
+		  <ins class='<%= cycle ('odd', 'even') %>' >
+		    <div class="man">
+		      <div class="photos">
+		        <div class="photo_file_name"><%=column["photo_file_name"]%></div>
+				    <div class="manager_id"><%=column["id"]%></div>
+				    <div class="photo_base64">
+				      <img src="<%=column['photo_base64']%>" alt="" >
+				    </div>
+				  </div>
+				  <div class="namus">
+				    <h4 class="name"><%=column["employee_id"]%></h4>
+				    <div class="category">(<%=column["personal_manager_category"]%>)</div>
+				  </div>
 				</div>
-		    <div><%=column["photo_file_name"]%></div>
-				<div class="name"><%=column["employee_id"]%></div>
-				<div class="id"><%=column["id"]%></div>
-				<div class="photo_base64"><%=column["photo_base64"]%></div>
-				<div class="category"><%=column["personal_manager_category"]%></div>
-		  </li>
+		  </ins>
 		<% end %>
-	</ul>
+	</div>
 </div>
-
-
-<%= @img %>

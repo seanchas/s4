@@ -1,6 +1,4 @@
 ru:
-  senddocuments:
-    title: 'Документооборот'
   shared:
     senddocument:
       header: 'Отправленные документы'
@@ -25,3 +23,9 @@ ru:
               blank: 'Не выбран тип доверенности'
             user_id:
               blank: 'Не выбран пользователь'
+        messageform:
+          attributes:
+            theme:
+              blank: 'Заполните поле "Тема сообщения"'
+            text:
+              blank: 'Заполните поле "Текст сообщения"'

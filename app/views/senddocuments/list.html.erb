@@ -9,7 +9,7 @@
 <%= render :partial => 'search_form', :locals => {'documentfilter' => @documentfilter} %>
 
 <% if @documentListing.size != 0 %>
-  <%= resource_table(S4::SendedForm.schema, @documentListing) %>
+  <%= table_listing(S4::SendedForm.schema, @documentListing) %>
 <%else%>
 	<table class="resource">
 		<thead>
@@ -30,7 +30,7 @@
 			<tr>
 				<td colspan="10">
 					<div style="padding:10px;background:#ccc;text-align:center;">
-						Соответвующие вашему запросу документы отсутсвуют
+						<strong>Соответствующие вашему запросу документы отсутствуют</strong>
 					</div>
 				</td>
 			</tr>
