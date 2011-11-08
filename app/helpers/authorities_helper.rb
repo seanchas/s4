@@ -1,4 +1,3 @@
-require 'htmldoc'
 require 'rchardet'
 
 module AuthoritiesHelper
