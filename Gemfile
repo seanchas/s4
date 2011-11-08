@@ -6,6 +6,7 @@ gem "mysql"
 gem "nokogiri"
 gem "RedCloth"
 gem "warden"
+gem "pdf-reader", "0.9.0"
 gem "prawn"
 gem "simple_form", "~>1.0.4"
 
