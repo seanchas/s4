@@ -1,10 +1,10 @@
 parent_pdf.text "Доверенность №____", :align => :center, :style => :bold
-parent_pdf.text_field("fname", 305, 774, 20, 16)
+parent_pdf.text_field("fname", 298, 774, 20, 16)
 parent_pdf.text "г.________________________________________#{" "*37}«__» __________ 20__г."
-parent_pdf.text_field("fname", 10, 760, 240, 16)
-parent_pdf.text_field("fname", 397, 760, 13, 16)
-parent_pdf.text_field("fname", 420, 760, 60, 16)
-parent_pdf.text_field("fname", 500, 760, 13, 16)
+parent_pdf.text_field("fname1", 10, 760, 240, 16)
+parent_pdf.text_field("fname2", 363, 760, 13, 16)
+parent_pdf.text_field("fname3", 387, 760, 60, 16)
+parent_pdf.text_field("fname4", 460, 760, 13, 16)
 parent_pdf.text "Настоящей доверенностью   #{@vars['organization_name']}  ", :leading => 4
 parent_pdf.text "<sup>(наименование организации -  Участника торгов)</sup>", :inline_format => true, :indent_paragraphs => 250
 parent_pdf.text "______________________________________________________", :leading => 4
