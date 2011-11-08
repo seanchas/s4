@@ -86,7 +86,54 @@ module ApplicationHelper
         when "url"
           link_to h(value), value.start_with?("http://") ? value : "http://#{value}"
         else
-          "unknown"
+          ""
+      end
+    end
+  end
+  
+  
+  def table_listing(schema, resources)
+    reset_cycle
+    content_tag(:table, :class => "resource") do
+      [table_listing_schema(schema), table_listing_rows(schema, resources).join].join
+    end
+  end
+  
+  def table_listing_schema(schema)
+    cells = schema.columns.collect { |column| content_tag(:td, column.title) }.join
+    content_tag(:thead) do
+      content_tag(:tr, cells)
+    end
+  end
+  
+  def table_listing_rows(schema, resources)
+    resources.collect do |resource|
+      content_tag(:tr, table_listing_cells(schema, resource).join, :class => cycle("odd", "even"))
+    end
+  end
+  
+  def table_listing_cells(schema, resource)
+    schema.columns.collect do |column|
+      table_listing_cell(column, resource)
+    end
+  end
+  
+  def table_listing_cell(column, resource)
+    t_resource_value(:td, column, resource)
+  end
+  
+  def t_resource_value(tag, column, resource)
+    value = resource.try(column.name)
+    content_tag(tag, :class => [column.type, column.nowrap? ? :nowrap : nil].compact.join(" ")) do
+      case column.type
+        when "string"
+          value.blank? ? t(:blank, :scope => [:table_listing, :cell]) : h(value)
+        when "date"
+          l(value.to_date) rescue nil
+        when "url"
+          link_to h(value), value.start_with?("http://") ? value : "http://#{value}"
+        else
+          ""
       end
     end
   end
