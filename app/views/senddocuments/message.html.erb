@@ -7,6 +7,7 @@
 <%= contextual_menu %>
 
 <h2 style="color: green;"><%=@complete_message %></h2>
+<%= error_messages_for :messageform %>
 <%if @messageform %> 
 <div id="form_finder_document" class="formstyling" style="margin:0 0 20px 0;">
 <% form_for @messageform, :method => "get", :url => { :action => "message"}, :html => { :method => "get" } do |f| %>
