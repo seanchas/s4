@@ -13,12 +13,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :cards
   
   map.resources :reports
-  
+   
   map.resources :senddocuments, :collection => {
     :list => :get,
     :message => :get,
     :form => :get,
-    :warrant => :get
+    :warrant => :get,
+    :list_filter => :post
   }
   map.resources :authorities
   

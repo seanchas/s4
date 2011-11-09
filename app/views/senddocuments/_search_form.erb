@@ -1,5 +1,5 @@
 <div id="form_finder_document" class="formstyling" style="margin:0 0 20px 0;">
-<% form_for @documentfilter, :url => { :action => "list"}, :html => { :method => "get" } do |f| %>
+<% form_for @documentfilter, :url => { :action => "list_filter"}, :html => { :method => "post" } do |f| %>
   <div class="date">
     <p class="date_fields">
       <span class="label_span"><label >По дате:</label></span>
@@ -9,18 +9,21 @@
         <%= f.text_field :by_date_finish %>
     </p>
   </div>
+  
   <div>
 	<p>
 	    <span class="label_span"><%= f.label :by_type, t(:type_label, :scope => [:shared, :documentfilter, :columns]) %></span>
 	    <%= f.select(:by_type,@typesListing.collect {|typesListing| [typesListing.name, typesListing.id]}, {:include_blank => 'Все типы'}) %>
 	</p>
   </div>
+  
   <div>
       <p>
         <span class="label_span"><%= f.label :document_name, t(:document_name, :scope => [:shared, :documentfilter, :columns]) %></span>
         <%= f.text_field :document_name %>
       </p>
   </div>
+  
   <div>
      <p>
        <span class="label_span"><%= f.label :by_sender, t(:by_sender, :scope => [:shared, :documentfilter, :columns]) %></span>

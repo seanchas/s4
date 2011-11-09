@@ -53,8 +53,14 @@ class SenddocumentsController < ApplicationController
 		regex = /\d{2}\.\d{2}\.\d{4}/
     time_now = Time.now
     
-    @documentfilter = params[:documentfilter]
+    if !session['documentfilter_params'].nil?
+      @documentfilter = session['documentfilter_params']
+      session.delete('documentfilter_params')
+    else
+      @documentfilter = params[:documentfilter]
+    end
     @documentfilter = Documentfilter.new(@documentfilter)
+    
     
     @doc_params = parse_params_not_nil(@documentfilter)
     
@@ -65,6 +71,13 @@ class SenddocumentsController < ApplicationController
     @typesListing = S4::SendedFormType.all_with_scope(s4_user)
     
     @senderListing = S4::SendEmail.all_with_scope(s4_user)
+  end
+  
+  def list_filter
+    @documentfilter_params = params[:documentfilter]
+    session['documentfilter_params'] = @documentfilter_params
+    
+    redirect_to :action => 'list'
   end
   
   def index

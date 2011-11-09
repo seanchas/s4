@@ -5,7 +5,7 @@ ru:
         by_date_start: 'c'
         by_date_finish: 'по'
         type_label: 'По типу:'
-        document_name: 'По наименованию документа: '
+        document_name: 'По заголовку сообщения: '
         by_sender: 'По отправителю: '
       create_button: 'Найти '
       reset_button: 'Сбросить'
