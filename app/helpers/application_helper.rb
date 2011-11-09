@@ -132,6 +132,8 @@ module ApplicationHelper
           l(value.to_date) rescue nil
         when "url"
           link_to h(value), value.start_with?("http://") ? value : "http://#{value}"
+        when "file"
+          value
         else
           ""
       end
