@@ -1,6 +1,9 @@
 ru:
   date:
-    order: [ :day, :month, :year ]
+    order: 
+        - :day
+        - :month 
+        - :year
 
     formats:
       default:  "%d.%m.%Y"
