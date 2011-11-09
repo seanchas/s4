@@ -197,6 +197,7 @@ ul.tabbed_menu li {
   height: 50px;
   padding: 0 10px;
   position: relative;
+  float: none !important;
 }
 
 #header a.logo {
@@ -371,14 +372,20 @@ ul#auxiliary_menu li.current a:hover {
 }
 
 /* footer */
+#footer_wrapper {
+	height: 60px !important;
+}
 
 #footer {
-  background-image: url(/images/footer_bg.png);
+  background-color: #fff !important;
+  background-image: url(/images/footer_bg.png) !important;
   background-repeat: repeat-x;
   background-position: left top;
   font-size: .9em;
-  height: 100%;
+  height: 100% !important;
   position: relative;
+  margin: 0px !important;
+  padding: 0px !important;
 }
 
 #footer p {
