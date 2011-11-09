@@ -1,4 +1,4 @@
-parent_pdf.text "Доверенность №____", :align => :center, :style => :bold
+parent_pdf.text "ДОВЕРЕННОСТЬ №____", :align => :center, :style => :bold
 parent_pdf.text_field("fname", 298, 774, 20, 16)
 parent_pdf.text "г.________________________________________#{" "*37}«__» __________ 20__г."
 parent_pdf.text_field("fname1", 10, 760, 240, 16)
