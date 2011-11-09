@@ -14,7 +14,7 @@ set :deploy_via,  :copy
 
 set :scm, :git
 
-set :rvm_ruby_string, "1.9.2@s4"
+set :rvm_ruby_string, "ree@s4"
 set :rvm_type,        :user
 
 
