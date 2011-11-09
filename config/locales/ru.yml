@@ -14,8 +14,8 @@ ru:
         - ['Форумы',          'http://forums-beta.micex.ru']
         - ['Музей',           'http://museum.micex.ru']
       locales:
-        - [:ru, 'Русский']
-        - [:en, 'English']
+        - ['ru', 'Русский']
+        - ['en', 'English']
     
     header:
       logo: 'ММВБ - MICEX'
