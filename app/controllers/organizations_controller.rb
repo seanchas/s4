@@ -30,7 +30,7 @@ class OrganizationsController < ApplicationController
 	
 	  @documentList.each do |column|
 	    if column['photo_base64'] == ""
-	      column["photo_base64"] = '/images/no_photo.jpeg'
+	      column["photo_base64"] = '/upload/no_photo.jpeg'
 		  else
 		    if ( column["photo_file_name"].slice("jpg") == "jpg")
 		      fileExist = "jpg"
@@ -44,10 +44,10 @@ class OrganizationsController < ApplicationController
 		         
 		    
 		    base_64_encoded_data2 = column["photo_base64"].gsub("<br/>","")
-	      File.open('public/images/manager_photos/managerId_' + column["id"] + '.jpg', 'wb') do|f|
+	      File.open('public/upload/managerId_' + column["id"] + '.' + fileExist, 'wb') do|f|
 			    f.write(Base64.decode64(base_64_encoded_data2))
 		    end
-		    column["photo_base64"] = '/images/manager_photos/managerId_' + column["id"] + '.' + fileExist
+		    column["photo_base64"] = '/upload/managerId_' + column["id"] + '.' + fileExist
 		  end
 	  end
 

@@ -9,8 +9,8 @@ div.clients_list {}
    text-align: left;
    margin: 0 10px 10px 0;
    height:220px;
+   width:225px;
    text-align:center;
-   width: 225px;
   }
     div.photos {height:150px;}
       div.clients_list ins img {height:150px;}
