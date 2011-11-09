@@ -34,8 +34,8 @@
   <div class="submit">
     <p>
       <span class="label_span"><label>&nbsp;</label></span>
-      <input type="reset" onclick="do_reset();return false;"  id="input_for_resetForm" name="reset_form" value="Очистить" />
       <%= f.submit t(:create_button, :scope => [:shared, :documentfilter]) %>
+	  <input type="reset" onclick="do_reset();return false;"  id="input_for_resetForm" name="reset_form" value="Очистить" />
     </p>
   </div>
 <% end %>
