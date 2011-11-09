@@ -10,10 +10,12 @@
 		  <ins class='<%= cycle ('odd', 'even') %>' >
 		    <div class="man">
 		      <div class="photos">
-		        <div class="photo_file_name"><%=column["photo_file_name"]%></div>
+		        <div class="photo_file_name">
+		          <%=column["photo_file_name"]%>
+		         </div>
 				    <div class="manager_id"><%=column["id"]%></div>
 				    <div class="photo_base64">
-				      <img src="<%=column['photo_base64']%>" alt="" >
+				      <img src="<%=column['photo_base64']%>" alt="">
 				    </div>
 				  </div>
 				  <div class="namus">
