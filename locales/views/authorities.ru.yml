@@ -19,9 +19,9 @@ ru:
         header: 'Форма заполнена с ошибками'
         body: ''
       models:
-        senddocument:
+        authority:
           attributes:
-            document:
-              blank: 'Не выбран документ'
             type_id:
-              blank: 'Не выбран тип документа'
+              blank: 'Не выбран тип доверенности'
+            user_id:
+              blank: 'Не выбран пользователь'

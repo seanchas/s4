@@ -20,15 +20,15 @@ ru:
         header: 'Форма заполнена с ошибками'
         body: ''
       models:
-        authority:
+        senddocument:
           attributes:
+            document:
+              blank: 'Не выбран документ'
             type_id:
-              blank: 'Не выбран тип доверенности'
-            user_id:
-              blank: 'Не выбран пользователь'
+              blank: 'Не выбран тип документа'
         messageform:
           attributes:
             theme:
-              blank: 'Заполните поле "Тема сообщения"'
+              blank: 'Не заполнена тема сообщения'
             text:
-              blank: 'Заполните поле "Текст сообщения"'
+              blank: 'Не заполнен текст сообщения'
