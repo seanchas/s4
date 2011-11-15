@@ -20,7 +20,7 @@
     <p>
       <span class="star">*</span>
       <span class="label_span"><%= f.label :user_id, t(:user_label, :scope => [:shared, :authority, :columns]), :class => "required" %></span>
-      <%= f.select(:user_id, @warrant_agents.collect {|warrant_agent| [warrant_agent.name, warrant_agent.id]}, {:include_blank => 'Новый пользователь'}) %>
+      <%= f.select(:user_id, @warrant_agents.collect {|warrant_agent| [warrant_agent.full_name, warrant_agent.id]}, {:include_blank => 'Новый пользователь'}) %>
   </p>
   </div>
   <div class="l-field">

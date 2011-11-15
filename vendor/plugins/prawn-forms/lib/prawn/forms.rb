@@ -23,11 +23,11 @@ module Prawn
       x, y = map_to_absolute(x, y)
 
       field_dict = {:T => Prawn::Core::LiteralString.new(name),
-                    :DA => Prawn::Core::LiteralString.new("/Helv 0 Tf 0 g"),
+                    :DA => Prawn::Core::LiteralString.new("/TimesNewRoman 0 Tf 0 g"),
                     :F => 4,
                     :Ff => flags_from_options(opts),
                     :BS => {:Type => :Border, :W => 0.0, :S => :S},
-                    :MK => {:BC => [0, 0, 0]},
+                    # :MK => {:BC => [0, 0, 0]},
                     :Rect => [x, y, x + w, y - h]}
 
       if opts[:default]
@@ -53,7 +53,7 @@ module Prawn
     def acroform
       state.store.root.data[:AcroForm] ||= 
         ref!({:DR => acroform_resources, 
-              :DA => Prawn::Core::LiteralString.new("/Helv 0 Tf 0 g"),
+               :DA => Prawn::Core::LiteralString.new("/TimesNewRoman 0 Tf 0 g"),
               :Fields => []})
     end
 
