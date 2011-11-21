@@ -23,15 +23,20 @@ module Prawn
       x, y = map_to_absolute(x, y)
 
       field_dict = {:T => Prawn::Core::LiteralString.new(name),
-                    :DA => Prawn::Core::LiteralString.new("/TimesNewRoman 0 Tf 0 g"),
                     :F => 4,
                     :Ff => flags_from_options(opts),
                     :BS => {:Type => :Border, :W => 0.0, :S => :S},
                     # :MK => {:BC => [0, 0, 0]},
                     :Rect => [x, y, x + w, y - h]}
 
+      if opts[:DA]
+        field_dict[:DA] = opts[:DA]
+      end
       if opts[:default]
-        field_dict[:V] = Prawn::Core::LiteralString.new(opts[:default])
+        field_dict[:V] = opts[:default]
+      end
+      if opts[:align]
+        field_dict[:Q] = opts[:align]
       end
 
       add_interactive_field(:Tx, field_dict)
@@ -52,20 +57,21 @@ module Prawn
     # forms do not incur the additional overhead.
     def acroform
       state.store.root.data[:AcroForm] ||= 
-        ref!({:DR => acroform_resources, 
-               :DA => Prawn::Core::LiteralString.new("/TimesNewRoman 0 Tf 0 g"),
+        ref!({#:DR => acroform_resources, 
+               :DA => Prawn::Core::LiteralString.new("/TimesNewRoman 12 Tf"),
+               :NeedAppearances => true,
               :Fields => []})
     end
-
-    # a resource dictionary for interactive forms. At a minimum,
-    # must contain the font we want to use
-    def acroform_resources
-      helv = ref!(:Type     => :Font,
-                  :Subtype  => :Type1,
-                  :BaseFont => :Helvetica,
-                  :Encoding => :WinAnsiEncoding)
-      ref!(:Font => {:Helv => helv})
-    end
+#
+#    # a resource dictionary for interactive forms. At a minimum,
+#    # must contain the font we want to use
+#    def acroform_resources
+#      helv = ref!(:Type     => :Font,
+#                  :Subtype  => :TrueType,
+#                  :BaseFont => :TimesNewRoman
+#)
+#      ref!(:Font => {:TimesNewRoman => helv})
+#    end
 
     # Returns the integer value for the /Ff (flags) entry in the field
     # dictionary, based on the options provided.
