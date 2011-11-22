@@ -29,6 +29,8 @@
 </div>
 
 <div class="link_to_send_message">
-  <img src="/images/mail.jpg" alt="" />
-  <%= link_to("Отправить сообщение", {:controller => "senddocuments", :action => "message"} , :class => "upload-link action" ) %>
+	<% form_remote_tag(:url => {:controller => "senddocuments", :action => "message"}, :html => { :method => "get",:id => "sendTOSM" } )  do %>
+		<%= submit_tag("Отправить сообщение", :name => "") %>
+	<% end %>
 </div>
+<%= javascript_include_tag("manager_script") %>
