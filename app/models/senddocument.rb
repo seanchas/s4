@@ -2,6 +2,7 @@ class Senddocument < ActiveRecord::BaseWithoutTable
   
   column :type_id,  :string
   column :document, :string
+  column :text, :string
   
   validates_presence_of :type_id, :document
   
@@ -10,6 +11,8 @@ class Senddocument < ActiveRecord::BaseWithoutTable
     when 'type_id'
       ''
     when 'document'
+      ''
+    when 'text'
       ''
     else
       super

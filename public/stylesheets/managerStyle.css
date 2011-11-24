@@ -1,5 +1,10 @@
 div.photo_file_name, div.manager_id {display:none;}
 
+div.link_to_send_message {
+	width:225px;
+	text-align:center;
+}
+
 div.clients_list {}
   div.clients_list ins {
    text-decoration: none;

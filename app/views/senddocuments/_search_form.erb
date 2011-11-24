@@ -4,9 +4,9 @@
     <p class="date_fields">
       <span class="label_span"><label >По дате:</label></span>
         <%= f.label :by_date_start, t(:by_date_start, :scope => [:shared, :documentfilter, :columns]), :id => "by_date_finish_input" %>
-        <%= f.text_field :by_date_start %>
+        <%= f.text_field :by_date_start, :value => "", :placeholder => "Например: 01.01.2011" %>
         <%= f.label :by_date_finish, t(:by_date_finish, :scope => [:shared, :documentfilter, :columns], :id => "by_date_finish_input") %>
-        <%= f.text_field :by_date_finish %>
+        <%= f.text_field :by_date_finish, :value => "", :placeholder => "Например: 31.12.2011"  %>
     </p>
   </div>
   

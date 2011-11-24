@@ -1,12 +1,18 @@
 <%= stylesheet_link_tag 'senddocument' %>
 <%= stylesheet_link_tag("formstyling") %>
+
+<%= javascript_include_tag("calendar") %>
+<%= stylesheet_link_tag("calendarview") %>
+
 <%= javascript_include_tag("document_list") %>
+
 <%= error_messages_for :documentfilter %>
 <h1 class="senddocument_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1>
 
 <%= contextual_menu %>
 
 <%= render :partial => 'search_form', :locals => {'documentfilter' => @documentfilter} %>
+
 
 <% if @documentListing.size != 0 %>
   <%= table_listing(S4::SendedForm.schema, @documentListing) %>

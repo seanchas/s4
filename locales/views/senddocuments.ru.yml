@@ -14,6 +14,8 @@ ru:
       send_button: 'Отправить документ'
       menu_title: 'Документооборот'
       link_to_document: 'Отправить документ'
+  senddocuments:
+    title: 'Отправленные документы'
   activerecord:
     errors:
       template:

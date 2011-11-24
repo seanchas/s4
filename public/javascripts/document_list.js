@@ -1,3 +1,23 @@
+function setupCalendars() {
+	// Embedded Calendar
+	Calendar.setup(
+	  {
+	    dateField: 'documentfilter_by_date_finish',
+	    triggerElement: 'documentfilter_by_date_finish'
+	  }
+	)
+	
+	// Popup Calendar
+	Calendar.setup(
+	  {
+	    dateField: 'documentfilter_by_date_start',
+	    triggerElement: 'documentfilter_by_date_start'
+	  }
+	)
+}
+
+Event.observe(window, 'load', function() { setupCalendars() })
+
 function do_reset()
   {
     document.getElementById("documentfilter_by_date_start").value = "";

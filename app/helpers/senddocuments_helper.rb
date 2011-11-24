@@ -12,7 +12,8 @@ module SenddocumentsHelper
       'sended_date'      => '12.12.2012',
       'file_id_link'     => file_link,
       'file_id'          => uploaded.original_filename,
-      'status'           => '1'
+      'status'           => '1',
+      'message_body'     => params[:text]
     }
     S4::SendedForm.scope = scope
     S4::SendedForm.set_with_scope(s4_user)
@@ -32,6 +33,17 @@ module SenddocumentsHelper
   def parse_params_not_nil(documentfilter)
     
     regex = /\d{2}\.\d{2}\.\d{4}/
+    regexShortDate = /\d{2}\.\d{2}\.\d{2}/
+    
+    if( documentfilter['by_date_start'] =~ regexShortDate && documentfilter['by_date_start'].length == 8 )
+        @startDate = documentfilter['by_date_start']
+        documentfilter['by_date_start'] = @startDate.insert(6, "20")
+    end
+    
+    if( documentfilter['by_date_finish'] =~ regexShortDate && documentfilter['by_date_finish'].length == 8 )
+        @finishDate = documentfilter['by_date_finish']
+        documentfilter['by_date_finish'] = @finishDate.insert(6, "20")
+    end
 
     if !documentfilter.nil? && (!documentfilter['by_date_start'].nil? && documentfilter['by_date_start'] != '' && documentfilter['by_date_start'] =~ regex)
       @by_date_start = documentfilter['by_date_start']

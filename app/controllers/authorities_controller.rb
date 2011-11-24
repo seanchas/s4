@@ -31,6 +31,22 @@ class AuthoritiesController < ApplicationController
       S4::WarrantField.scope = scope
       @vars = S4::WarrantField.find_with_scope(s4_user).attributes
       
+      @vars["ceo_fio_short"] = @vars["ceo_fio"]
+      @vars["ceo_fio_short"] = @vars["ceo_fio_short"].split(" ")
+      @vars["cfs"] = @vars["ceo_fio_short"][0] + " " +  @vars["ceo_fio_short"][1].first + "." +  @vars["ceo_fio_short"][2].first + "."
+      
+      if @vars["ceo_position"] != ""
+        @vars["nbsp_c"] = ","
+      else 
+         @vars["nbsp_c"] = ""
+      end
+      
+      if @vars["agent_position"] != ""
+        @vars["nbsp_a"] = ","
+      else 
+         @vars["nbsp_a"] = ""
+      end
+      
       if authority[:user_id] == ''
         @vars['agent_fio'] = "#{authority[:lastname]} #{authority[:firstname]} #{authority[:middlename]}"
         @vars['agent_position'] = "#{authority[:position]}"
