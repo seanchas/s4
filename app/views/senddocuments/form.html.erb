@@ -12,8 +12,7 @@
 <% form_for @senddocument, :html => { :multipart => true } do |f| %>
 	<div class="l-field">
 		<p>
-		  <span class="star">*</span>
-			<span class="label_span"><%= f.label :type_id, t(:type_label, :scope => [:shared, :senddocument, :columns]), :class => "required" %></span>
+			<span class="label_span"><%= f.label :type_id, t(:type_label, :scope => [:shared, :senddocument, :columns]) %></span>
 			<%= f.select(:type_id, @document_types.collect {|document| [document.name, document.id]}) %>
 		</p>
 	</div>

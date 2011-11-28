@@ -11,10 +11,6 @@ class Authority < ActiveRecord::BaseWithoutTable
   
   def self.human_attribute_name(attr)
     case attr
-    when 'type_id'
-      ''
-    when 'user_id'
-      ''
     when 'lastname'
       ''
     when 'firstname'

@@ -19,15 +19,13 @@
 <% form_for @authority, :url => authorities_path(@authority, :format => 'pdf') do |f| %>
 <div class="l-field">
     <p>
-      <span class="star">*</span>
-      <span class="label_span"><%= f.label :type_id, t(:type_label, :scope => [:shared, :authority, :columns]), :class => "required" %></span>
+      <span class="label_span"><%= f.label :type_id, t(:type_label, :scope => [:shared, :authority, :columns]) %></span>
       <%= f.select(:type_id, @warrant_types.collect {|warrant_type| [warrant_type.name, warrant_type.id]}) %>
     </p>
   </div>
   <div class="l-field">
     <p>
-      <span class="star">*</span>
-      <span class="label_span"><%= f.label :user_id, t(:user_label, :scope => [:shared, :authority, :columns]), :class => "required" %></span>
+      <span class="label_span"><%= f.label :user_id, t(:user_label, :scope => [:shared, :authority, :columns]) %></span>
       <%= f.select(:user_id, @warrant_agents.collect {|warrant_agent| [warrant_agent.full_name, warrant_agent.id]}, {:include_blank => 'Новый сотрудник'}) %>
   </p>
   </div>

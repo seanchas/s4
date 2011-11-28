@@ -8,8 +8,6 @@ class Senddocument < ActiveRecord::BaseWithoutTable
   
   def self.human_attribute_name(attr)
     case attr
-    when 'type_id'
-      ''
     when 'document'
       ''
     when 'text'
