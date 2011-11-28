@@ -6,7 +6,7 @@ ru:
       header: 'Доверенности'
       columns:
         type_label: 'Тип доверенности: '
-        user_label: 'Сотрудник организации: '
+        user_label: 'Пользователь организации: '
         new_lastname_label: 'Фамилия: '
         new_firstname_label: 'Имя: '
         new_middlename_label: 'Отчество: '

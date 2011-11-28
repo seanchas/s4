@@ -71,3 +71,6 @@ label.required {
     color: #999;
     padding-left: 10px;
 }
+
+div.greatUser {margin-bottom:20px;}
+	div.greatUser p {padding:0;margin:0 0 7px;}

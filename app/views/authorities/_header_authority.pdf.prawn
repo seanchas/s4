@@ -12,8 +12,8 @@ parent_pdf.text_field("name_supplier21", 140, 711, 380, 15, :default => @vars['o
 parent_pdf.text_field("name_supplier323", 0, 686, 523, 15)
 
 parent_pdf.text_field("position_agent2", 32, 670, 490, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
-parent_pdf.text_field("deistv", 58, 646, 20, 15)
-parent_pdf.text_field("gustav", 148, 646, 85, 15, :default => @vars['document_name'])
+parent_pdf.text_field("deistv", 192, 646, 20, 15)
+parent_pdf.text_field("gustav", 283, 646, 85, 15, :default => @vars['document_name'])
 parent_pdf.text_field("upolnomochenii_agent", 0, 633, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
 parent_pdf.text_field("passport_num", 43, 596, 80, 15)
@@ -40,7 +40,7 @@ parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.�
 #parent_pdf.text "в лице #{@vars['ceo_position']}, #{@vars['ceo_fio']}", :leading => 4
 #parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>", :inline_format => true, :align => :center
 
-parent_pdf.text "действующ___ на основании ______________, уполномочивает"
+parent_pdf.text "(далее - Участник торгов) действующ___ на основании ______________, уполномочивает"
 
 parent_pdf.text "#{"_"*87}", :leading => 4, :align => :justify
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О. представителя Участника торгов)</sup>", :inline_format => true, :align => :center

@@ -6,6 +6,14 @@
 
 <%= contextual_menu %>
 
+<div class="greatUser">
+	<p>Уважаемый пользователь!</p>
+	<p>Доверенность будет сформирована в&nbsp;форме pdf-файла с&nbsp;редактируемыми полями.</p>
+	<p>Вам нужно будет <strong>верно указать данные в&nbsp;соответствующем падеже</strong>, в&nbsp;тех полях, где это необходимо.</p>
+	<p>Вы&nbsp;можете это сделать с&nbsp;помощью <a title="Adobe Reader" href="http://get.adobe.com/reader/otherversions/">Аdobe Reader</a>.</p>
+	<p>После этого&nbsp;Вы можете распечатать документ для его заверения и&nbsp;предоставления в&nbsp;Клиентский центр.</p>
+</div>
+
 <%= error_messages_for :authority %>
 <div class="authority formstyling">
 <% form_for @authority, :url => authorities_path(@authority, :format => 'pdf') do |f| %>

@@ -11,7 +11,7 @@ parent_pdf.text_field("phone", 198, 311, 265, 15)
 parent_pdf.text_field("phones_traider", 190, 286, 285, 15)
 
 
-parent_pdf.text "Подпись ____________________________________#{" "*7}______________ удостоверяем."
+parent_pdf.text "Подпись ____________________________________#{" "*7}______________ удостоверяю."
 parent_pdf.text "<sup>(Ф.И.О. представителя Участника торгов)</sup>#{" "*30}<sup>(подпись)</sup>", :inline_format => true, :indent_paragraphs => 90
 
 parent_pdf.text "\n\n"

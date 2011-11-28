@@ -15,6 +15,7 @@ parent_pdf.text_field("v_lice", 170, 656, 353, 15, :default => "#{@vars['ceo_pos
 parent_pdf.text_field("v_lice_to", 0, 633, 523, 15)
 
 #parent_pdf.text_field("ypolnomachivaet", 275, 616, 248, 15)
+parent_pdf.text_field("deistv", 58, 616, 20, 15)
 parent_pdf.text_field("gustav", 148, 616, 85, 15, :default => @vars['document_name'])
 parent_pdf.text_field("ypolnomachivaet_to", 0, 600, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
@@ -31,12 +32,14 @@ parent_pdf.text_field("auth_create_day", 7, 418, 17, 15, :align => 1)
 parent_pdf.text_field("auth_create_month", 33, 418, 122, 15, :align => 1)
 parent_pdf.text_field("auth_create_year", 168, 418, 17, 15, :align => 1)
 
+parent_pdf.text_field("phone_code", 167, 373, 23, 15)
+parent_pdf.text_field("phone", 196, 373, 265, 15)
+
 parent_pdf.text_field("treider_email", 190, 347, 300, 15)
 
 parent_pdf.text_field("agent_podpis", 0, 310, 300, 15, :default => @vars['ceo_position'])
 parent_pdf.text_field("name_podp", 426, 310, 95, 15, :default => @vars['cfs'])
 
-parent_pdf.text_field("deistv", 58, 616, 20, 15)
 
 parent_pdf.text "\n\n"
 parent_pdf.text "Настоящей доверенностью #{"_"*63}", :leading => 4, :align => :justify
@@ -52,7 +55,7 @@ parent_pdf.text "паспорт #{"_"*13}, выдан #{"_"*60}", :leading => 4
 parent_pdf.text "<sup>(кем и когда выдан) </sup>", :inline_format => true, :indent_paragraphs => 300
 parent_pdf.text "#{"_"*87}", :leading => 4
 
-parent_pdf.text "объявлять (подавать, изменять, отзывать ранее поданные) заявки и заключать сделки, получать, предоставлять и подписывать документы и осуществлять иные действия, предусмотренные внутренними документами ЗАО «ФБ ММВБ», устанавливающими требования к организации торговли на фондовом рынке ЗАО «ФБ ММВБ». "
+parent_pdf.text "объявлять (подавать, изменять, отзывать ранее поданные) заявки и заключать сделки, получать, предоставлять и подписывать документы и осуществлять иные действия, предусмотренные внутренними документами ЗАО «ФБ ММВБ», устанавливающими требования к организации торговли на фондовом рынке ЗАО «ФБ ММВБ». ", :align => :justify
 parent_pdf.text "Идентификатор Участника торгов на фондовом рынке ЗАО «ФБ ММВБ» (для Сектора рынка Основной рынок)  №__________________________"
 
 
@@ -64,17 +67,14 @@ parent_pdf.text "«___» ____________________ 20___г. включительно.
 
 parent_pdf.text "\n"
 
-#parent_pdf.text_field("treider_telephones", 163, 373, 327, 15)
-parent_pdf.text_field("phone_code", 167, 373, 23, 15)
-parent_pdf.text_field("phone", 196, 373, 265, 15)
 
 parent_pdf.text "Контактные телефон Трейдера :(____)____________________________________________"
 parent_pdf.text "\n"
 parent_pdf.text "Адрес электронной почты Трейдера :_________________________________________________"
 parent_pdf.text "\n"
 parent_pdf.text "Руководитель Участника торгов ЗАО « ФБ ММВБ»"
-parent_pdf.text "#{"_"*50}#{" "*17} ___________/ ________________", :leading => 4
-parent_pdf.text "<sup>(Должность)</sup>#{" "*70}<sup>(Подпись)</sup>#{" "*15}<sup>Ф.И.О.</sup>", :inline_format => true, :indent_paragraphs => 130
+parent_pdf.text "#{"_"*50}#{" "*8}#{"_"*16}/#{"_"*16}", :leading => 4
+parent_pdf.text "<sup>(Должность)</sup>#{" "*65}<sup>(Подпись)</sup>#{" "*20}<sup>Ф.И.О.</sup>", :inline_format => true, :indent_paragraphs => 130
 
 parent_pdf.text "Примечание:", :size => 10
 parent_pdf.text "Если лицо, подписавшее данную доверенность, действует на основании доверенности, то дополнительно предоставляется:", :size => 10
