@@ -10,7 +10,7 @@ parent_pdf.text_field("position_agent2", 144, 711, 379, 15, :default => "#{@vars
 parent_pdf.text_field("position_agent32", 0, 687, 523, 15)
 parent_pdf.text_field("position_agent212", 40, 670, 483, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 parent_pdf.text_field("deistv", 58, 647, 20, 15)
-parent_pdf.text_field("gustav", 148, 647, 85, 15, :default => @vars['document_name'])
+parent_pdf.text_field("gustav", 148, 646, 242, 15, :default => @vars['document_name'])
 parent_pdf.text_field("position_agent223", 0, 629, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
 parent_pdf.text_field("passport_ser", 74, 605, 40, 15)
@@ -35,7 +35,7 @@ parent_pdf.text "в лице #{"_"*80},", :leading => 4
 
 
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "действующ___ на основании #{"_"*14} доверяет сотруднику,", :leading => 4
+parent_pdf.text "действующ___ на основании #{"_"*40} доверяет сотруднику,", :leading => 4
 
 parent_pdf.text " #{"_"*87}", :leading => 4
 
@@ -49,4 +49,4 @@ parent_pdf.text "#{"_"*87}", :leading => 4
 
 parent_pdf.text "представлять #{"_"*75}", :leading => 4
 
-parent_pdf.text "<sup>(наименование кредитной организации-Участника)</sup>", :inline_format => true, :align => :center
+parent_pdf.text "<sup>(ФИО-Участника)</sup>", :inline_format => true, :align => :center

@@ -16,7 +16,7 @@ parent_pdf.text_field("v_lice_to", 0, 633, 523, 15)
 
 #parent_pdf.text_field("ypolnomachivaet", 275, 616, 248, 15)
 parent_pdf.text_field("deistv", 58, 616, 20, 15)
-parent_pdf.text_field("gustav", 148, 616, 85, 15, :default => @vars['document_name'])
+parent_pdf.text_field("gustav", 148, 616, 240, 15, :default => @vars['document_name'])
 parent_pdf.text_field("ypolnomachivaet_to", 0, 600, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
 parent_pdf.text_field("passport_num", 43, 576, 80, 15)
@@ -48,7 +48,7 @@ parent_pdf.text "#{"_"*87}", :leading => 4
 parent_pdf.text "(далее –Участник торгов) в лице  #{"_"*58}", :leading => 4
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>",  :inline_format => true, :indent_paragraphs => 200
 parent_pdf.text "#{"_"*87}", :leading => 4
-parent_pdf.text "действующ___ на основании #{"_"*14}, уполномочивает ", :leading => 4, :align => :justify
+parent_pdf.text "действующ___ на основании #{"_"*40}, уполномочивает ", :leading => 4, :align => :justify
 parent_pdf.text "#{"_"*87}", :leading => 4
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О. представителя Участника торгов)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "паспорт #{"_"*13}, выдан #{"_"*60}", :leading => 4

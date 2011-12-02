@@ -12,6 +12,7 @@ ru:
         new_middlename_label: 'Отчество: '
         new_position_label: 'Должность: '
       create_button: 'Создать доверенность'
+      find_button: 'Получить список сотрудников'
       menu_title: 'Создание доверенностей'
   activerecord:
     errors:

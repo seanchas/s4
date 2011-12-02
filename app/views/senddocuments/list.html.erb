@@ -4,8 +4,6 @@
 <%= javascript_include_tag("calendar") %>
 <%= stylesheet_link_tag("calendarview") %>
 
-<%= javascript_include_tag("document_list") %>
-
 <%= error_messages_for :documentfilter %>
 <h1 class="senddocument_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1>
 
@@ -43,3 +41,5 @@
 		</tbody>
 	</table>
 <%end%>
+
+<%= javascript_include_tag("document_list") %>

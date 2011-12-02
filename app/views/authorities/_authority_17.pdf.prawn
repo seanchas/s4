@@ -14,7 +14,7 @@ parent_pdf.text_field("id_supplier", 0, 674, 523, 15)
 parent_pdf.text_field("position_supplier", 35, 657, 487, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 
 parent_pdf.text_field("deistv", 58, 633, 20, 15)
-parent_pdf.text_field("gustav", 148, 633, 85, 15, :default => @vars['document_name'])
+parent_pdf.text_field("gustav", 150, 633, 240, 15, :default => @vars['document_name'])
 
 #parent_pdf.text_field("position_agent", 237, 633, 285, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 parent_pdf.text_field("position_agent", 0, 616, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
@@ -42,7 +42,7 @@ parent_pdf.text_field("name_for_podpis", 90, 261, 360, 15, :default => "#{@vars[
 parent_pdf.text_field("phone_code", 209, 212, 23, 15)
 parent_pdf.text_field("phone", 237, 212, 265, 15)
 
-parent_pdf.text_field("position", 367, 149, 157, 15, :default => @vars['ceo_position'])
+parent_pdf.text_field("position", 225, 149, 300, 15, :default => @vars['ceo_position'])
 parent_pdf.text_field("name_podp", 439, 125, 85, 15, :default => @vars['cfs'])
 
 
@@ -53,7 +53,7 @@ parent_pdf.text "#{"_"*87}", :leading => 4
 #parent_pdf.text "<sup>(идентификатор Участника торгов)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "в лице #{"_"*81}", :leading => 4
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>",  :inline_format => true, :align => :center
-parent_pdf.text "действующ___ на основании ______________, доверяет", :leading => 4, :align => :justify
+parent_pdf.text "действующ___ на основании #{"_"*40}, доверяет", :leading => 4, :align => :justify
 parent_pdf.text "#{"_"*87}", :leading => 4
 parent_pdf.text "<sup>(занимаемая должность сотрудника, Ф.И.О.)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "паспорт #{"_"*13}, выдан #{"_"*60}", :leading => 4
@@ -86,7 +86,7 @@ parent_pdf.text "\n\n"
 
 parent_pdf.text "Контактный телефон доверенного лица:(____)____________________________________________"
 parent_pdf.text "\n\n\n\n"
-parent_pdf.text "__________________________", :align => :right, :leading => 4
+parent_pdf.text "#{"_"*50}", :align => :right, :leading => 4
 parent_pdf.text "<sup>(Должность Руководителя организации)</sup>", :inline_format => true, :indent_paragraphs => 385
 
 parent_pdf.text "___________/ ______________", :align => :right, :leading => 4

@@ -12,7 +12,7 @@ parent_pdf.text_field("position_agent32", 0, 687, 523, 15)
 parent_pdf.text_field("position_agent212", 40, 670, 483, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 
 parent_pdf.text_field("deistv", 57, 646, 18, 15)
-parent_pdf.text_field("gustav", 148, 646, 85, 15, :default => @vars['document_name'])
+parent_pdf.text_field("gustav", 150, 646, 240, 15, :default => @vars['document_name'])
 
 parent_pdf.text_field("position_agent2234", 0, 633, 523, 15, :default => @vars['agent_fio'])
 
@@ -38,7 +38,7 @@ parent_pdf.text "в лице #{"_"*80},", :leading => 4
 
 
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "действующ___ на основании #{"_"*14}, доверяет сотруднику"
+parent_pdf.text "действующ___ на основании #{"_"*40}, доверяет сотруднику"
 
 parent_pdf.text "#{"_"*87}", :leading => 4
 parent_pdf.text "<sup>(занимаемая должность сотрудника, Ф.И.О.)</sup>", :inline_format => true, :indent_paragraphs => 200

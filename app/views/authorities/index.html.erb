@@ -6,60 +6,84 @@
 
 <%= contextual_menu %>
 
+
+
 <div class="greatUser">
 	<p>Уважаемый пользователь!</p>
-	<p>Доверенность будет сформирована в&nbsp;форме pdf-файла с&nbsp;редактируемыми полями.</p>
-	<p>Вам нужно будет <strong>верно указать данные в&nbsp;соответствующем падеже</strong>, в&nbsp;тех полях, где это необходимо.</p>
-	<p>Вы&nbsp;можете это сделать с&nbsp;помощью <a title="Adobe Reader" href="http://get.adobe.com/reader/otherversions/">Аdobe Reader</a>.</p>
-	<p>После этого&nbsp;Вы можете распечатать документ для его заверения и&nbsp;предоставления в&nbsp;Клиентский центр.</p>
+<p>Доверенность будет сформирована в&nbsp;форме pdf-файла с&nbsp;редактируемыми полями.</p>
+<p>Вам нужно будет её&nbsp;дополнить <strong>паспортными данными и&nbsp;верно указать данные в&nbsp;соответствующем падеже</strong>, в&nbsp;тех полях, где это необходимо.</p>
+<p>Вы&nbsp;можете это сделать с&nbsp;помощью <a title="Adobe Reader" href="http://get.adobe.com/reader/otherversions/" target="_blank">Аdobe Reader</a>.</p>
+<p>После этого&nbsp;Вы можете распечатать документ для его заверения и&nbsp;предоставления в&nbsp;Клиентский центр.</p>
 </div>
+
 
 <%= error_messages_for :authority %>
 <div class="authority formstyling">
-<% form_for @authority, :url => authorities_path(@authority, :format => 'pdf') do |f| %>
-<div class="l-field">
-    <p>
-      <span class="label_span"><%= f.label :type_id, t(:type_label, :scope => [:shared, :authority, :columns]) %></span>
-      <%= f.select(:type_id, @warrant_types.collect {|warrant_type| [warrant_type.name, warrant_type.id]}) %>
-    </p>
-  </div>
-  <div class="l-field">
-    <p>
-      <span class="label_span"><%= f.label :user_id, t(:user_label, :scope => [:shared, :authority, :columns]) %></span>
-      <%= f.select(:user_id, @warrant_agents.collect {|warrant_agent| [warrant_agent.full_name, warrant_agent.id]}, {:include_blank => 'Новый сотрудник'}) %>
-  </p>
-  </div>
-  <div class="l-field">
-    <p>
-      <span class="label_span"><%= f.label :lastname, t(:new_lastname_label, :scope => [:shared, :authority, :columns]) %></span>
-      <%= f.text_field :lastname %>
-  </p>
-  </div>
-  <div class="l-field">
-    <p>
-      <span class="label_span"><%= f.label :firstname, t(:new_firstname_label, :scope => [:shared, :authority, :columns]) %></span>
-      <%= f.text_field :firstname %>
-  </p>
-  </div>
-  <div class="l-field">
-    <p>
-      <span class="label_span"><%= f.label :middlename, t(:new_middlename_label, :scope => [:shared, :authority, :columns]) %></span>
-      <%= f.text_field :middlename %>
-    </p>
-  </div>
-  <div class="l-field">
-    <p>
-      <span class="label_span"><%= f.label :position, t(:new_position_label, :scope => [:shared, :authority, :columns]) %></span>
-      <%= f.text_field :position %>
-  </p>
-  </div>
-  <div class="submit">
-    <p>
-      <span class="label_span">&nbsp;</span>
-      <%= f.submit t(:create_button, :scope => [:shared, :authority]) %>
-   </p>
-  </div>
-<% end %>
+	
+	<% if (@warrant_agents && @warrant_agents.size != 0) || (!@warrant_agents.nil? && @warrant_agents.size == 0 && @authority_params_type_id) %>
+		<% form_for @authority, :url => authorities_path(@authority, :format => 'pdf') do |f| %>
+
+		<div class="l-field">
+		    <p>
+		      <span class="label_span"><%= f.label :type_id, t(:type_label, :scope => [:shared, :authority, :columns]) %></span>
+		      <%= f.select(:type_id, @warrant_types.collect {|warrant_type| [warrant_type.name, warrant_type.id]}) %>
+		    </p>
+		  </div>
+		  <div class="l-field">
+		    <p>
+		      <span class="label_span"><%= f.label :user_id, t(:user_label, :scope => [:shared, :authority, :columns]) %></span>
+		      <%= f.select(:user_id, @warrant_agents.collect {|warrant_agent| [warrant_agent.full_name, warrant_agent.id]}, {:include_blank => 'Новый сотрудник'}) %>
+		  </p>
+		  </div>
+		  <div class="l-field">
+		    <p>
+		      <span class="label_span"><%= f.label :lastname, t(:new_lastname_label, :scope => [:shared, :authority, :columns]) %></span>
+		      <%= f.text_field :lastname %>
+		  </p>
+		  </div>
+		  <div class="l-field">
+		    <p>
+		      <span class="label_span"><%= f.label :firstname, t(:new_firstname_label, :scope => [:shared, :authority, :columns]) %></span>
+		      <%= f.text_field :firstname %>
+		  </p>
+		  </div>
+		  <div class="l-field">
+		    <p>
+		      <span class="label_span"><%= f.label :middlename, t(:new_middlename_label, :scope => [:shared, :authority, :columns]) %></span>
+		      <%= f.text_field :middlename %>
+		    </p>
+		  </div>
+		  <div class="l-field">
+		    <p>
+		      <span class="label_span"><%= f.label :position, t(:new_position_label, :scope => [:shared, :authority, :columns]) %></span>
+		      <%= f.text_field :position %>
+		  </p>
+		  </div>
+		  <div class="submit">
+		    <p>
+		      <span class="label_span">&nbsp;</span>
+		      <%= f.submit t(:create_button, :scope => [:shared, :authority]) %>
+		   </p>
+		  </div>
+		<% end %>
+	<% else%>
+		<% form_for @authority, :url => { :action => "index"}, :html => { :method => "get" } do |f| %>
+
+		<div class="l-field">
+		    <p>
+		      <span class="label_span"><%= f.label :type_id, t(:type_label, :scope => [:shared, :authority, :columns]) %></span>
+		      <%= f.select(:type_id, @warrant_types.collect {|warrant_type| [warrant_type.name, warrant_type.id]}, {:include_blank => ''}) %>
+		    </p>
+		  </div>
+		  <!--div class="submit">
+		    <p>
+		      <span class="label_span">&nbsp;</span>
+		      <%= f.submit t(:find_button, :scope => [:shared, :authority]) %>
+		   </p>
+		  </div-->
+		<% end %>
+	<%end%>
+	
 </div>
 <div class="legend">
     <p>
@@ -68,3 +92,5 @@
         Обязaтельные для заполнения поля
     </p>
 </div>
+
+<%= javascript_include_tag("authoritytwo") %>

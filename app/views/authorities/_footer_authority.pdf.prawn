@@ -1,14 +1,17 @@
-#parent_pdf.text_field("phones", 163, 311, 315, 15)
+#parent_pdf.text_field("phones", 163, 295, 315, 15)
 
-parent_pdf.text_field("podpiska", 46, 412, 220, 15, :default => "#{@vars['agent_fio']}")
+parent_pdf.text_field("podpiska", 46, 396, 220, 15, :default => "#{@vars['agent_fio']}")
 
-parent_pdf.text_field("auth_create_day", 22, 349, 16, 15)
-parent_pdf.text_field("auth_create_month", 48, 349, 80, 15)
-parent_pdf.text_field("auth_create_year", 142, 349, 16, 15)
+parent_pdf.text_field("auth_create_day", 22, 332, 16, 15)
+parent_pdf.text_field("auth_create_month", 48, 332, 80, 15)
+parent_pdf.text_field("auth_create_year", 142, 332, 16, 15)
 
-parent_pdf.text_field("phone_code", 168, 311, 23, 15)
-parent_pdf.text_field("phone", 198, 311, 265, 15)
-parent_pdf.text_field("phones_traider", 190, 286, 285, 15)
+parent_pdf.text_field("phone_code", 168, 294, 23, 15)
+parent_pdf.text_field("phone", 198, 294, 265, 15)
+parent_pdf.text_field("phones_traider", 190, 268, 285, 15)
+
+parent_pdf.text_field("agent_podpis", 0, 217, 300, 15, :default => @vars['ceo_position'])
+parent_pdf.text_field("name_podp", 426, 217, 95, 15, :default => @vars['cfs'])
 
 
 parent_pdf.text "Подпись ____________________________________#{" "*7}______________ удостоверяю."
@@ -30,10 +33,6 @@ parent_pdf.text "Адрес электронной почты Трейдера: 
 parent_pdf.text "\n\n"
 
 parent_pdf.text "Руководитель Участника торгов"
-
-parent_pdf.text_field("agent_podpis", 0, 235, 300, 15, :default => @vars['ceo_position'])
-parent_pdf.text_field("name_podp", 426, 235, 95, 15, :default => @vars['cfs'])
-
 
 parent_pdf.text "#{"_"*50}#{" "*17} ___________/ ________________", :leading => 4
 parent_pdf.text "<sup>(Должность)</sup>#{" "*70}<sup>(Подпись)</sup>#{" "*15}<sup>Ф.И.О.</sup>", :inline_format => true, :indent_paragraphs => 130

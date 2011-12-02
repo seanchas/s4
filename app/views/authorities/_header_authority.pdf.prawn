@@ -13,12 +13,13 @@ parent_pdf.text_field("name_supplier323", 0, 686, 523, 15)
 
 parent_pdf.text_field("position_agent2", 32, 670, 490, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 parent_pdf.text_field("deistv", 192, 646, 20, 15)
-parent_pdf.text_field("gustav", 283, 646, 85, 15, :default => @vars['document_name'])
-parent_pdf.text_field("upolnomochenii_agent", 0, 633, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
+parent_pdf.text_field("gustav", 283, 646, 232, 15, :default => @vars['document_name'])
+parent_pdf.text_field("upolnomochenii_agent", 90, 633, 433, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
+parent_pdf.text_field("upolnomochenii_agent_two", 0, 609, 523, 15)
 
-parent_pdf.text_field("passport_num", 43, 596, 80, 15)
-parent_pdf.text_field("passport_date", 160, 596, 363, 15)
-parent_pdf.text_field("passport_date2", 0, 572, 523, 15)
+parent_pdf.text_field("passport_num", 43, 579, 80, 15)
+parent_pdf.text_field("passport_date", 160, 579, 363, 15)
+parent_pdf.text_field("passport_date2", 0, 555, 523, 15)
 
 
 
@@ -40,10 +41,11 @@ parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.�
 #parent_pdf.text "в лице #{@vars['ceo_position']}, #{@vars['ceo_fio']}", :leading => 4
 #parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>", :inline_format => true, :align => :center
 
-parent_pdf.text "(далее - Участник торгов) действующ___ на основании ______________, уполномочивает"
+parent_pdf.text "(далее - Участник торгов) действующ___ на основании #{"_"*39},"
 
-parent_pdf.text "#{"_"*87}", :leading => 4, :align => :justify
+parent_pdf.text "уполномочивает #{"_"*72}", :leading => 4
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О. представителя Участника торгов)</sup>", :inline_format => true, :align => :center
+parent_pdf.text "#{"_"*87}", :leading => 4
 parent_pdf.text "(далее - Трейдер)"
 parent_pdf.text "паспорт _____________, выдан ____________________________________________________________", :leading => 4
 parent_pdf.text "<sup>(когда, кем)</sup>", :inline_format => true, :indent_paragraphs => 300

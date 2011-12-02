@@ -39,9 +39,7 @@ function check_select_bytype()
   }
 }
 
-document.getElementById("documentfilter_document_name").disabled=true;
+//document.getElementById("documentfilter_document_name").disabled=true;
 
-document.getElementById('documentfilter_by_type').onchange = function() {
-    check_select_bytype();
-}
+document.getElementById('documentfilter_by_type').onchange = function() { check_select_bytype(); }
 check_select_bytype();

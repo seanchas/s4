@@ -7,14 +7,35 @@ class AuthoritiesController < ApplicationController
   helper :members_menu, :document_menu
   
   def index
+    @authority_params_type_id = nil
+    
+    @supo_params = params
+    
+    if !@supo_params['warrant_type_id'].nil?
+      @authority_params_type_id = @supo_params['warrant_type_id']
+      params[:authority] = {:type_id => @authority_params_type_id}
+    else
+      @authority_params_type_id = 17
+      params[:authority] = {:type_id => @authority_params_type_id}
+    end
+    
     if !session['form'].nil?
       @authority = session['form']
       session.delete('form')
+    elsif @authority_params_type_id
+      @authority = Authority.new(params[:authority])
     else
       @authority = Authority.new
     end
+    
     @warrant_types = S4::WarrantType.all(s4_user)
-    @warrant_agents = S4::WarrantAgent.all(s4_user)
+    
+    #@warrant_agents = S4::WarrantAgent.all(s4_user)
+    
+    if @authority_params_type_id
+      S4::WarrantAgent.scope = {'warrant_type_id' => @authority_params_type_id}
+      @warrant_agents = S4::WarrantAgent.all_with_scope(s4_user)
+    end
   end
   
   def create

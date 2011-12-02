@@ -12,7 +12,7 @@ parent_pdf.text_field("name_supplier323", 0, 683, 523, 15)
 parent_pdf.text_field("licoco", 35, 666, 488, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 
 parent_pdf.text_field("ya", 58, 642, 19, 15)
-parent_pdf.text_field("gustav", 148, 642, 85, 15, :default => @vars['document_name'])
+parent_pdf.text_field("gustav", 148, 642, 240, 15, :default => @vars['document_name'])
 
 parent_pdf.text_field("licoco", 0, 629, 523, 15, :default => "#{@vars['agent_position']}")
 
@@ -37,7 +37,7 @@ parent_pdf.text "в лице #{"_"*80},", :leading => 4
 
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>", :inline_format => true, :align => :center
 
-parent_pdf.text "действующ___ на основании #{"_"*14}, доверяет сотруднику"
+parent_pdf.text "действующ___ на основании #{"_"*40}, доверяет сотруднику"
 
 
 parent_pdf.text "#{"_"*87}", :leading => 4

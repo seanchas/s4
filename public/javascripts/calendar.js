@@ -26,12 +26,12 @@ var Calendar = Class.create()
 Calendar.VERSION = '1.2'
 
 Calendar.DAY_NAMES = new Array(
-  'Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота',
-  'Воскресенье'
+  'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье',
+  'Понедельник'
 )
 
 Calendar.SHORT_DAY_NAMES = new Array(
-  'В', 'П', 'В', 'С', 'Ч', 'П', 'С', 'В'
+  'П', 'В', 'С', 'Ч', 'П', 'С', 'В','П'
 )
 
 Calendar.MONTH_NAMES = new Array(
@@ -330,7 +330,7 @@ Calendar.prototype = {
 
     // Calculate the first day to display (including the previous month)
     date.setDate(1)
-    date.setDate(-(date.getDay()) + 1)
+    date.setDate(-(date.getDay()) + 2)
 
     // Fill in the days of the month
     Element.getElementsBySelector(this.container, 'tbody tr').each(
@@ -364,7 +364,7 @@ Calendar.prototype = {
               cell.addClassName('today')
 
             // Weekend
-            if ([0, 6].indexOf(dayOfWeek) != -1)
+            if ([5, 6].indexOf(dayOfWeek) != -1)
               cell.addClassName('weekend')
 
             // Set the date to tommorrow

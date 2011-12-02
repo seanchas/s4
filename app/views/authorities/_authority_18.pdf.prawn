@@ -4,7 +4,7 @@ render :partial => 'header_authority',
          :vars => @vars
        }
 
-parent_pdf.text_field("birzha", 0, 518, 523, 15)
+parent_pdf.text_field("birzha", 0, 502, 523, 15)
 
 parent_pdf.text "выполнять следующие действия от имени Участника торгов:", :align => :justify
 parent_pdf.text "объявлять (подавать, изменять, отзывать ранее поданные) заявки и заключать договоры, являющиеся производными финансовыми инструментами, на торгах, организуемых", :align => :justify
