@@ -14,7 +14,7 @@ parent_pdf.text_field("licoco", 35, 666, 488, 15, :default => "#{@vars['ceo_posi
 parent_pdf.text_field("ya", 58, 642, 19, 15)
 parent_pdf.text_field("gustav", 148, 642, 240, 15, :default => @vars['document_name'])
 
-parent_pdf.text_field("licoco", 0, 629, 523, 15, :default => "#{@vars['agent_position']}")
+parent_pdf.text_field("licoco_two", 0, 629, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
 parent_pdf.text_field("passport_ser", 74, 605, 40, 15)
 parent_pdf.text_field("passport_num", 129, 605, 60, 15)
