@@ -13,7 +13,7 @@ div.clients_list {}
    vertical-align: top;
    text-align: left;
    margin: 0 10px 10px 0;
-   height:220px;
+   height:250px;
    width:225px;
    text-align:center;
   }
@@ -22,7 +22,13 @@ div.clients_list {}
     div.clients_list ins h4 {margin:10px 0 5px 0;padding:0;}
     div.clients_list ins div.photo_base64 {text-align:center;}
       div.photo_base64 img {}
-      
+  
+  div.clients_list ins div.starbox {
+  		margin:10px 0 0;
+		height: 17px;
+		overflow:hidden;
+   }
+  div.stars {margin:0 auto;}
       
   a.upload-link {
     background: url("/images/draft/icon-download.gif") no-repeat scroll left center transparent;

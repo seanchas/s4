@@ -18,6 +18,25 @@ class OrganizationsController < ApplicationController
     @signers      = S4::Signer.all(s4_user)
   end
 	
+  def starbox
+        
+    pmid = params[:identity]
+    pmid = pmid[4..-1]
+    
+    rated = params[:rated]
+    
+    scope = {
+      'personal_manager_id' => pmid,
+      'rating' => rated,
+      'note' => ''
+    }
+    
+    S4::PersonalManagerRating.scope = scope
+    S4::PersonalManagerRating.set_with_scope(s4_user)
+        
+    render :text => scope.inspect
+  end
+  
 	def manager
 		@organization = S4::Organization.find(s4_user)
     @sessionId = S4.connection.call("s4.openSession", I18n.locale)
@@ -26,9 +45,14 @@ class OrganizationsController < ApplicationController
 
 		#@personal_managers = S4::PersonalManager.all_with_scope(s4_user)
 		#@pm_attr = @personal_managers.find('attributes')
-	
-	
-	  @documentList.each do |column|
+    
+    @documentList.each do |column|
+     
+      S4::PersonalManagerRating.scope = {'personal_manager_id' => column["id"]}
+      @pm_rating = S4::PersonalManagerRating.find_with_scope(s4_user).attributes
+      
+      column["rating"] = @pm_rating["rating"]
+        
 	    if column['photo_base64'] == ""
 	      column["photo_base64"] = '/upload/no_photo.jpeg'
 		  else
@@ -44,7 +68,7 @@ class OrganizationsController < ApplicationController
 		         
 		    
 		    base_64_encoded_data2 = column["photo_base64"].gsub("<br/>","")
-	      File.open('public/upload/managerId_' + column["id"] + '.' + fileExist, 'wb') do|f|
+	      File.open(RAILS_ROOT + '/public/upload/managerId_' + column["id"] + '.' + fileExist, 'wb') do|f|
 			    f.write(Base64.decode64(base_64_encoded_data2))
 		    end
 		    column["photo_base64"] = '/upload/managerId_' + column["id"] + '.' + fileExist

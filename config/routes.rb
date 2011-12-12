@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.xmlrpc "/xml-rpc", :controller => :welcome, :action => :xmlrpc
 
-  map.resource :organization, :only => :show, :member => { :licenses => :get, :management => :get, :manager => :get, :codes => :get }
+  map.resource :organization, :only => :show, :member => { :licenses => :get, :management => :get, :manager => :get, :codes => :get, :starbox => :post }
   
   map.resources :markets
 

@@ -4,6 +4,7 @@
 
 <%= contextual_menu %>
 
+
 <div class="resource">
     <%- S4::Organization.schema.each do |element| -%>
         <%= render :partial => "shared/s4/resource/#{element.element_type}", :object => element, :locals => { :resource => @organization } %>

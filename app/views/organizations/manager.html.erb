@@ -2,7 +2,30 @@
 <h1>
     <%= @organization.full_name %>
 </h1>
+
 <%= contextual_menu %>
+
+
+<script language='javascript' type='text/javascript'>
+function saveStar(event) {
+  new Ajax.Request('/organization/starbox', {
+    parameters: event.memo,
+    onComplete: function(xhr) {
+      // optional callback
+    }
+  });
+}
+</script>
+
+<script language='javascript' type='text/javascript'>
+document.observe('dom:loaded', function() {
+  <% @documentList.each do |scrpt| %>
+	  $('mng_<%=scrpt["id"]%>').observe('starbox:changed', starboxChangedText) // observe the mouseover
+	    .observe('starbox:rated', starboxRatedText) // observe the click
+	    .observe('starbox:left', starboxLeftText); // observe the mouseout
+  <% end %>
+});
+</script>
 
 <div class="resources">
   <div class="clients_list">
@@ -22,11 +45,22 @@
 				    <h4 class="name"><%=column["employee_id"]%></h4>
 				    <div class="category">(<%=column["personal_manager_category"]%>)</div>
 				  </div>
+				  <div id='mng_<%=column["id"]%>'></div>
 				</div>
 		  </ins>
 		<% end %>
 	</div>
 </div>
+
+<script language='javascript' type='text/javascript'>
+	<% @documentList.each do |scrpt| %>
+		new Starbox('mng_<%=scrpt["id"]%>', <%=scrpt["rating"]%>, {rerate: false, locked: true,});
+		
+		document.observe('dom:loaded', function() { // once the DOM is loaded
+		  $('mng_<%=scrpt["id"]%>').observe('starbox:rated', saveStar);
+		});
+	<% end %>
+</script>
 
 <div class="link_to_send_message">
 	<% form_remote_tag(:url => {:controller => "senddocuments", :action => "message"}, :html => { :method => "get",:id => "sendTOSM" } )  do %>

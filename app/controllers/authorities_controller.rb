@@ -77,6 +77,11 @@ class AuthoritiesController < ApplicationController
       respond_to do |format|
         format.html
         format.pdf {
+          response.headers['Content-Disposition'] = "attachment;filename=\"authority_#{authority[:type_id]}.pdf\""
+          response.headers['Content-Description'] = 'File Transfer'
+          response.headers['Content-Transfer-Encoding'] = 'binary'
+          response.headers['Expires'] = '0'
+          response.headers['Pragma'] = 'public'
           prawnto :prawn => {
                     :page_size => 'A4'
                   },
