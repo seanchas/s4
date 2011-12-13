@@ -51,7 +51,11 @@ class OrganizationsController < ApplicationController
       S4::PersonalManagerRating.scope = {'personal_manager_id' => column["id"]}
       @pm_rating = S4::PersonalManagerRating.find_with_scope(s4_user).attributes
       
-      column["rating"] = @pm_rating["rating"]
+      if @pm_rating["rating"].nil?
+        column["rating"] = 0
+      else 
+        column["rating"] = @pm_rating["rating"]
+      end
         
 	    if column['photo_base64'] == ""
 	      column["photo_base64"] = '/upload/no_photo.jpeg'

@@ -20,9 +20,9 @@ function saveStar(event) {
 <script language='javascript' type='text/javascript'>
 document.observe('dom:loaded', function() {
   <% @documentList.each do |scrpt| %>
-	  $('mng_<%=scrpt["id"]%>').observe('starbox:changed', starboxChangedText) // observe the mouseover
-	    .observe('starbox:rated', starboxRatedText) // observe the click
-	    .observe('starbox:left', starboxLeftText); // observe the mouseout
+	  $('mng_<%=scrpt["id"]%>').observe('starbox:changed') // observe the mouseover
+	    .observe('starbox:rated') // observe the click
+	    .observe('starbox:left'); // observe the mouseout
   <% end %>
 });
 </script>
@@ -54,7 +54,7 @@ document.observe('dom:loaded', function() {
 
 <script language='javascript' type='text/javascript'>
 	<% @documentList.each do |scrpt| %>
-		new Starbox('mng_<%=scrpt["id"]%>', <%=scrpt["rating"]%>, {rerate: false, locked: true,});
+		new Starbox('mng_<%=scrpt["id"]%>', <%=scrpt["rating"]%>);
 		
 		document.observe('dom:loaded', function() { // once the DOM is loaded
 		  $('mng_<%=scrpt["id"]%>').observe('starbox:rated', saveStar);
