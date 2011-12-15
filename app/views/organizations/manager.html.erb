@@ -26,12 +26,12 @@
 				  </div>
 				  <div id='mng_<%=column["id"]%>'></div>
 				  <% 
-						d = Date.parse( column["rating_date"] ) 
-						dateLastVoting = column["rating_date"]
+						d = Date.parse( column["rating_date"]) if column["rating_date"]
+						dateLastVoting = column["rating_date"] if column["rating_date"]
 				  %>
 				  <div class="date_voting">
 					<div title="Дата последнего голосования">
-						<%=d.mday%>.<%=d.mon%>.<%=d.year%> <%=dateLastVoting[11..20]%>
+						<%= "#{d.mday}.#{d.mon}.#{d.year} #{dateLastVoting[11..20]}" if column["rating_date"] %>
 					</div> 
 				  </div>
 				</div>
