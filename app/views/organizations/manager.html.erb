@@ -1,31 +1,10 @@
 <%= stylesheet_link_tag 'managerStyle' %>
+<%= stylesheet_link_tag 'dialog' %>
 <h1>
     <%= @organization.full_name %>
 </h1>
 
 <%= contextual_menu %>
-
-
-<script language='javascript' type='text/javascript'>
-function saveStar(event) {
-  new Ajax.Request('/organization/starbox', {
-    parameters: event.memo,
-    onComplete: function(xhr) {
-      // optional callback
-    }
-  });
-}
-</script>
-
-<script language='javascript' type='text/javascript'>
-document.observe('dom:loaded', function() {
-  <% @documentList.each do |scrpt| %>
-	  $('mng_<%=scrpt["id"]%>').observe('starbox:changed') // observe the mouseover
-	    .observe('starbox:rated') // observe the click
-	    .observe('starbox:left'); // observe the mouseout
-  <% end %>
-});
-</script>
 
 <div class="resources">
   <div class="clients_list">
@@ -46,18 +25,50 @@ document.observe('dom:loaded', function() {
 				    <div class="category">(<%=column["personal_manager_category"]%>)</div>
 				  </div>
 				  <div id='mng_<%=column["id"]%>'></div>
+				  <% 
+						d = Date.parse( column["rating_date"] ) 
+						dateLastVoting = column["rating_date"]
+				  %>
+				  <div class="date_voting">
+					<div title="Дата последнего голосования">
+						<%=d.mday%>.<%=d.mon%>.<%=d.year%> <%=dateLastVoting[11..20]%>
+					</div> 
+				  </div>
 				</div>
+				<div id="<%=column["id"]%>tmp" rel="<%=column["rating"]%>"></div>
 		  </ins>
 		<% end %>
 	</div>
 </div>
+
+<% @documentList.each do |scrpt| %>
+	<div id="mng_<%=scrpt["id"]%>_parent" class="dialog-box" style="display:none;width:350px;" >
+		<%= error_messages_for :formvoting %>		
+		<% form_for @formvoting, :url => { :action => "starbox"}, :html => { :method => "post" } do |f| %>
+			<div class="ovrh">
+				<div class="yourMark">Ваша оценка: </div>	
+				<div id="mng_<%=scrpt["id"]%>_mw" class="popupRating" ></div>
+			</div>
+			<div class="yourComment">
+				<strong>Комментарий: <span class="star">*</span></strong>
+		    	<%= f.text_area :note, :cols => 10, :rows => 10, :class => 'commentVoting' %>
+			</div>
+			<div><%= f.hidden_field :average %></div>
+			<div><%= f.hidden_field :user_id %></div>
+			<div class="submiting">
+				<%= f.submit 'Отправить' %>
+				<input type="reset" value="Отменить" onClick="hideThisMW(<%=scrpt['id']%>, <%=scrpt['rating']%>); return false;" name="resetForm" class="resetForm" >
+			</div>
+		<% end %>
+	</div>
+<% end %>
 
 <script language='javascript' type='text/javascript'>
 	<% @documentList.each do |scrpt| %>
 		new Starbox('mng_<%=scrpt["id"]%>', <%=scrpt["rating"]%>);
 		
 		document.observe('dom:loaded', function() { // once the DOM is loaded
-		  $('mng_<%=scrpt["id"]%>').observe('starbox:rated', saveStar);
+		  $('mng_<%=scrpt["id"]%>').observe('starbox:rated', startModalWindow);
 		});
 	<% end %>
 </script>
@@ -68,3 +79,82 @@ document.observe('dom:loaded', function() {
 	<% end %>
 </div>
 <%= javascript_include_tag("manager_script") %>
+<%= javascript_include_tag("dialog") %>
+
+<script language='javascript' type='text/javascript'>
+
+function saveStar(event) {
+	
+	document.getElementById("formvoting_average").value = event.memo.average
+	
+	//new Ajax.Request('/organization/starbox', {
+	//  parameters: event.memo,
+	//  onComplete: function(xhr) {
+	// 		optional callback
+	//  }
+	// });
+}
+<% @documentList.each do |scrpt| %>
+document.observe('dom:loaded', function() {
+  $('mng_<%=scrpt["id"]%>_mw').observe('starbox:rated', saveStar);
+});
+<% end %>
+
+function startModalWindow(event)
+{
+	new Starbox(event.memo.identity+'_mw', event.memo.average,{rated: false, rerate: true});
+	var user_id = event.memo.identity;
+	user_id = user_id.slice(4);
+	
+	
+	averageOnLoad = document.getElementById(user_id+'tmp').getAttribute("rel")
+	
+	modalWindow = new Dialog.Box(event.memo.identity+'_parent', {title: 'Голосование'});
+	modalWindow.show();
+	
+	modalWindowDOM = document.getElementById(event.memo.identity+'_parent')
+	closeModalWindow = modalWindowDOM.firstChild.getElementsByTagName('a')
+	modalWindowDOM.firstChild.removeChild(modalWindowDOM.firstChild.childNodes[1]);
+	modalWindowDOM.firstChild.innerHTML = '<div class="dialog-box-title">Голосование</div><a href="#" class="dialog-box-title-close-cln" onClick="hideThisMW('+user_id+','+averageOnLoad+')">x</a>'
+
+	//mwObject = document.getElementById( event.memo.identity+'_mw' )
+	//if(mwObject)
+	//{
+	//	console.log( mwObject.firstChild.className = "rated" )
+	//}
+	
+	
+	
+	document.getElementById("formvoting_user_id").value = user_id;
+	document.getElementById("formvoting_average").value = event.memo.average;
+}
+
+
+
+var errorExplanation = document.getElementById("errorExplanation")
+if(errorExplanation)
+{
+	var form_identity = document.getElementById("formvoting_user_id").value
+	var form_average = document.getElementById("formvoting_average").value
+	
+	var event = new Object()
+	event.memo = {
+		identity: "mng_" + form_identity,
+		average: form_average
+	}
+	startModalWindow(event)
+}
+
+
+function hideThisMW(id,everage)
+{
+	new Starbox('mng_' + id, everage);
+	modalWindow.hide();
+	var errorExplanation = document.getElementById('errorExplanation')
+	if( errorExplanation )
+	{
+		errorExplanation.parentNode.removeChild(errorExplanation);	
+	}
+}
+
+</script>

@@ -3,11 +3,17 @@
 */
 
 .starbox .stars { background: #cccccc; }
+.popupRating .stars { background: #dcdcdc; }
 .starbox .rated .stars { background: #dcdcdc; }
 .starbox .rated .hover .stars { background: #cccccc; }
-.starbox .colorbar { background: #1e90ff; }
+
 .starbox .hover .colorbar { background: #ffcc1c; }
+
+.starbox .colorbar { background: #1e90ff; }
 .starbox .rated .colorbar { background: #64b2ff; }
+
+.popupRating .colorbar { background: #64b2ff; }
+
 .starbox .rated .hover .colorbar { background: #1e90ff; }
 .starbox .ghost { background: #a1a1a1; }
 .starbox .indicator { clear: both; }

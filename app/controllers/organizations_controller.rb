@@ -19,22 +19,28 @@ class OrganizationsController < ApplicationController
   end
 	
   def starbox
+    formvoting = params[:formvoting]
+    @formvting = Formvoting.new(formvoting)
+    if @formvting.valid?
+      scope = {
+        'personal_manager_id' => params[:formvoting][:user_id],
+        'rating' => params[:formvoting][:average],
+        'note' => params[:formvoting][:note]
+      }
+      S4::PersonalManagerRating.scope = scope
+      S4::PersonalManagerRating.set_with_scope(s4_user)
+    else
+      session['formvoting'] = @formvting
+      session['formvoting_params'] = formvoting
+    end
+    
+    redirect_to :action => 'manager'
+    
+    
+    
         
-    pmid = params[:identity]
-    pmid = pmid[4..-1]
-    
-    rated = params[:rated]
-    
-    scope = {
-      'personal_manager_id' => pmid,
-      'rating' => rated,
-      'note' => ''
-    }
-    
-    S4::PersonalManagerRating.scope = scope
-    S4::PersonalManagerRating.set_with_scope(s4_user)
-        
-    render :text => scope.inspect
+    #render :text => scope.inspect
+    #render :text => params.inspect
   end
   
 	def manager
@@ -46,15 +52,33 @@ class OrganizationsController < ApplicationController
 		#@personal_managers = S4::PersonalManager.all_with_scope(s4_user)
 		#@pm_attr = @personal_managers.find('attributes')
     
+    
+    
+    formvoting_param = session['formvoting_params']
+    
+    if !session['formvoting'].nil?
+      @formvoting = session.delete('formvoting')
+    else
+      @formvoting = Formvoting.new
+    end
+    
     @documentList.each do |column|
      
       S4::PersonalManagerRating.scope = {'personal_manager_id' => column["id"]}
       @pm_rating = S4::PersonalManagerRating.find_with_scope(s4_user).attributes
       
+      column["pm_rating"] = @pm_rating
+      
       if @pm_rating["rating"].nil?
         column["rating"] = 0
+      elsif formvoting_param[:user_id] == column["id"]
+        column["rating"] = formvoting_param[:average]
       else 
         column["rating"] = @pm_rating["rating"]
+      end
+      
+      if !@pm_rating["rating_date"].nil?
+        column["rating_date"] = @pm_rating["rating_date"]
       end
         
 	    if column['photo_base64'] == ""

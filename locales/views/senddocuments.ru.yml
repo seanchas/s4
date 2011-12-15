@@ -22,6 +22,14 @@ ru:
         header: 'Форма заполнена с ошибками'
         body: ''
       models:
+        formvoting:
+          attributes:
+            note:
+              blank: 'Не заполнено поле с комментарием'
+            average:
+              blank: 'Не выставлена оценка' 
+            user_id:
+              blank:  
         senddocument:
           attributes:
             document:
