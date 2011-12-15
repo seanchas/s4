@@ -62,7 +62,6 @@ class OrganizationsController < ApplicationController
       @formvoting = Formvoting.new
     end
     
-    logger.debug ">>#{formvoting_param}<"
     @documentList.each do |column|
      
       S4::PersonalManagerRating.scope = {'personal_manager_id' => column["id"]}
