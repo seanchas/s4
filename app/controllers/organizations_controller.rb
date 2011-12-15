@@ -62,6 +62,7 @@ class OrganizationsController < ApplicationController
       @formvoting = Formvoting.new
     end
     
+    logger.debug ">>#{formvoting_param}<"
     @documentList.each do |column|
      
       S4::PersonalManagerRating.scope = {'personal_manager_id' => column["id"]}
@@ -71,7 +72,7 @@ class OrganizationsController < ApplicationController
       
       if @pm_rating["rating"].nil?
         column["rating"] = 0
-      elsif formvoting_param[:user_id] == column["id"]
+      elsif formvoting_param && formvoting_param[:user_id] == column["id"]
         column["rating"] = formvoting_param[:average]
       else 
         column["rating"] = @pm_rating["rating"]
