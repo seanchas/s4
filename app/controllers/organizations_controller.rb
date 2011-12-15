@@ -53,8 +53,7 @@ class OrganizationsController < ApplicationController
 		#@pm_attr = @personal_managers.find('attributes')
     
     
-    
-    formvoting_param = session['formvoting_params']
+    formvoting_param = !session['formvoting_params'].nil? ? session.delete('formvoting_params') : nil
     
     if !session['formvoting'].nil?
       @formvoting = session.delete('formvoting')
