@@ -1,17 +1,17 @@
-#parent_pdf.text_field("phones", 163, 295, 315, 15)
+#parent_pdf.text_field("phones", 163, 278, 315, 15)
 
-parent_pdf.text_field("podpiska", 46, 396, 220, 15, :default => "#{@vars['agent_fio']}")
+parent_pdf.text_field("podpiska", 46, 379, 220, 15, :default => "#{@vars['agent_fio']}")
 
-parent_pdf.text_field("auth_create_day", 22, 332, 16, 15)
-parent_pdf.text_field("auth_create_month", 48, 332, 80, 15)
-parent_pdf.text_field("auth_create_year", 142, 332, 16, 15)
+parent_pdf.text_field("auth_create_day", 22, 315, 16, 15)
+parent_pdf.text_field("auth_create_month", 48, 315, 80, 15)
+parent_pdf.text_field("auth_create_year", 142, 315, 16, 15)
 
-parent_pdf.text_field("phone_code", 168, 294, 23, 15)
-parent_pdf.text_field("phone", 198, 294, 265, 15)
-parent_pdf.text_field("phones_traider", 190, 268, 285, 15)
+parent_pdf.text_field("phone_code", 168, 277, 23, 15)
+parent_pdf.text_field("phone", 198, 277, 265, 15)
+parent_pdf.text_field("phones_traider", 190, 251, 285, 15)
 
-parent_pdf.text_field("agent_podpis", 0, 217, 300, 15, :default => @vars['ceo_position'])
-parent_pdf.text_field("name_podp", 426, 217, 95, 15, :default => @vars['cfs'])
+parent_pdf.text_field("agent_podpis", 0, 200, 300, 15, :default => @vars['ceo_position'])
+parent_pdf.text_field("name_podp", 426, 200, 95, 15, :default => @vars['cfs'])
 
 
 parent_pdf.text "Подпись ____________________________________#{" "*7}______________ удостоверяю."
@@ -38,7 +38,7 @@ parent_pdf.text "#{"_"*50}#{" "*17} ___________/ ________________", :leading => 
 parent_pdf.text "<sup>(Должность)</sup>#{" "*70}<sup>(Подпись)</sup>#{" "*15}<sup>Ф.И.О.</sup>", :inline_format => true, :indent_paragraphs => 130
 
 
-#parent_pdf.text_field("dolzh", 0, 235, 175, 15, :default => "#{@vars['agent_position']}")
+#parent_pdf.text_field("dolzh", 0, 218, 175, 15, :default => "#{@vars['agent_position']}")
 #parent_pdf.text "_____________________________#{" "*40}_________________ ________________", :leading => 4
 #parent_pdf.text "<sup>(Должность)</sup>#{" "*80}<sup>(Ф.И.О.)</sup>#{" "*18}<sup>(Подпись)</sup>", :inline_format => true, :indent_paragraphs => 70
 
