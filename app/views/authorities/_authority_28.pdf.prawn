@@ -8,11 +8,11 @@ parent_pdf.text_field("auth_day", 395, 736, 20, 15, :align => 1)
 parent_pdf.text_field("auth_month", 425, 736, 60, 15, :align => 1)
 parent_pdf.text_field("auth_year", 497, 736, 20, 15, :align => 1)
 
-parent_pdf.text_field("organization_name__first", 140, 698, 383, 15, :default => @vars['organization_name'])
-parent_pdf.text_field("organization_name__first_to", 0, 674, 523, 15)
+parent_pdf.text_field("organization_name__first", 140, 698, 383, 15, :default => first_string(383, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("organization_name__first_to", 0, 674, 523, 15, :default => first_string(383, "#{@vars['organization_name']}" ,1))
 
-parent_pdf.text_field("v_lice", 170, 656, 353, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
-parent_pdf.text_field("v_lice_to", 0, 633, 523, 15)
+parent_pdf.text_field("v_lice", 170, 656, 353, 15, :default => first_string(383, "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}" ,0))
+parent_pdf.text_field("v_lice_to", 0, 633, 523, 15, :default => first_string(383, "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}" ,1))
 
 #parent_pdf.text_field("ypolnomachivaet", 275, 616, 248, 15)
 parent_pdf.text_field("deistv", 58, 616, 20, 15)

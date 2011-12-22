@@ -14,7 +14,7 @@ parent_pdf.text "Подпись #{"_"*62} удостоверяю.",:leading => 4
 
 parent_pdf.text "<sup>(Ф.И.О. сотрудника, подпись)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "Настоящая доверенность действительна по «___»__________ 20___г. включительно.", :leading => 4
-parent_pdf.text "\n"
+parent_pdf.text "<sup>(дата прописью)</sup>",:indent_paragraphs => 40, :inline_format => true, :align => :center
 parent_pdf.text "Контактные тел. (____)____________________________________________\n\n", :leading => 4
 
 
@@ -26,5 +26,5 @@ parent_pdf.text "<sup>(Должность)</sup>#{" "*70}<sup>(Подпись)</
 
 
 #parent_pdf.text "<sup>(занимаемая должность, подпись и Ф.И.О. лица, выдавшего Доверенность)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "\n\nМ.П.#{" "*20}", :align => :right, :indent_paragraphs => -50
+parent_pdf.text "\n\nМ.П.#{" "*20}", :align => :left
 parent_pdf.text "\n"

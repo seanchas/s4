@@ -6,6 +6,17 @@ class AuthoritiesController < ApplicationController
   
   helper :members_menu, :document_menu
   
+  
+  def test
+    
+    @len_px = 523
+    @str = 'Открытое акционерное общество Сбербанк России Открытое акционерное общество Сбербанк России'
+    @spacer = "_"*87
+    
+    
+    @result = first_string(@len_px, @str)
+  end
+  
   def index
     @authority_params_type_id = nil
     
@@ -73,6 +84,9 @@ class AuthoritiesController < ApplicationController
         @vars['agent_position'] = "#{authority[:position]}"
       end
       @partial_template = "authority_#{authority[:type_id]}"
+      
+      
+      #@vars['organization_name'] = 'Открытое акционерное общество Сбербанк России Открытое акционерное общество Сбербанк России'
 
       respond_to do |format|
         format.html

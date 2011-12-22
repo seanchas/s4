@@ -5,8 +5,8 @@ render :partial => "header_authority_2",
        }
 parent_pdf.text_field("yaya",45, 528, 19, 15)
 
-parent_pdf.text_field("depozit", 280, 527, 243, 15, :default => @vars['agent_fio'])
-parent_pdf.text_field("kredit", 0, 515, 330, 15)   
+parent_pdf.text_field("depozit", 280, 527, 243, 15, :default => first_string(243, "#{@vars['agent_fio']}" ,0))
+parent_pdf.text_field("kredit", 0, 515, 330, 15, :default => first_string(243, "#{@vars['agent_fio']}" ,1))
  
 parent_pdf.text_field("tid_one", 0, 452, 187, 15)
 parent_pdf.text_field("tid_two", 0, 439, 187, 15)

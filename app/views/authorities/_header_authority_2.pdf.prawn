@@ -7,8 +7,8 @@ parent_pdf.text_field("auth_day", 398, 749, 16, 15)
 parent_pdf.text_field("auth_month", 424, 749, 60, 15)
 parent_pdf.text_field("auth_year", 498, 749, 16, 15)
 
-parent_pdf.text_field("position_agent2", 144, 711, 379, 15, :default => "#{@vars['organization_name']}")
-parent_pdf.text_field("position_agent32", 0, 687, 523, 15)
+parent_pdf.text_field("position_agent2", 144, 711, 379, 15, :default => first_string(379, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("position_agent32", 0, 687, 523, 15, :default => first_string(379, "#{@vars['organization_name']}" ,1))
 parent_pdf.text_field("position_agent212", 40, 670, 483, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 
 parent_pdf.text_field("deistv", 57, 646, 18, 15)
@@ -21,8 +21,8 @@ parent_pdf.text_field("passport_num", 129, 609, 60, 15)
 parent_pdf.text_field("passport_date", 230, 609, 293, 15)
 parent_pdf.text_field("passport_date2", 0, 585, 523, 15)
 
-parent_pdf.text_field("bankk", 70, 569, 453, 15, :default => @vars['organization_name'])
-parent_pdf.text_field("yazz", 0, 544, 523, 15)
+parent_pdf.text_field("bankk", 70, 569, 453, 15, :default => first_string(453, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("yazz", 0, 544, 523, 15, :default => first_string(453, "#{@vars['organization_name']}" ,1))
 
 
 parent_pdf.text " "
