@@ -33,8 +33,8 @@ parent_pdf.text_field("name_supplier3", 0, 503, 523, 15, :default => first_strin
 #parent_pdf.text_field("position_agent2", 0, 418, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 parent_pdf.text_field("position_agent2", 0, 369, 523, 15, :default => "#{@vars['agent_fio']}")
 
-parent_pdf.text_field("name_supplier4", 50, 345, 473, 15, :default => @vars['organization_name'])
-parent_pdf.text_field("name_supplier5", 0, 320, 523, 15)
+parent_pdf.text_field("name_supplier4", 50, 345, 473, 15, :default => first_string(473, @vars['organization_name'],0))
+parent_pdf.text_field("name_supplier5", 0, 320, 523, 15, :default => first_string(473, @vars['organization_name'],1))
 
 parent_pdf.text_field("auth_create_day", 6, 271, 20, 15, :align => 1)
 parent_pdf.text_field("auth_create_month", 33, 271, 122, 15, :align => 1)
@@ -62,7 +62,7 @@ parent_pdf.text "#{"_"*87}", :leading => 4
 parent_pdf.text "<sup>(занимаемая должность сотрудника, Ф.И.О.)</sup>", :inline_format => true, :align => :center
 
 
-parent_pdf.text "паспорт серия #{"_"*6} № #{"_"*10}, выдан #{"_"*48}", :leading => 4
+parent_pdf.text "паспорт серии #{"_"*6} № #{"_"*10}, выдан #{"_"*48}", :leading => 4
 
 parent_pdf.text "<sup>(кем и когда выдан) </sup>", :inline_format => true, :indent_paragraphs => 300
 parent_pdf.text "#{"_"*87}", :leading => 4
@@ -72,7 +72,7 @@ parent_pdf.text "<sup>(наименование Участника торгов)
 parent_pdf.text "#{"_"*87}", :leading => 4
 parent_pdf.text "осуществлять следующие действия:"
 
-parent_pdf.text " –#{" "*5}участвовать в торгах иностранными валютами на ЕТС, осуществлять операции по покупке и продаже иностранной валюты и заключать сделки в порядке, предусмотренном Правилами проведения операций по покупке и продаже иностранной валюты на Единой торговой сессии (далее Правила ЕТС);", :align => :justify
+parent_pdf.text " –#{" "*5}участвовать в торгах иностранными валютами на ЕТС, осуществлять операции по покупке и продаже иностранной валюты и заключать сделки в порядке, предусмотренном Правилами проведения операций по покупке и продаже иностранной валюты на Единой торговой сессии (далее - Правила ЕТС);", :align => :justify
 parent_pdf.text " –#{" "*5}получать информацию и отчетные документы по результатам торгов иностранными валютами, предусмотренные Правилами ЕТС.", :align => :justify
 
 parent_pdf.text "\n", :leading => 4
@@ -103,5 +103,5 @@ parent_pdf.text "\n"
 
 parent_pdf.text "Примечание:", :size => 10
 parent_pdf.text "Если лицо, подписавшее данную доверенность, действует на основании доверенности, то дополнительно предоставляется:", :size => 10
-parent_pdf.text "1.	Нотариально заверенная копия доверенности, подтверждающая полномочия лица на подписание доверенности;", :size => 10
-parent_pdf.text "2.	Документ, подтверждающий полномочия лица, выдавшего доверенность, либо его нотариально заверенная копия,  либо выписка из него, заверенная подписью уполномоченного лица и скрепленная печатью доверителя.", :size => 10
+parent_pdf.text "1.Нотариально заверенная копия доверенности, подтверждающая полномочия лица на подписание доверенности;", :size => 10
+parent_pdf.text "2.Документ, подтверждающий полномочия лица, выдавшего доверенность, либо его нотариально заверенная копия,  либо выписка из него, заверенная подписью уполномоченного лица и скрепленная печатью заявителя.", :size => 10

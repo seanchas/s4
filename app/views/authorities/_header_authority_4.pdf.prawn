@@ -19,8 +19,8 @@ parent_pdf.text_field("passport_num", 129, 605, 60, 15)
 parent_pdf.text_field("passport_date", 230, 605, 293, 15)
 parent_pdf.text_field("passport_date2", 0, 581, 523, 15)
 
-parent_pdf.text_field("position_agent2234", 70, 564, 453, 15, :default => "#{@vars['organization_name']}")
-
+parent_pdf.text_field("position_agent2234", 70, 564, 453, 15, :default => first_string(453, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("position_agent32", 0, 547, 523, 15, :default => first_string(379, "#{@vars['organization_name']}" ,1))
 
 parent_pdf.text "\n\n"
 parent_pdf.text "Настоящей Доверенностью #{"_"*63}", :leading => 4
@@ -36,7 +36,7 @@ parent_pdf.text "в лице #{"_"*80},", :leading => 4
 
 
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "действующ___ на основании #{"_"*40} доверяет сотруднику,", :leading => 4
+parent_pdf.text "действующ___ на основании #{"_"*40} доверяет сотруднику", :leading => 4
 
 parent_pdf.text " #{"_"*87}", :leading => 4
 
@@ -46,8 +46,9 @@ parent_pdf.text " #{"_"*87}", :leading => 4
 parent_pdf.text "<sup>(занимаемая должность сотрудника, Ф.И.О.)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "паспорт серия ______ № __________, выдан ________________________________________________,", :leading => 4
 parent_pdf.text "<sup>(когда, кем)</sup>", :inline_format => true, :indent_paragraphs => 350
-parent_pdf.text "#{"_"*87}", :leading => 4
+parent_pdf.text "#{"_"*86},", :leading => 4
 
 parent_pdf.text "представлять #{"_"*75}", :leading => 4
+parent_pdf.text " #{"_"*87}", :leading => 4
 
 parent_pdf.text "<sup>(Наименование кредитной организации - участника)</sup>", :inline_format => true, :align => :center

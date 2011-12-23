@@ -18,8 +18,11 @@ parent_pdf.text "<sup>(дата прописью)</sup>",:indent_paragraphs => 4
 parent_pdf.text "Контактные тел. (____)____________________________________________\n\n", :leading => 4
 
 
-parent_pdf.text "#{"_"*50}#{" "*8}#{"_"*16}/#{"_"*16}", :leading => 4
-parent_pdf.text "<sup>(Должность)</sup>#{" "*70}<sup>(Подпись)</sup>#{" "*15}<sup>Ф.И.О.</sup>", :inline_format => true, :indent_paragraphs => 130
+parent_pdf.text "Подпись #{"_"*79}", :leading => 4
+parent_pdf.text "<sup>(занимаемая должность и Ф.И.О. лица, выдавшего Доверенность)</sup>", :inline_format => true, :align => :center
+
+#parent_pdf.text "#{"_"*50}#{" "*8}#{"_"*16}/#{"_"*16}", :leading => 4
+#parent_pdf.text "<sup>(Должность)</sup>#{" "*70}<sup>(Подпись)</sup>#{" "*15}<sup>(Ф.И.О.)</sup>", :inline_format => true, :indent_paragraphs => 130
 
 #parent_pdf.text "Подпись #{"_"*50}  ______________/ _______________", :indent_paragraphs => 30, :leading => 4
 #parent_pdf.text "Подпись #{@vars['ceo_position']}, #{@vars['ceo_fio']} ___________/ ___________", :indent_paragraphs => 30, :leading => 4
