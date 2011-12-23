@@ -23,6 +23,6 @@ ActionController::Routing::Routes.draw do |map|
   }
   map.resources :authorities
   
-  map.insider     "/insider", :controller => :insiders, :action => :new,    :conditions => { :method => :get }
-  map.rat_insider "/insider", :controller => :insiders, :action => :create, :conditions => { :method => :post }
+  #map.insider     "/insider", :controller => :insiders, :action => :new,    :conditions => { :method => :get }
+  #map.rat_insider "/insider", :controller => :insiders, :action => :create, :conditions => { :method => :post }
 end
