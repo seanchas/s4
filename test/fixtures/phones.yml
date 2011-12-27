@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  code_country: MyString
+  code_operator: MyString
+  phone_num: MyString
+  osnovnoy: MyString
+  fiovladelca: MyString
+  dolzhnost: MyString
+  catnum: MyString
+  deportament: MyString
+  user: MyString
+
+two:
+  code_country: MyString
+  code_operator: MyString
+  phone_num: MyString
+  osnovnoy: MyString
+  fiovladelca: MyString
+  dolzhnost: MyString
+  catnum: MyString
+  deportament: MyString
+  user: MyString

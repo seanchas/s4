@@ -7,7 +7,9 @@ gem "nokogiri"
 gem "RedCloth"
 gem "warden"
 gem "prawn"
+gem "formtastic"
 gem "simple_form", "~>1.0.4"
+gem "rdoc"
 
 gem "recaptcha", :require => "recaptcha/rails"
 

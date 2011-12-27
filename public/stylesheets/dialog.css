@@ -12,6 +12,9 @@
 	background-color: #FFFFFF;
 	z-index:10000;
 	padding: 10px;
+	max-width: 650px;
+	position: absolute;
+	/*height: 700px;*/
 }
 
 .dialog-box .dialog-box-header {
@@ -27,9 +30,9 @@
 }
 
 .dialog-box .dialog-box-header .dialog-box-title {
-   font: bold 100% "Lucida Grande", Arial, sans-serif;
+   font: bold 85% "Lucida Grande", Arial, sans-serif;
     text-shadow: #FFF 0 1px 0;
-    padding: .5em 2em 0 .75em;
+    padding: .8em 2em 0 .75em;
     margin: 0;
     text-align: left;
 	color: #000;
@@ -38,7 +41,9 @@
 
 .dialog-box .dialog-box-header .dialog-box-title-close, .dialog-box .dialog-box-header .dialog-box-title-close-cln {
 	float: right;
-	font:18px Verdana;
 	margin-right: 10px;
 	text-decoration: none;
+	margin-top: 3px;
+	font-weight: bold;
+	font-size: 15px;
 }

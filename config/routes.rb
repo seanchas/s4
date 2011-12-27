@@ -10,8 +10,37 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :documents
   
-  map.resources :cards
+  map.resources :cards, :collection => {
+    :licenses => :get,
+    :licensessave => :post,
+    :admin => :get,
+    :adminadd => :get,
+    :admincreate => :post,
+    :controllers => :get,
+    :controllersadd => :get,
+    :strukture => :get,
+    :capital => :get,
+    :capitalsave => :post,
+    :cliring => :get,
+    :filials => :get,
+    :filialscreate => :post,
+    :phones => :get,
+    :phonesadd => :get,
+    :contactlist => :get,
+    :contactsadd => :get,
+    :contactsnew => :post,
+    :circulation => :get,
+    :phonenew => :post,
+    :struktureedit => :post,
+    :controlleraddsave => :post,
+    :controllereditsave => :post,
+    :controllersedit => :get,
+    :controllersdelete => :get,
+    :cliringsave => :post
+  }
   
+  map.formvalidate "/formvalidate", :controller => :welcome, :action => :formvalidate
+
   map.resources :reports
    
   map.resources :senddocuments, :collection => {

@@ -140,4 +140,27 @@ module ApplicationHelper
     end
   end
   
+  def javascript_include_once(*args)
+    @javascript_include_once ||= []
+    args.collect do |n|
+      unless @javascript_include_once.include?(n)
+        @javascript_include_once << n
+        content_for :js do
+          javascript_include_tag n, :cache => "s4"
+        end
+      end
+    end
+  end
+  
+  def stylesheet_include_once(*args)
+    @stylesheet_include_once ||= []
+    args.collect do |n|
+      unless @stylesheet_include_once.include?(n)
+        @stylesheet_include_once << n
+        content_for :css do
+          stylesheet_link_tag n, :cache => "s4"
+        end
+      end
+    end
+  end
 end

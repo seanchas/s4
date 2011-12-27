@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  serial: MyString
+  number: MyString
+  date_order: 2011-12-27
+  number_order: MyString
+  date_certification: 2011-12-27
+  qualification: MyString
+  parent_id: 1
+  number_certification: MyString
+  typeof: MyString
+
+two:
+  serial: MyString
+  number: MyString
+  date_order: 2011-12-27
+  number_order: MyString
+  date_certification: 2011-12-27
+  qualification: MyString
+  parent_id: 1
+  number_certification: MyString
+  typeof: MyString

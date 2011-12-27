@@ -1,0 +1,5 @@
+table.resource tr.empty_table {
+	text-align: center;
+	font-weight: bolder;
+	color: #313120;
+}

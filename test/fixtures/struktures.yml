@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  namus_vou: MyString
+  namus_kou: MyString
+  ystav_view: MyString
+  firstname: MyString
+  lastname: MyString
+  otchestvo: MyString
+  dolzhnost: MyString
+  namus_kiou: MyString
+  user: MyString
+
+two:
+  namus_vou: MyString
+  namus_kou: MyString
+  ystav_view: MyString
+  firstname: MyString
+  lastname: MyString
+  otchestvo: MyString
+  dolzhnost: MyString
+  namus_kiou: MyString
+  user: MyString

@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  firstname: MyString
+  lastname: MyString
+  middlename: MyString
+  user: MyString
+  parent_id: 1
+  gridname: MyString
+
+two:
+  firstname: MyString
+  lastname: MyString
+  middlename: MyString
+  user: MyString
+  parent_id: 1
+  gridname: MyString

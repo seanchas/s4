@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ciframi: MyString
+  podpis: MyString
+  ciframi_chast: MyString
+  podpis_chast: MyString
+  user: MyString
+  oplachen_polnost: MyString
+
+two:
+  ciframi: MyString
+  podpis: MyString
+  ciframi_chast: MyString
+  podpis_chast: MyString
+  user: MyString
+  oplachen_polnost: MyString

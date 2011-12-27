@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <%= stylesheet_link_tag "main", "markets", "insiders", "prototip", "starbox", :cache => "s4" %>
+        <%= stylesheet_link_tag "main", "markets", "insiders", "dialog", "prototip", "starbox", :cache => "s4" %>
         <%= stylesheet_link_tag "#{t(:passport_css, :scope => :shared)}" %>
         <%= javascript_include_tag "prototype", "obfuscator", "prototip/prototip", "scriptaculous", "starbox", "builder", "effects", "dialog", :cache => "s4" %>
 		<%= javascript_include_tag "#{t(:passport_js, :scope => :shared)}" %>
@@ -10,6 +10,8 @@
             <%= [t(".title"), s4_user ? t("title", :scope => [params[:controller]]) : nil].compact.join(" :: ") %>
         </title>
 		<%= render "shared/ga" %>
+		<%= yield(:css) if @content_for_css %>
+		<%= yield(:js) if @content_for_js %>
     </head>
     <body>
         <div id="page_wrapper">
@@ -29,5 +31,6 @@
         <div id="footer_wrapper">
             <%= render "shared/footer" %>
         </div>
+		<%= yield(:content_footer) if @content_for_content_footer %>
     </body>
 </html>

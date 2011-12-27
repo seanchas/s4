@@ -1,0 +1,5 @@
+<%=contextual_menu %>
+<h1>Добавить контролера</h1>
+<% semantic_form_for :controllersadd, :url => 'controlleraddsave' do |f| %>
+  <%= f.rrender @admin %>
+<% end %>

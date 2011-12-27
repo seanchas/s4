@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  number: MyString
+  typeof: MyString
+  subject: MyString
+  date_create: MyString
+  date_expired: MyString
+  deportament: MyString
+  user: MyString
+
+two:
+  number: MyString
+  typeof: MyString
+  subject: MyString
+  date_create: MyString
+  date_expired: MyString
+  deportament: MyString
+  user: MyString

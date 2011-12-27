@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  legal_countries: MyString
+  hidden_finance_countries: MyString
+  drugs_countries: MyString
+  firstname: MyString
+  lastname: MyString
+  otchestvo: MyString
+  plavila_kontrolya: MyString
+  otvestv_za_pravila_kontrolya: MyString
+  id_client: MyString
+  obyaz_kontrol: MyString
+  obychenie_kadrov: MyString
+  user: MyString
+
+two:
+  legal_countries: MyString
+  hidden_finance_countries: MyString
+  drugs_countries: MyString
+  firstname: MyString
+  lastname: MyString
+  otchestvo: MyString
+  plavila_kontrolya: MyString
+  otvestv_za_pravila_kontrolya: MyString
+  id_client: MyString
+  obyaz_kontrol: MyString
+  obychenie_kadrov: MyString
+  user: MyString

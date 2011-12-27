@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :s4_user
   
+  def s4_organization
+    
+  end
+  
   def s4_user
     authenticated_user.s4_key if authenticated? && authenticated_user.s4_key.present?
   end
@@ -30,5 +34,4 @@ private
   def cleanup_cache_control
     response.headers.delete "Cache-Control"
   end
-
 end

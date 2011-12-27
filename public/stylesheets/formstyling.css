@@ -64,3 +64,107 @@ div.l-field, div.submit {
 	width:575px;
 	clear:both;
 }
+
+/* Formtastic */
+form.formtastic {
+    clear: both;
+	
+}
+form.formtastic li {
+    list-style: none;
+    clear: both;
+	/* float: left; */
+	width: 575px;
+	padding-bottom: 10px;
+}
+	form.formtastic li span.star{
+	    float: right;
+	}
+	form.formtastic li label {
+	    width: 170px;
+	    float: left;
+	}
+    form.formtastic li input {
+          width: 390px;
+    }
+    form.formtastic li select {
+        width: 396px;
+    }
+    form.formtastic li.date input {
+        width:173px;    
+    }
+    form.formtastic li input#feedback_occupation {
+          width: 150px;
+    }
+	
+	form.formtastic li span.description {
+		font-weight: bold;
+		font-size: 13px;
+		color: #777;
+		padding: 0 6px;
+		background: #eee;
+		margin: 6px;
+	}
+    form.formtastic li textarea {
+          height: 10em;
+          width: 390px;
+    }
+    form.formtastic li ol {
+        margin: 0px;
+        padding: 0px;
+        padding-left: 170px;
+    }
+	form.formtastic li ol li {
+        padding: 0px;
+	}
+	form.formtastic li ol li input {
+		width: auto;
+	}
+	form.formtastic li ol li label {
+		width: 400px;
+	}
+
+	form.formtastic li.grid {
+		width: 100%;
+		height: auto;
+	}
+    form.formtastic li.buttons {
+    	margin-left: 170px;
+    }
+	    form.formtastic li.buttons input.submit{
+	        width: auto;
+	    }
+	form.formtastic li.boolean label {
+		position:relative;
+	}
+		form.formtastic li.boolean label input {
+			margin-left: 170px;
+			position: absolute;
+			width: auto;
+		}
+form.formtastic fieldset {
+	display: block;
+}
+    form.formtastic .star {
+          color: #FF0000;
+          float:right;
+          height:1px;
+          width:1px;
+          margin-top:5px;
+    }
+div.clean {
+	clear: both;
+}
+
+/*
+.dialog-box form.formtastic {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 650px;
+}
+
+.dialog-box form.formtastic li.buttons {
+	position: absolute;
+	margin-top: 660px;
+}
+*/

@@ -7,6 +7,7 @@ Dialog.Box = Class.create();
 Object.extend(Dialog.Box.prototype, {
   initialize: function(id, options) {
     this.createOverlay();
+    var self = this;
     var options = options || {};
 
     this.dialog_box = $(id);
@@ -23,17 +24,18 @@ Object.extend(Dialog.Box.prototype, {
     var b_dims = Element.getDimensions(this.overlay);
 
     if (this.dialog_box.select('div.dialog-box-title').length==0) {
-    	var title = options.title ? options.title : '';
     	var caption = new Element('div', {"class": "dialog-box-header"});
     	var close = new Element('a', {href: '#', "class": 'dialog-box-title-close'}).update('x');
-    	Event.observe(close, 'click', this.hide.bind(this));
-    	caption.appendChild(new Element('div', {"class": "dialog-box-title"}).update(title)).parentNode
+    	Event.observe(close, 'click', function(event){ Event.stop(event); self.hide(event); });
+    	caption.appendChild(new Element('div', {"class": "dialog-box-title"})).parentNode
 		       .appendChild(close);
     	this.dialog_box.insertBefore(caption, this.dialog_box.childNodes[0]);
     	caption.setStyle({width: (e_dims.width ) + 'px'});
     }
+    var title = options.title ? options.title : '';
+    this.dialog_box.select('div.dialog-box-title').first().update(title);
     this.dialog_box.style.left = ((b_dims.width/2) - (e_dims.width/2)) + 'px';
-    this.dialog_box.style.top = this.getScrollTop() + ((this.winHeight() - (e_dims.width/2))/2) + 'px';
+    //this.dialog_box.style.top = this.getScrollTop() + ((this.winHeight() - (e_dims.width/2))/2) + 'px';
     this.dialog_box.style.zIndex = this.overlay.style.zIndex + 1;
   },
 
@@ -85,7 +87,8 @@ Object.extend(Dialog.Box.prototype, {
     this.dialog_box.style.left = (this.winWidth() - e_dims.width)/2 + 'px';
 
     var h = optHeight || (e_dims.height + 200);
-    this.dialog_box.style.top = this.getScrollTop() + (this.winHeight() - h/2)/2 + 'px';
+    //this.dialog_box.style.top = this.getScrollTop() + (this.winHeight() - h/2)/2 + 'px';
+    this.dialog_box.style.top = this.getScrollTop() + 80 + 'px';
   },
 
   getScrollTop: function() {

@@ -13,13 +13,10 @@ class BaseColumn < ActiveRecord::ConnectionAdapters::Column
   
   @options = {}
   
-  def initialize(name, helper, sql_type, label = nil, attrs = {}, default = nil, null = true)
-    super(name, default, sql_type = nil, null = true)
-    @helper = helper.to_s
+  def initialize(name, default = nil, attrs = {}, null = true)
     @attrs = attrs
     @options = attrs
-    @label = label
-    self.label = label
+    super(name, default, nil, null)
   end
   
   def render(form)

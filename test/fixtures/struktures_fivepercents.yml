@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  dola: MyString
+  parent_id: 1
+  user: MyString
+
+two:
+  name: MyString
+  dola: MyString
+  parent_id: 1
+  user: MyString
