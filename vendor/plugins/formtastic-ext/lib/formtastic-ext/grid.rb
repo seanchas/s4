@@ -150,15 +150,15 @@ private
         tplActions << template.content_tag(:div, template.content_tag(:a, ::Formtastic::I18n.t("actions.delete"), :href => '#', :type => "delete"))
         tpl << template.content_tag(:td, tplActions, {:class => "actions"}) 
       end
+      
+      #empty rowset
+      display = grid.respond_to?('rowset') && grid.rowset.length > 0
+      
       template.content_tag(:thead) do
         template.content_tag(:tr, cells) <<
-        getEmptyRowsetHtml(grid) <<
+        template.content_tag(:tr, template.content_tag(:td, ::Formtastic::I18n.t("grids.empty_table"), :colspan => grid.class.columns.length + 1), :class => 'empty_table odd', :empty_table => true, :style => "display: #{display ? 'none' : 'auto'};") <<
         template.content_tag(:tr, tpl.compact.join(""), :template => true, :style => "display: none;")
       end
-    end
-    
-    def getEmptyRowsetHtml(grid, display = nil)
-      template.content_tag(:tr, template.content_tag(:td, ::Formtastic::I18n.t("grids.empty_table"), :colspan => grid.class.columns.length + 1), :class => 'empty_table odd', :empty_table => true, :style => "display: #{display.nil? ? 'none' : 'auto'};")
     end
     
     def grid_rowset(grid)
@@ -171,8 +171,6 @@ private
           rowid += 1
           html
         end
-      else
-        html = getEmptyRowsetHtml(grid, true)
       end
       template.content_tag(:tbody, html, :tpl => [grid[:name], '[%i%]'].join(''))
     end

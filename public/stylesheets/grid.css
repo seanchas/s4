@@ -3,3 +3,8 @@ table.resource tr.empty_table {
 	font-weight: bolder;
 	color: #313120;
 }
+
+table.resource tr.empty_table td {
+	font-size: 0.9em;
+	padding-top: 4px;
+}

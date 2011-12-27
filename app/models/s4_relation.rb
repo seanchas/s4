@@ -1,4 +1,4 @@
-class S4Relation < ActiveRecord::Base
+class S4Relation < PassportRelationsModel
   
   self.primary_key = :user_id
   

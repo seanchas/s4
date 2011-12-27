@@ -139,13 +139,6 @@ ActiveRecord::Schema.define(:version => 20111227071552) do
     t.string "user"
   end
 
-  create_table "s4_relations", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.string  "s4_key"
-  end
-
-  add_index "s4_relations", ["user_id"], :name => "index_s4_relations_on_user_id", :unique => true
-
   create_table "scheta_clirings", :force => true do |t|
     t.text    "name"
     t.integer "parent_id"
