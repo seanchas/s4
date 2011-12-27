@@ -146,7 +146,7 @@ module ApplicationHelper
       unless @javascript_include_once.include?(n)
         @javascript_include_once << n
         content_for :js do
-          javascript_include_tag n, :cache => "s4"
+          javascript_include_tag n
         end
       end
     end
@@ -158,7 +158,7 @@ module ApplicationHelper
       unless @stylesheet_include_once.include?(n)
         @stylesheet_include_once << n
         content_for :css do
-          stylesheet_link_tag n, :cache => "s4"
+          stylesheet_link_tag n
         end
       end
     end
