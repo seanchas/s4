@@ -259,7 +259,7 @@ module CardsHelper
   end
   
   def controllersSave(data)
-    if data[:id_item].is_numeric? || data[:id_item] != '0'
+    if data[:id_item].is_numeric? && data[:id_item] != '0'
       controller = Controllers.update(data[:id_item], data)
     else
       controller = Controllers.new(data)
@@ -267,7 +267,7 @@ module CardsHelper
     data.delete(:id_name)
     controller.save
 
-    Controllers_attestats.delete_all(["parent_id = ?", controller.id])
+    ControllersAttestats.delete_all(["parent_id = ?", controller.id])
     if data[:controllers]
       data[:controllers].each do |k,item|
 
@@ -282,7 +282,7 @@ module CardsHelper
           item[:typeof] = "[#{item[:typeof]}]"
         end
 
-        controllersObject = Controllers_attestats.new( item )
+        controllersObject = ControllersAttestats.new( item )
         controllersObject.save
       end
     end

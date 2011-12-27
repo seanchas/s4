@@ -69,7 +69,7 @@ class CardsController < ApplicationController
   def filialscreate
     params[:filials][:user] = s4_user
 
-    if params[:filials][:id_item].is_numeric? || params[:filials][:id_item] != 0
+    if params[:filials][:id_item].is_numeric? && params[:filials][:id_item] != 0
       filialObject = Filials.update(params[:filials][:id_item], params[:filials] )
     else
       filialObject = Filials.new( params[:filials] )
@@ -234,7 +234,7 @@ class CardsController < ApplicationController
   def controllersdelete
     if params[:id]
       Controllers.delete_all(['id = ? AND user = ?', params[:id], s4_user])
-      Controllers_attestats.delete_all(['parent_id = ?', params[:id]])
+      ControllersAttestats.delete_all(['parent_id = ?', params[:id]])
     end
     redirect_to :action => :controllers
   end
@@ -243,7 +243,7 @@ class CardsController < ApplicationController
     if params[:id]
       form_params =  Controllers.find_by_id_and_user( params[:id], s4_user )
 
-      attestats = Controllers_attestats.find_all_by_parent_id( form_params[:id] )
+      attestats = ControllersAttestats.find_all_by_parent_id( form_params[:id] )
       
       attestats.collect do |row|
         row[:qualification] = row[:qualification][1..-2].split(",").collect!{|x| x.to_sym} if !row[:qualification].nil?
@@ -251,7 +251,6 @@ class CardsController < ApplicationController
       end
       
       attestatinfo = convertForRowset( attestats )
-      logger.debug "#{attestatinfo.to_yaml}"
       grid = Cards::Grids::Admin::Attestatinfo.new
       grid.rowset = attestatinfo
       formParams = {
@@ -321,7 +320,7 @@ class CardsController < ApplicationController
     params[:strukture].delete(:kollegialorgan)
     
     paramsMerge = params[:strukture].merge(kollegialorgan)
-    logger.debug "data: #{paramsMerge.to_yaml}"
+
     if paramsMerge[:id_item].is_numeric? && paramsMerge[:id_item] != '0'
       struktureForm = Struktures.update(paramsMerge[:id_item], paramsMerge)
     else

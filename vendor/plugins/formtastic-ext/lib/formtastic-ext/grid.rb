@@ -165,7 +165,6 @@ private
       rowid = 0
       html = ''
       if grid.respond_to?('rowset') && grid.rowset.length > 0
-        template.logger.debug "grid.rowset.length: #{grid.rowset.length}<"
         html = grid.rowset.collect do |row|
           html = template.content_tag(:tr, grid_row(grid, row, rowid), :class => template.cycle("odd", "even"), :rowid => rowid)
           rowid += 1

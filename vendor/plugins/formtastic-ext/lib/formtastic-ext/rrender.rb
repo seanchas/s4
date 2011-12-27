@@ -1,6 +1,7 @@
 module Formtastic #:nodoc:
-  class SemanticFormBuilder
+  class SemanticFormBuilder 
     def rrender(form, prefix = '')
+      
       template.stylesheet_include_once "formstyling.css"
 
       labelPath = form.class.name.downcase.gsub("::", ".")
@@ -34,11 +35,14 @@ module Formtastic #:nodoc:
             if (type == :boolean) && form.attributes[column.name] == '1'
               opts[:input_html][:checked] = :checked
             end
-            #html = input(:"#{prefix}#{prefix==''?'':'_'}#{column.name}", opts)
+
             if prefix != ''
-              #template.logger.debug "DDDDDDDDDDDD:#{column.name}@#{form.attributes[column.name]}@ #{form.attributes.to_yaml}\n$$$$$$$$$$$$$$$$$$$\n"
-              #opts[:for] = :kollegialorgan
               opts[:input_html][:value] = form.attributes[column.name] if !form.attributes[column.name].nil?
+            end
+            
+            if type == :date && !form.attributes[column.name].nil?
+              v = form.attributes[column.name] 
+              opts[:input_html][:value] = template.l(v.to_date)
             end
             
             html = input(column.name, opts)
@@ -54,7 +58,7 @@ module Formtastic #:nodoc:
         btns = commit_button().gsub(/<li[^>]*>(.*)?<\/li>$/, '\1') if !form.respond_to?("buttons")
         btns = form.buttons.collect do |btn|
           input = btn.delete(:input)
-          template.logger.debug "input: #{input.to_yaml}\n#{btn.to_yaml}\n##############"
+
           label = btn.delete(:label)
           if input != :submit
             template.content_tag(:"#{input}", label, btn)
