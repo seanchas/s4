@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  serial: MyString
+  number: MyString
+  date_examiner: 2011-12-28
+  number_examiner: MyString
+  date_certifying: 2011-12-28
+  number_certifying: MyString
+  qualification: MyString
+  typeof: MyString
+  parent_id: MyString
+
+two:
+  serial: MyString
+  number: MyString
+  date_examiner: 2011-12-28
+  number_examiner: MyString
+  date_certifying: 2011-12-28
+  number_certifying: MyString
+  qualification: MyString
+  typeof: MyString
+  parent_id: MyString

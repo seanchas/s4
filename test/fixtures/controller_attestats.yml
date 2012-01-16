@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  series: MyString
+  number_: MyString
+  display_activity: MyString
+  ekz_date: MyString
+  ekz_number: MyString
+  att_date: MyString
+  att_number: MyString
+  doc_date: 2011-12-29
+  parent_id: MyString
+
+two:
+  series: MyString
+  number_: MyString
+  display_activity: MyString
+  ekz_date: MyString
+  ekz_number: MyString
+  att_date: MyString
+  att_number: MyString
+  doc_date: 2011-12-29
+  parent_id: MyString

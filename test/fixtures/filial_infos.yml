@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  filial_num: MyString
+  moscow_addr: MyString
+  moscow_tel_areacode: MyString
+  moscow_tel: MyString
+  moscow_boss: MyString
+  moscow_boss_firstname: MyString
+  moscow_boss_patronymic: MyString
+  moscow_boss_position: MyString
+  no_moscow: false
+  kolvo_filials: MyString
+  user: MyString
+
+two:
+  filial_num: MyString
+  moscow_addr: MyString
+  moscow_tel_areacode: MyString
+  moscow_tel: MyString
+  moscow_boss: MyString
+  moscow_boss_firstname: MyString
+  moscow_boss_patronymic: MyString
+  moscow_boss_position: MyString
+  no_moscow: false
+  kolvo_filials: MyString
+  user: MyString

@@ -1,0 +1,5 @@
+<%=contextual_menu %>
+<h1>Филиалы</h1>
+<% semantic_form_for :filials, :url => { :action => "filialscreate"} do |f| %>
+  <%= f.rrender @filials %>
+<% end %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  contract_number: MyString
+  contract_date: MyString
+  parent_id: MyString
+
+two:
+  name: MyString
+  contract_number: MyString
+  contract_date: MyString
+  parent_id: MyString

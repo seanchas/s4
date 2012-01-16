@@ -1,0 +1,7 @@
+<%=contextual_menu %>
+<h1>Формирование Регистрационной карточки</h1>
+<%="#{@reg_card_error}" if @reg_card_error != "" %>
+<%= error_messages_for :card_executor %>
+<% semantic_form_for :card_executor, :url => { :action => "sendcardsave"} do |f| %>
+  <%= f.rrender @card_executor %>
+<% end %>

@@ -1,0 +1,6 @@
+<%=contextual_menu %>
+<h1>Добавить контролера</h1>
+<%= error_messages_for :controllersadd %>
+<% semantic_form_for :controllersadd, :url => 'controlleraddsave' do |f| %>
+  <%= f.rrender @controllersadd %>
+<% end %>

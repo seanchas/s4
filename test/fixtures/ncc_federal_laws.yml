@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  corr_acc_corr_countr: MyString
+  no_corr_acc_corr_countr: false
+  corr_acc_offshore: MyString
+  no_corr_acc_drug: false
+  corr_acc_drug: MyString
+  no_corr_acc_offshore: false
+  no_shell_bank_acc: false
+  at_control_employee_f: MyString
+  at_control_employee_i: MyString
+  at_control_employee_o: MyString
+  at_control_rules: false
+  at_control_rules_contr: false
+  at_identification: false
+  at_control_of_operation: false
+  at_control_training: MyString
+  user: 
+
+two:
+  corr_acc_corr_countr: MyString
+  no_corr_acc_corr_countr: false
+  corr_acc_offshore: MyString
+  no_corr_acc_drug: false
+  corr_acc_drug: MyString
+  no_corr_acc_offshore: false
+  no_shell_bank_acc: false
+  at_control_employee_f: MyString
+  at_control_employee_i: MyString
+  at_control_employee_o: MyString
+  at_control_rules: false
+  at_control_rules_contr: false
+  at_identification: false
+  at_control_of_operation: false
+  at_control_training: MyString
+  user: 

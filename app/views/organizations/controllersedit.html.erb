@@ -1,0 +1,6 @@
+<%=contextual_menu %>
+<h1>Редактирование контролера</h1>
+<%= error_messages_for :controllersedit %>
+<% semantic_form_for :controllersedit, :url => '/organization/controllereditsave' do |f| %>
+  <%= f.rrender @controllersedit %>
+<%end %>

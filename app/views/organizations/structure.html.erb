@@ -1,0 +1,5 @@
+<%=contextual_menu %>
+<h1>Структура управления</h1>
+<% semantic_form_for :structure, :url => 'structureedit' do |f| %>
+  <%= f.rrender @structure %>
+<% end %>

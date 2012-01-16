@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  firstname: MyString
+  surname: MyString
+  patronymic: MyString
+  position: MyString
+  doc_name: MyString
+  doc_number: MyString
+  doc_date: 2011-12-28
+  organs_in_place: false
+  organs_place_other: MyString
+
+two:
+  firstname: MyString
+  surname: MyString
+  patronymic: MyString
+  position: MyString
+  doc_name: MyString
+  doc_number: MyString
+  doc_date: 2011-12-28
+  organs_in_place: false
+  organs_place_other: MyString

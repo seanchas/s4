@@ -1,0 +1,5 @@
+<%=contextual_menu %>
+<h1>Сведения о капитале</h1>
+<% semantic_form_for :capital, :url => 'capitalsave' do |f| %>
+  <%= f.rrender @capital %>
+<% end %>

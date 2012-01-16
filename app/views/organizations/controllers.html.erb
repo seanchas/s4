@@ -1,0 +1,7 @@
+<%=contextual_menu %>
+<h1>Контролеры организации</h1>
+<% semantic_form_for :controllers do |f| %>
+  <%= f.grid(@admin, '', {}).gsub(/<li[^>]*><fieldset[^>]*>(.*)?<\/fieldset><\/li>/, '\1').gsub(/<legend[^>]*>.*?<\/legend>(.*)$/, '\1') %>
+<% end %>
+
+<%=content_tag :button, "Добавить", :onclick => "window.location='#{url_for :action => :controllersadd }';"%>

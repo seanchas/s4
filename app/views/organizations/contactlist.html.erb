@@ -1,0 +1,5 @@
+<%=contextual_menu %>
+<h1>Контактные лица</h1>
+<% semantic_form_for :contactlist, :url => { :action => "contactsnew"} do |f| %>
+  <%= f.rrender @contactlist %>
+<% end %>

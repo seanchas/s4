@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  surname: MyString
+  firstname: MyString
+  patronymic: MyString
+  share_: MyString
+  parent_id: MyString
+
+two:
+  surname: MyString
+  firstname: MyString
+  patronymic: MyString
+  share_: MyString
+  parent_id: MyString
