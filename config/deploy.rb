@@ -37,7 +37,7 @@ configuration = [
   'config/initializers/recaptcha.rb',
   'config/locales/ru.yml',
   'config/locales/en.yml',
-  'public/uploads',
+  'public/upload',
   'vendor/rails'
 ]
 

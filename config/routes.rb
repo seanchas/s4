@@ -4,21 +4,20 @@ ActionController::Routing::Routes.draw do |map|
 
   map.xmlrpc "/xml-rpc", :controller => :welcome, :action => :xmlrpc
 
-  map.resource :organization, :only => :show, :member => { :licenses => :get, :management => :get, :manager => :get, :codes => :get, :starbox => :post }
-  
-  map.resources :markets
+  map.resource :organization, :only => :show, :member => {
+    :management => :get, 
+    :manager => :get, 
+    :codes => :get, 
+    :starbox => :post,
 
-  map.resources :documents
-  
-  map.resources :cards, :collection => {
     :licenses => :get,
     :licensessave => :post,
-    :admin => :get,
+    :ceo => :get,
     :adminadd => :get,
-    :admincreate => :post,
+    :ceo_new => :post,
     :controllers => :get,
     :controllersadd => :get,
-    :strukture => :get,
+    :structure => :get,
     :capital => :get,
     :capitalsave => :post,
     :cliring => :get,
@@ -31,12 +30,22 @@ ActionController::Routing::Routes.draw do |map|
     :contactsnew => :post,
     :circulation => :get,
     :phonenew => :post,
-    :struktureedit => :post,
+    :structureedit => :post,
     :controlleraddsave => :post,
     :controllereditsave => :post,
     :controllersedit => :get,
     :controllersdelete => :get,
-    :cliringsave => :post
+    :ncc_federal_law_edit => :post,
+    :ncc_federal_law => :get,
+    :sendcard => :get,
+    :sendcardsave => :post
+  }
+  
+  map.resources :markets
+
+  map.resources :documents
+  
+  map.resources :cards, :collection => {
   }
   
   map.formvalidate "/formvalidate", :controller => :welcome, :action => :formvalidate

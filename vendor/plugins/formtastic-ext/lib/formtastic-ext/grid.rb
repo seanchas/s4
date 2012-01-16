@@ -195,6 +195,12 @@ private
           value = case column.options[:as]
             when :date, "date" then
               template.l(value.to_date) rescue ""
+            when :select, "select" then
+              dd = column.attrs[:collection].select do |v|
+                id = v.length > 1 ? v[1] : v[0]
+                id == value
+              end
+              dd.length > 0 && dd[0].length > 0 ? dd[0][0] : ''
             when :time, "time" then
               template.l(value.to_time) rescue ""
             when :checkboxes, "checkboxes" then

@@ -127,8 +127,11 @@ h2 {
 
 ul.tabbed_menu {
   margin: 0;
-  overflow: hidden;
   padding: 0;
+}
+
+ul.tabbed_menu.hidden {
+    display: none;
 }
 
 ul.tabbed_menu li {

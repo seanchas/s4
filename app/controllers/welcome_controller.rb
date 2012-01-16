@@ -16,10 +16,11 @@ class WelcomeController < ApplicationController
 
   def formvalidate
     if params[:_formName] && params[:_formAlias]
+      ApplicationHelper.s4_user = s4_user
       formData = params[params[:_formAlias]]
 
       @form = eval("#{params[:_formName]}.new(formData)")
-      logger.debug(@form.attributes.to_yaml)
+
       if @form.valid?
         render :inline => "true"
       else

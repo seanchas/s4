@@ -2,11 +2,16 @@ module SenddocumentsHelper
   
   def send_document(params)
     uploaded = params[:document]
-    File.open(Rails.root.join('public', 'uploads', uploaded.original_filename), 'w') do |file|
+    
+    t = Time.now
+    ext = uploaded.original_filename.split(".").last
+    output_filename = "#{t.tv_sec}#{"%6d" % t.usec}" 
+    output_filename << ".#{ext}" if ext != "" 
+    File.open(Rails.root.join('public', 'upload', output_filename), 'w') do |file|
       file.write(uploaded.read)
     end
     
-    file_link = "#{request.protocol}#{request.host}/uploads/#{uploaded.original_filename}"
+    file_link = "#{request.protocol}#{request.host}/upload/#{output_filename}"
     scope = {
       'sended_form_type' => params[:type_id],
       'sended_date'      => '12.12.2012',
@@ -87,5 +92,4 @@ module SenddocumentsHelper
     
     return @doc_params.delete_if {|key, value| value == "" }
   end
-  
 end

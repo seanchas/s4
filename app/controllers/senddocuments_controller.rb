@@ -50,6 +50,7 @@ class SenddocumentsController < ApplicationController
   end
   
   def list
+    logger.debug "#{S4::SendedForm.get_xml(s4_user)}"
 		regex = /\d{2}\.\d{2}\.\d{4}/
     time_now = Time.now
     

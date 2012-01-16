@@ -99,7 +99,7 @@ formtasticGrid.prototype = {
 	},
 	deleteRow: function(e, target)
 	{
-		Event.stop(event);
+		Event.stop(e);
 		var id = $(target).readAttribute('rowid');
 		var self = this;
 		$(this.name).getElementsBySelector('tbody tr[rowid=' + id + ']').first().remove();
@@ -167,7 +167,7 @@ formtasticGrid.prototype = {
 	},
 	editRow: function(e, target)
 	{
-		Event.stop(event);
+		Event.stop(e);
 		new Dialog.Box(this.addFormDialog, {title: this.options.addformtitle});
 		this.addFormDialog.writeAttribute('action', 'edit');
 
@@ -231,31 +231,35 @@ formtasticGrid.prototype = {
 			switch(this.options.meta[name].type) {
 			  case 'boolean':
 				result = el.checked ? 'Да' : 'Нет';
-				result += new Element('input', {
+				result += new Element('div').update(new Element('input', {
 					type: 'hidden', 
 					value: result, 
 					name: [this.name, '[', (this.currentRowId != null ? this.currentRowId : this.rowset.data.length), '][', name, ']'].join('') // not "-1"
-				}).outerHTML;
+				})).innerHTML;
 			  case 'checkboxes':
 				value = Object.isString(value) ? [value] : value;
 				result = [];
 				$A(value).each(function(itm){
-					result.push(this.addFormDialog.select('label[for="' + [this.options.meta[name].name,itm].join('_') + '"]').first().innerText +
-							new Element('input', {
+					var el = this.addFormDialog.select('label[for="' + [this.options.meta[name].name,itm].join('_') + '"]').first();
+					var text = Prototype.Browser.Gecko ? el.textContent : el.innerText;
+					result.push(text +
+							new Element('div').update(new Element('input', {
 								type: 'hidden', 
 								value: itm, 
 								name: [this.name, '[', (this.currentRowId != null ? this.currentRowId : this.rowset.data.length), '][', name, '][]'].join('') // not "-1"
-							}).outerHTML);
+							})).innerHTML);
 				}.bind(this));
 				result = result.join(this.checkboxViewSeparator);
 			}
 		} else {
-			result = value;
-			result += new Element('input', {
+			var el = this.addFormDialog.select('[id="' + this.options.addform + '_' + name +'"]').first();
+			result = (el.nodeName.toLowerCase() == 'select') ? $(el).select("option[value='" +value + "']").first().text: value;
+
+			result += new Element('div').update(new Element('input', {
 				type: 'hidden', 
-				value: result, 
+				value: value, 
 				name: [this.name, '[', (this.currentRowId != null ? this.currentRowId : this.rowset.data.length), '][', name, ']'].join('') // not "-1"
-			}).outerHTML;
+			})).innerHTML;
 		}
 
 		return result;

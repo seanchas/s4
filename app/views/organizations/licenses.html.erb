@@ -1,7 +1,5 @@
-<h1>
-    <%= @organization.full_name %>
-</h1>
-
-<%= contextual_menu %>
-
-<%= resource_table S4::License.schema, @licenses %>
+<%=contextual_menu %>
+<h1>Лицензии</h1>
+<% semantic_form_for :licenses, :url => { :action => "licensessave"} do |f| %>
+  <%= f.rrender @licenses %>
+<% end %>

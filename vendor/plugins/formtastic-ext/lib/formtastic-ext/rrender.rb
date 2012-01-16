@@ -32,7 +32,7 @@ module Formtastic #:nodoc:
             opts[:labelPath] = labelPath
 
             opts[:input_html] ||= {}
-            if (type == :boolean) && form.attributes[column.name] == '1'
+            if (type == :boolean) && (form.attributes[column.name] == '1' || form.attributes[column.name] == true)
               opts[:input_html][:checked] = :checked
             end
 
@@ -42,7 +42,7 @@ module Formtastic #:nodoc:
             
             if type == :date && !form.attributes[column.name].nil?
               v = form.attributes[column.name] 
-              opts[:input_html][:value] = template.l(v.to_date)
+              opts[:input_html][:value] = template.l(v.to_date) if !v.nil? && v != ""
             end
             
             html = input(column.name, opts)

@@ -1,16 +1,14 @@
 class OrganizationsController < ApplicationController
   
   helper :members_menu
+  include OrganizationsHelper
   
+  before_filter :populateFromS4
+
   def show
     @organization = S4::Organization.find(s4_user)
   end
-  
-  def licenses
-    @organization = S4::Organization.find(s4_user)
-    @licenses = S4::License.all(s4_user)
-  end
-  
+
   def management
     @organization = S4::Organization.find(s4_user)
     @ceo          = S4::CEO.find(s4_user)
@@ -35,12 +33,6 @@ class OrganizationsController < ApplicationController
     end
     
     redirect_to :action => 'manager'
-    
-    
-    
-        
-    #render :text => scope.inspect
-    #render :text => params.inspect
   end
   
 	def manager
@@ -49,10 +41,6 @@ class OrganizationsController < ApplicationController
 		@documentList = S4.connection.call("s4.getResource", @sessionId, 'personal_manager', s4_user)
     @documentList = S4::Resource.parse_many(@documentList)
 
-		#@personal_managers = S4::PersonalManager.all_with_scope(s4_user)
-		#@pm_attr = @personal_managers.find('attributes')
-    
-    
     formvoting_param = !session['formvoting_params'].nil? ? session.delete('formvoting_params') : nil
     
     if !session['formvoting'].nil?
@@ -102,6 +90,496 @@ class OrganizationsController < ApplicationController
 		  end
 	  end
 
-	end
+	end #manager
   
+
+  def structure
+    if form_params =  Structures.find_by_user( s4_user )
+      shareholder_data = convertForRowset( Struktures_shareholder.find_all_by_parent_id_and_user(form_params[:id], form_params[:user]  ) )
+      directors_committee_date = convertForRowset( Struktures_Controls.find_all_by_parent_id_and_user_and_gridname( form_params[:id], form_params[:user], "directors_committee") )
+      direction_data = convertForRowset(Struktures_Controls.find_all_by_parent_id_and_user_and_gridname( form_params[:id], form_params[:user], "direction" ) )
+
+      shareholder = Organizations::Grids::Structure::Structure.new
+      directors_committee = Organizations::Grids::Structure::Structure_isponitelny_organ.new
+      direction = Organizations::Grids::Structure::Structure_organa_ypravleniya.new
+      
+      shareholder.rowset = shareholder_data
+      directors_committee.rowset = directors_committee_date
+      direction.rowset = direction_data
+
+      kollegialorganForm = Organizations::Structure::Kollegial_organ.new({
+          :col_commitee_name => form_params[:col_commitee_name],
+          :no_col_commitee => form_params[:no_col_commitee],
+          :board_fio => form_params[:board_fio],
+          :board_firstname => form_params[:board_firstname],
+          :board_patronymic => form_params[:board_patronymic],
+          :board_position => form_params[:board_position],
+          :directors_committee => directors_committee,
+        })
+
+      formParams = {
+        :id_item => form_params[:id],
+        :main_commitee_name => form_params[:main_commitee_name],
+        :shareholder => shareholder,
+
+        :directors_committee => kollegialorganForm,
+        :executive_commitee_name => form_params[:executive_commitee_name],
+        :direction => direction,
+        :no_executive_commitee => form_params[:no_executive_commitee]
+      }
+      @structure = Organizations::Structure.new(formParams)
+    else
+      @structure = Organizations::Structure.new
+    end
+  end
+  
+  
+  def structureedit
+    logger.debug ">>>>>>>>>>>>>>> #{params.inspect}"
+    params[:structure][:user] = s4_user
+
+    
+    kollegialorgan = params[:structure][:directors_committee]
+    params[:structure].delete(:directors_committee)
+    
+    paramsMerge = params[:structure].merge(kollegialorgan)
+
+    if paramsMerge[:id_item].is_numeric? && paramsMerge[:id_item] != '0'
+      struktureForm = Structures.update(paramsMerge[:id_item], paramsMerge)
+    else
+      struktureForm = Structures.new(paramsMerge)
+    end
+    struktureForm.save
+
+    Struktures_shareholder.delete_all(["parent_id = ?", struktureForm.id])
+    if paramsMerge[:shareholder]
+      paramsMerge[:shareholder].each do |k,data|
+        data[:parent_id] = struktureForm.id
+        data[:user] = s4_user
+  
+        strukturesFivepercentObject = Struktures_shareholder.new( data )
+        strukturesFivepercentObject.save
+      end
+    end
+
+    Struktures_Controls.delete_all(["parent_id = ?", struktureForm.id])
+    if paramsMerge[:directors_committee]
+      paramsMerge[:directors_committee].each do |k,data|
+        data[:gridname] = 'directors_committee'
+        data[:parent_id] = struktureForm.id
+        data[:user] = s4_user
+
+        controlsObject1 = Struktures_Controls.new( data )
+        controlsObject1.save
+      end
+    end
+
+    if paramsMerge[:direction]
+      paramsMerge[:direction].each do |k,data|
+        data[:gridname] = 'direction'
+        data[:parent_id] = struktureForm.id
+        data[:user] = s4_user
+  
+        controlsObject2 = Struktures_Controls.new( data )
+        controlsObject2.save
+      end
+    end
+    
+    redirect_to(:action => "structure")
+  end
+  
+  def ceo
+    if form_params =  Ceo.find_by_user( s4_user )
+      
+      attestats = CeoAttestat.find_all_by_parent_id( form_params[:id] )
+      
+      attestats.collect do |row|
+        row[:qualification] = row[:qualification][1..-2].split(",").collect!{|x| x.to_sym} if !row[:qualification].nil?
+        row[:activity] = row[:activity][1..-2].split(",").collect!{|x| x.to_sym} if !row[:activity].nil?
+      end
+
+      attestatinfo = convertForRowset( attestats )
+
+      grid = Organizations::Grids::Controllers::Attestat.new
+      grid.rowset = attestatinfo
+      formParams = {
+        :id_item => form_params[:id],
+        :firstname => form_params[:firstname],
+        :surname => form_params[:surname],
+        :patronymic => form_params[:patronymic],
+        :position => form_params[:position],
+        :doc_name => form_params[:doc_name],
+        :doc_number => form_params[:doc_number],
+        :doc_date => form_params[:doc_date],
+        :organs_in_place => form_params[:organs_in_place],
+        :organs_place_other => form_params[:organs_place_other],
+        :certificates => grid
+      }
+      #logger.debug ">>>>>>>>>>>>>>>>>>> #{formParams.inspect}"
+      @ceo = Organizations::Ceo.new(formParams)
+    else
+      @ceo = Organizations::Ceo.new({:id_item => 0})
+    end
+
+    @data = Controllers.find_all_by_user(s4_user)
+    #@admin = Organizations::Controllers.new(@data)
+    @admin = Organizations::Grids::Controllers::Controllers.new
+    @admin.rowset = @data
+  end
+  
+  def ceo_new
+    ceo_create(params)
+    redirect_to :action => 'ceo'
+  end
+  
+  def capital
+    if form_params =  Capitals.find_by_user( s4_user )
+      
+      indirect_owner_data = convertForRowset( IndirectOwner.find_all_by_parent_id( form_params[:id] ) )
+      indirect_owner_grid = Organizations::Grids::Capital::Indirectowner.new
+      indirect_owner_grid.rowset = indirect_owner_data
+      
+      
+      profiter_contract_data = convertForRowset( ProfiterContract.find_all_by_parent_id( form_params[:id] ) )
+      profiter_contract_grid = Organizations::Grids::Capital::Profitercontract.new
+      profiter_contract_grid.rowset = profiter_contract_data
+      
+      
+      formParams = {
+        :id_item => form_params[:id],
+        :auth_capital_vol => form_params[:auth_capital_vol],
+        :auth_capital_vollit => form_params[:auth_capital_vollit],
+        :fully_paid => form_params[:fully_paid],
+        :unpaid_auth_capital_vol => form_params[:unpaid_auth_capital_vol],
+        :unpaid_auth_capital_vollit => form_params[:unpaid_auth_capital_vollit],
+        :no_indirect_owners => form_params[:no_indirect_owners],
+        :no_ncc_profiters => form_params[:no_ncc_profiters],
+        :indirect_owner => indirect_owner_grid,
+        :profiter_contract => profiter_contract_grid
+      }
+      @capital = Organizations::Capital.new(formParams)
+    else
+      @capital = Organizations::Capital.new({:id_item => 0})
+    end
+  end
+  
+  def capitalsave
+    #logger.debug ">>>>>>>>>>>>>>>>>>> #{params.inspect}"
+    capital_add(params)
+    redirect_to :action => 'capital'
+  end
+  
+  def filials
+    row = FilialInfo.find_by_user(s4_user)
+    data = {}
+    if !row.nil?
+      data = row.attributes.symbolize_keys
+      data[:id_item] = data[:id]
+      data.delete(:s4_id)
+      data.delete(:user)
+      data.delete(:id)
+    else
+      data[:id_item] = 0
+    end
+    
+    logger.debug ">>>>>>>>>>>>>>>>> #{data.inspect}"
+    @filials = Organizations::Filials.new(data)
+ end
+ 
+  def filialscreate
+      
+    params[:filials][:user] = s4_user
+
+    if params[:filials][:id_item].is_numeric? && params[:filials][:id_item] != "0"
+      filialObject = FilialInfo.update(params[:filials][:id_item], params[:filials] )
+    else 
+      logger.debug "><><><><><><>><><><><> #{params.inspect}"
+      filialObject = FilialInfo.new( params[:filials] )
+    end
+    filialObject.save
+    
+    redirect_to :action => 'filials'
+  end
+  
+  def contactlist
+    valuta_grid = Organizations::Grids::Contactlist::Contacts_v.new
+    fondovi_grid = Organizations::Grids::Contactlist::Contacts_f.new
+    srochni_grid = Organizations::Grids::Contactlist::Contacts_s.new
+    cenii_grid = Organizations::Grids::Contactlist::Contacts_c.new
+    
+    
+    valuta_grid.rowset = convertForRowset(Contacts.find_all_by_kind_and_user('valuta', s4_user))
+    fondovi_grid.rowset = convertForRowset(Contacts.find_all_by_kind_and_user('fondovii', s4_user))
+    srochni_grid.rowset = convertForRowset(Contacts.find_all_by_kind_and_user('srochnii', s4_user))
+    cenii_grid.rowset = convertForRowset(Contacts.find_all_by_kind_and_user('cenii', s4_user))
+
+    formParams = {
+      :valuta => valuta_grid,
+      :fondovii => fondovi_grid,
+      :srochnii => srochni_grid,
+      :cenii => cenii_grid
+    }
+    @contactlist = Organizations::Contactlist.new(formParams)
+  end
+   
+  def contactsnew
+    new_contact(params[:contactlist].nil? ? {} : params[:contactlist])
+    redirect_to :action => 'contactlist'
+  end
+  
+  def phones
+    ApplicationHelper.s4_user = s4_user
+
+    phones_v_grid = Organizations::Grids::Phones::Phones_v.new
+    phones_f_grid = Organizations::Grids::Phones::Phones_f.new
+    phones_s_grid = Organizations::Grids::Phones::Phones_s.new
+    phones_c_grid = Organizations::Grids::Phones::Phones_c.new
+    
+    
+    phones_v_grid.rowset = convertForRowset(Phones.find_all_by_kind_and_user('valuta', s4_user))
+    phones_f_grid.rowset = convertForRowset(Phones.find_all_by_kind_and_user('fondovii', s4_user))
+    phones_s_grid.rowset = convertForRowset(Phones.find_all_by_kind_and_user('srochnii', s4_user))
+    phones_c_grid.rowset = convertForRowset(Phones.find_all_by_kind_and_user('cenii', s4_user))
+
+    formParams = {
+      :valuta => phones_v_grid,
+      :fondovii => phones_f_grid,
+      :srochnii => phones_s_grid,
+      :cenii => phones_c_grid
+    }
+    @phones = Organizations::Phones.new(formParams)
+
+ end
+ 
+ def phonesadd
+   @phonesadd = Organizations::Phonesadd.new
+ end
+ 
+ def phonenew
+   new_phone(params[:phones].nil? ? {} : params[:phones])
+   redirect_to :action => 'phones'  
+ end
+ 
+  def licenses
+    ApplicationHelper.s4_user = s4_user
+
+    bankingGrid = Organizations::Grids::Licenses::Banking.new
+    professionalmemberGrid = Organizations::Grids::Licenses::Professionalmember.new
+    forwardmarketGrid = Organizations::Grids::Licenses::Forwardmarket.new
+    otherGrid = Organizations::Grids::Licenses::Other.new
+    
+    
+    bankingGrid.rowset = convertForRowset(Licenses.find_all_by_kind_and_user('banking', s4_user))
+    professionalmemberGrid.rowset = convertForRowset(Licenses.find_all_by_kind_and_user('professionalmember', s4_user))
+    forwardmarketGrid.rowset = convertForRowset(Licenses.find_all_by_kind_and_user('forwardmarket', s4_user))
+    otherGrid.rowset = convertForRowset(Licenses.find_all_by_kind_and_user('other', s4_user))
+
+    formParams = {
+      :banking => bankingGrid,
+      :professionalmember => professionalmemberGrid,
+      :forwardmarket => forwardmarketGrid,
+      :other => otherGrid
+    }
+    @licenses = Organizations::License.new(formParams)
+
+  end
+  
+  def licensessave
+    #@forwardmarket = Licenses.find_all_by_kind('banking')
+    licenses_save(params[:licenses].nil? ? {} : params[:licenses])
+    redirect_to :action => 'licenses'
+  end
+
+  def controllersadd
+    if !session["controlleradd"].nil?
+      @controllersadd = session.delete("controlleradd")
+      if !@controllersadd.controllers.nil? && @controllersadd.controllers.is_a?(::HashWithIndifferentAccess)
+        grid = Organizations::Grids::Controllers::Attestat.new
+        grid.rowset = []
+        @controllersadd.controllers.map do |k, v|
+          grid.rowset << v.to_hash
+        end
+        @controllersadd.controllers = grid
+      end
+    else
+      @controllersadd = Organizations::Controllersadd.new({:id_item => 0})
+    end
+  end
+  
+  def controlleraddsave
+    data = params[:controllersadd]
+
+    @controlleradd = Organizations::Controllersadd.new(data.symbolize_keys)
+    if @controlleradd.valid?
+      data[:user] = s4_user
+      controllersSave(data.nil? ? {} : data)
+      redirect_to :action => :ceo
+    else
+      session["controlleradd"] = @controlleradd
+      redirect_to :action => :controllersadd
+    end
+  end
+
+  def controllereditsave
+    data = params[:controllersedit]
+
+    @controllersedit = Organizations::Controllersadd.new(data.symbolize_keys)
+    if @controllersedit.valid?
+      data[:user] = s4_user
+      controllersSave(data.nil? ? {} : data)
+      redirect_to :action => :ceo
+    else
+      session["controllersedit"] = @controllersedit
+      redirect_to :action => :controllersedit
+    end
+  end
+
+  def controllersdelete
+    if params[:id]
+      Controllers.delete_all(['id = ? AND user = ?', params[:id], s4_user])
+      ControllersAttestats.delete_all(['parent_id = ?', params[:id]])
+    end
+    redirect_to :action => :ceo
+  end
+
+  def controllersedit
+    if session["controllersedit"].nil?
+      if params[:id]
+        form_params =  Controllers.find_by_id_and_user( params[:id], s4_user )
+  
+        attestats = ControllersAttestats.find_all_by_parent_id( form_params[:id] )
+        
+        attestats.collect do |row|
+          row[:qualification] = row[:qualification][1..-2].split(",").collect!{|x| x.to_sym} if !row[:qualification].nil?
+          row[:activity] = row[:activity][1..-2].split(",").collect!{|x| x.to_sym} if !row[:activity].nil?
+        end
+        
+        attestatinfo = convertForRowset( attestats )
+        grid = Organizations::Grids::Controllers::Attestat.new
+        grid.rowset = attestatinfo
+        formParams = {
+          :id_item => form_params[:id],
+          :firstname => form_params[:firstname],
+          :surname => form_params[:surname],
+          :patronymic => form_params[:patronymic],
+          :position=> form_params[:position],
+          :doc_name => form_params[:doc_name],
+          :doc_number => form_params[:doc_number],
+          :doc_date => form_params[:doc_date],
+          :controllers => grid
+        }
+        @controllersedit = Organizations::Controllersadd.new(formParams)
+      else
+        redirect_to :action => :controllers
+      end
+    else
+      @controllersedit = session.delete('controllersedit')
+
+      if !@controllersedit.controllers.nil? && @controllersedit.controllers.is_a?(::HashWithIndifferentAccess)
+        grid = Organizations::Grids::Controllers::Attestat.new
+        grid.rowset = []
+        @controllersedit.controllers.map do |k, v|
+          grid.rowset << v.to_hash
+        end
+        @controllersedit.controllers = grid
+      end
+    end
+
+  end
+  
+  def ncc_federal_law
+    if form_params =  NccFederalLaw.find_by_user( s4_user )
+      
+      attestats = ShellBankAcc.find_all_by_parent_id( form_params[:id] )
+
+      attestatinfo = convertForRowset( attestats )
+
+      shell_bank_acc_grid = Organizations::Grids::Ncc_federal_law::Shell_bank_acc.new
+      shell_bank_acc_grid.rowset = attestatinfo
+      formParams = {
+        :id_item => form_params[:id],
+        :corr_acc_corr_countr => form_params[:corr_acc_corr_countr],
+        :no_corr_acc_corr_countr => form_params[:no_corr_acc_corr_countr],
+        :corr_acc_offshore => form_params[:corr_acc_offshore],
+        :no_corr_acc_drug => form_params[:no_corr_acc_drug],
+        :corr_acc_drug => form_params[:corr_acc_drug],
+        :no_corr_acc_offshore => form_params[:no_corr_acc_offshore],
+        :no_shell_bank_acc => form_params[:no_shell_bank_acc],
+        :at_control_employee_f => form_params[:at_control_employee_f],
+        :at_control_employee_i => form_params[:at_control_employee_i],
+        :at_control_employee_o => form_params[:at_control_employee_o],
+        :at_control_rules => form_params[:at_control_rules],
+        :at_control_rules_contr => form_params[:at_control_rules_contr],
+        :at_identification => form_params[:at_identification],
+        :at_control_of_operation => form_params[:at_control_of_operation],
+        :at_control_training => form_params[:at_control_training],
+        :shell_bank_acc => shell_bank_acc_grid
+      }
+      #logger.debug "><><><><> #{formParams.inspect}"
+      @ncc_federal_law = Organizations::NccFederalLaw.new(formParams)
+    else
+      @ncc_federal_law = Organizations::NccFederalLaw.new({:id_item => 0})
+    end
+  end
+  
+  def ncc_federal_law_edit
+    ncc_federal_law_create(params)
+    redirect_to :action => 'ncc_federal_law'
+  end
+  
+  def circulation
+    @circulation = Organizations::Circulation.new
+  end
+
+  def sendcard
+    @reg_card_error = !session['reg_card_error'].nil? ? session.delete('reg_card_error') : ""
+    if !session['card_executor'].nil?
+      @card_executor = session.delete('card_executor')
+    else
+      data = {:reg_card_date => Time.now}
+      data = session.delete('card_executor_data') if @reg_card_error != ""
+      @card_executor = Organizations::SendCard.new(data)
+    end
+  end
+
+  def sendcardsave
+    sendcardData = params[:card_executor]
+    sendcardForm = Organizations::SendCard.new(sendcardData)
+    if sendcardForm.valid?
+      begin 
+        @data = send_card(sendcardData)
+        respond_to do |format|
+          format.xml {
+            inn = S4::Organization.find(s4_user).inn
+            response.headers['Content-Disposition'] = "attachment;filename=\"#{inn}_#{DateTime.now.strftime("%d%m%y")}.xml\""
+            logger.debug "EEEEEEEEEEEEE#{response.headers['Content-Disposition']}"
+            response.headers['Content-Description'] = 'File Transfer'
+            response.headers['Content-Transfer-Encoding'] = 'binary'
+            response.headers['Expires'] = '0'
+            response.headers['Pragma'] = 'public'
+
+            render :layout=>false, :xml => @data
+          }
+        end
+        return
+      rescue Exception => e
+        session['reg_card_error'] = e.message.split("\n")
+        
+        session['card_executor_data'] = sendcardData
+      end
+    else
+      session['card_executor'] = sendcardForm
+    end
+    redirect_to :action => 'sendcard'
+  end
+
+private
+
+  def populateFromS4
+    row = UserCardsSyncS4.find_by_user(s4_user) 
+
+    if row.nil?
+      UserCardsSyncS4.sync(s4_user)
+    end
+  end
 end

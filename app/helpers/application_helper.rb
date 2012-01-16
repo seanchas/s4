@@ -163,4 +163,41 @@ module ApplicationHelper
       end
     end
   end
+  
+  def self.s4_user
+    @s4_user
+  end
+
+  def self.s4_user=(s4_user)
+    @s4_user = s4_user
+  end
+
+  def self.get_license_type(license_type)
+    if !license_type.nil?
+      S4::LicenceType.scope = {:licence_kind => license_type}
+      self.parse_collection S4::LicenceType.all_with_scope(ApplicationHelper.s4_user)
+    else
+      self.parse_collection S4::LicenceType.all(ApplicationHelper.s4_user)
+    end
+  end
+  
+  def self.get_license_organ
+    self.parse_collection S4::LicenceOrgan.all(ApplicationHelper.s4_user)
+  end
+  
+  def self.get_alert_phone_category
+    self.parse_collection S4::AlertPhoneCategory.all(ApplicationHelper.s4_user)
+  end
+  
+  def self.get_country
+    self.parse_collection S4::Country.all(ApplicationHelper.s4_user)
+  end
+  
+private
+  def self.parse_collection(v)
+    collection = v.collect do |l|
+      [l.attributes['name'], l.attributes['id']]
+    end
+    collection
+  end
 end

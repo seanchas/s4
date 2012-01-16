@@ -9,174 +9,207 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111227071552) do
-
-  create_table "admins", :force => true do |t|
-    t.string "lastname"
-    t.string "firstname"
-    t.string "middlename"
-    t.string "position"
-    t.string "documentName"
-    t.date   "documentDate"
-    t.string "documentNumber"
-    t.string "place"
-    t.string "user"
-  end
-
-  create_table "admins_attestats", :force => true do |t|
-    t.string  "serial"
-    t.string  "number"
-    t.date    "date_order"
-    t.string  "number_order"
-    t.date    "date_certification"
-    t.string  "qualification"
-    t.integer "parent_id"
-    t.string  "number_certification"
-    t.string  "typeof"
-  end
+ActiveRecord::Schema.define(:version => 20120112134804) do
 
   create_table "capitals", :force => true do |t|
-    t.string "ciframi"
-    t.string "podpis"
-    t.string "ciframi_chast"
-    t.string "podpis_chast"
-    t.string "user"
-    t.string "oplachen_polnost"
+    t.string  "auth_capital_vol"
+    t.string  "auth_capital_vollit"
+    t.string  "fully_paid"
+    t.string  "unpaid_auth_capital_vol"
+    t.string  "unpaid_auth_capital_vollit"
+    t.string  "no_indirect_owners"
+    t.string  "no_ncc_profiters"
+    t.string  "user"
+    t.integer "s4_id"
   end
 
-  create_table "clirings", :force => true do |t|
-    t.string "legal_countries"
-    t.string "hidden_finance_countries"
-    t.string "drugs_countries"
-    t.string "firstname"
-    t.string "lastname"
-    t.string "otchestvo"
-    t.string "plavila_kontrolya"
-    t.string "otvestv_za_pravila_kontrolya"
-    t.string "id_client"
-    t.string "obyaz_kontrol"
-    t.string "obychenie_kadrov"
-    t.string "user"
+  create_table "ceo_attestats", :force => true do |t|
+    t.string "series"
+    t.string "number"
+    t.string "display_activity"
+    t.date   "ekz_date"
+    t.string "ekz_number"
+    t.date   "att_date"
+    t.string "att_number"
+    t.string "qualification"
+    t.string "typeof"
+    t.string "parent_id"
+    t.text   "activity"
+  end
+
+  create_table "ceos", :force => true do |t|
+    t.string  "firstname"
+    t.string  "surname"
+    t.string  "patronymic"
+    t.string  "position"
+    t.string  "doc_name"
+    t.string  "doc_number"
+    t.date    "doc_date"
+    t.boolean "organs_in_place"
+    t.string  "organs_place_other"
+    t.string  "user"
+    t.integer "s4_id"
   end
 
   create_table "contacts", :force => true do |t|
+    t.string "fio"
     t.string "firstname"
-    t.string "secondname"
-    t.string "otchestvo"
-    t.string "dolzhnost"
-    t.string "code_phone"
+    t.string "patronymic"
+    t.string "position"
+    t.string "phone_areacode"
     t.string "phone"
-    t.string "code_fax"
+    t.string "fax_areacode"
     t.string "fax"
     t.string "email"
-    t.string "deportament"
+    t.string "kind"
     t.string "user"
   end
 
   create_table "controllers", :force => true do |t|
-    t.string "lastname"
-    t.string "firstname"
-    t.string "middlename"
-    t.string "position"
-    t.string "documentName"
-    t.date   "documentDate"
-    t.string "documentNumber"
-    t.string "user"
+    t.string  "firstname"
+    t.string  "surname"
+    t.string  "patronymic"
+    t.string  "position"
+    t.string  "doc_name"
+    t.string  "doc_number"
+    t.date    "doc_date"
+    t.string  "user"
+    t.integer "s4_id"
   end
 
   create_table "controllers_attestats", :force => true do |t|
-    t.string  "serial"
-    t.string  "number"
-    t.date    "date_order"
-    t.string  "number_order"
-    t.date    "date_certification"
-    t.string  "qualification"
-    t.integer "parent_id"
-    t.string  "number_certification"
-    t.string  "typeof"
+    t.string "series"
+    t.string "number"
+    t.string "display_activity"
+    t.date   "ekz_date"
+    t.string "ekz_number"
+    t.date   "att_date"
+    t.string "att_number"
+    t.string "parent_id"
+    t.text   "qualification"
+    t.text   "activity"
   end
 
-  create_table "filials", :force => true do |t|
-    t.string "adres"
-    t.string "code_town"
-    t.string "phone"
+  create_table "filial_infos", :force => true do |t|
+    t.string  "filial_num"
+    t.string  "moscow_addr"
+    t.string  "moscow_tel_areacode"
+    t.string  "moscow_tel"
+    t.string  "moscow_boss"
+    t.string  "moscow_boss_firstname"
+    t.string  "moscow_boss_patronymic"
+    t.string  "moscow_boss_position"
+    t.boolean "no_moscow"
+    t.string  "user"
+    t.integer "s4_id"
+  end
+
+  create_table "indirect_owners", :force => true do |t|
+    t.string "surname"
     t.string "firstname"
-    t.string "lastname"
-    t.string "otchestvo"
-    t.string "dolzhnost"
-    t.string "moscow"
-    t.string "kolvo"
-    t.string "user"
-  end
-
-  create_table "lica_capitals", :force => true do |t|
-    t.string  "familia"
-    t.string  "name"
-    t.string  "otchestvo"
-    t.string  "dolya"
-    t.integer "parent_id"
+    t.string "patronymic"
+    t.string "share"
+    t.string "parent_id"
   end
 
   create_table "licenses", :force => true do |t|
     t.string "number"
-    t.string "typeof"
-    t.string "subject"
-    t.string "date_create"
-    t.string "date_expired"
-    t.string "deportament"
+    t.string "licence_type"
+    t.string "licence_organ"
+    t.string "date_begin"
+    t.string "date_end"
+    t.string "kind"
     t.string "user"
+  end
+
+  create_table "ncc_federal_laws", :force => true do |t|
+    t.string  "corr_acc_corr_countr"
+    t.boolean "no_corr_acc_corr_countr"
+    t.string  "corr_acc_offshore"
+    t.boolean "no_corr_acc_drug"
+    t.string  "corr_acc_drug"
+    t.boolean "no_corr_acc_offshore"
+    t.boolean "no_shell_bank_acc"
+    t.string  "at_control_employee_f"
+    t.string  "at_control_employee_i"
+    t.string  "at_control_employee_o"
+    t.boolean "at_control_rules"
+    t.boolean "at_control_rules_contr"
+    t.boolean "at_identification"
+    t.boolean "at_control_of_operation"
+    t.string  "at_control_training"
+    t.string  "user"
+    t.integer "s4_id"
   end
 
   create_table "phones", :force => true do |t|
-    t.string "code_country"
-    t.string "code_operator"
-    t.string "phone_num"
-    t.string "osnovnoy"
-    t.string "fiovladelca"
-    t.string "dolzhnost"
-    t.string "catnum"
-    t.string "deportament"
+    t.string "country"
+    t.string "operator"
+    t.string "number"
+    t.string "main"
+    t.string "fio"
+    t.string "position"
+    t.string "alert_phone_category"
+    t.string "kind"
     t.string "user"
   end
 
-  create_table "scheta_clirings", :force => true do |t|
-    t.text    "name"
-    t.integer "parent_id"
+  create_table "profiter_contracts", :force => true do |t|
+    t.string "name"
+    t.string "contract_number"
+    t.string "contract_date"
+    t.string "parent_id"
   end
 
-  create_table "struktures", :force => true do |t|
-    t.string "namus_vou"
-    t.string "namus_kou"
-    t.string "ystav_view"
-    t.string "firstname"
-    t.string "lastname"
-    t.string "otchestvo"
-    t.string "dolzhnost"
-    t.string "namus_kiou"
-    t.string "user"
+  create_table "reg_card_executors", :force => true do |t|
+    t.string  "last_name"
+    t.string  "firstname"
+    t.string  "patronymic"
+    t.string  "tel_areacode"
+    t.string  "tel"
+    t.string  "extension"
+    t.date    "reg_card_date"
+    t.string  "user"
+    t.integer "s4_id"
+  end
+
+  create_table "shell_bank_accs", :force => true do |t|
+    t.string "name"
+    t.string "parent_id"
+  end
+
+  create_table "structures", :force => true do |t|
+    t.string  "main_commitee_name"
+    t.string  "col_commitee_name"
+    t.boolean "no_col_commitee"
+    t.string  "board_fio"
+    t.string  "board_firstname"
+    t.string  "board_patronymic"
+    t.string  "board_position"
+    t.string  "executive_commitee_name"
+    t.string  "user"
+    t.integer "s4_id"
+    t.boolean "no_executive_commitee"
   end
 
   create_table "struktures_controls", :force => true do |t|
+    t.string  "surname"
     t.string  "firstname"
-    t.string  "lastname"
-    t.string  "middlename"
+    t.string  "patronymic"
     t.string  "user"
     t.integer "parent_id"
     t.string  "gridname"
   end
 
-  create_table "struktures_fivepercents", :force => true do |t|
+  create_table "struktures_shareholders", :force => true do |t|
     t.string  "name"
-    t.string  "dola"
+    t.string  "share"
     t.integer "parent_id"
     t.string  "user"
   end
 
-  create_table "vigodnopreobretatels", :force => true do |t|
-    t.string  "name"
-    t.string  "number"
-    t.string  "date"
-    t.integer "parent_id"
+  create_table "user_cards_sync_s4s", :force => true do |t|
+    t.string "user"
   end
 
 end

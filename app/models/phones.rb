@@ -1,4 +1,4 @@
 class Phones < ActiveRecord::Base
   self.include_root_in_json = false
-  attr_accessible :code_country, :code_operator, :phone_num, :osnovnoy, :fiovladelca, :dolzhnost, :catnum, :deportament, :user
+  attr_accessible :country, :operator, :number, :main, :fio, :position, :alert_phone_category, :kind, :user
 end

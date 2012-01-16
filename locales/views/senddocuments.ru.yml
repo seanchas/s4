@@ -36,6 +36,8 @@ ru:
               blank: 'Не выбран документ'
             type_id:
               blank: 'Не выбран тип документа'
+            text:
+              blank: 'Не заполнен текст сообщения'
         messageform:
           attributes:
             theme:

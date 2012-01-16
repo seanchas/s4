@@ -87,16 +87,24 @@ form.formtastic li {
     form.formtastic li input {
           width: 390px;
     }
+	form.formtastic li.hidden{
+		padding: 0px;
+	}
     form.formtastic li select {
         width: 396px;
     }
     form.formtastic li.date input {
         width:173px;    
     }
+	form.formtastic li.checkboxes label {
+		position: absolute;
+	}
+    form.formtastic li.checkboxes ol label {
+        position: inherit;
+    }
     form.formtastic li input#feedback_occupation {
           width: 150px;
-    }
-	
+    }	
 	form.formtastic li span.description {
 		font-weight: bold;
 		font-size: 13px;
@@ -136,11 +144,13 @@ form.formtastic li {
 	    }
 	form.formtastic li.boolean label {
 		position:relative;
+		line-height:32px;
 	}
 		form.formtastic li.boolean label input {
 			margin-left: 170px;
 			position: absolute;
 			width: auto;
+			height: 24px;
 		}
 form.formtastic fieldset {
 	display: block;

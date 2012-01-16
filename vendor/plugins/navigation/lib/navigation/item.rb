@@ -12,6 +12,7 @@ module Navigation
       @name   = name
       @title  = title
       @url    = url
+      @block  = block.call() if !block.nil?
       
       process_args(*args)
     end
@@ -28,6 +29,7 @@ module Navigation
       html_class << @html_options.delete(:class)
       @html_options[:class] =  html_class.flatten.compact.collect(&:to_s).uniq.join(' ')
       
+      content << @block if !@block.nil?
       content_tag name, content, @html_options
     end
     
