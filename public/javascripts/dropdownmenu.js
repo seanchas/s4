@@ -125,7 +125,8 @@ MenuContainer.prototype = {
 	  if (this.menuType == "dropdown") {
 		Element.setStyle(this.element,{
 			//left: (Position.positionedOffset(this.parent.element)[0]) + "px",
-			left: (Element.getOffsetParent(this.parent.element).left) + "px",
+			//left: (Element.getOffsetParent(this.parent.element).left) + "px",
+			left: "0px",
 			//top: (Position.positionedOffset(this.parent.element)[1] + Element.getHeight(this.parent.element)) + "px"
 			top: Element.getHeight(this.parent.element) + "px"
 		});

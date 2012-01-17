@@ -70,8 +70,10 @@ formtasticGrid.prototype = {
 		this.templateTableTr = $(this.name).getElementsBySelector('thead tr[template=true]').first().innerHTML;
 		var addBtn = $(this.name).next();
 
-		var addBtnAction = addBtn.readAttribute('action');
-		addBtn.on('click', (addBtnAction != null && typeof window[addBtnAction] == "function" ? window[addBtnAction] : this.addRow.bind(this)));
+		if (addBtn != undefined) {
+			var addBtnAction = addBtn.readAttribute('action');
+			addBtn.on('click', (addBtnAction != null && typeof window[addBtnAction] == "function" ? window[addBtnAction] : this.addRow.bind(this)));
+		}
 		
 		this.rowset = options.rowset;
 		this.currentRowId = null;
@@ -99,6 +101,7 @@ formtasticGrid.prototype = {
 	},
 	deleteRow: function(e, target)
 	{
+		if (this.addFormDialog == null) return;
 		Event.stop(e);
 		var id = $(target).readAttribute('rowid');
 		var self = this;
@@ -167,6 +170,7 @@ formtasticGrid.prototype = {
 	},
 	editRow: function(e, target)
 	{
+		if (this.addFormDialog == null) return;
 		Event.stop(e);
 		new Dialog.Box(this.addFormDialog, {title: this.options.addformtitle});
 		this.addFormDialog.writeAttribute('action', 'edit');
@@ -195,6 +199,7 @@ formtasticGrid.prototype = {
 	},
 	addRow: function()
 	{
+		if (this.addFormDialog == null) return;
 		// add form
 		new Dialog.Box(this.addFormDialog, {title: this.options.addformtitle});
 		this.addFormDialog.writeAttribute('action', 'add');

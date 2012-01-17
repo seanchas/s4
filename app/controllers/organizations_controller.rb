@@ -215,14 +215,12 @@ class OrganizationsController < ApplicationController
         :organs_place_other => form_params[:organs_place_other],
         :certificates => grid
       }
-      #logger.debug ">>>>>>>>>>>>>>>>>>> #{formParams.inspect}"
       @ceo = Organizations::Ceo.new(formParams)
     else
       @ceo = Organizations::Ceo.new({:id_item => 0})
     end
 
     @data = Controllers.find_all_by_user(s4_user)
-    #@admin = Organizations::Controllers.new(@data)
     @admin = Organizations::Grids::Controllers::Controllers.new
     @admin.rowset = @data
   end
@@ -532,12 +530,14 @@ class OrganizationsController < ApplicationController
   end
 
   def sendcard
-    @reg_card_error = !session['reg_card_error'].nil? ? session.delete('reg_card_error') : ""
+    @reg_card_error = Rails.cache.fetch('organization.sendcard.reg_card_error')
+    Rails.cache.delete('organization.sendcard.reg_card_error')
+
     if !session['card_executor'].nil?
       @card_executor = session.delete('card_executor')
     else
       data = {:reg_card_date => Time.now}
-      data = session.delete('card_executor_data') if @reg_card_error != ""
+      data = session.delete('card_executor_data') if !@reg_card_error.nil?
       @card_executor = Organizations::SendCard.new(data)
     end
   end
@@ -546,13 +546,14 @@ class OrganizationsController < ApplicationController
     sendcardData = params[:card_executor]
     sendcardForm = Organizations::SendCard.new(sendcardData)
     if sendcardForm.valid?
+      
       begin 
         @data = send_card(sendcardData)
         respond_to do |format|
           format.xml {
             inn = S4::Organization.find(s4_user).inn
             response.headers['Content-Disposition'] = "attachment;filename=\"#{inn}_#{DateTime.now.strftime("%d%m%y")}.xml\""
-            logger.debug "EEEEEEEEEEEEE#{response.headers['Content-Disposition']}"
+            #response.headers['Content-Disposition'] = "attachment;filename=\"222.xml\""
             response.headers['Content-Description'] = 'File Transfer'
             response.headers['Content-Transfer-Encoding'] = 'binary'
             response.headers['Expires'] = '0'
@@ -563,14 +564,13 @@ class OrganizationsController < ApplicationController
         end
         return
       rescue Exception => e
-        session['reg_card_error'] = e.message.split("\n")
-        
+        Rails.cache.write('organization.sendcard.reg_card_error', e.message.split("\n"))
         session['card_executor_data'] = sendcardData
       end
     else
       session['card_executor'] = sendcardForm
     end
-    redirect_to :action => 'sendcard'
+    redirect_to :action => :sendcard
   end
 
 private

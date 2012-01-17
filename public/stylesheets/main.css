@@ -24,6 +24,7 @@ body {
 #content_wrapper {
   padding: 0 10px;
   padding-bottom: 140px;
+  float: left;
 }
 
 #footer_wrapper {
@@ -31,6 +32,8 @@ body {
   height: 80px;
   margin-top: -80px;
   position: relative;
+  clear: both;
+  padding-bottom: 20px;
 }
 
 /*

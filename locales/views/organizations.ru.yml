@@ -15,12 +15,10 @@ ru:
 
     contextual_menu:
       information:  'Общие сведения'
-      #licenses:     'Лицензии'
       management:   'Руководитель, контролер, подписанты'
       manager:   'Персональные менеджеры'
       organization_edit: 'Редактирование'
-      
-
+      sendcard: 'Формирование Регистрационной карточки'
       licenses: 'Лицензии'
       ceo: 'Руководитель'
       controllers: 'Контролеры'

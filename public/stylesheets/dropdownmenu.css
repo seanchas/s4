@@ -34,26 +34,26 @@
     top: 0px;
     left: 0px;
     visibility: hidden;
-    /*border-left: 1px solid #fff;
-    border-top: 1px solid #fff;
-    border-right: 1px solid #fff;
-    background: #80D2D2;*/
 }
 
 #dropdownmenu  ul.level2 li, #dropdownmenu ul.level3 li {
-    border-bottom: 1px solid #fff;
-    float: none;
+	border: 1px solid #fff;
     margin: 0;
     padding: 0;
-    width: 150px;
+	display:block;
+	white-space: nowrap;
+	float: none;
 }
 
 #dropdownmenu  ul.level2 li a, #dropdownmenu ul.level3 li a {
-    padding: 5px 9px 5px 5px;
+    /*padding: 5px 9px 5px 5px;*/
+	/*margin: 4px;*/
+	padding: 0px;
+	margin: 0px;
+	height: 26px;
 }
 
 #dropdownmenu  ul.level2 li a:hover,#dropdownmenu  ul.level3 li a:hover {
     font-weight: normal;
-    /*background-color: #FF8401;*/
     background-image: none;
 }
