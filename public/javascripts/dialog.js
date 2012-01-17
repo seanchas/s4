@@ -143,12 +143,12 @@ Object.extend(Dialog.Box.prototype, {
   },
   //For IE browsers -- IE requires height to 100% and overflow hidden (taken from lightbox)
   _prepareIE: function(height, overflow){
-		var body = document.getElementsByTagName('body')[0];
-		body.style.height = height;
-		body.style.overflow = overflow;
-
-		var html = document.getElementsByTagName('html')[0];
-		html.style.height = height;
-		html.style.overflow = overflow; 
+//		var body = document.getElementsByTagName('body')[0];
+//		body.style.height = height;
+//		body.style.overflow = overflow;
+//
+//		var html = document.getElementsByTagName('html')[0];
+//		html.style.height = height;
+//		html.style.overflow = overflow; 
 	}
 });

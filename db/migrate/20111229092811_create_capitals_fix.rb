@@ -1,4 +1,4 @@
-class CreateCapitals < ActiveRecord::Migration
+class CreateCapitalsFix < ActiveRecord::Migration
   def self.up
     create_table :capitals do |t|
       t.string :auth_capital_vol

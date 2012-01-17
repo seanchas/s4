@@ -1,9 +1,9 @@
-class CreateStrukturesControls < ActiveRecord::Migration
+class CreateStrukturesControlsFix < ActiveRecord::Migration
   def self.up
     create_table :struktures_controls do |t|
+      t.string :surname
       t.string :firstname
-      t.string :lastname
-      t.string :middlename
+      t.string :patronymic
       t.string :user
       t.integer :parent_id
       t.string :gridname

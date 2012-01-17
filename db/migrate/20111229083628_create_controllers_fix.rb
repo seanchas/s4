@@ -1,4 +1,4 @@
-class CreateControllers < ActiveRecord::Migration
+class CreateControllersFix < ActiveRecord::Migration
   def self.up
     create_table :controllers do |t|
       t.string :firstname

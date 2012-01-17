@@ -278,14 +278,17 @@ private
     licenses = S4::License.all(s4_user)
     licenses.collect do |lic|
       data = lic.attributes.symbolize_keys
-
-      recource = licensesDoc.xpath('//resource/property[@name="id" and .="' << data[:id] << '"]/parent::resource').first
-      data[:licence_organ] = recource.xpath('./property[@name="licence_organ"]').attribute('ref_id').value
-      data[:licence_type] = recource.xpath('./property[@name="licence_type"]').attribute('ref_id').value
-      
       data[:user] = s4_user
+
+      data[:licence_organ] = ""
+      data[:licence_type] = ""
+      recource = licensesDoc.xpath('//resource/property[@name="id" and .="' << data[:id] << '"]/parent::resource').first
+      data[:licence_organ] = recource.xpath('./property[@name="licence_organ"]').attribute('ref_id').value if !recource.nil?
+      data[:licence_type] = recource.xpath('./property[@name="licence_type"]').attribute('ref_id').value if !recource.nil?
+      
+      data[:kind] = "banking"
       type_id = recource.xpath('./property[@name="licence_kind"]').attribute('ref_id').value
-      data[:kind] = S4::LicenceKind.getKindById(type_id)
+      data[:kind] = S4::LicenceKind.getKindById(type_id) if !type_id.nil?
       data.delete(:licence_status)
       data.delete(:id)
       row = Licenses.new(data)

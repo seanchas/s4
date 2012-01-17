@@ -152,8 +152,11 @@ form.formtastic li {
 			width: auto;
 			height: 24px;
 		}
+
 form.formtastic fieldset {
 	display: block;
+	border: 1px solid #ededed;
+	padding: 5px;
 }
     form.formtastic .star {
           color: #FF0000;

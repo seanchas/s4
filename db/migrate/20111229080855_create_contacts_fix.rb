@@ -1,4 +1,4 @@
-class CreateContacts < ActiveRecord::Migration
+class CreateContactsFix < ActiveRecord::Migration
   def self.up
     create_table :contacts do |t|
       t.string :fio
