@@ -16,7 +16,6 @@ class WelcomeController < ApplicationController
 
   def formvalidate
     if params[:_formName] && params[:_formAlias]
-      ApplicationHelper.s4_user = s4_user
       formData = params[params[:_formAlias]]
 
       @form = eval("#{params[:_formName]}.new(formData)")

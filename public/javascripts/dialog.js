@@ -70,7 +70,7 @@ Object.extend(Dialog.Box.prototype, {
     //this.overlay.style.height = this.winHeight()+'px';
 	  if (navigator.appVersion.match(/\bMSIE\b/)) {
 			this._prepareIE("100%", "hidden");
-			if (!navigator.appVersion.match(/\b7.0\b/)) window.scrollTo(0,0); // Disable scrolling on top for IE7
+			//if (!navigator.appVersion.match(/\b7.0\b/)) window.scrollTo(0,0); // Disable scrolling on top for IE7
 		}
     this.moveDialogBox('out');
 
@@ -113,6 +113,10 @@ Object.extend(Dialog.Box.prototype, {
     new Effect.Fade(this.overlay, {duration: 0.1});
     this.dialog_box.style.display = 'none';
     this.moveDialogBox('back');
+    if (navigator.appVersion.match(/\bMSIE\b/)) {
+		this._prepareIE("100%", "");
+		//if (!navigator.appVersion.match(/\b7.0\b/)) window.scrollTo(0,0); // Disable scrolling on top for IE7
+	}
 //    $A(this.dialog_box.getElementsByTagName('input')).each( function(e) {
 //      if (e.type != 'submit' && e.type != 'button') e.value = '';
 //    });
@@ -143,12 +147,12 @@ Object.extend(Dialog.Box.prototype, {
   },
   //For IE browsers -- IE requires height to 100% and overflow hidden (taken from lightbox)
   _prepareIE: function(height, overflow){
-//		var body = document.getElementsByTagName('body')[0];
-//		body.style.height = height;
-//		body.style.overflow = overflow;
-//
-//		var html = document.getElementsByTagName('html')[0];
-//		html.style.height = height;
-//		html.style.overflow = overflow; 
+		var body = document.getElementsByTagName('body')[0];
+		body.style.height = height;
+		body.style.overflow = overflow;
+
+		var html = document.getElementsByTagName('html')[0];
+		html.style.height = height;
+		html.style.overflow = overflow; 
 	}
 });

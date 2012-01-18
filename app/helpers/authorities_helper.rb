@@ -5,7 +5,7 @@ module AuthoritiesHelper
   
   def render_to_pdf(options = nil)
     data = render_to_string(options)
-    Rails.logger.info("data = #{data}")
+
     cd = CharDet.detect(data)
     pdf = PDF::HTMLDoc.new("pdf14")
     pdf.set_option :footer, '.'

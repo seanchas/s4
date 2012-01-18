@@ -196,7 +196,10 @@ private
             when :date, "date" then
               template.l(value.to_date) rescue ""
             when :select, "select" then
-              dd = column.attrs[:collection].select do |v|
+              m = "get_#{column.name}_select"
+              collection = []
+              collection = grid.send(m) if grid.respond_to?("get_#{column.name}_select")
+              dd = collection.select do |v|
                 id = v.length > 1 ? v[1] : v[0]
                 id == value
               end

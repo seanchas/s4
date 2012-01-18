@@ -19,9 +19,12 @@ module Formtastic #:nodoc:
               d = (form.attributes[column.name] ? form.attributes[column.name] : column.default)
               f.rrender(d, pr)
             end.compact.join("\n")
-            template.content_tag(:fieldset) do 
-              template.content_tag(:legend, ::Formtastic::I18n.t("labels.#{labelPath}.#{column.name}")) <<
-                rend
+            template.content_tag :li, :class => :form do 
+              template.content_tag(:fieldset) do 
+                rend = template.content_tag :ul, rend
+                template.content_tag(:legend, ::Formtastic::I18n.t("labels.#{labelPath}.#{column.name}")) <<
+                  rend
+              end
             end
             
           else
@@ -31,6 +34,9 @@ module Formtastic #:nodoc:
             opts[:label] = ::Formtastic::I18n.t("labels.#{labelPath}.#{column.name}")
             opts[:labelPath] = labelPath
 
+            # get collection of options for select
+            opts[:collection] = form.send("get_#{column.name}_select") if (type == :select || type == 'select') && form.respond_to?("get_#{column.name}_select") 
+            
             opts[:input_html] ||= {}
             if (type == :boolean) && (form.attributes[column.name] == '1' || form.attributes[column.name] == true)
               opts[:input_html][:checked] = :checked
@@ -48,7 +54,7 @@ module Formtastic #:nodoc:
             html = input(column.name, opts)
             #html = input("#{prefix}#{column.name}", opts)
             if column.options[:description]
-              html = adddescription html, column.name, labelPath
+              html = adddescription html, [@object_name.to_s.split('_').last, column.name], labelPath
             end
             html
         end
@@ -68,12 +74,14 @@ module Formtastic #:nodoc:
         end if form.respond_to?("buttons")
         html << template.content_tag(:li, btns, :class => 'buttons');
       end
+      html = [template.content_tag :ul, html]
       html << template.content_tag(:div, '', :class => :clean)
     end
     
 private
     def adddescription(html, name, labelPath)
-      str = ::Formtastic::I18n.t("descriptions.#{labelPath}.#{name}")
+      str = ::Formtastic::I18n.t("descriptions.#{labelPath}.#{name.last}")
+      name = name.join('_')
       desc = template.content_tag(:span, '?', :class => 'description', :id => "#{name}_description") <<
              template.javascript_tag("new Tip('#{name}_description', '#{Formtastic::Util.html_safe(str)}', {hook: {target: 'bottomRight', tip: 'topLeft'}});")
       

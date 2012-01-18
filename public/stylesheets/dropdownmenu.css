@@ -51,6 +51,9 @@
 	padding: 0px;
 	margin: 0px;
 	height: 26px;
+	display: block;
+	padding: 2px 5px;
+	width: 100%;
 }
 
 #dropdownmenu  ul.level2 li a:hover,#dropdownmenu  ul.level3 li a:hover {

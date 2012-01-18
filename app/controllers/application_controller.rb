@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate
   before_filter :authenticate_with_s4!
+  before_filter :init_s4_user_in_models
   
   after_filter :cleanup_cache_control
 
@@ -25,6 +26,10 @@ class ApplicationController < ActionController::Base
   end
 
 private
+
+  def init_s4_user_in_models
+    Organizations::Grids::GridStore.s4_user = s4_user
+  end
 
   def authenticate_with_s4!
     authenticate!

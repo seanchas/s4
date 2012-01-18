@@ -1,9 +1,13 @@
-class Organizations::Grids::Licenses::Banking < Base
+class Organizations::Grids::Licenses::Banking < Organizations::Grids::GridStore
   column :number
-  column :licence_organ, {:as => :select, :collection => Organizations::Licenseaddform.licence_organ_select}
+  column :licence_organ, {:as => :select}
   column :date_begin, {:as =>:date}
   column :date_end, {:as =>:date}
-  column :licence_type, {:as => :select, :collection => Organizations::Licenses::Bankingaddform.licence_type_select}
+  column :licence_type, {:as => :select}
+
+  def get_licence_type_select
+    get_licence_type 1
+  end
 
   def scope
     "grids.organizations.grids.licenses.banking"

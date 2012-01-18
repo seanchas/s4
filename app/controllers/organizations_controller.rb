@@ -135,13 +135,11 @@ class OrganizationsController < ApplicationController
   
   
   def structureedit
-    logger.debug ">>>>>>>>>>>>>>> #{params.inspect}"
     params[:structure][:user] = s4_user
 
-    
     kollegialorgan = params[:structure][:directors_committee]
     params[:structure].delete(:directors_committee)
-    
+
     paramsMerge = params[:structure].merge(kollegialorgan)
 
     if paramsMerge[:id_item].is_numeric? && paramsMerge[:id_item] != '0'
@@ -262,7 +260,6 @@ class OrganizationsController < ApplicationController
   end
   
   def capitalsave
-    #logger.debug ">>>>>>>>>>>>>>>>>>> #{params.inspect}"
     capital_add(params)
     redirect_to :action => 'capital'
   end
@@ -280,7 +277,6 @@ class OrganizationsController < ApplicationController
       data[:id_item] = 0
     end
     
-    logger.debug ">>>>>>>>>>>>>>>>> #{data.inspect}"
     @filials = Organizations::Filials.new(data)
  end
  
@@ -291,7 +287,6 @@ class OrganizationsController < ApplicationController
     if params[:filials][:id_item].is_numeric? && params[:filials][:id_item] != "0"
       filialObject = FilialInfo.update(params[:filials][:id_item], params[:filials] )
     else 
-      logger.debug "><><><><><><>><><><><> #{params.inspect}"
       filialObject = FilialInfo.new( params[:filials] )
     end
     filialObject.save
@@ -326,8 +321,6 @@ class OrganizationsController < ApplicationController
   end
   
   def phones
-    ApplicationHelper.s4_user = s4_user
-
     phones_v_grid = Organizations::Grids::Phones::Phones_v.new
     phones_f_grid = Organizations::Grids::Phones::Phones_f.new
     phones_s_grid = Organizations::Grids::Phones::Phones_s.new
@@ -359,8 +352,6 @@ class OrganizationsController < ApplicationController
  end
  
   def licenses
-    ApplicationHelper.s4_user = s4_user
-
     bankingGrid = Organizations::Grids::Licenses::Banking.new
     professionalmemberGrid = Organizations::Grids::Licenses::Professionalmember.new
     forwardmarketGrid = Organizations::Grids::Licenses::Forwardmarket.new
@@ -513,7 +504,6 @@ class OrganizationsController < ApplicationController
         :at_control_training => form_params[:at_control_training],
         :shell_bank_acc => shell_bank_acc_grid
       }
-      #logger.debug "><><><><> #{formParams.inspect}"
       @ncc_federal_law = Organizations::NccFederalLaw.new(formParams)
     else
       @ncc_federal_law = Organizations::NccFederalLaw.new({:id_item => 0})

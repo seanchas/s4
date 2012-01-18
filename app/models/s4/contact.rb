@@ -18,7 +18,7 @@ module S4
             when 'kind' then
               value = S4::ContactGroup.getKindIdByName(value)
               vv = value
-              licenceKinds = S4::ContactGroup.all(ApplicationHelper.s4_user)
+              licenceKinds = S4::ContactGroup.all(Organizations::Grids::GridStore.s4_user)
               value = licenceKinds.select {|k, v| k.id == vv.to_s}.first
               value = value.title if !value.nil?
               {:name => 'contact_group', :ref_id => vv, :ref_resource => 'contact_group'}

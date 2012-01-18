@@ -74,14 +74,14 @@ form.formtastic li {
     list-style: none;
     clear: both;
 	/* float: left; */
-	width: 575px;
+	width: 635px;
 	padding-bottom: 10px;
 }
 	form.formtastic li span.star{
 	    float: right;
 	}
 	form.formtastic li label {
-	    width: 170px;
+	    width: 230px;
 	    float: left;
 	}
     form.formtastic li input {
@@ -132,7 +132,7 @@ form.formtastic li {
 		width: 400px;
 	}
 
-	form.formtastic li.grid {
+	form.formtastic li.grid, form.formtastic li.form {
 		width: 100%;
 		height: auto;
 	}
@@ -144,10 +144,10 @@ form.formtastic li {
 	    }
 	form.formtastic li.boolean label {
 		position:relative;
-		line-height:32px;
+		padding-bottom: 10px;
 	}
 		form.formtastic li.boolean label input {
-			margin-left: 170px;
+			margin-left: 230px;
 			position: absolute;
 			width: auto;
 			height: 24px;
@@ -158,6 +158,15 @@ form.formtastic fieldset {
 	border: 1px solid #ededed;
 	padding: 5px;
 }
+
+    form.formtastic ul {
+        padding: 0px;
+		margin: 0px;
+    }
+    form.formtastic fieldset ul {
+    	padding: 10px;
+		margin: 0px;
+    }
     form.formtastic .star {
           color: #FF0000;
           float:right;
@@ -167,6 +176,7 @@ form.formtastic fieldset {
     }
 div.clean {
 	clear: both;
+	overflow:inherit;
 }
 
 /*

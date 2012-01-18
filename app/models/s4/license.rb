@@ -1,7 +1,6 @@
 module S4
   
   class License < S4::Resource
-    
     self.resource_type = :licence
 
     def date_begin=(date)
@@ -14,8 +13,9 @@ module S4
 
     def self.create_xml(rowset)
       resources = []
-      licence_organ = Organizations::Licenseaddform.licence_organ_select
-      licence_type = Organizations::Licenseaddform.licence_type_select
+      gridStore = Organizations::Grids::GridStore.new
+      licence_organ = gridStore.get_licence_organ_select
+      licence_type = gridStore.get_licence_type nil
   
       cnt = 1
       rowset.collect do |row|
@@ -35,7 +35,7 @@ module S4
               if col == 'kind'
                 value = S4::LicenceKind.getKindIdByName(value)
                 vv = value
-                licenceKinds = S4::LicenceKind.all(ApplicationHelper.s4_user)
+                licenceKinds = S4::LicenceKind.all(Organizations::Grids::GridStore.s4_user)
                 value = licenceKinds.select {|k, v| k.id == vv.to_s}.first
                 value = value.title if !value.nil?
                 ApplicationController.logger.debug "##########{value.to_yaml} "

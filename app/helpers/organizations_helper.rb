@@ -207,8 +207,6 @@ module OrganizationsHelper
           data[:parent_id] = item_id
           
           if data[:qualification].class == Array
-            logger.debug( data[:qualification] )
-            
             data[:qualification] = data[:qualification].join(",")
             data[:qualification] = "[#{data[:qualification]}]"
           end
@@ -299,8 +297,6 @@ module OrganizationsHelper
   end
   
   def send_card(sendcardData)
-    ApplicationHelper.s4_user = s4_user
-
     row = RegCardExecutor.new(sendcardData)
     doc = Nokogiri::XML::parse S4::RegCardExecutor.get_xml(s4_user)
     row.s4_id = doc.xpath('//property[@name="id"]').first.content
@@ -361,10 +357,6 @@ module OrganizationsHelper
     contactRowset = Contacts.find_all_by_user(s4_user)
     contactXML = S4::Contact.create_xml(contactRowset)
 
-#    logger.debug "#{organizationXML}\n\n#{licensesXML}\n\n #{authorityXML} \n\n#{directorsCommitteeHeadXML} \n\n #{ceoXML}" <<
-#       "\n\n#{capitalDataXML}\n\n#{indirectOwnerXML}\n\n#{profiterContractXML}\n\n#{nccFederalLawXML}\n\n#{shellBankAccXML}" <<
-#       "\n\n#{filialInfoXML}\n\n#{contactXML}"
-    logger.debug "#{regCardExecutorXML}"
     S4::Card.scope = {
       :licence => licensesXML,
       :organization => organizationXML,
