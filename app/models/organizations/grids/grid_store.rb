@@ -22,6 +22,10 @@ class Organizations::Grids::GridStore < Base
     end
   end
 
+  def get_licence_organ_select
+    parse_collection S4::LicenceOrgan.all(s4_user)
+  end
+
   def get_licence_organ(license_type)
 #    if !license_type.nil?
 #      S4::LicenceOrgan.scope = {:licence_kind => license_type}
