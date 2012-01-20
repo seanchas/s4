@@ -2,12 +2,23 @@ ru:
   organizations:
     title: 'Организация'
     
+    notice:
+      editform: 'Если Вы закончили редактирование и хотите передать данные в Клиентский центр, пожалуйста сформируйте'
+      editform_link: 'Регистрационную карточку'
+    
     show:
       blank: 'Отсутствует'
     
     codes:
       blank: 'Отсутствует'
     
+    sendcard:
+      show_errors: "Показать все ошибки"
+      hide_errors: "Скрыть ошибки"
+      count_errors: "Всего ошибок: %s."
+      goto_resource: 'Перейти в раздел'
+      common_mistakes: 'Общие ошибки Регистрационной карточки'
+
     management:
       ceo:          'Единоличный исполнительный орган'
       controllers:  'Контролеры'
@@ -22,13 +33,15 @@ ru:
       licenses: 'Лицензии'
       ceo: 'Руководитель'
       controllers: 'Контролеры'
+      controllersadd: 'Добавить контролера'
+      controllersedit: 'Редактирование контролера'
       structure: 'Структура управления'
       capital: 'Сведения о капитале'
       ncc_federal_law: 'ФЗ-115'
       filials: 'Филиалы'
       phones: 'Телефоны СОИ'
       contactlist: 'Контактные лица'
-      
+
   activerecord:
     errors:
       models:
@@ -82,6 +95,8 @@ ru:
               blank: 'Не заполнен код города'
             tel: 
               blank: 'Не заполнен телефон'
+            reg_card_date: 
+              blank: 'Не заполнена дата'
 
         organizations/phonesadd:
           attributes:

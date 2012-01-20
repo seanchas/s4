@@ -1,6 +1,8 @@
 <h1><%= S4::Organization.find(s4_user).full_name %></h1>
 <%=contextual_menu %>
-<h1>Контактные лица</h1>
+<!--<h1>Контактные лица</h1>-->
+<%= render "edited_form" %>
+<%= render "reg_card_errors_list" %>
 <% semantic_form_for :contactlist, :url => { :action => "contactsnew"} do |f| %>
   <%= f.rrender @contactlist %>
 <% end %>

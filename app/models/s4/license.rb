@@ -38,7 +38,6 @@ module S4
                 licenceKinds = S4::LicenceKind.all(Organizations::Grids::GridStore.s4_user)
                 value = licenceKinds.select {|k, v| k.id == vv.to_s}.first
                 value = value.title if !value.nil?
-                ApplicationController.logger.debug "##########{value.to_yaml} "
                 col = "licence_kind"
               end
               {:name => col, :ref_id => vv, :ref_resource => col}

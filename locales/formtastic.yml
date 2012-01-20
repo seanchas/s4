@@ -2,7 +2,7 @@ ru:
   formtastic:
     yes_word: "Да"
     no_word: "Нет"
-    submit: "Отправить"
+    submit: "Сохранить"
     actions:
       edit: 'Редактировать'
       delete: 'Удалить'

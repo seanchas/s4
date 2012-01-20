@@ -178,7 +178,9 @@ div.clean {
 	clear: both;
 	overflow:inherit;
 }
-
+.errorExplanation {
+	color: red;
+}
 /*
 .dialog-box form.formtastic {
 	overflow-y: scroll;
@@ -191,3 +193,35 @@ div.clean {
 	margin-top: 660px;
 }
 */
+#reg_card_errors {
+	background: #fafafa;
+	padding: 5px 10px;
+}
+
+#reg_card_errors .reg_card_resource span, #reg_card_errors .reg_card_resource a {
+	margin: 0px 5px;
+}
+
+#reg_card_errors .reg_card_resource a.show_errors {
+    color: #6d6d6d;
+    text-decoration: none;
+    border-bottom: 1px dashed;
+}
+#reg_card_errors .reg_card_resource h3 div {
+	font-size: 12px;
+	font-weight: normal;
+}
+#reg_card_errors .reg_card_resource span {
+	font-weight: bold;
+	width: 150px;
+	float:left;
+}
+#reg_card_errors li.all_errors {
+	list-style: none;
+}
+	#reg_card_errors li.all_errors ul {
+		padding: 0px;
+	}
+	    #reg_card_errors li.all_errors ul {
+	    	list-style-type: disc;
+	    } 

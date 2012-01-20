@@ -91,6 +91,9 @@ module ApplicationHelper
     end
   end
   
+  def cache_key(key)
+    "#{s4_user}_#{key}"
+  end
   
   def table_listing(schema, resources)
     reset_cycle
@@ -162,5 +165,147 @@ module ApplicationHelper
         end
       end
     end
+  end
+  
+  
+
+  def getErrors
+    out = ""
+    errorsXML = Rails.cache.fetch cache_key('organization.sendcard.reg_card_error')
+    Rails.cache.delete cache_key('organization.sendcard.reg_card_error')
+# errorsXML =<<-XTY
+# <resources><resource type="error"><property name="template"><![CDATA[Поле "НАИМЕНОВАНИЕ ВЫСШЕГО ОРГАНА УПРАВЛЕНИЯ" должно быть заполнено.]]></property><fields><field><![CDATA[main_commitee_name]]></field></fields><property name="resource"><![CDATA[authority]]></property></resource><resource type="error"><property name="template"><![CDATA[Поле "НАИМЕНОВАНИЕ КОЛЛЕГИАЛЬНОГО ОРГАНА УПРАВЛЕНИЯ" должно быть заполнено.]]></property><fields><field><![CDATA[col_commitee_name]]></field></fields><property name="resource"><![CDATA[authority]]></property></resource><resource type="error"><property name="template"><![CDATA[Поле "ИМЯ РУКОВОДИТЕЛЯ КОЛЛЕГИАЛЬНОГО ОРГАНА УПРАВЛЕНИЯ" должно быть заполнено.]]></property><fields><field><![CDATA[board_firstname]]></field></fields><property name="resource"><![CDATA[directors_committee_head]]></property></resource><resource type="error"><property name="template"><![CDATA[Поле "ОТЧЕСТВО РУКОВОДИТЕЛЯ КОЛЛЕГИАЛЬНОГО ОРГАНА УПРАВЛЕНИЯ" должно быть заполнено.]]></property><fields><field><![CDATA[board_patronymic]]></field></fields><property name="resource"><![CDATA[directors_committee_head]]></property></resource><resource type="error"><property name="template"><![CDATA[В списке "СОСТАВ КОЛЛЕГИАЛЬНОГО ОРГАНА УПРАВЛЕНИЯ" нет ни одной записи и отметка ОТСУТСТВУЮТ не установлена. Необходимо либо заполнить список, либо установить отметку ОТСУТСТВУЮТ]]></property><fields></fields><property name="resource"><![CDATA[directors_committee]]></property></resource><resource type="error"><property name="template"><![CDATA[Поле "НАИМЕНОВАНИЕ КОЛЛЕГИАЛЬНОГО ИСПОЛНИТЕЛЬНОГО ОРГАНА УПРАВЛЕНИЯ" должно быть заполнено.]]></property><fields><field><![CDATA[executive_commitee_name]]></field></fields><property name="resource"><![CDATA[authority]]></property></resource><resource type="error"><property name="template"><![CDATA[В списке "СОСТАВ КОЛЛЕГИАЛЬНОГО ИСПОЛНИТЕЛЬНОГО ОРГАНА УПРАВЛЕНИЯ" нет ни одной записи и отметка ОТСУТСТВУЮТ не установлена. Необходимо либо заполнить список, либо установить отметку ОТСУТСТВУЮТ]]></property><fields></fields><property name="resource"><![CDATA[direction]]></property></resource><resource type="error"><property name="template"><![CDATA[Необходимо заполнить поля: "Сведения по присутствии или отсутствии по своему местонахождению юр. лица, его постоянно действующего органа управления"]]></property><fields><field><![CDATA[organs_place_other]]></field></fields><property name="resource"><![CDATA[ceo]]></property></resource><resource type="error"><property name="template"><![CDATA[Поле "Величина зарегистрированного и оплаченного уставного (складочного) капитала" должно быть заполнено.]]></property><fields><field><![CDATA[auth_capital_vol]]></field></fields><property name="resource"><![CDATA[capital_data]]></property></resource><resource type="error"><property name="template"><![CDATA[Поле "Величина зарегистрированного и оплаченного уставного (складочного) капитала прописью" должно быть заполнено.]]></property><fields><field><![CDATA[auth_capital_vollit]]></field></fields><property name="resource"><![CDATA[capital_data]]></property></resource><resource type="error"><property name="template"><![CDATA[Поле "Величина частично оплаченного уставного (складочного) капитала" должно быть заполнено.]]></property><fields><field><![CDATA[unpaid_auth_capital_vol]]></field></fields><property name="resource"><![CDATA[capital_data]]></property></resource><resource type="error"><property name="template"><![CDATA[Поле "Величина частично оплаченного уставного (складочного) капитала прописью" должно быть заполнено.]]></property><fields><field><![CDATA[unpaid_auth_capital_vollit]]></field></fields><property name="resource"><![CDATA[capital_data]]></property></resource><resource type="error"><property name="template"><![CDATA[Необходимо указать "Сведения о наличии (отсутствии) корреспондентских счетов, открытых  в банках государств, о  которых известно, что они не соблюдают общепринятых стандартов в борьбе с легализацией (отмыванием)  доходов, полученных преступным путем..."]]></property><fields><field><![CDATA[corr_acc_corr_countr]]></field></fields><property name="resource"><![CDATA[ncc_federal_law]]></property></resource><resource type="error"><property name="template"><![CDATA[Необходимо указать "Сведения о наличии (отсутствии) корреспондентских счетов, открытых  в банках государств - оффшорных зон..."]]></property><fields><field><![CDATA[corr_acc_offshore]]></field></fields><property name="resource"><![CDATA[ncc_federal_law]]></property></resource><resource type="error"><property name="template"><![CDATA[Необходимо указать "Сведения о наличии (отсутствии) корреспондентских счетов, открытых  в банках государств, о которых известно, что в них незаконно производятся или переправляются наркотические вещества, а также государств, разрешающих свободный оборот наркотических веществ..."]]></property><fields><field><![CDATA[corr_acc_drug]]></field></fields><property name="resource"><![CDATA[ncc_federal_law]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 1 списка Лица для оперативного взаимодействия на фондовом рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 2 списка Лица для оперативного взаимодействия на фондовом рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 3 списка Лица для оперативного взаимодействия на фондовом рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 4 списка Лица для оперативного взаимодействия на фондовом рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 5 списка Лица для оперативного взаимодействия на фондовом рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 6 списка Лица для оперативного взаимодействия на фондовом рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 7 списка Лица для оперативного взаимодействия на фондовом рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 8 списка Лица для оперативного взаимодействия на фондовом рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 1 списка Лица для оперативного взаимодействия на фондовом рынке неправильно указан номер телефона, номер должен содержать только цифры]]></property><fields><field><![CDATA[phone]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 1 списка Лица для оперативного взаимодействия на срочном рынке MICEX не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 2 списка Лица для оперативного взаимодействия на срочном рынке MICEX не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 3 списка Лица для оперативного взаимодействия на срочном рынке MICEX не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 4 списка Лица для оперативного взаимодействия на срочном рынке MICEX не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 5 списка Лица для оперативного взаимодействия на срочном рынке MICEX не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 1 списка Лица для оперативного взаимодействия на валютном рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 2 списка Лица для оперативного взаимодействия на валютном рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 3 списка Лица для оперативного взаимодействия на валютном рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 4 списка Лица для оперативного взаимодействия на валютном рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 5 списка Лица для оперативного взаимодействия на валютном рынке не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 1 списка Лица для оперативного взаимодействия на рынке гцб не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 2 списка Лица для оперативного взаимодействия на рынке гцб не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 3 списка Лица для оперативного взаимодействия на рынке гцб не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 4 списка Лица для оперативного взаимодействия на рынке гцб не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 5 списка Лица для оперативного взаимодействия на рынке гцб не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 6 списка Лица для оперативного взаимодействия на рынке гцб не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 7 списка Лица для оперативного взаимодействия на рынке гцб не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[В строке 8 списка Лица для оперативного взаимодействия на рынке гцб не указан код города для телефона]]></property><fields><field><![CDATA[phone_areacode]]></field></fields><property name="resource"><![CDATA[contact]]></property></resource><resource type="error"><property name="template"><![CDATA[Не заполнены сведения о Московском филиале (представительстве) и не установлена отметка об отсутствии филиала (представительства). Необходимо либо заполнить все поля, либо поставить отметку МОСКОВСКИЙ ФИЛИАЛ (ПРЕДСТАВИТЕЛЬСТВО) ОТСУТСТВУЕТ]]></property><fields><field><![CDATA[no_moscow]]></field></fields><property name="resource"><![CDATA[filial_info]]></property></resource><resource type="error"><property name="template"><![CDATA[Поле "КОЛИЧЕСТВО ФИЛИАЛОВ" должно быть заполнено.]]></property><fields><field><![CDATA[filial_num]]></field></fields><property name="resource"><![CDATA[filial_info]]></property></resource></resources>
+# XTY
+
+    errors = {}
+    if errorsXML != ""
+      doc = Nokogiri::XML(errorsXML)
+      list = doc.xpath('//resource[@type="error"]')
+      list.collect do |item|
+        template = resource = nil
+        node = item.xpath('./property[@name="template"]').first
+        template = node.text if !node.nil?
+        
+        node = item.xpath('./property[@name="resource"]').first
+        resource = node.text if !node.nil?
+        
+        fields = item.xpath('./property[@name="fiends"]')
+        rs = getGroupByResourceName(resource)
+        errors[rs] ||= []
+        errors[rs] << template
+      end
+    end
+
+    resources = errors.map {|a, b| a}
+    
+    resources.each_with_index do |k, i|
+      out << getErrorsHtml(k, errors[k], i == 0)
+    end
+    Rails.cache.write cache_key("reg_card_errots_list"), errors
+    out
+  end
+
+  def getGroupByResourceName name
+    rs = <<-RTF
+<ress>
+    <res type="licenses">
+    <s>licence_organ</s>
+    <s>licence</s>
+    </res>
+    
+    <res type="ceo">
+    <s>ceo</s>
+    <s>ceo_attestat</s>
+    <s>attestat</s>
+    </res>
+    
+    <res type="controllers">
+    <s>controller</s>
+    <s>controller_attestat</s>
+    <s>signer</s>
+    </res>
+    
+    <res type="structure">
+    <s>shareholder</s>
+    <s>authority</s>
+    <s>directors_committee_head</s>
+    <s>directors_committee</s>
+    <s>direction</s>
+    </res>
+    
+    <res type="capital">
+    <s>capital_data</s>
+    <s>indirect_owner</s>
+    <s>profiter_contract</s>
+    </res>
+    
+    <res type="filials">
+    <s>filial_info</s>
+    </res>
+    
+    <res type="ncc_federal_law">
+    <s>ncc_federal_law</s>
+    <s>shell_bank_acc</s>
+    </res>
+    
+    <res type="phones">
+    <s>alert_phone</s>
+    <s>alert_phone_category</s>
+    <s>country</s>
+    </res>
+    
+    <res type="sendcard">
+    <s>reg_card_executor</s>
+    </res>
+    
+    <res type="contactlist">
+    <s>contact_group</s>
+    <s>contact</s>
+    </res></ress>
+RTF
+    doc = Nokogiri::XML::parse rs
+    logger.debug "XPATH //res/s[.='#{name}']\n\n"
+    el = doc.xpath("//res/s[.='#{name}']").first
+    el.parent.attribute('type').value if !el.nil?
+  end
+
+  def getErrorsHtml(resource, errors, autoshow)
+    show_message = t(:show_errors, :scope => [:organizations, :sendcard])
+    hide_message = t(:hide_errors, :scope => [:organizations, :sendcard])
+
+    builder = Nokogiri::HTML::Builder.new do |html|
+      html.div (:class => :reg_card_resource) {
+        html.h3 "#{t(resource, :scope => [:organizations, :contextual_menu])}" do
+          html.div {
+            html.span t(:count_errors, :scope => [:organizations, :sendcard]) % [errors.length]
+            html.a(t(:goto_resource, :scope => [:organizations, :sendcard]), :href => "/organization/#{resource}/", :class => :goto_resource)         
+            
+            html.a((autoshow ? hide_message : show_message), :href => '#', :class => :show_errors)
+          }
+        end
+
+
+        html.div {
+          html.ul {
+            html.li(:style => "display: #{(autoshow ? 'block': 'none')}" , :class => :all_errors, :hide_message => hide_message, :show_message => show_message) {
+              html.ul {
+                errors.each do |item|
+                  html.li :li, item
+                end
+              }
+            }
+          }
+        }
+      }
+    end
+    builder.doc.to_html
+  end
+  
+  def getTranslations(fields, resource)
+    out = []
+    fields.collect do |item|
+      out << ["%#{item.text}%", t(item.text.to_sym, :scope => [:formtastic, :labels, :organizations, resource.to_sym])]
+    end
+    out
   end
 end

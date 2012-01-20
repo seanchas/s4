@@ -4,11 +4,16 @@ module OrganizationsHelper
     stylesheet_include_once("dropdownmenu")
     
     arrow = content_tag :span, "&darr;", {:class => "dropdownmenu_arrow"}
+    main_infoormation = [:show, :sendcard, :licenses, :ceo, :controllers, :controllersadd, :controllersedit, :structure, :capital, :ncc_federal_law, :filials, :phones, :contactlist]
 
+    title = params[:action].to_sym if !main_infoormation.index(params[:action].to_sym).nil?
+    title = :information if title == :show
     submenu = navigation.ul(:html => { :id => :organization_edit, :class => [:tabbed_menu, :level2].join(' ')} )do |ul|
+      ul.li (t(:information, :scope => [:organizations, :contextual_menu]), organization_path,             :organizations => :show)
       ul.li t(:sendcard, :scope => [:organizations, :contextual_menu]), sendcard_organization_path,             :organizations => :sendcard
       ul.li t(:licenses, :scope => [:organizations, :contextual_menu]), licenses_organization_path,             :organizations => :licenses
-      ul.li t(:ceo, :scope => [:organizations, :contextual_menu]), ceo_organization_path,             :organizations => [:ceo, :controllersadd, :controllersedit] 
+      ul.li t(:ceo, :scope => [:organizations, :contextual_menu]), ceo_organization_path,             :organizations => :ceo 
+      ul.li t(:controllers, :scope => [:organizations, :contextual_menu]), controllers_organization_path,             :organizations => [:controllers, :controllersadd, :controllersedit]
       ul.li t(:structure, :scope => [:organizations, :contextual_menu]), structure_organization_path,             :organizations => :structure
       ul.li t(:capital, :scope => [:organizations, :contextual_menu]), capital_organization_path,             :organizations => :capital
       ul.li t(:ncc_federal_law, :scope => [:organizations, :contextual_menu]), ncc_federal_law_organization_path,             :organizations => :ncc_federal_law
@@ -19,10 +24,10 @@ module OrganizationsHelper
 
     # main menu
     menu = navigation.ul :html => { :id => :contextual_menu, :class => [:tabbed_menu, :level1].join(' ')} do |ul|
-      ul.li t(:information, :scope => [:organizations, :contextual_menu]), organization_path,             :organizations => :show 
-      ul.li(t(:organization_edit, :scope => [:organizations, :contextual_menu]), sendcard_organization_path, :organizations => [:sendcard, :licenses, :ceo, :controllersadd, :controllersedit, :structure, :capital, :ncc_federal_law, :filials, :phones, :contactlist]) do 
+      ul.li (t(title, :scope => [:organizations, :contextual_menu]), organization_path,             :organizations => main_infoormation)  do 
         arrow << submenu.to_s 
-      end
+      end 
+      #ul.li(t(:organization_edit, :scope => [:organizations, :contextual_menu]), sendcard_organization_path, :organizations => [:sendcard, :licenses, :ceo, :controllersadd, :controllersedit, :structure, :capital, :ncc_federal_law, :filials, :phones, :contactlist])
       ul.li t(:manager,     :scope => [:organizations, :contextual_menu]), manager_organization_path,     :organizations => :manager
     end
     

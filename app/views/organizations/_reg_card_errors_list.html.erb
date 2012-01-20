@@ -1,0 +1,8 @@
+<% content_tag :div, :id => :errorExplanation, :class => :errorExplanation do %>
+    <%= content_tag :h2, t(:header, :scope => [:activerecord, :errors, :template])%>
+	<% content_tag :ul do |ul| %>
+		<%@reg_card_errors_list.collect do |err| %>
+			<%= content_tag :li, err %>
+		<% end %>
+	<% end %>
+<% end if !@reg_card_errors_list.nil?%>

@@ -2,8 +2,11 @@ class OrganizationsController < ApplicationController
   
   helper :members_menu
   include OrganizationsHelper
+  include ApplicationHelper
   
   before_filter :populateFromS4
+  before_filter :show_errors_by_resource
+  before_filter :check_edited_form
 
   def show
     @organization = S4::Organization.find(s4_user)
@@ -131,6 +134,8 @@ class OrganizationsController < ApplicationController
     else
       @structure = Organizations::Structure.new
     end
+    
+
   end
   
   
@@ -182,7 +187,7 @@ class OrganizationsController < ApplicationController
         controlsObject2.save
       end
     end
-    
+    session["edit_form"] = 1
     redirect_to(:action => "structure")
   end
   
@@ -225,6 +230,7 @@ class OrganizationsController < ApplicationController
   
   def ceo_new
     ceo_create(params)
+    session["edit_form"] = 1
     redirect_to :action => 'ceo'
   end
   
@@ -261,6 +267,7 @@ class OrganizationsController < ApplicationController
   
   def capitalsave
     capital_add(params)
+    session["edit_form"] = 1
     redirect_to :action => 'capital'
   end
   
@@ -290,7 +297,7 @@ class OrganizationsController < ApplicationController
       filialObject = FilialInfo.new( params[:filials] )
     end
     filialObject.save
-    
+    session["edit_form"] = 1
     redirect_to :action => 'filials'
   end
   
@@ -317,6 +324,7 @@ class OrganizationsController < ApplicationController
    
   def contactsnew
     new_contact(params[:contactlist].nil? ? {} : params[:contactlist])
+    session["edit_form"] = 1
     redirect_to :action => 'contactlist'
   end
   
@@ -339,7 +347,6 @@ class OrganizationsController < ApplicationController
       :cenii => phones_c_grid
     }
     @phones = Organizations::Phones.new(formParams)
-
  end
  
  def phonesadd
@@ -348,6 +355,7 @@ class OrganizationsController < ApplicationController
  
  def phonenew
    new_phone(params[:phones].nil? ? {} : params[:phones])
+   session["edit_form"] = 1
    redirect_to :action => 'phones'  
  end
  
@@ -376,6 +384,7 @@ class OrganizationsController < ApplicationController
   def licensessave
     #@forwardmarket = Licenses.find_all_by_kind('banking')
     licenses_save(params[:licenses].nil? ? {} : params[:licenses])
+    session["edit_form"] = 1
     redirect_to :action => 'licenses'
   end
 
@@ -402,7 +411,8 @@ class OrganizationsController < ApplicationController
     if @controlleradd.valid?
       data[:user] = s4_user
       controllersSave(data.nil? ? {} : data)
-      redirect_to :action => :ceo
+      session["edit_form"] = 1
+      redirect_to :action => :controllers
     else
       session["controlleradd"] = @controlleradd
       redirect_to :action => :controllersadd
@@ -416,7 +426,8 @@ class OrganizationsController < ApplicationController
     if @controllersedit.valid?
       data[:user] = s4_user
       controllersSave(data.nil? ? {} : data)
-      redirect_to :action => :ceo
+      session["edit_form"] = 1
+      redirect_to :action => :controllers
     else
       session["controllersedit"] = @controllersedit
       redirect_to :action => :controllersedit
@@ -427,8 +438,9 @@ class OrganizationsController < ApplicationController
     if params[:id]
       Controllers.delete_all(['id = ? AND user = ?', params[:id], s4_user])
       ControllersAttestats.delete_all(['parent_id = ?', params[:id]])
+      session["edit_form"] = 1
     end
-    redirect_to :action => :ceo
+    redirect_to :action => :controllers
   end
 
   def controllersedit
@@ -476,6 +488,12 @@ class OrganizationsController < ApplicationController
 
   end
   
+  def controllers
+    @data = Controllers.find_all_by_user(s4_user)
+    @admin = Organizations::Grids::Controllers::Controllers.new
+    @admin.rowset = @data
+  end
+  
   def ncc_federal_law
     if form_params =  NccFederalLaw.find_by_user( s4_user )
       
@@ -512,6 +530,7 @@ class OrganizationsController < ApplicationController
   
   def ncc_federal_law_edit
     ncc_federal_law_create(params)
+    session["edit_form"] = 1
     redirect_to :action => 'ncc_federal_law'
   end
   
@@ -520,14 +539,14 @@ class OrganizationsController < ApplicationController
   end
 
   def sendcard
-    @reg_card_error = Rails.cache.fetch('organization.sendcard.reg_card_error')
-    Rails.cache.delete('organization.sendcard.reg_card_error')
-
+    @reg_card_error = getErrors
+    
     if !session['card_executor'].nil?
       @card_executor = session.delete('card_executor')
     else
       data = {:reg_card_date => Time.now}
-      data = session.delete('card_executor_data') if !@reg_card_error.nil?
+      data = data.merge(S4::RegCardExecutor.find(s4_user).attributes)
+      data = session.delete('card_executor_data') if session['card_executor_data']
       @card_executor = Organizations::SendCard.new(data)
     end
   end
@@ -539,6 +558,7 @@ class OrganizationsController < ApplicationController
       
       begin 
         @data = send_card(sendcardData)
+        @data = Nokogiri::XML(@data)
         respond_to do |format|
           format.xml {
             inn = S4::Organization.find(s4_user).inn
@@ -549,12 +569,12 @@ class OrganizationsController < ApplicationController
             response.headers['Expires'] = '0'
             response.headers['Pragma'] = 'public'
 
-            render :layout=>false, :xml => @data
+            render :layout=>false, :xml => @data.to_xml
           }
         end
         return
       rescue Exception => e
-        Rails.cache.write('organization.sendcard.reg_card_error', e.message.split("\n"))
+        Rails.cache.write cache_key('organization.sendcard.reg_card_error'), e.message
         session['card_executor_data'] = sendcardData
       end
     else
@@ -564,6 +584,29 @@ class OrganizationsController < ApplicationController
   end
 
 private
+  def check_edited_form
+    flag = session.delete("edit_form")
+    if !flag.nil?
+      @form_edit = 1
+    else
+      @form_edit = 0
+    end
+  end
+
+  def show_errors_by_resource
+    cache = Rails.cache.fetch cache_key("reg_card_errots_list")
+    ers = Hash.new
+    cache.collect do |k, v|
+      ers[k] = v
+    end
+
+    if !ers.nil? && ers[params[:action]]
+      @reg_card_errors_list = ers[params[:action]] 
+  
+      ers.delete params[:action]
+      Rails.cache.write cache_key("reg_card_errots_list"), ers
+    end 
+  end
 
   def populateFromS4
     row = UserCardsSyncS4.find_by_user(s4_user) 
