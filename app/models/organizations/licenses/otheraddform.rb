@@ -8,4 +8,8 @@ class Organizations::Licenses::Otheraddform < Organizations::Licenseaddform
   def get_licence_type_select
     get_licence_type 4
   end
+  
+  def get_licence_organ_select
+    get_licence_organ 4
+  end
 end

@@ -598,7 +598,7 @@ private
     ers = Hash.new
     cache.collect do |k, v|
       ers[k] = v
-    end
+    end if !cache.nil?
 
     if !ers.nil? && ers[params[:action]]
       @reg_card_errors_list = ers[params[:action]] 

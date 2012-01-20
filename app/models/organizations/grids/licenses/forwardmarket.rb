@@ -8,6 +8,10 @@ class Organizations::Grids::Licenses::Forwardmarket < Organizations::Grids::Grid
   def get_licence_type_select
     get_licence_type 3
   end
+  
+  def get_licence_organ_select
+    get_licence_organ 3
+  end
 
   def scope
     "grids.organizations.grids.licenses.banking"
