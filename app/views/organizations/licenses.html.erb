@@ -3,6 +3,6 @@
 <!--<h1>Лицензии</h1>-->
 <%= render "edited_form" %>
 <%= render "reg_card_errors_list" %>
-<% semantic_form_for :licenses, :url => { :action => "licensessave"} do |f| %>
+<% semantic_form_for :licenses, :url => { :action => "/organization/licensessave"} do |f| %>
   <%= f.rrender @licenses %>
 <% end %>

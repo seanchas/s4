@@ -32,6 +32,10 @@ module S4
       call_with_session("s4.getResource", resource_type.to_param, *params.collect(&:to_param))
     end
 
+    def self.get_xml_with_scope(*params)
+      call_with_session("s4.getResource", resource_type.to_param, params.first, scope, '')
+    end
+
     def self.set_with_scope_xml(*params)
       call_with_session("s4.setResource", resource_type.to_param, params.first, scope, '')
     end

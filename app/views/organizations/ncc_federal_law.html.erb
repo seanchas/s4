@@ -3,6 +3,6 @@
 <!--<h1>ФЗ-115</h1>-->
 <%= render "edited_form" %>
 <%= render "reg_card_errors_list" %>
-<% semantic_form_for :ncc_federal_law, :url => 'ncc_federal_law_edit'  do |f| %>
+<% semantic_form_for :ncc_federal_law, :url => '/organization/ncc_federal_law_edit'  do |f| %>
   <%= f.rrender @ncc_federal_law %>
 <% end %>

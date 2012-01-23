@@ -15,25 +15,24 @@ class Organizations::Grids::GridStore < Base
   # licenses
   def get_licence_type(license_type)
     if !license_type.nil?
-      S4::LicenceType.scope = {:licence_kind => license_type}
+      S4::LicenceType.scope = {'licence_kind' => license_type}
       parse_collection S4::LicenceType.all_with_scope(s4_user)
     else
       parse_collection S4::LicenceType.all(s4_user)
     end
   end
 
-  def get_licence_organ_select
-    parse_collection S4::LicenceOrgan.all(s4_user)
-  end
+#  def get_licence_organ_select()
+#    parse_collection S4::LicenceOrgan.all(s4_user)
+#  end
 
   def get_licence_organ(license_type)
-#    if !license_type.nil?
-#      S4::LicenceOrgan.scope = {:licence_kind => license_type}
-#      logger.debug "ZZZZZZZZZZZZZ#{license_type}#{S4::LicenceOrgan.get_xml(s4_user)}\n"
-#      parse_collection S4::LicenceOrgan.all_with_scope(s4_user)
-#    else
+    if !license_type.nil?
+      S4::LicenceOrgan.scope = {:licence_kind => license_type}
+      parse_collection S4::LicenceOrgan.all_with_scope(s4_user)
+    else
       parse_collection S4::LicenceOrgan.all(s4_user)
-#    end
+    end
   end
   
   # phones

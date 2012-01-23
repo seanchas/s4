@@ -3,6 +3,6 @@
 <!--<h1>Структура управления</h1>-->
 <%= render "edited_form" %>
 <%= render "reg_card_errors_list" %>
-<% semantic_form_for :structure, :url => 'structureedit' do |f| %>
+<% semantic_form_for :structure, :url => '/organization/structureedit' do |f| %>
   <%= f.rrender @structure %>
 <% end %>

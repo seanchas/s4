@@ -3,6 +3,6 @@
 <!--<h1>Филиалы</h1>-->
 <%= render "edited_form" %>
 <%= render "reg_card_errors_list" %>
-<% semantic_form_for :filials, :url => { :action => "filialscreate"} do |f| %>
+<% semantic_form_for :filials, :url => { :action => "/organization/filialscreate"} do |f| %>
   <%= f.rrender @filials %>
 <% end %>

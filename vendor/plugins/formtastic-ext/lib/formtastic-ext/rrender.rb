@@ -28,6 +28,9 @@ module Formtastic #:nodoc:
             end
             
           else
+            init_validation = {}
+            init_validation = form.init_validation if form.respond_to?('init_validation')
+
             opts ||= {}
             opts = column.options if column.respond_to?('options')
             
@@ -38,6 +41,8 @@ module Formtastic #:nodoc:
             opts[:collection] = form.send("get_#{column.name}_select") if (type == :select || type == 'select') && form.respond_to?("get_#{column.name}_select") 
             
             opts[:input_html] ||= {}
+            opts[:input_html][:class] ||= []
+            
             if (type == :boolean) && (form.attributes[column.name] == '1' || form.attributes[column.name] == true)
               opts[:input_html][:checked] = :checked
             end

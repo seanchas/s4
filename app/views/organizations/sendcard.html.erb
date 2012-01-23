@@ -8,6 +8,6 @@
    <%= @reg_card_error %>
 <% end if @reg_card_error != "" %>
 <%= error_messages_for :card_executor %>
-<% semantic_form_for :card_executor, :url => { :action => "sendcardsave"} do |f| %>
+<% semantic_form_for :card_executor, :url => { :action => "/organization/sendcardsave"} do |f| %>
   <%= f.rrender @card_executor %>
 <% end %>

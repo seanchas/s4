@@ -3,6 +3,6 @@
 <!--h1>Сведения о капитале</h1>-->
 <%= render "edited_form" %>
 <%= render "reg_card_errors_list" %>
-<% semantic_form_for :capital, :url => 'capitalsave' do |f| %>
+<% semantic_form_for :capital, :url => '/organization/capitalsave' do |f| %>
   <%= f.rrender @capital %>
 <% end %>
