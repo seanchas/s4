@@ -3,6 +3,6 @@
 <!--<h1>Контактные лица</h1>-->
 <%= render "edited_form" %>
 <%= render "reg_card_errors_list" %>
-<% semantic_form_for :contactlist, :url => { :action => "/organization/contactsnew"} do |f| %>
+<% semantic_form_for :contactlist, :url => "/organization/contactsnew" do |f| %>
   <%= f.rrender @contactlist %>
 <% end %>

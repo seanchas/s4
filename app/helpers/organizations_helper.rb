@@ -9,7 +9,7 @@ module OrganizationsHelper
     title = params[:action].to_sym if !main_infoormation.index(params[:action].to_sym).nil?
     title = :information if title == :show
     submenu = navigation.ul(:html => { :id => :organization_edit, :class => [:tabbed_menu, :level2].join(' ')} )do |ul|
-      ul.li (t(:information, :scope => [:organizations, :contextual_menu]), organization_path,             :organizations => :show)
+      ul.li(t(:information, :scope => [:organizations, :contextual_menu]), organization_path,             :organizations => :show)
       ul.li t(:sendcard, :scope => [:organizations, :contextual_menu]), sendcard_organization_path,             :organizations => :sendcard
       ul.li t(:licenses, :scope => [:organizations, :contextual_menu]), licenses_organization_path,             :organizations => :licenses
       ul.li t(:ceo, :scope => [:organizations, :contextual_menu]), ceo_organization_path,             :organizations => :ceo 
@@ -24,7 +24,7 @@ module OrganizationsHelper
 
     # main menu
     menu = navigation.ul :html => { :id => :contextual_menu, :class => [:tabbed_menu, :level1].join(' ')} do |ul|
-      ul.li (t(title, :scope => [:organizations, :contextual_menu]), organization_path,             :organizations => main_infoormation)  do 
+      ul.li(t(title, :scope => [:organizations, :contextual_menu]), organization_path,             :organizations => main_infoormation)  do 
         arrow << submenu.to_s 
       end 
       #ul.li(t(:organization_edit, :scope => [:organizations, :contextual_menu]), sendcard_organization_path, :organizations => [:sendcard, :licenses, :ceo, :controllersadd, :controllersedit, :structure, :capital, :ncc_federal_law, :filials, :phones, :contactlist])
