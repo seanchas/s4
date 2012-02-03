@@ -26,6 +26,13 @@ class Organizations::Attestatadd < Base
   column :att_date, {:as => :date, :required => false}
   column :att_number, :required => false
 
+  def buttons
+    [
+      {:input => :submit},
+      {:input => :button, :label => ::Formtastic::I18n.t(:grid_cancel, :scope => [:buttons]), :class => "grid_cancel"}
+    ]
+  end
+
   validates_presence_of :series, :number, :activity, :qualification
   def self.human_attribute_name(attr)
     case attr

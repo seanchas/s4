@@ -11,7 +11,7 @@ class Organizations::Grids::Controllers::Attestat < Base
   def getActions(data)
     [
       {:label => :edit},
-      {:label => :delete, :url => "/cards/delete/id/#{data["id_item"]}/"},
+      {:label => :delete},
     ]
   end
 

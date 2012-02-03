@@ -8,7 +8,7 @@ module Formtastic #:nodoc:
     end
     self.grid_column_exclude = [:comment]
       
-    def grid(grid, name, column_options)
+    def grid(grid, name, column_options, form = {})
       grid[:name] = name
       labelPath = grid.class.name.downcase.gsub("::", ".")
       options ||= {}
@@ -56,11 +56,22 @@ module Formtastic #:nodoc:
         end
       end
 
+      if column_options[:empty_checkbox]
+        empty_grid_opts = {:as => :boolean, :required => false, :label => ::Formtastic::I18n.t("labels.empty_grid"), :input_html => {}}
+        empty_grid_opts[:input_html][:checked] = :checked if form[column_options[:empty_checkbox].to_sym]
+
+        t = input(column_options[:empty_checkbox].to_sym, empty_grid_opts)
+        t = t.gsub(/^(.*)?(<label[^>]*>.*<\/label>)(.*)?/, '\2')
+        html << template.content_tag(:br) << 
+             template.content_tag(:div, t, {:class => :empty_grid})
+      end
+
       html = template.content_tag(:fieldset) do
         template.content_tag(:legend, ::Formtastic::I18n.t("labels.#{labelPath}")) <<
           (column_options[:comment] ? ::Formtastic::I18n.t("comments.#{labelPath}.#{name}") : '') << 
           html
       end
+
       if grid.respond_to?("rowset")
         options[:rowset] ||= {}
         options[:rowset][:data] ||= []
@@ -73,7 +84,10 @@ module Formtastic #:nodoc:
           options[:rowset][:data] << row
         end
       end
-      
+
+      options[:delete_row_message] = ::Formtastic::I18n::t "confirm.#{labelPath}.delete_row_message", :default => ::Formtastic::I18n::t("confirm.delete_row_message")
+      options[:delete_row_title] = ::Formtastic::I18n::t "confirm.#{labelPath}.delete_row_title", :default => ::Formtastic::I18n::t("confirm.delete_row_title")
+
       template.content_for :js do
         template.javascript_tag " document.observe('dom:loaded', function() { new formtasticGrid('#{id}'" << (", " << options.to_json if options != {}) << ") } ); "
       end
@@ -81,7 +95,6 @@ module Formtastic #:nodoc:
     end
     
 private
-
     def printHash(h)
       h.map do |k,v| 
         v.is_a?(String) ? "#{k}:{#{printHash(v)}}" : "#{k}:#{v}"

@@ -1,0 +1,14 @@
+<%= stylesheet_link_tag 'managerStyle' %>
+<%= stylesheet_link_tag 'dialog' %>
+<h1>
+    <%= @organization.full_name %>
+</h1>
+
+<%= contextual_menu %>
+
+
+<% if @notices.size != 0 %>
+<%= table_listing(S4::Notice.schema, @notices) %>
+<%else%>
+	Сообщений нет
+<%end%>

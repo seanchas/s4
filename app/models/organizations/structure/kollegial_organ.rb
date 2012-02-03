@@ -1,7 +1,8 @@
 class Organizations::Structure::Kollegial_organ < Base
-  column :comment1, {:as => :comment}
-  column :col_commitee_name
   column :no_col_commitee, {:as => :boolean}
+  #column :comment1, {:as => :comment}
+  column :col_commitee_name
+  
   
   column :board_fio
   column :board_firstname

@@ -11,6 +11,14 @@ class Organizations::Phonesadd < Organizations::Grids::GridStore
   column :position
   column :alert_phone_category, {:as => :select}
   
+  
+  def buttons
+    [
+      {:input => :submit},
+      {:input => :button, :label => ::Formtastic::I18n.t(:grid_cancel, :scope => [:buttons]), :class => "grid_cancel"}
+    ]
+  end
+
   validates_presence_of :country, :operator, :number, :main, :fio, :position, :alert_phone_category
   def self.human_attribute_name(attr)
     case attr

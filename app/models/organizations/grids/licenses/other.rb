@@ -20,7 +20,7 @@ class Organizations::Grids::Licenses::Other < Organizations::Grids::GridStore
   def getActions(data)
     [
       {:label => :edit},
-      {:label => :delete, :url => "/cards/delete/id/#{data["number"]}/"},
+      {:label => :delete},
     ]
   end
   

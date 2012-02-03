@@ -8,14 +8,22 @@
 	border-bottom: 1px solid #ddd;
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
+	box-shadow: rgba(0, 0, 0, 0.199219) 0px 2px 4px 0px;
 }
 
 #dropdownmenu .dropdownmenu_arrow {
 	margin-left: 5px;
 }
-#dropdownmenu ul.level2 li{
+#dropdownmenu ul.level2 li {
 	background-image: none;
 	background: #fff;
+	color: #4D4D4D;
+}
+
+#dropdownmenu ul.level2 li:hover {
+	background-color: #f6f6f6;
+	color: #000;
+    border-color:#f6f6f6;
 }
 
 #dropdownmenu ul.level2 li.current {

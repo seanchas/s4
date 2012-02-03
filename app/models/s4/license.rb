@@ -14,7 +14,7 @@ module S4
     def self.create_xml(rowset)
       resources = []
       gridStore = Organizations::Grids::GridStore.new
-      licence_organ = gridStore.get_licence_organ_select
+      licence_organ = gridStore.get_licence_organ nil
       licence_type = gridStore.get_licence_type nil
   
       cnt = 1

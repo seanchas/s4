@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112134804) do
+ActiveRecord::Schema.define(:version => 20120203135324) do
 
   create_table "capitals", :force => true do |t|
     t.string  "auth_capital_vol"
@@ -104,14 +104,6 @@ ActiveRecord::Schema.define(:version => 20120112134804) do
     t.integer "s4_id"
   end
 
-  create_table "indirect_owners", :force => true do |t|
-    t.string "surname"
-    t.string "firstname"
-    t.string "patronymic"
-    t.string "share"
-    t.string "parent_id"
-  end
-
   create_table "licenses", :force => true do |t|
     t.string "number"
     t.string "licence_type"
@@ -142,6 +134,47 @@ ActiveRecord::Schema.define(:version => 20120112134804) do
     t.integer "s4_id"
   end
 
+  create_table "okveds", :force => true do |t|
+    t.string  "okved"
+    t.integer "parent_id"
+  end
+
+  create_table "organizations", :force => true do |t|
+    t.string  "full_name"
+    t.string  "short_name"
+    t.string  "full_name_eng"
+    t.string  "short_name_eng"
+    t.string  "mesto"
+    t.string  "post_addr"
+    t.string  "fact_addr"
+    t.string  "tel_areacode"
+    t.string  "tel"
+    t.string  "fax_areacode"
+    t.string  "fax"
+    t.string  "email"
+    t.string  "internet"
+    t.string  "inn"
+    t.string  "kpp"
+    t.string  "kpp2"
+    t.string  "bik"
+    t.string  "swift"
+    t.string  "oksm"
+    t.string  "registry_number_2002"
+    t.date    "reg_date"
+    t.string  "registry_organ_2002"
+    t.string  "ogrn"
+    t.date    "ogrn_date"
+    t.string  "registry_organ"
+    t.string  "registry_place"
+    t.string  "okpo"
+    t.string  "okogu"
+    t.string  "okfs"
+    t.string  "okopf"
+    t.string  "okato"
+    t.string  "user"
+    t.integer "s4_id"
+  end
+
   create_table "phones", :force => true do |t|
     t.string "country"
     t.string "operator"
@@ -154,11 +187,20 @@ ActiveRecord::Schema.define(:version => 20120112134804) do
     t.string "user"
   end
 
-  create_table "profiter_contracts", :force => true do |t|
-    t.string "name"
-    t.string "contract_number"
-    t.string "contract_date"
-    t.string "parent_id"
+  create_table "reg_card_errors", :force => true do |t|
+    t.text   "common_errors",   :limit => 2147483647
+    t.text   "information",     :limit => 2147483647
+    t.text   "licenses",        :limit => 2147483647
+    t.text   "ceo",             :limit => 2147483647
+    t.text   "controllers",     :limit => 2147483647
+    t.text   "structure",       :limit => 2147483647
+    t.text   "capital",         :limit => 2147483647
+    t.text   "filials",         :limit => 2147483647
+    t.text   "ncc_federal_law", :limit => 2147483647
+    t.text   "phones",          :limit => 2147483647
+    t.text   "sendcard",        :limit => 2147483647
+    t.text   "contactlist",     :limit => 2147483647
+    t.string "user"
   end
 
   create_table "reg_card_executors", :force => true do |t|
@@ -190,6 +232,7 @@ ActiveRecord::Schema.define(:version => 20120112134804) do
     t.string  "user"
     t.integer "s4_id"
     t.boolean "no_executive_commitee"
+    t.boolean "no_shareholder"
   end
 
   create_table "struktures_controls", :force => true do |t|
@@ -209,7 +252,8 @@ ActiveRecord::Schema.define(:version => 20120112134804) do
   end
 
   create_table "user_cards_sync_s4s", :force => true do |t|
-    t.string "user"
+    t.string  "user"
+    t.boolean "card_edited", :default => false
   end
 
 end

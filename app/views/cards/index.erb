@@ -1,8 +1,7 @@
-<h1>
-    <%= @organization.full_name %>
-</h1>
-.
-<p>Регистрационная карточка предоставляется участником в&nbsp;соответствии с&nbsp;требованиями документов, размещенных в&nbsp;разделе &laquo;<a href="http://micex.ru/participation/info/reporting/or
+<h1><%= S4::Organization.find(s4_user).full_name %></h1>
+<%=contextual_menu %>
+
+<%= textilize t(".description") %>
 
 <ul class="cards">
     <%- @cards.each do |card| -%>

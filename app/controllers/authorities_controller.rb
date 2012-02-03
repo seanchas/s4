@@ -18,6 +18,7 @@ class AuthoritiesController < ApplicationController
   end
   
   def index
+    @organization = S4::Organization.find(s4_user)
     @authority_params_type_id = nil
     
     @supo_params = params

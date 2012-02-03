@@ -16,7 +16,7 @@ class Organizations::Grids::Contactlist::Contacts_s < Base
   def getActions(data)
     [
       {:label => :edit},
-      {:label => :delete, :url => "/cards/delete/id/#{data["number"]}/"},
+      {:label => :delete},
     ]
   end
   

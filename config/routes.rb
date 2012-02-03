@@ -5,6 +5,9 @@ ActionController::Routing::Routes.draw do |map|
   map.xmlrpc "/xml-rpc", :controller => :welcome, :action => :xmlrpc
 
   map.resource :organization, :only => :show, :member => {
+    :news => :get,
+    :notice => :get,
+    :messages => :get,
     :management => :get, 
     :manager => :get, 
     :codes => :get, 
@@ -38,7 +41,9 @@ ActionController::Routing::Routes.draw do |map|
     :ncc_federal_law_edit => :post,
     :ncc_federal_law => :get,
     :sendcard => :get,
-    :sendcardsave => :post
+    :sendcardsave => :post,
+    :organizationsave => :post,
+    :reset => :get
   }
   
   map.resources :markets
@@ -46,6 +51,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :documents
   
   map.resources :cards, :collection => {
+    :sendcard => :get,
+    :sendcardsave => :post
   }
   
   map.formvalidate "/formvalidate", :controller => :welcome, :action => :formvalidate

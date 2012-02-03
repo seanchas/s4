@@ -20,6 +20,9 @@ module S4
       @market_groups ||= S4::MarketGroup.all(@user)
     end
 
+    def self.create_xml(row)
+      S4::Card.create_common_single_xml('organization', row, ["user"], true)
+    end
   end
   
 end

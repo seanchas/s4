@@ -4,6 +4,26 @@
 
 var Dialog = {};
 Dialog.Box = Class.create();
+Dialog.Box.Confirm = function(title, text, funcs){
+	var dialogDiv = new Element('div', {'class': 'dialog-box confirm'}).update(text + "<br /><br />");
+	document.body.insert(dialogDiv);
+	var dialog = new Dialog.Box(dialogDiv, {title: title});
+
+	var buttonOK = new Element('button').update(Dialog.Messages['ok']);
+	buttonOK.on('click', function(e) { Event.stop(e); funcs['ok'](); dialog.hide(); });
+
+	var buttonCancel = new Element('button').update(Dialog.Messages['cancel']);
+	if (funcs['cancel']) {
+		buttonCancel.on('click', function(e) { Event.stop(e); funcs['cancel'](); dialog.hide(); });
+	} else {
+		buttonCancel.on('click', function(e) { Event.stop(e); dialog.hide(); });
+	}
+	dialogDiv.insert(new Element('center')
+		.insert(buttonOK, {position: 'after'})
+		.insert(buttonCancel, {position: 'after'}));
+	
+	dialog.show();
+}
 Object.extend(Dialog.Box.prototype, {
   initialize: function(id, options) {
     this.createOverlay();
@@ -68,10 +88,10 @@ Object.extend(Dialog.Box.prototype, {
 
   show: function(optHeight/* optionally override the derived height, which often seems to be short. */) {
     //this.overlay.style.height = this.winHeight()+'px';
-	  if (navigator.appVersion.match(/\bMSIE\b/)) {
-			this._prepareIE("100%", "hidden");
-			//if (!navigator.appVersion.match(/\b7.0\b/)) window.scrollTo(0,0); // Disable scrolling on top for IE7
-		}
+//	  if (navigator.appVersion.match(/\bMSIE\b/)) {
+//			this._prepareIE("100%", "hidden");
+//			//if (!navigator.appVersion.match(/\b7.0\b/)) window.scrollTo(0,0); // Disable scrolling on top for IE7
+//		}
     this.moveDialogBox('out');
 
     //this.overlay.onclick = this.hide.bind(this);
@@ -86,9 +106,11 @@ Object.extend(Dialog.Box.prototype, {
 
     this.dialog_box.style.left = (this.winWidth() - e_dims.width)/2 + 'px';
 
-    var h = optHeight || (e_dims.height + 200);
-    //this.dialog_box.style.top = this.getScrollTop() + (this.winHeight() - h/2)/2 + 'px';
-    this.dialog_box.style.top = this.getScrollTop() + 80 + 'px';
+    var h = optHeight || (e_dims.height);
+    var altTop  = (this.winHeight() - h)/2;
+    if (altTop < 0) altTop = 100;
+    this.dialog_box.style.top = this.getScrollTop() + altTop + 'px';
+    //this.dialog_box.style.top = this.getScrollTop() + 80 + 'px';
   },
 
   getScrollTop: function() {
@@ -113,10 +135,10 @@ Object.extend(Dialog.Box.prototype, {
     new Effect.Fade(this.overlay, {duration: 0.1});
     this.dialog_box.style.display = 'none';
     this.moveDialogBox('back');
-    if (navigator.appVersion.match(/\bMSIE\b/)) {
-		this._prepareIE("100%", "");
-		//if (!navigator.appVersion.match(/\b7.0\b/)) window.scrollTo(0,0); // Disable scrolling on top for IE7
-	}
+//    if (navigator.appVersion.match(/\bMSIE\b/)) {
+//		this._prepareIE("100%", "");
+//		//if (!navigator.appVersion.match(/\b7.0\b/)) window.scrollTo(0,0); // Disable scrolling on top for IE7
+//	}
 //    $A(this.dialog_box.getElementsByTagName('input')).each( function(e) {
 //      if (e.type != 'submit' && e.type != 'button') e.value = '';
 //    });

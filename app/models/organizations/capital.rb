@@ -10,11 +10,11 @@ class Organizations::Capital < Base
   column :comment2, {:as => :comment}
   column :unpaid_auth_capital_vol, {:required => false}
   column :unpaid_auth_capital_vollit, {:required => false}
-  
-  
-  column :indirect_owner, {:as => :grid}, Organizations::Grids::Capital::Indirectowner.new
-  column :no_indirect_owners, {:as => :boolean}
-
-  column :profiter_contract, {:as => :grid}, Organizations::Grids::Capital::Profitercontract.new
-  column :no_ncc_profiters, {:as => :boolean}
+#  
+#  
+#  column :indirect_owner, {:as => :grid}, Organizations::Grids::Capital::Indirectowner.new
+#  column :no_indirect_owners, {:as => :boolean}
+#
+#  column :profiter_contract, {:as => :grid}, Organizations::Grids::Capital::Profitercontract.new
+#  column :no_ncc_profiters, {:as => :boolean}
 end

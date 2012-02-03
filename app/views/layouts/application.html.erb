@@ -10,8 +10,10 @@
             <%= [t(".title"), s4_user ? t("title", :scope => [params[:controller]]) : nil].compact.join(" :: ") %>
         </title>
 		<%= render "shared/ga" %>
+	    <%= javascript_tag("Dialog.Messages = #{::I18n.t('shared.dialogbox').to_json};") %>
 		<%= yield(:css) if @content_for_css %>
 		<%= yield(:js) if @content_for_js %>
+		
     </head>
     <body>
         <div id="page_wrapper">

@@ -1,8 +1,13 @@
 class UserCardsSyncS4 < ActiveRecord::Base
-  attr_accessible :user
+  attr_accessible :user, :form_edited
   
   def self.sync(s4_user)
 
+    # after fully updates (sync once)
+    UserCardsSyncS4.destroy_all ["user = ?", s4_user]
+    UserCardsSyncS4.new({:user => s4_user}).save
+
+    self.organization_sync(s4_user)
     self.licenses_sync(s4_user)
     self.ceo_sync(s4_user)
     self.controller_sync(s4_user)
@@ -12,9 +17,8 @@ class UserCardsSyncS4 < ActiveRecord::Base
     self.filial_info(s4_user)
     self.contacts_sync(s4_user)
     self.phones_sync(s4_user)
+    self.reg_card_executor_sync(s4_user)
 
-    # after fully updates (sync once)
-    UserCardsSyncS4.new({:user => s4_user}).save
   end
   
 private
@@ -113,27 +117,6 @@ private
     fix_checkbox(data, ['fully_paid', 'no_indirect_owners', 'no_ncc_profiters'])
     row = Capitals.new(data)
     row.save
-    
-    indirectOwner = S4::IndirectOwner.all(s4_user)
-    indirectOwner.collect do |item|
-      itemData = item.attributes.symbolize_keys
-      itemData[:parent_id] = row.id
-      itemData.delete(:id)
-      
-      r = IndirectOwner.new(itemData)
-      r.save
-    end
-
-    profiterContract = S4::ProfiterContract.all(s4_user)
-    profiterContract.collect do |item|
-      itemData = item.attributes.symbolize_keys
-      itemData[:parent_id] = row.id
-      itemData.delete(:id)
-      
-      r = ProfiterContract.new(itemData)
-      r.save
-    end
-    logger.debug "#{capitalData.to_yaml}\n\n#{indirectOwner.to_yaml}\n\n#{profiterContract.to_yaml}"
   end
 
   # Структура управления (5.4)
@@ -153,7 +136,7 @@ private
     # fix checkboxes
     fix_checkbox(dataStructures, ['no_col_commitee', 'no_executive_commitee'])
 
-    row = Structures.new(dataStructures)
+    row = Structure.new(dataStructures)
     row.save
     
     ## grids
@@ -162,7 +145,7 @@ private
     shareholder.collect do |item|
       data = item.attributes.symbolize_keys
       data[:parent_id] = row.id
-      shareholderRow = Struktures_shareholder.new(data)
+      shareholderRow = StrukturesShareholder.new(data)
       shareholderRow.save
     end
 
@@ -182,7 +165,7 @@ private
       data[:s4_user] = s4_user
       data[:parent_id] = parent_id
       data[:grid_name] = type
-      row = Struktures_Controls.new(data)
+      row = StrukturesControl.new(data)
       row.save
     end
   end
@@ -200,7 +183,7 @@ private
       data[:user] = s4_user
       data.delete(:id)
 
-      row = Controllers.new(data)
+      row = Controller.new(data)
       row.save
       
       # add attestats
@@ -223,7 +206,7 @@ private
         end
         att_data[:activity] =  "[#{a.join(',')}]"
         
-        att_row = ControllersAttestats.new(att_data)
+        att_row = ControllersAttestat.new(att_data)
         att_row.save
       end # attestats
     end
@@ -287,7 +270,7 @@ private
       data[:licence_type] = recource.xpath('./property[@name="licence_type"]').attribute('ref_id').value if !recource.nil?
       
       data[:kind] = "banking"
-      type_id = recource.xpath('./property[@name="licence_kind"]').attribute('ref_id').value
+      type_id = recource.xpath('./property[@name="licence_kind"]').attribute('ref_id').value if !recource.nil?
       data[:kind] = S4::LicenceKind.getKindById(type_id) if !type_id.nil?
       data.delete(:licence_status)
       data.delete(:id)
@@ -295,7 +278,40 @@ private
       row.save
     end
   end
-  
+
+  # Общие сведения (5.1)
+  def self.organization_sync(s4_user)
+    #organizationDoc= Nokogiri::XML::parse S4::Organization.get_xml(s4_user)
+    organization = S4::Organization.all(s4_user).first
+
+    data = organization.attributes.symbolize_keys
+    data[:s4_id] = data.delete(:id)
+    data.delete(:okveds)
+    data[:user] = s4_user
+    row = Organization.new(data)
+    row.save
+    
+    okveds = S4::Okved.all(s4_user)
+    okveds.collect do |okved|
+      okved = okved.attributes.symbolize_keys
+      okved[:parent_id] = row.id
+      okved[:s4_id] = okved.delete(:id)
+      okved_row = Okved.new(okved)
+      okved_row.save
+    end
+  end
+
+  def self.reg_card_executor_sync(s4_user)
+    regcardData = S4::RegCardExecutor.all(s4_user)
+    data = regcardData.first.attributes.symbolize_keys
+    data[:s4_id] = data[:id]
+    data[:user] = s4_user
+    
+    # fix checkboxes
+    row = RegCardExecutor.new(data)
+    row.save
+  end
+
   def self.fix_checkbox(row, fields)
     fields.collect do |field|
       row[:"#{field}"] = false if row[:"#{field}"].nil? || row[:"#{field}"] == '' 

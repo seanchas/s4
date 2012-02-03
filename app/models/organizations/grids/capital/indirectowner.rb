@@ -7,7 +7,7 @@ class Organizations::Grids::Capital::Indirectowner < Base
   def getActions(data)
     [
       {:label => :edit},
-      {:label => :delete, :url => "/cards/delete/id/#{data["number"]}/"},
+      {:label => :delete},
     ]
   end
   def addForm

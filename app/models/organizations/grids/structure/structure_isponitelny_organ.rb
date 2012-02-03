@@ -10,7 +10,7 @@ class Organizations::Grids::Structure::Structure_isponitelny_organ < Base
   def getActions(data)
     [
       {:label => :edit},
-      {:label => :delete, :url => "/cards/delete/id/#{data["number"]}/"},
+      {:label => :delete},
     ]
   end
 

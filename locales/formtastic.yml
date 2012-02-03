@@ -3,12 +3,20 @@ ru:
     yes_word: "Да"
     no_word: "Нет"
     submit: "Сохранить"
+
+    confirm:
+      delete_row_message: 'Удалить запись?'
+      delete_row_title: 'Удаление записи'
+
     actions:
       edit: 'Редактировать'
       delete: 'Удалить'
+
     buttons:
       grid_add: "Добавить"
+      grid_cancel: 'Отменить'
     labels:
+      empty_grid: 'Отсутствуют'
       checkboxes:
         activity:
           r: "Руководитель"
@@ -79,7 +87,7 @@ ru:
           no_corr_acc_corr_countr: "Отсутствует"
           no_corr_acc_drug: "Отсутствует"
           no_corr_acc_offshore: "Отсутствует"
-          no_shell_bank_acc: 'Отсутствуют счета, открытые "банками-оболочками"'
+          no_shell_bank_acc: 'Отсутствует'
           at_control_employee_f: "Фамилия"
           at_control_employee_i: "Имя"
           at_control_employee_o: "Отчество"

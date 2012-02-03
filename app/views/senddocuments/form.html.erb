@@ -1,7 +1,8 @@
 <%= stylesheet_link_tag("senddocument2") %>
 <%= stylesheet_link_tag("authority") %>
 <%= stylesheet_link_tag("formstyling") %>
-<h1 class="senddocument_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1>
+<!--h1 class="senddocument_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1-->
+<h1><%= @organization.full_name %></h1>
 
 <%= contextual_menu %>
 

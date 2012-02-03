@@ -1,25 +1,50 @@
 module Formtastic #:nodoc:
   class SemanticFormBuilder 
     def rrender(form, prefix = '')
-      
       template.stylesheet_include_once "formstyling.css"
 
       labelPath = form.class.name.downcase.gsub("::", ".")
+      currentGroup = nil
       html = form.class.columns.collect do |column|
+        out = ""
+        if column.respond_to?('options') && column.options[:group]
+          legend = ::Formtastic::I18n::t "labels.#{labelPath}.#{column.options[:group]}", :default => ''
+          if currentGroup.nil?
+            out << '<li class="group"><fieldset>'
+            if legend != '' 
+              out << template.content_tag(:legend, legend)
+            end
+            out << '<ul>'
+          elsif currentGroup != column.options[:group]
+            out << '</ul></fieldset></li><li class="group"><fieldset>'
+            if legend != '' 
+              out << template.content_tag(:legend, legend)
+            end
+            out << '<ul>'
+          end
+
+          currentGroup = column.options[:group]
+        else
+          if !currentGroup.nil?
+            out << '</ul></fieldset>'
+          end
+          currentGroup = nil
+        end
+
         type = column.options[:as] if column.respond_to?('options') && column.options[:as]
         pr = (prefix == '') ? column.name : [prefix, "[#{column.name}]"].join('')
 
         case type
           when :grid then
             d = (form.attributes[column.name] ? form.attributes[column.name] : column.default)
-            grid d, "#{@object_name.to_s}[#{column.name}]", (column.respond_to?('options') ? column.options : {})
+            out << grid(d, "#{@object_name.to_s}[#{column.name}]", (column.respond_to?('options') ? column.options : {}), form)
           when :form then
 
             rend = template.semantic_fields_for "#{@object_name.to_s}[#{column.name}]" do |f|
               d = (form.attributes[column.name] ? form.attributes[column.name] : column.default)
               f.rrender(d, pr)
             end.compact.join("\n")
-            template.content_tag :li, :class => :form do 
+            out << template.content_tag(:li, :class => :form) do 
               template.content_tag(:fieldset) do 
                 rend = template.content_tag :ul, rend
                 template.content_tag(:legend, ::Formtastic::I18n.t("labels.#{labelPath}.#{column.name}")) <<
@@ -47,7 +72,7 @@ module Formtastic #:nodoc:
               opts[:input_html][:checked] = :checked
             end
 
-            if prefix != ''
+            if prefix != '' && type != :boolean && type != 'boolean'
               opts[:input_html][:value] = form.attributes[column.name] if !form.attributes[column.name].nil?
             end
             
@@ -56,13 +81,16 @@ module Formtastic #:nodoc:
               opts[:input_html][:value] = template.l(v.to_date) if !v.nil? && v != ""
             end
             
-            html = input(column.name, opts)
-            #html = input("#{prefix}#{column.name}", opts)
-            if column.options[:description]
-              html = adddescription html, [@object_name.to_s.split('_').last, column.name], labelPath
+            out << input(column.name, opts)
+            if column.respond_to?("options") && column.options[:description]
+              out = adddescription out, [@object_name.to_s.split('_').last, column.name], labelPath
             end
-            html
+            out
         end
+      end
+
+      if !currentGroup.nil?
+        html << '</ul></fieldset>'
       end
 
       if prefix == ''

@@ -13,8 +13,8 @@ class Organizations::Grids::Phones::Phones_f < Organizations::Grids::GridStore
   
   def getActions(data)
     [
-      {:label => :edit, :action => "edit", :options => {:confirm => "XXXX???"}},
-      {:label => :delete, :url => "/cards/delete/id/#{data["number"]}/"},
+      {:label => :edit},
+      {:label => :delete},
     ]
   end
   

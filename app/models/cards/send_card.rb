@@ -1,4 +1,5 @@
-class Organizations::SendCard < Base
+class Cards::SendCard < Base
+  column :item_id, {:as => :hidden}
   column :comment1, {:as => :comment, :i18n => {:doc_form => I18n.t(:menu_title, :scope => [:shared, :sendmessages])}}
   column :last_name
   column :firstname
@@ -10,7 +11,7 @@ class Organizations::SendCard < Base
   
   def buttons
     [
-      {:input => :button, :label => I18n.t(:send_card_button, :scope => [:formtastic, :labels, :organizations, :sendcard]), :onclick => 'this.form.submit();return false;'}
+      {:input => :button, :label => I18n.t(:send_card_button, :scope => [:formtastic, :labels, :cards, :sendcard]), :onclick => 'this.form.submit();return false;'}
     ]
   end
 

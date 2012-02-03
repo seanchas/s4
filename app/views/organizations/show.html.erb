@@ -1,12 +1,7 @@
-<h1>
-    <%= @organization.full_name %>
-</h1>
-
-<%= contextual_menu %>
-
-
-<div class="resource">
-    <%- S4::Organization.schema.each do |element| -%>
-        <%= render :partial => "shared/s4/resource/#{element.element_type}", :object => element, :locals => { :resource => @organization } %>
-    <%- end -%>
-</div>
+<h1><%= S4::Organization.find(s4_user).full_name %></h1>
+<%=contextual_menu %>
+<%= render "edited_form" %>
+<%= render "reg_card_errors_list" %>
+<% semantic_form_for :organisation, :url => "/organization/organizationsave" do |f| %>
+  <%= f.rrender @organisation %>
+<% end %>

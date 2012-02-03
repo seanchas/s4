@@ -1,4 +1,4 @@
-/**
+/*
  * @author zingorn <zingorn@gmail.com>
  */
 Date.prototype.format = function(f)
@@ -103,39 +103,43 @@ formtasticGrid.prototype = {
 	{
 		if (this.addFormDialog == null) return;
 		Event.stop(e);
-		var id = $(target).readAttribute('rowid');
-		var self = this;
-		$(this.name).getElementsBySelector('tbody tr[rowid=' + id + ']').first().remove();
+		Dialog.Box.Confirm(this.options.delete_row_title, this.options.delete_row_message, {
+			'ok': function(){
+				var id = $(target).readAttribute('rowid');
+				var self = this;
+				$(this.name).getElementsBySelector('tbody tr[rowid=' + id + ']').first().remove();
 
-		// update numbering
-		var tplNameValue = $(this.name).select('tbody').first().readAttribute('tpl');
-		var tplName = new RegExp(('(' + tplNameValue + ')').replace(/\[/g, '\\[').replace(/\]/g, '\\]', true).replace('%i%', '\\d+'), 'i');
-		
-		var tplIdValue = tplNameValue.replace(/\]\[/g, '_').replace('[', '_').replace(']', '_');
-		var tplId = new RegExp(('(' + tplIdValue + ')').replace('%i%', '\\d+'), 'i');
+				// update numbering
+				var tplNameValue = $(this.name).select('tbody').first().readAttribute('tpl');
+				var tplName = new RegExp(('(' + tplNameValue + ')').replace(/\[/g, '\\[').replace(/\]/g, '\\]', true).replace('%i%', '\\d+'), 'i');
+				
+				var tplIdValue = tplNameValue.replace(/\]\[/g, '_').replace('[', '_').replace(']', '_');
+				var tplId = new RegExp(('(' + tplIdValue + ')').replace('%i%', '\\d+'), 'i');
 
-		// update name of hidden inputs
-		$(this.name).getElementsBySelector('tbody tr').each(function(tr, i){
-			var nameReplaceTo = tplNameValue.replace('%i%', i);
-			var idReplaceTo = tplIdValue.replace('%i%', i);
-			$(tr).select('[tpl=1]').each(function(item){
-				var name = $(item).readAttribute('name');
-				if (name) {
-					$(item).writeAttribute('name', name.replace(tplName, nameReplaceTo));
-				}
+				// update name of hidden inputs
+				$(this.name).getElementsBySelector('tbody tr').each(function(tr, i){
+					var nameReplaceTo = tplNameValue.replace('%i%', i);
+					var idReplaceTo = tplIdValue.replace('%i%', i);
+					$(tr).select('[tpl=1]').each(function(item){
+						var name = $(item).readAttribute('name');
+						if (name) {
+							$(item).writeAttribute('name', name.replace(tplName, nameReplaceTo));
+						}
 
-				var name = $(item).readAttribute('id');
-				if (id) {
-					$(item).writeAttribute('id', name.replace(tplId, idReplaceTo));
-				}
-			});
+						var name = $(item).readAttribute('id');
+						if (id) {
+							$(item).writeAttribute('id', name.replace(tplId, idReplaceTo));
+						}
+					});
+				});
+				
+				// remove from object rowset
+				this.rowset.data = this.rowset.data.slice(0, id).concat(this.rowset.data.slice(id, this.rowset.data.length - 1));
+
+				this._refreshRows();
+				this._checkEmptyTable();
+			}.bind(this)
 		});
-		
-		// remove from object rowset
-		this.rowset.data = this.rowset.data.slice(0, id).concat(this.rowset.data.slice(id, this.rowset.data.length - 1));
-
-		this._refreshRows();
-		this._checkEmptyTable();
 	},
 	_refreshRows: function(){
 		var self = this;
@@ -159,7 +163,8 @@ formtasticGrid.prototype = {
 			this.emptyTableTr.hide();
 		}
 	},
-	_clearAddForm: function(){
+	_clearAddForm: function()
+	{
 		var form = this.addFormDialog.select('form').first();
 		form.getInputs('text').each(function(v){v.setValue('');});
 		form.getInputs('checkbox').each(function(v){v.checked = ''; });
@@ -168,6 +173,30 @@ formtasticGrid.prototype = {
 			el.setValue('');
 		});
 	},
+	_lockButtons: function()
+	{
+		var submit = this.addFormDialog.getElementsBySelector('form .buttons input, form .buttons button').each(function(v){
+			v.disabled = true;
+		});
+	},
+	_unlockButtons: function()
+	{
+		var submit = this.addFormDialog.getElementsBySelector('form .buttons input, form .buttons button').each(function(v){
+			v.disabled = false;
+		});
+	},
+	_rebindButtons: function()
+	{
+		var submit = this.addFormDialog.getElementsBySelector('form input[type=submit]').first();
+		Event.stopObserving(submit, 'click');
+		submit.on('click', this.save.bind(this));
+		
+		var cancel = this.addFormDialog.getElementsBySelector('form button.grid_cancel').first();
+		if (cancel) {
+			Event.stopObserving(cancel, 'click');
+			cancel.on('click', function(event) { Event.stop(event); this._lockButtons(); this.addFormDialog.hide(); }.bind(this));
+		}
+	},
 	editRow: function(e, target)
 	{
 		if (this.addFormDialog == null) return;
@@ -175,10 +204,8 @@ formtasticGrid.prototype = {
 		new Dialog.Box(this.addFormDialog, {title: this.options.addformtitle});
 		this.addFormDialog.writeAttribute('action', 'edit');
 
-		var submit = this.addFormDialog.getElementsBySelector('form input[type=submit]').first();
-		Event.stopObserving(submit, 'click');
-		submit.on('click', this.save.bind(this));
-		
+		this._rebindButtons();
+
 		var id = $(target).readAttribute('rowid');
 		this._clearAddForm();
 		var data = this.rowset.data[id];
@@ -195,6 +222,7 @@ formtasticGrid.prototype = {
 		if (typeof(errDiv) != 'undefined') {
 			errDiv.update('');
 		}
+		this._unlockButtons();
 		this.addFormDialog.show();
 	},
 	addRow: function()
@@ -204,15 +232,15 @@ formtasticGrid.prototype = {
 		new Dialog.Box(this.addFormDialog, {title: this.options.addformtitle});
 		this.addFormDialog.writeAttribute('action', 'add');
 
-		var submit = this.addFormDialog.getElementsBySelector('form input[type=submit]').first();
-		Event.stopObserving(submit, 'click');
-		submit.on('click', this.save.bind(this));
+		this._rebindButtons();
 
 		this._clearAddForm();
 		var errDiv = $(this.addFormDialog).select('div.errorDiv').first();
 		if (typeof(errDiv) != 'undefined') {
 			errDiv.update('');
 		}
+
+		this._unlockButtons();
 		this.addFormDialog.show();
 	},
 	_getValueByType: function(item){
@@ -345,6 +373,7 @@ formtasticGrid.prototype = {
 	save: function(event, target)
 	{
 		Event.stop(event);
+		this._lockButtons();
 		var self = this;
 
 		var form = $(this.addFormDialog).select('form').first();
@@ -383,6 +412,7 @@ formtasticGrid.prototype = {
 						form.insert({before: errDiv});
 					}
 					errDiv.update(html);
+					self._unlockButtons();
 				}
 			}
 		});

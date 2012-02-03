@@ -5,6 +5,8 @@ module Formtastic #:nodoc:
       template.stylesheet_include_once "calendarview"
 
       options[:id] = generate_html_id(method, "")
+      options[:input_html] ||= {}
+      options[:input_html][:autocomplete] = :off
       template.content_for :js do
         template.javascript_tag "document.on('dom:loaded', function() { Calendar.setup({ dateField: '#{options[:id]}', triggerElement: '#{options[:id]}' }); });"
       end

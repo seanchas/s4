@@ -3,8 +3,8 @@ class Organizations::Grids::Ncc_federal_law::Shell_bank_acc < Base
 
   def getActions(data)
     [
-      {:label => :edit, :url => ''},
-      {:label => :delete, :url => "/cards/delete/id/#{data["number"]}/"},
+      {:label => :edit},
+      {:label => :delete},
     ]
   end
   

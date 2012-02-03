@@ -2,7 +2,8 @@
 <%= stylesheet_link_tag("formstyling") %>
 <%= javascript_include_tag("authority") %>
 
-<h1 class="authority_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1>
+<!--h1 class="authority_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1-->
+<h1><%= @organization.full_name %></h1>
 
 <%= contextual_menu %>
 

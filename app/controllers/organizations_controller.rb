@@ -7,9 +7,27 @@ class OrganizationsController < ApplicationController
   before_filter :populateFromS4
   before_filter :show_errors_by_resource
   before_filter :check_edited_form
+  before_filter :get_edited_form
 
   def show
-    @organization = S4::Organization.find(s4_user)
+    if data = Organization.find_by_user(s4_user)
+      data = data.attributes.symbolize_keys
+      data[:item_id] = data.delete(:id)
+      data.delete(:user)
+      
+      okved_grid = Organizations::Grids::Organization::Okved.new
+      okved_grid.rowset = convertForRowset(Okved.find_all_by_parent_id(data[:item_id]))
+      data[:okveds] = okved_grid
+      @organisation = Organizations::Organizations.new(data)
+    else
+      @organisation = Organizations::Organizations.new({:id_item => 0})
+    end
+  end
+  
+  def organizationsave
+    organizationSave(params[:organisation].symbolize_keys)
+    session["edit_form"] = 1
+    redirect_to(:action => :show)
   end
 
   def management
@@ -97,10 +115,10 @@ class OrganizationsController < ApplicationController
   
 
   def structure
-    if form_params =  Structures.find_by_user( s4_user )
-      shareholder_data = convertForRowset( Struktures_shareholder.find_all_by_parent_id_and_user(form_params[:id], form_params[:user]  ) )
-      directors_committee_date = convertForRowset( Struktures_Controls.find_all_by_parent_id_and_user_and_gridname( form_params[:id], form_params[:user], "directors_committee") )
-      direction_data = convertForRowset(Struktures_Controls.find_all_by_parent_id_and_user_and_gridname( form_params[:id], form_params[:user], "direction" ) )
+    if form_params =  Structure.find_by_user( s4_user )
+      shareholder_data = convertForRowset( StrukturesShareholder.find_all_by_parent_id_and_user(form_params[:id], form_params[:user]  ) )
+      directors_committee_date = convertForRowset( StrukturesControl.find_all_by_parent_id_and_user_and_gridname( form_params[:id], form_params[:user], "directors_committee") )
+      direction_data = convertForRowset(StrukturesControl.find_all_by_parent_id_and_user_and_gridname( form_params[:id], form_params[:user], "direction" ) )
 
       shareholder = Organizations::Grids::Structure::Structure.new
       directors_committee = Organizations::Grids::Structure::Structure_isponitelny_organ.new
@@ -122,6 +140,7 @@ class OrganizationsController < ApplicationController
 
       formParams = {
         :id_item => form_params[:id],
+        :no_shareholder => form_params[:no_shareholder],
         :main_commitee_name => form_params[:main_commitee_name],
         :shareholder => shareholder,
 
@@ -148,31 +167,31 @@ class OrganizationsController < ApplicationController
     paramsMerge = params[:structure].merge(kollegialorgan)
 
     if paramsMerge[:id_item].is_numeric? && paramsMerge[:id_item] != '0'
-      struktureForm = Structures.update(paramsMerge[:id_item], paramsMerge)
+      struktureForm = Structure.update(paramsMerge[:id_item], paramsMerge)
     else
-      struktureForm = Structures.new(paramsMerge)
+      struktureForm = Structure.new(paramsMerge)
     end
     struktureForm.save
 
-    Struktures_shareholder.delete_all(["parent_id = ?", struktureForm.id])
+    StrukturesShareholder.delete_all(["parent_id = ?", struktureForm.id])
     if paramsMerge[:shareholder]
       paramsMerge[:shareholder].each do |k,data|
         data[:parent_id] = struktureForm.id
         data[:user] = s4_user
   
-        strukturesFivepercentObject = Struktures_shareholder.new( data )
+        strukturesFivepercentObject = StrukturesShareholder.new( data )
         strukturesFivepercentObject.save
       end
     end
 
-    Struktures_Controls.delete_all(["parent_id = ?", struktureForm.id])
+    StrukturesControl.delete_all(["parent_id = ?", struktureForm.id])
     if paramsMerge[:directors_committee]
       paramsMerge[:directors_committee].each do |k,data|
         data[:gridname] = 'directors_committee'
         data[:parent_id] = struktureForm.id
         data[:user] = s4_user
 
-        controlsObject1 = Struktures_Controls.new( data )
+        controlsObject1 = StrukturesControl.new( data )
         controlsObject1.save
       end
     end
@@ -183,7 +202,7 @@ class OrganizationsController < ApplicationController
         data[:parent_id] = struktureForm.id
         data[:user] = s4_user
   
-        controlsObject2 = Struktures_Controls.new( data )
+        controlsObject2 = StrukturesControl.new( data )
         controlsObject2.save
       end
     end
@@ -223,7 +242,7 @@ class OrganizationsController < ApplicationController
       @ceo = Organizations::Ceo.new({:id_item => 0})
     end
 
-    @data = Controllers.find_all_by_user(s4_user)
+    @data = Controller.find_all_by_user(s4_user)
     @admin = Organizations::Grids::Controllers::Controllers.new
     @admin.rowset = @data
   end
@@ -236,28 +255,13 @@ class OrganizationsController < ApplicationController
   
   def capital
     if form_params =  Capitals.find_by_user( s4_user )
-      
-      indirect_owner_data = convertForRowset( IndirectOwner.find_all_by_parent_id( form_params[:id] ) )
-      indirect_owner_grid = Organizations::Grids::Capital::Indirectowner.new
-      indirect_owner_grid.rowset = indirect_owner_data
-      
-      
-      profiter_contract_data = convertForRowset( ProfiterContract.find_all_by_parent_id( form_params[:id] ) )
-      profiter_contract_grid = Organizations::Grids::Capital::Profitercontract.new
-      profiter_contract_grid.rowset = profiter_contract_data
-      
-      
       formParams = {
         :id_item => form_params[:id],
         :auth_capital_vol => form_params[:auth_capital_vol],
         :auth_capital_vollit => form_params[:auth_capital_vollit],
         :fully_paid => form_params[:fully_paid],
         :unpaid_auth_capital_vol => form_params[:unpaid_auth_capital_vol],
-        :unpaid_auth_capital_vollit => form_params[:unpaid_auth_capital_vollit],
-        :no_indirect_owners => form_params[:no_indirect_owners],
-        :no_ncc_profiters => form_params[:no_ncc_profiters],
-        :indirect_owner => indirect_owner_grid,
-        :profiter_contract => profiter_contract_grid
+        :unpaid_auth_capital_vollit => form_params[:unpaid_auth_capital_vollit]
       }
       @capital = Organizations::Capital.new(formParams)
     else
@@ -346,7 +350,7 @@ class OrganizationsController < ApplicationController
       :srochnii => phones_s_grid,
       :cenii => phones_c_grid
     }
-    @phones = Organizations::Phones.new(formParams)
+    @phone = Organizations::Phones.new(formParams)
  end
  
  def phonesadd
@@ -436,8 +440,8 @@ class OrganizationsController < ApplicationController
 
   def controllersdelete
     if params[:id]
-      Controllers.delete_all(['id = ? AND user = ?', params[:id], s4_user])
-      ControllersAttestats.delete_all(['parent_id = ?', params[:id]])
+      Controller.delete_all(['id = ? AND user = ?', params[:id], s4_user])
+      ControllersAttestat.delete_all(['parent_id = ?', params[:id]])
       session["edit_form"] = 1
     end
     redirect_to :action => :controllers
@@ -446,9 +450,9 @@ class OrganizationsController < ApplicationController
   def controllersedit
     if session["controllersedit"].nil?
       if params[:id]
-        form_params =  Controllers.find_by_id_and_user( params[:id], s4_user )
+        form_params =  Controller.find_by_id_and_user( params[:id], s4_user )
   
-        attestats = ControllersAttestats.find_all_by_parent_id( form_params[:id] )
+        attestats = ControllersAttestat.find_all_by_parent_id( form_params[:id] )
         
         attestats.collect do |row|
           row[:qualification] = row[:qualification][1..-2].split(",").collect!{|x| x.to_sym} if !row[:qualification].nil?
@@ -489,7 +493,7 @@ class OrganizationsController < ApplicationController
   end
   
   def controllers
-    @data = Controllers.find_all_by_user(s4_user)
+    @data = Controller.find_all_by_user(s4_user)
     @admin = Organizations::Grids::Controllers::Controllers.new
     @admin.rowset = @data
   end
@@ -538,73 +542,52 @@ class OrganizationsController < ApplicationController
     @circulation = Organizations::Circulation.new
   end
 
-  def sendcard
-    @reg_card_error = getErrors
-    
-    if !session['card_executor'].nil?
-      @card_executor = session.delete('card_executor')
-    else
-      data = {:reg_card_date => Time.now}
-      data = data.merge(S4::RegCardExecutor.find(s4_user).attributes)
-      data = session.delete('card_executor_data') if session['card_executor_data']
-      @card_executor = Organizations::SendCard.new(data)
-    end
+
+  def reset
+    truncate_reg_cards_tables(s4_user)
+    UserCardsSyncS4.sync(s4_user)
   end
 
-  def sendcardsave
-    sendcardData = params[:card_executor]
-    sendcardForm = Organizations::SendCard.new(sendcardData)
-    if sendcardForm.valid?
-      
-      begin 
-        @data = send_card(sendcardData)
-        @data = Nokogiri::XML(@data)
-        respond_to do |format|
-          format.xml {
-            inn = S4::Organization.find(s4_user).inn
-            response.headers['Content-Disposition'] = "attachment;filename=\"#{inn}_#{DateTime.now.strftime("%d%m%y")}.xml\""
-            #response.headers['Content-Disposition'] = "attachment;filename=\"222.xml\""
-            response.headers['Content-Description'] = 'File Transfer'
-            response.headers['Content-Transfer-Encoding'] = 'binary'
-            response.headers['Expires'] = '0'
-            response.headers['Pragma'] = 'public'
-
-            render :layout=>false, :xml => @data.to_xml
-          }
-        end
-        return
-      rescue Exception => e
-        Rails.cache.write cache_key('organization.sendcard.reg_card_error'), e.message
-        session['card_executor_data'] = sendcardData
-      end
-    else
-      session['card_executor'] = sendcardForm
-    end
-    redirect_to :action => :sendcard
+  def news
+    @organization = S4::Organization.find(s4_user)
+   
+    @news = S4::News.find(s4_user)
+    
+  end
+  
+  def notice 
+    @organization = S4::Organization.find(s4_user)
+    
+    S4::Notice.scope = {'notice_type' => '2','status' => '0'}
+    @notices = S4::Notice.all_with_scope(s4_user)
+  end
+  
+  def messages
+    @organization = S4::Organization.find(s4_user)
+    
+    S4::Notice.scope = {'notice_type' => '1'}
+    @notices = S4::Notice.all_with_scope(s4_user)
   end
 
 private
   def check_edited_form
-    flag = session.delete("edit_form")
-    if !flag.nil?
-      @form_edit = 1
-    else
-      @form_edit = 0
+    
+    if session.delete("edit_form")
+      UserCardsSyncS4.update_all ["card_edited = ?", true], ["user = ?", s4_user]
     end
+  end
+  
+  def get_edited_form
+    row = UserCardsSyncS4.find_by_user(s4_user)
+    @form_edit = row.card_edited
   end
 
   def show_errors_by_resource
-    cache = Rails.cache.fetch cache_key("reg_card_errots_list")
-    ers = Hash.new
-    cache.collect do |k, v|
-      ers[k] = v
-    end if !cache.nil?
-
-    if !ers.nil? && ers[params[:action]]
-      @reg_card_errors_list = ers[params[:action]] 
-  
-      ers.delete params[:action]
-      Rails.cache.write cache_key("reg_card_errots_list"), ers
+    @reg_card_errors_list = nil
+    if row = RegCardErrors.find_by_user(s4_user)
+      if !row.nil? && !row[params[:action]].nil?
+        @reg_card_errors_list = JSON.parse(row[params[:action]]) rescue ''
+      end
     end 
   end
 

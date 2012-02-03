@@ -4,6 +4,7 @@ class SenddocumentsController < ApplicationController
   helper :members_menu, :document_menu
   
   def message
+    @organization = S4::Organization.find(s4_user)
     messageForm_params = params[:messageform]
     
     if !messageForm_params.nil?
@@ -23,6 +24,7 @@ class SenddocumentsController < ApplicationController
   end
   
   def form
+    @organization = S4::Organization.find(s4_user)
     if !session['form'].nil?
       @senddocument = session.delete('form')
     else
@@ -50,6 +52,8 @@ class SenddocumentsController < ApplicationController
   end
   
   def list
+    @organization = S4::Organization.find(s4_user)
+    
 		regex = /\d{2}\.\d{2}\.\d{4}/
     time_now = Time.now
     
@@ -65,7 +69,7 @@ class SenddocumentsController < ApplicationController
     @doc_params = parse_params_not_nil(@documentfilter)
     
     S4::SendedForm.scope = @doc_params
-    @documentListing = S4::SendedForm.all_with_scope(s4_user)
+    @documentListing = S4::notice_type.all_with_scope(s4_user)
     
     S4::SendedFormType.scope = {'sended_form_kind' => '5'}
     @typesListing = S4::SendedFormType.all_with_scope(s4_user)

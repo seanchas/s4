@@ -4,6 +4,12 @@ class Organizations::Tostructure < Base
   column :firstname
   column :patronymic
   
+  def buttons
+    [
+      {:input => :submit},
+      {:input => :button, :label => ::Formtastic::I18n.t(:grid_cancel, :scope => [:buttons]), :class => "grid_cancel"}
+    ]
+  end
   
   validates_presence_of :surname, :firstname, :patronymic
   def self.human_attribute_name(attr)

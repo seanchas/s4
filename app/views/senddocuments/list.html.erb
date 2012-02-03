@@ -5,7 +5,8 @@
 <%= stylesheet_link_tag("calendarview") %>
 
 <%= error_messages_for :documentfilter %>
-<h1 class="senddocument_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1>
+<!--h1 class="senddocument_header"><%= t(:menu_title, :scope => [:shared, :senddocument]) %></h1-->
+<h1><%= @organization.full_name %></h1>
 
 <%= contextual_menu %>
 

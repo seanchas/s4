@@ -9,7 +9,9 @@ ru:
       blank: 'Отсутствует'
   
   shared:
-
+    dialogbox:
+      ok: 'OK'
+      cancel: 'Отмена'
 
     header:
       title: 'Личный кабинет участника'

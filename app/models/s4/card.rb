@@ -13,7 +13,8 @@ module S4
     end
     
     def self.create_common_single_xml(type, row, fields = [], exclude = false)
-      properties = self.get_properties(row, fields, exclude)
+      properties = {}
+      properties = self.get_properties(row, fields, exclude) if !row.nil?
       build_single_xml type, properties
     end
     
@@ -50,13 +51,19 @@ private
       end
 
       toParse = attrs.select do |i, k|
-
         exclude == !fields.include?(i)
       end
 
       toParse.collect do |col, value|
         attrs = {:name => col}
-        value = value ? 1 : 0 if !!value == value
+        #value = value ? 1 : 0 if !!value == value
+
+        case row.class.columns_hash[col.to_s].type
+          when :boolean, 'boolean'
+            value = value ? 1 : 0
+          when :date, 'date'
+            value = value.to_date.strftime("%FT%T")
+        end if !value.nil?
 
         attrs[:disabled] = 'true' if value.nil?
         properties << {:attrs => attrs, :value => value}

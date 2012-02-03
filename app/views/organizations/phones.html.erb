@@ -3,6 +3,6 @@
 <!--<h1>Телефоны СОИ</h1>-->
 <%= render "edited_form" %>
 <%= render "reg_card_errors_list" %>
-<% semantic_form_for :phones, :url => "/organization/phonenew" do |f| %>
-  <%= f.rrender @phones %>
+<% semantic_form_for :phone, :url => "/organization/phonenew" do |f| %>
+  <%= f.rrender @phone %>
 <% end %>

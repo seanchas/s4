@@ -97,7 +97,7 @@ form.formtastic li {
         width:173px;    
     }
 	form.formtastic li.checkboxes label {
-		position: absolute;
+		/*position: absolute;*/
 	}
     form.formtastic li.checkboxes ol label {
         position: inherit;
@@ -120,7 +120,7 @@ form.formtastic li {
     form.formtastic li ol {
         margin: 0px;
         padding: 0px;
-        padding-left: 170px;
+        padding-left: 230px;
     }
 	form.formtastic li ol li {
         padding: 0px;
@@ -137,7 +137,7 @@ form.formtastic li {
 		height: auto;
 	}
     form.formtastic li.buttons {
-    	margin-left: 170px;
+    	margin-left: 230px;
     }
 	    form.formtastic li.buttons input.submit{
 	        width: auto;
@@ -152,7 +152,12 @@ form.formtastic li {
 			width: auto;
 			height: 24px;
 		}
-
+	form.formtastic li.group {
+		width: 100%;
+	}
+	form.formtastic li.grid div.empty_grid input {
+		width: auto;
+	}
 form.formtastic fieldset {
 	display: block;
 	border: 1px solid #ededed;
@@ -225,3 +230,35 @@ div.clean {
 	    #reg_card_errors li.all_errors ul {
 	    	list-style-type: disc;
 	    } 
+		
+
+form.formtastic ul.scroll_container {  
+    position:relative;  
+    width:500px;  
+} 
+ 
+#scrollbar_track {  
+    position:absolute;  
+    top:0;  
+    rightright:0;  
+    height:100%;  
+    width:10px;  
+    background-color:transparent;  
+    cursor:move;  
+} 
+ 
+#scrollbar_handle {  
+    width:10px;  
+    background-color:#5c92e7;  
+    cursor:move;  
+    -moz-border-radius: 5px;  
+    -webkit-border-radius: 5px;  
+    opacity:0.9;  
+    -moz-opacity:0.9;  
+} 
+ 
+#scrollbar_content {  
+    overflow:hidden;  
+    width:485px;  
+    height:250px;  
+} 

@@ -7,7 +7,7 @@ class Organizations::Grids::Structure::Structure_organa_ypravleniya < Base
   def getActions(data)
     [
       {:label => :edit},
-      {:label => :delete, :url => "/cards/delete/id/#{data["number"]}/"},
+      {:label => :delete},
     ]
   end
 

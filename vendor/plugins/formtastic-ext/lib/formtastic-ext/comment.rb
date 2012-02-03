@@ -3,7 +3,6 @@ module Formtastic #:nodoc:
     def comment_input(method, options)
       opts ||= {}
       opts = options[:i18n] if !options[:i18n].nil?
-      template.logger.debug "%%%%%%%%%%%%%%%%%#{opts.to_yaml}\n\n"
       comment = ::Formtastic::I18n.t("comments.#{options[:labelPath]}.#{method}", opts)
 
       wrapper_html = options.delete(:wrapper_html) || {}
