@@ -6,6 +6,7 @@ module OrganizationsHelper
     arrow = content_tag :span, "&darr;", {:class => "dropdownmenu_arrow"}
     main_infoormation = [:reset, :show, :sendcard, :licenses, :ceo, :controllers, :controllersadd, :controllersedit, :structure, :capital, :ncc_federal_law, :filials, :phones, :contactlist]
 
+    title = :information
     title = params[:action].to_sym if !main_infoormation.index(params[:action].to_sym).nil?
     title = :information if title == :show
     submenu = navigation.ul(:html => { :id => :organization_edit, :class => [:tabbed_menu, :level2].join(' ')} )do |ul|
@@ -316,5 +317,6 @@ module OrganizationsHelper
     Phones.destroy_all ["user = ?", s4_user]
     RegCardExecutor.destroy_all ["user = ?", s4_user]
     Structure.destroy_all ["user = ?", s4_user]
+    RegCardErrors.destroy_all ["user = ?", s4_user]
   end
 end
