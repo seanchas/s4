@@ -52,27 +52,26 @@ module OrganizationsHelper
   end
   
   def ncc_federal_law_create(params)
-    params[:ncc_federal_law][:user] = s4_user
+    data = params[:ncc_federal_law]
+    data[:user] = s4_user
 
-    if !params[:ncc_federal_law][:id_item].is_numeric? && params[:ncc_federal_law][:id_item] != "0"
-      item_id = params[:ncc_federal_law][:id_item]
-      NccFederalLaw.update(item_id, params[:ncc_federal_law])
-  
-  
-      ShellBankAcc.delete_all "parent_id = #{item_id}"
+    item_id = data[:id_item]
+    if data[:id_item].is_numeric? && data[:id_item] != "0"
+      NccFederalLaw.update(item_id, data)
     else
-      ncc_federal_law = NccFederalLaw.new(params[:ncc_federal_law])
-      ncc_federal_law.save
-      item_id = ncc_federal_law.id
+      row = NccFederalLaw.new(data)
+      row.save
+      item_id = row.id
     end
   
-    if params[:ncc_federal_law][:shell_bank_acc]
-      params[:ncc_federal_law][:shell_bank_acc].each do |key,data|
-        data[:parent_id] = item_id
-        attest_info = ShellBankAcc.new(data)
+    ShellBankAcc.delete_all ["parent_id = ?", item_id]
+    if data[:shell_bank_acc]
+      data[:shell_bank_acc].each do |key,bnks|
+        bnks[:parent_id] = item_id
+        attest_info = ShellBankAcc.new(bnks)
         attest_info.save
       end
-    end    
+    end
   end
   
   
@@ -284,7 +283,8 @@ module OrganizationsHelper
 
     item_id = data[:item_id]
     if data[:item_id].is_numeric? && data[:item_id] != "0"
-      organizationRow = Organization.update(item_id, data)
+      logger.debug "EEEEEEEEEEE#{data.to_yaml}"
+      Organization.update(item_id, data)
     else 
       organizationRow = Organization.new(data)
       organizationRow.save

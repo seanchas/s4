@@ -38,7 +38,8 @@ class CardsController < ApplicationController
       
       begin
         @data = send_card(sendcardData)
-        @data = Nokogiri::XML(@data)
+        win_ch = Iconv.new('windows-1251', 'utf-8')
+        @data = Nokogiri::XML::parse(win_ch.iconv(@data), nil,  'windows-1251')
 
         respond_to do |format|
           format.xml {
@@ -54,6 +55,7 @@ class CardsController < ApplicationController
         end
         return
       rescue Exception => e
+        logger.debug "SEND CARD ERROR MESSAGE: #{e.message}\n#{e.backtrace.to_yaml}\n\n"
         Rails.cache.write cache_key('cards.sendcard.reg_card_error'), e.message
         session['card_executor_data'] = sendcardData
       end

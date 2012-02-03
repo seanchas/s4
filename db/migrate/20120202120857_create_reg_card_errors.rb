@@ -2,7 +2,7 @@ class CreateRegCardErrors < ActiveRecord::Migration
   def self.up
     create_table :reg_card_errors do |t|
       t.text  :common_errors, :limit => 4294967295
-      t.text  :information, :limit => 4294967295
+      t.text  :show, :limit => 4294967295
       t.text  :licenses, :limit => 4294967295
       t.text  :ceo, :limit => 4294967295
       t.text  :controllers, :limit => 4294967295

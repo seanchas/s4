@@ -227,7 +227,7 @@ module ApplicationHelper
   def getGroupByResourceName name
     rs = <<-RTF
 <ress>
-    <res type="information">
+    <res type="show">
     <s>organization</s>
     <s>okved</s>
     </res>
@@ -296,12 +296,13 @@ RTF
     show_message = t(:show_errors, :scope => [:cards, :sendcard])
     hide_message = t(:hide_errors, :scope => [:cards, :sendcard])
 
+    resourceHref = (resource == :show ? '' : (resource.to_s << '/'))
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.div(:class => :reg_card_resource) {
         xml.h3 "#{::I18n.t(resource.to_sym, :scope => [:organizations, :contextual_menu])}" do
           xml.div {
             xml.span ::I18n.t(:count_errors, :scope => [:cards, :sendcard]) % [errors.length]
-            xml.a(::I18n.t(:goto_resource, :scope => [:cards, :sendcard]), :href => "/organization/#{resource}/", :class => :goto_resource)
+            xml.a(::I18n.t(:goto_resource, :scope => [:cards, :sendcard]), :href => "/organization/#{resourceHref}", :class => :goto_resource)
             
             xml.a((autoshow ? hide_message : show_message), :href => '#', :class => :show_errors)
           }
