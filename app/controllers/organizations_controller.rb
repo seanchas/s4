@@ -20,7 +20,7 @@ class OrganizationsController < ApplicationController
       data[:okveds] = okved_grid
       @organisation = Organizations::Organizations.new(data)
     else
-      @organisation = Organizations::Organizations.new({:id_item => 0})
+      @organisation = Organizations::Organizations.new({:item_id => 0})
     end
   end
   
