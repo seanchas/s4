@@ -38,6 +38,7 @@ class CardsController < ApplicationController
       
       begin
         @data = send_card(sendcardData)
+        RegCardErrors.delete_all ["user = ?", s4_user]
         win_ch = Iconv.new('windows-1251', 'utf-8')
         @data = Nokogiri::XML::parse(win_ch.iconv(@data), nil,  'windows-1251')
 
