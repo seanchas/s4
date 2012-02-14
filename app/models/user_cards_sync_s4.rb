@@ -57,7 +57,6 @@ class UserCardsSyncS4 < ActiveRecord::Base
       self.reg_card_executor_sync(s4_user)
     else
 
-
       data = {}
       data[section.to_sym] = nil
       RegCardErrors.update_all data, ["user = ?", s4_user]

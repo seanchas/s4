@@ -4,7 +4,7 @@ module Formtastic #:nodoc:
       opts = {}
       opts = options[:i18n] if !options[:i18n].nil?
       opts[:scope] = {}
-      textilize = opts.delete(:textilize)
+      textilize = !opts[:textilize].nil?
 
       comment = ::Formtastic::I18n.t("comments.#{options[:labelPath]}.#{method}", opts)
       comment = template.textilize comment if textilize
