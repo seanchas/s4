@@ -69,7 +69,7 @@ class SenddocumentsController < ApplicationController
     @doc_params = parse_params_not_nil(@documentfilter)
     
     S4::SendedForm.scope = @doc_params
-    @documentListing = S4::notice_type.all_with_scope(s4_user)
+    @documentListing = S4::SendedForm.all_with_scope(s4_user)
     
     S4::SendedFormType.scope = {'sended_form_kind' => '5'}
     @typesListing = S4::SendedFormType.all_with_scope(s4_user)

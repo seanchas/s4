@@ -1,6 +1,6 @@
 class Cards::SendCard < Base
   column :item_id, {:as => :hidden}
-  column :comment1, {:as => :comment, :i18n => {:doc_form => I18n.t(:menu_title, :scope => [:shared, :sendmessages])}}
+  column :comment1, {:as => :comment, :i18n => {:textilize => true, :doc_form => I18n.t(:menu_title, :scope => [:shared, :sendmessages])}}
   column :last_name
   column :firstname
   column :patronymic

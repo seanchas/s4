@@ -10,7 +10,11 @@ module SenddocumentsHelper
     File.open(Rails.root.join('public', 'upload', output_filename), 'w') do |file|
       file.write(uploaded.read)
     end
-    
+
+    if params[:type_id].to_i == 14
+      UserCardsSyncS4.sync(s4_user)
+    end
+
     file_link = "#{request.protocol}#{request.host}/upload/#{output_filename}"
     scope = {
       'sended_form_type' => params[:type_id],

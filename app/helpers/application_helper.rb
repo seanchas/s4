@@ -167,9 +167,11 @@ module ApplicationHelper
     end
   end
   
-  
+  def self.getRegCardSections
+    [:ceo, :capital, :contactlist, :controllers, :filials, :licenses, :ncc_federal_law, :show, :phones, :sendcard, :structure]
+  end
 
-  def getErrors
+  def getErrors(to_save = nil)
     out = ""
     errorsXML = Rails.cache.fetch cache_key('cards.sendcard.reg_card_error')
     Rails.cache.delete cache_key('cards.sendcard.reg_card_error')
@@ -191,17 +193,14 @@ module ApplicationHelper
         
         fields = item.xpath('./property[@name="fiends"]')
         rs = getGroupByResourceName(resource)
-        errors[rs.to_sym] ||= []
-        errors[rs.to_sym] << template
+        if to_save.nil? | (!to_save.nil? && !to_save.index(resource.to_sym).nil?)
+          errors[rs.to_sym] ||= []
+          errors[rs.to_sym] << template
+        end
       end
       resources = errors.map {|a, b| a}
-      
-      resources.each_with_index do |k, i|
-        out << getErrorsHtml(k, errors[k], false)
-      end
   
       errors = prepareRegCardErrorsToDb(errors)
-      errors[:common_errors] = out
       errors[:user] = s4_user
       if data = RegCardErrors.find_by_user(s4_user)
         RegCardErrors.update_all(errors, {:user => s4_user})
@@ -209,6 +208,17 @@ module ApplicationHelper
         row = RegCardErrors.new(errors)
         row.save
       end
+
+      row = RegCardErrors.find_by_user(s4_user)
+
+      row.attributes.symbolize_keys.each do |k, v|
+        if [:common_errors, :user, :id].include?(k)
+          next
+        end
+        data = JSON.parse(row[k]) rescue ''
+        out << getErrorsHtml(k.to_sym, data, false) if !v.nil?
+      end
+      RegCardErrors.update_all({:common_errors => out}, {:user => s4_user})
     else
       row = RegCardErrors.find_by_user s4_user
       out = row.common_errors if !row.nil?
@@ -296,13 +306,15 @@ RTF
     show_message = t(:show_errors, :scope => [:cards, :sendcard])
     hide_message = t(:hide_errors, :scope => [:cards, :sendcard])
 
-    resourceHref = (resource == :show ? '' : (resource.to_s << '/'))
+    resourceHref = (resource == :show ? '/organization/' : "/organization/#{resource.to_s}/")
+    resourceHref = "/cards/sendcard/" if resource == :sendcard
+
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.div(:class => :reg_card_resource) {
         xml.h3 "#{::I18n.t(resource.to_sym, :scope => [:organizations, :contextual_menu])}" do
           xml.div {
             xml.span ::I18n.t(:count_errors, :scope => [:cards, :sendcard]) % [errors.length]
-            xml.a(::I18n.t(:goto_resource, :scope => [:cards, :sendcard]), :href => "/organization/#{resourceHref}", :class => :goto_resource)
+            xml.a(::I18n.t(:goto_resource, :scope => [:cards, :sendcard]), :href => resourceHref, :class => :goto_resource)
             
             xml.a((autoshow ? hide_message : show_message), :href => '#', :class => :show_errors)
           }

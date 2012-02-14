@@ -2,11 +2,11 @@ class Organizations::Organizations < Base
   column :item_id, {:as => :hidden}
   
   column :s4_id, {:input_html => {:readonly => true}}
-  column :full_name
-  column :short_name
-  column :full_name_eng
-  column :short_name_eng
-  column :mesto
+  column :full_name, {:description => true}
+  column :short_name, {:description => true}
+  column :full_name_eng, {:description => true}
+  column :short_name_eng, {:description => true}
+  column :mesto, {:description => true}
   column :post_addr
   column :fact_addr
   column :internet
@@ -17,32 +17,32 @@ class Organizations::Organizations < Base
   column :fax
   column :email
   
-  column :inn
-  column :kpp
-  column :kpp2, {:description => true, :required => false}
+  column :inn, {:group => :requisites_group}
+  column :kpp, {:group => :requisites_group}
+  column :kpp2, {:description => true, :required => false, :group => :requisites_group}
 
-  column :bik
-  column :swift
+  column :bik, {:group => :requisites_group}
+  column :swift, {:group => :requisites_group}
   column :oksm
 
-  column :comment1, {:as => :comment}
-  column :registry_number_2002
-  column :reg_date, {:as => :date}
-  column :registry_organ_2002
-
-  column :comment2, {:as => :comment}
-  column :ogrn
-  column :ogrn_date, {:as => :date}
-  column :registry_organ
-  column :registry_place
   
-  column :comment3, {:as => :comment}
-  column :okpo
-  column :okogu
-  column :okfs
-  column :okopf
-  column :okato
-  column :okveds, {:as => :grid}, Organizations::Grids::Organization::Okved.new
+  column :comment1, {:as => :comment, :group => :reg_data_group}
+  column :registry_number_2002, {:group => :reg_data_group}
+  column :reg_date, {:as => :date, :description => true, :group => :reg_data_group}
+  column :registry_organ_2002, {:group => :reg_data_group}
+
+  column :comment2, {:as => :comment, :group => :reg_data_group}
+  column :ogrn, {:group => :reg_data_group}
+  column :ogrn_date, {:as => :date, :description => true, :group => :reg_data_group}
+  column :registry_organ, {:group => :reg_data_group}
+  column :registry_place, {:description => true, :group => :reg_data_group}
+  
+  column :okpo, {:group => :codes_group}
+  column :okogu, {:group => :codes_group}
+  column :okfs, {:group => :codes_group}
+  column :okopf, {:group => :codes_group}
+  column :okato, {:group => :codes_group}
+  column :okveds, {:as => :grid, :group => :codes_group}, Organizations::Grids::Organization::Okved.new
 
 
   validates_presence_of :full_name, :short_name, :full_name_eng, :short_name_eng, :mesto, :post_addr, :fact_addr, :internet, :tel_areacode, :tel, :fax_areacode, :fax, :email, :inn, :kpp, :bik, :swift, :oksm, :comment1, :registry_number_2002, :reg_date, :registry_organ_2002, :ogrn, :ogrn_date, :registry_organ, :registry_place, :okpo, :okogu, :okfs, :okopf, :okato 

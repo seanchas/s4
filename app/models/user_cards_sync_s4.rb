@@ -1,27 +1,91 @@
 class UserCardsSyncS4 < ActiveRecord::Base
   attr_accessible :user, :form_edited
   
-  def self.sync(s4_user)
+  def self.sync(s4_user, section = nil)
 
-    # after fully updates (sync once)
-    UserCardsSyncS4.destroy_all ["user = ?", s4_user]
-    UserCardsSyncS4.new({:user => s4_user}).save
+    case section
+      when :ceo, 'ceo' then
+        Ceo.destroy_all ["user = ?", s4_user]
+      when :capital, 'capital' then
+        Capitals.destroy_all ["user = ?", s4_user]
+      when :contactlist, 'contactlist' then
+        Contacts.destroy_all ["user = ?", s4_user]
+      when :controllers, 'controllers' then
+        Controller.destroy_all ["user = ?", s4_user]
+      when :filials, 'filials' then
+        FilialInfo.destroy_all ["user = ?", s4_user]
+      when :licenses, 'licenses' then
+        Licenses.destroy_all ["user = ?", s4_user]
+      when :ncc_federal_law, 'ncc_federal_law' then
+        NccFederalLaw.destroy_all ["user = ?", s4_user]
+      when :show, 'show' then
+        Organization.destroy_all ["user = ?", s4_user]
+      when :phones, 'phones' then
+        Phones.destroy_all ["user = ?", s4_user]
+      when :sendcard, 'sendcard'
+        RegCardExecutor.destroy_all ["user = ?", s4_user]
+      when :structure, 'structure' then
+        Structure.destroy_all ["user = ?", s4_user]
+      when nil then
+        Ceo.destroy_all ["user = ?", s4_user]
+        Capitals.destroy_all ["user = ?", s4_user]
+        Contacts.destroy_all ["user = ?", s4_user]
+        Controller.destroy_all ["user = ?", s4_user]
+        FilialInfo.destroy_all ["user = ?", s4_user]
+        Licenses.destroy_all ["user = ?", s4_user]
+        NccFederalLaw.destroy_all ["user = ?", s4_user]
+        Organization.destroy_all ["user = ?", s4_user]
+        Phones.destroy_all ["user = ?", s4_user]
+        RegCardExecutor.destroy_all ["user = ?", s4_user]
+        Structure.destroy_all ["user = ?", s4_user]
+      end
+    if section.nil?
+      # after fully updates (sync once)
+      UserCardsSyncS4.destroy_all ["user = ?", s4_user]
+      UserCardsSyncS4.new({:user => s4_user}).save
+  
+      self.organization_sync(s4_user)
+      self.licenses_sync(s4_user)
+      self.ceo_sync(s4_user)
+      self.controller_sync(s4_user)
+      self.authority_sync(s4_user)
+      self.capital_sync(s4_user)
+      self.ncc_federal_law_sync(s4_user)
+      self.filial_info(s4_user)
+      self.contacts_sync(s4_user)
+      self.phones_sync(s4_user)
+      self.reg_card_executor_sync(s4_user)
+    else
 
-    self.organization_sync(s4_user)
-    self.licenses_sync(s4_user)
-    self.ceo_sync(s4_user)
-    self.controller_sync(s4_user)
-    self.authority_sync(s4_user)
-    self.capital_sync(s4_user)
-    self.ncc_federal_law_sync(s4_user)
-    self.filial_info(s4_user)
-    self.contacts_sync(s4_user)
-    self.phones_sync(s4_user)
-    self.reg_card_executor_sync(s4_user)
 
+      data = {}
+      data[section.to_sym] = nil
+      RegCardErrors.update_all data, ["user = ?", s4_user]
+      UserCardsSyncS4.update_all data, ["user = ?", s4_user]
+
+      data = {}
+      data[:card_edited] = (self.getNumberOfEditedSection(s4_user) > 0)
+      UserCardsSyncS4.update_all data, ["user = ?", s4_user]
+
+      section = :organization if section.to_sym == :show
+      send(:"#{section}_sync", s4_user)
+    end
   end
   
 private
+  def self.getNumberOfEditedSection(s4_user)
+    out = 0
+    sections = ApplicationHelper.getRegCardSections
+    rowset = UserCardsSyncS4.find :all,
+      :select => {"(IFNULL(`#{sections.join('`, 0) + IFNULL(`')}`, 0))" => :cnt},
+      :conditions => ['user = ?', s4_user]
+    row = rowset.first
+    if !row.nil?
+      out = row.cnt
+    end
+    out.to_i
+  end
+
   # Контактные лица (5.9)
   def self.contacts_sync(s4_user)
     contactGroup = S4::ContactGroup.all(s4_user)
@@ -51,12 +115,21 @@ private
 
     phones.collect do |phone|
       data = phone.attributes.symbolize_keys
-      
+      data[:user] = s4_user
+
       recource = phonesDoc.xpath('//resource/property[@name="id" and .="' << data[:id] << '"]/parent::resource').first
+
       contact_group = nil
       contact_group = recource.xpath('./property[@name="contact_group"]').attribute('ref_id').value if !recource.nil?
       data[:kind] = S4::ContactGroup.getKindById(contact_group)
-      data[:user] = s4_user
+
+      country = nil
+      country = recource.xpath('./property[@name="country"]').attribute('ref_id').value if !recource.nil?
+      data[:country] = country
+
+      alert_phone_category = nil
+      alert_phone_category = recource.xpath('./property[@name="alert_phone_category"]').attribute('ref_id').value if !recource.nil?
+      data[:alert_phone_category] = alert_phone_category
 
       data.delete(:contact_group)
       data.delete(:id)

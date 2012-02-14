@@ -9,9 +9,8 @@ module S4
         if row.organs_in_place == true
           row.organs_place_other = nil
         end
-        #row.write_attribute(:doc_date,  row.doc_date.to_date.strftime("%FT%T"))
       end
-      S4::Card.create_common_single_xml('ceo', row, ["user"], true)
+      S4::Card.create_common_single_xml('ceo', row, ["user", "no_attestats"], true)
     end
   end
   

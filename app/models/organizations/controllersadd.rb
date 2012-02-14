@@ -11,8 +11,9 @@ class Organizations::Controllersadd < Base
   column :doc_number
   column :doc_date, {:as => :date}
   
-  column :controllers, {:as => :grid}, Organizations::Grids::Controllers::Attestat.new
-  
+  column :no_attestats, {:as => :hidden, :input_html => {:id => "", :value => "0"}}
+  column :controllers, {:as => :grid, :empty_checkbox => :no_attestats}, Organizations::Grids::Controllers::Attestat.new
+
   def buttons
     [
       {:input => :submit},

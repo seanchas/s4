@@ -21,7 +21,7 @@ module OrganizationsHelper
       ul.li t(:filials, :scope => [:organizations, :contextual_menu]), filials_organization_path,             :organizations => :filials
       ul.li t(:phones, :scope => [:organizations, :contextual_menu]), phones_organization_path,             :organizations => :phones
       ul.li t(:contactlist, :scope => [:organizations, :contextual_menu]), contactlist_organization_path,             :organizations => :contactlist
-      ul.li t(:reset, :scope => [:organizations, :contextual_menu]), reset_organization_path,             :organizations => :reset
+      #ul.li t(:reset, :scope => [:organizations, :contextual_menu]), reset_organization_path,             :organizations => :reset
     end
 
     # main menu
@@ -34,6 +34,7 @@ module OrganizationsHelper
       ul.li t(:news,     :scope => [:organizations, :contextual_menu]), news_organization_path,     :organizations => :news
       ul.li t(:notice,     :scope => [:organizations, :contextual_menu]), notice_organization_path,     :organizations => :notice
       ul.li t(:messages,     :scope => [:organizations, :contextual_menu]), messages_organization_path,     :organizations => :messages
+      ul.li t(:controldebt,     :scope => [:organizations, :contextual_menu]), controldebt_organization_path,     :organizations => :controldebt
     end
     
     content_tag :div, menu, {:id => "dropdownmenu"}
@@ -178,9 +179,6 @@ module OrganizationsHelper
       if params[:ceo][:id_item].is_numeric? && params[:ceo][:id_item] != "0"
         item_id = params[:ceo][:id_item]
         Ceo.update(item_id, params[:ceo])
-  
-        #delete_query = "DELETE FROM `admins_attestats` WHERE `parent_id` = #{item_id}"
-        #ActiveRecord::Base.connection.execute( delete_query )
         CeoAttestat.delete_all "parent_id = #{item_id}"
       else
         ceo = Ceo.new(params[:ceo])
@@ -283,7 +281,6 @@ module OrganizationsHelper
 
     item_id = data[:item_id]
     if data[:item_id].is_numeric? && data[:item_id] != "0"
-      logger.debug "EEEEEEEEEEE#{data.to_yaml}"
       Organization.update(item_id, data)
     else 
       organizationRow = Organization.new(data)
@@ -303,20 +300,5 @@ module OrganizationsHelper
         okvedRow.save
       end
     end
-  end
-  
-  def truncate_reg_cards_tables(s4_user)
-    Ceo.destroy_all ["user = ?", s4_user]
-    Capitals.destroy_all ["user = ?", s4_user]
-    Contacts.destroy_all ["user = ?", s4_user]
-    Controller.destroy_all ["user = ?", s4_user]
-    FilialInfo.destroy_all ["user = ?", s4_user]
-    Licenses.destroy_all ["user = ?", s4_user]
-    NccFederalLaw.destroy_all ["user = ?", s4_user]
-    Organization.destroy_all ["user = ?", s4_user]
-    Phones.destroy_all ["user = ?", s4_user]
-    RegCardExecutor.destroy_all ["user = ?", s4_user]
-    Structure.destroy_all ["user = ?", s4_user]
-    RegCardErrors.destroy_all ["user = ?", s4_user]
   end
 end

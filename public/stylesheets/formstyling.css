@@ -74,7 +74,7 @@ form.formtastic li {
     list-style: none;
     clear: both;
 	/* float: left; */
-	width: 635px;
+	width: 640px;
 	padding-bottom: 10px;
 }
 	form.formtastic li span.star{
@@ -86,12 +86,14 @@ form.formtastic li {
 	}
     form.formtastic li input {
           width: 390px;
+		  margin-left: 10px;
     }
 	form.formtastic li.hidden{
 		padding: 0px;
 	}
     form.formtastic li select {
         width: 396px;
+		margin-left: 10px;
     }
     form.formtastic li.date input {
         width:173px;    
@@ -137,17 +139,22 @@ form.formtastic li {
 		height: auto;
 	}
     form.formtastic li.buttons {
-    	margin-left: 230px;
+    	text-align: center;
+		width: auto;
     }
 	    form.formtastic li.buttons input.submit{
 	        width: auto;
 	    }
+	   form.formtastic li.buttons input, form.formtastic li.buttons button {
+	   	   margin: 0px;
+	   	   margin-right: 10px;
+	   }
 	form.formtastic li.boolean label {
 		position:relative;
 		padding-bottom: 10px;
 	}
 		form.formtastic li.boolean label input {
-			margin-left: 230px;
+			margin-left: 240px;
 			position: absolute;
 			width: auto;
 			height: 24px;
@@ -262,3 +269,19 @@ form.formtastic ul.scroll_container {
     width:485px;  
     height:250px;  
 } 
+div.editFormA {
+	background: #f9f9f9;
+	float: left;
+	width: 100%;
+	margin-bottom: 10px;
+}
+div.editFormA div {
+	float: left;
+	padding: 8px;
+}
+div.editFormA .reg_card_reset {
+	float: right;
+	width: 200px;
+	text-align: center;
+	background: #ededed;
+}

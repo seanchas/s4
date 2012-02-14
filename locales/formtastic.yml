@@ -139,16 +139,18 @@ ru:
           
         structure:
           no_executive_commitee: 'Отсутствует'
-          main_commitee_name: "Наименование высшего органа управления (точное название, например: общее собрание акционеров (участников))"
+          main_commitee_name: "Наименование высшего органа управления"
           executive_commitee_name: "Наименование коллегиального исполнительного органа управления"
           kollegial_organ:
 
-            col_commitee_name: "Наименование коллегиального органа управления (точное название, например: Наблюдательный совет)"
+            col_commitee_name: "Наименование коллегиального органа управления"
             no_col_commitee: "Не предусмотренно уставом"
             board_fio: "Фамилия" 
             board_firstname: "Имя"
             board_patronymic: "Отчество"
             board_position: "Должность"
+            
+            fio_group: Руководитель
           
         
     grids:

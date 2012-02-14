@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
     :management => :get, 
     :manager => :get, 
     :codes => :get, 
+    :controldebt => :get,
     :starbox => :post,
 
     :licenses => :get,

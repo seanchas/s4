@@ -6,7 +6,7 @@ var Dialog = {};
 Dialog.Box = Class.create();
 Dialog.Box.Confirm = function(title, text, funcs){
 	var dialogDiv = new Element('div', {'class': 'dialog-box confirm'}).update(text + "<br /><br />");
-	document.body.insert(dialogDiv);
+	$(document.body).insert(dialogDiv);
 	var dialog = new Dialog.Box(dialogDiv, {title: title});
 
 	var buttonOK = new Element('button').update(Dialog.Messages['ok']);

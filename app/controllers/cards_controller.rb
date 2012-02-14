@@ -10,7 +10,14 @@ class CardsController < ApplicationController
 
   def sendcard
     @reg_card_error = getErrors
-
+    
+    @reg_card_errors_list = nil
+    if row = RegCardErrors.find_by_user(s4_user)
+      if !row.nil? && !row[params[:action]].nil?
+        @reg_card_errors_list = JSON.parse(row[params[:action]]) rescue ''
+      end
+    end 
+    
     if !session['card_executor'].nil?
       @card_executor = session.delete('card_executor')
     elsif row =  RegCardExecutor.find_by_user(s4_user)
@@ -56,7 +63,7 @@ class CardsController < ApplicationController
         end
         return
       rescue Exception => e
-        logger.debug "SEND CARD ERROR MESSAGE: #{e.message}\n#{e.backtrace.to_yaml}\n\n"
+        logger.debug "SEND CARD ERROR MESSAGE: #{e.message}\n#{e.backtrace.to_yaml}\n\n" if /^<resources>/.match(e.message).nil?
         Rails.cache.write cache_key('cards.sendcard.reg_card_error'), e.message
         session['card_executor_data'] = sendcardData
       end

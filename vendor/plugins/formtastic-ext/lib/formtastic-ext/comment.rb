@@ -4,9 +4,10 @@ module Formtastic #:nodoc:
       opts = {}
       opts = options[:i18n] if !options[:i18n].nil?
       opts[:scope] = {}
+      textilize = opts.delete(:textilize)
 
-      template.logger.debug "#{opts.to_yaml}\n\n#{options.to_yaml}"
       comment = ::Formtastic::I18n.t("comments.#{options[:labelPath]}.#{method}", opts)
+      comment = template.textilize comment if textilize
 
       wrapper_html = options.delete(:wrapper_html) || {}
       wrapper_html[:id]  ||= generate_html_id(method)

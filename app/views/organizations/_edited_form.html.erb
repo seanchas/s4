@@ -1,10 +1,12 @@
-<% if @form_edit == 1 %>
+<% if @form_edit && @reg_card_errors_list.nil?%>
 <div class="editFormA">
-    <p>
+    <div>
         <strong>
-            <%=t(:editform, :scope => [:organizations, :notice])%>
-            <%=link_to t(:editform_link, :scope => [:organizations, :notice]), :action => :sendcard %>
+            <%=t(:editform, :scope => [:cards, :notice], :link => link_to(t(:editform_link, :scope => [:cards, :notice]), :controller => :cards, :action => :sendcard))%>
         </strong>
-    </p>
+    </div>
+	<% if @form_reset %>
+	<div class="reg_card_reset"><%= link_to(t(:editform_reset, :scope => [:cards, :notice]), :action => :reset, :section => params[:action]) %></div>
+	<% end %>
 </div>
 <% end %>

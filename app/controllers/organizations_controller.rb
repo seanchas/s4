@@ -27,6 +27,8 @@ class OrganizationsController < ApplicationController
   def organizationsave
     organizationSave(params[:organisation].symbolize_keys)
     session["edit_form"] = 1
+    validateS4([:organization])
+    
     redirect_to(:action => :show)
   end
 
@@ -206,6 +208,8 @@ class OrganizationsController < ApplicationController
         controlsObject2.save
       end
     end
+    
+    validateS4([:shareholder, :authority, :directors_committee_head, :directors_committee, :direction])
     session["edit_form"] = 1
     redirect_to(:action => "structure")
   end
@@ -250,6 +254,8 @@ class OrganizationsController < ApplicationController
   def ceo_new
     ceo_create(params)
     session["edit_form"] = 1
+    validateS4([:ceo, :ceo_attestat])
+    
     redirect_to :action => 'ceo'
   end
   
@@ -272,6 +278,7 @@ class OrganizationsController < ApplicationController
   def capitalsave
     capital_add(params)
     session["edit_form"] = 1
+    validateS4([:capital_data])
     redirect_to :action => 'capital'
   end
   
@@ -302,6 +309,7 @@ class OrganizationsController < ApplicationController
     end
     filialObject.save
     session["edit_form"] = 1
+    validateS4([:filial_info])
     redirect_to :action => 'filials'
   end
   
@@ -329,6 +337,7 @@ class OrganizationsController < ApplicationController
   def contactsnew
     new_contact(params[:contactlist].nil? ? {} : params[:contactlist])
     session["edit_form"] = 1
+    validateS4([:contact])
     redirect_to :action => 'contactlist'
   end
   
@@ -358,9 +367,10 @@ class OrganizationsController < ApplicationController
  end
  
  def phonenew
-   new_phone(params[:phones].nil? ? {} : params[:phones])
+   new_phone(params[:phone].nil? ? {} : params[:phone])
    session["edit_form"] = 1
-   redirect_to :action => 'phones'  
+   validateS4([:alert_phone])
+   redirect_to :action => 'phones'
  end
  
   def licenses
@@ -388,6 +398,7 @@ class OrganizationsController < ApplicationController
   def licensessave
     #@forwardmarket = Licenses.find_all_by_kind('banking')
     licenses_save(params[:licenses].nil? ? {} : params[:licenses])
+    validateS4([:licence])
     session["edit_form"] = 1
     redirect_to :action => 'licenses'
   end
@@ -430,6 +441,8 @@ class OrganizationsController < ApplicationController
     if @controllersedit.valid?
       data[:user] = s4_user
       controllersSave(data.nil? ? {} : data)
+      validateS4([:controller, :controller_attestat])
+
       session["edit_form"] = 1
       redirect_to :action => :controllers
     else
@@ -471,6 +484,7 @@ class OrganizationsController < ApplicationController
           :doc_name => form_params[:doc_name],
           :doc_number => form_params[:doc_number],
           :doc_date => form_params[:doc_date],
+          :no_attestats => form_params[:no_attestats],
           :controllers => grid
         }
         @controllersedit = Organizations::Controllersadd.new(formParams)
@@ -535,6 +549,7 @@ class OrganizationsController < ApplicationController
   def ncc_federal_law_edit
     ncc_federal_law_create(params)
     session["edit_form"] = 1
+    validateS4([:ncc_federal_law, :shell_bank_acc])
     redirect_to :action => 'ncc_federal_law'
   end
   
@@ -544,15 +559,14 @@ class OrganizationsController < ApplicationController
 
 
   def reset
-    truncate_reg_cards_tables(s4_user)
-    UserCardsSyncS4.sync(s4_user)
+    if !params[:section].nil?
+      UserCardsSyncS4.sync(s4_user, params[:section])
+    end
   end
 
   def news
     @organization = S4::Organization.find(s4_user)
-   
     @news = S4::News.find(s4_user)
-    
   end
   
   def notice 
@@ -568,10 +582,16 @@ class OrganizationsController < ApplicationController
     S4::Notice.scope = {'notice_type' => '1'}
     @notices = S4::Notice.all_with_scope(s4_user)
   end
+  
+  def controldebt
+    @organization = S4::Organization.find(s4_user)
+    
+    S4::Notice.scope = {'notice_type' => '3','status' => '0'}
+    @notices = S4::Notice.all_with_scope(s4_user)
+  end
 
 private
   def check_edited_form
-    
     if session.delete("edit_form")
       UserCardsSyncS4.update_all ["card_edited = ?", true], ["user = ?", s4_user]
     end
@@ -579,7 +599,8 @@ private
   
   def get_edited_form
     row = UserCardsSyncS4.find_by_user(s4_user)
-    @form_edit = row.card_edited
+    @form_edit = !row[:card_edited].nil? && row[:card_edited] == true
+    @form_reset = !row[params[:action]].nil? && row[params[:action]] == true
   end
 
   def show_errors_by_resource

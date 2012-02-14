@@ -45,8 +45,8 @@ private
       properties = []
       attrs = row.attributes
       attrs.delete('id')
-      if row.respond_to?('s4_id') && !row.s4_id.nil?
-        attrs['id'] = row.s4_id
+      if row.respond_to?('s4_id')
+        attrs['id'] = row.s4_id.nil? ? -1 * row.id.to_i : row.s4_id 
         attrs.delete('s4_id')
       end
 
