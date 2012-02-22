@@ -5,8 +5,5 @@
             <%=t(:editform, :scope => [:cards, :notice], :link => link_to(t(:editform_link, :scope => [:cards, :notice]), :controller => :cards, :action => :sendcard))%>
         </strong>
     </div>
-	<% if @form_reset %>
-	<div class="reg_card_reset"><%= link_to(t(:editform_reset, :scope => [:cards, :notice]), :action => :reset, :section => params[:action]) %></div>
-	<% end %>
 </div>
 <% end %>

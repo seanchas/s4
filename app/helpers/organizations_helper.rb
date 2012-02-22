@@ -31,7 +31,7 @@ module OrganizationsHelper
       end 
       #ul.li(t(:organization_edit, :scope => [:organizations, :contextual_menu]), sendcard_organization_path, :organizations => [:sendcard, :licenses, :ceo, :controllersadd, :controllersedit, :structure, :capital, :ncc_federal_law, :filials, :phones, :contactlist])
       ul.li t(:manager,     :scope => [:organizations, :contextual_menu]), manager_organization_path,     :organizations => :manager
-      ul.li t(:news,     :scope => [:organizations, :contextual_menu]), news_organization_path,     :organizations => :news
+      #ul.li t(:news,     :scope => [:organizations, :contextual_menu]), news_organization_path,     :organizations => :news
       ul.li t(:notice,     :scope => [:organizations, :contextual_menu]), notice_organization_path,     :organizations => :notice
       ul.li t(:messages,     :scope => [:organizations, :contextual_menu]), messages_organization_path,     :organizations => :messages
       ul.li t(:controldebt,     :scope => [:organizations, :contextual_menu]), controldebt_organization_path,     :organizations => :controldebt
@@ -93,6 +93,13 @@ module OrganizationsHelper
     
     ActiveRecord::Base.connection.execute("DELETE FROM `phones` WHERE `user` = '#{s4_user}'")
     
+    data = {}
+    data[:no_phone_valuta] = params[:no_phone_valuta]
+    data[:no_phone_fondovii] = params[:no_phone_fondovii]
+    data[:no_phone_srochnii] = params[:no_phone_srochnii]
+    data[:no_phone_cenii] = params[:no_phone_cenii]
+    UserCardsSyncS4.update_all(data, ["user = ?", s4_user])
+
     if params[:valuta]
       params[:valuta].each do |k,data|
         data[:kind] = 'valuta'
@@ -135,6 +142,13 @@ module OrganizationsHelper
     
     ActiveRecord::Base.connection.execute("DELETE FROM `contacts` WHERE `user` = '#{s4_user}'")
     
+    data = {}
+    data[:no_contact_valuta] = params[:no_contact_valuta]
+    data[:no_contact_fondovii] = params[:no_contact_fondovii]
+    data[:no_contact_srochnii] = params[:no_contact_srochnii]
+    data[:no_contact_cenii] = params[:no_contact_cenii]
+    UserCardsSyncS4.update_all(data, ["user = ?", s4_user])
+
     if params[:cenii]
       params[:cenii].each do |k,data|
         data[:kind] = 'cenii'

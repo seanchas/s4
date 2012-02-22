@@ -1,4 +1,4 @@
-class Organizations::NccFederalLaw < Base
+class Organizations::NccFederalLaw < Organizations::AbstractForm
   
   column :id_item, {:as => :hidden}
   column :comment1, {:as => :comment, :group => :group1}
@@ -30,4 +30,18 @@ class Organizations::NccFederalLaw < Base
   column :at_control_of_operation, {:as => :boolean, :required => false, :group => :group4}
   column :at_control_training, {:as => :boolean, :required => false, :group => :group4}
   
+  def buttons
+    cancelDisabled = false
+    row = UserCardsSyncS4.find_by_user(s4_user)
+    
+    cancelButton = {
+        :input => :button,
+        :label => ::Formtastic::I18n.t(:grid_cancel, :scope => [:buttons]),
+        :onclick => "window.location = '/organization/reset?section=ncc_federal_law';return false;"
+    }
+    cancelButton[:disabled] = :disabled if !row.ncc_federal_law
+    [
+      {:input => :submit}
+    ] << cancelButton
+  end
 end

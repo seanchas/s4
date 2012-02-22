@@ -4,6 +4,7 @@ require 'formtastic-ext/grid'
 require 'formtastic-ext/date'
 require 'formtastic-ext/checkboxes.rb'
 require 'formtastic-ext/comment.rb'
+require 'formtastic-ext/norender.rb'
 
 module Formtastic #:nodoc:
   class SemanticFormBuilder

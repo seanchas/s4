@@ -70,20 +70,37 @@ form.formtastic {
     clear: both;
 	
 }
+form.formtastic ul.subform {
+    padding: 0px;
+}
 form.formtastic li {
     list-style: none;
     clear: both;
 	/* float: left; */
-	width: 640px;
+	width: 828px;
 	padding-bottom: 10px;
 }
+
 	form.formtastic li span.star{
 	    float: right;
 	}
 	form.formtastic li label {
-	    width: 230px;
+	    width: 418px;
 	    float: left;
 	}
+    	form.formtastic li fieldset li {
+    	    width: 810px;
+    	}
+    	form.formtastic li fieldset li label {
+    	    width: 400px;
+    	}
+            form.formtastic li fieldset li fieldset li {
+                width: 792px;
+            }
+            form.formtastic li fieldset li fieldset li label {
+                width: 382px;
+            }
+     
     form.formtastic li input {
           width: 390px;
 		  margin-left: 10px;
@@ -122,16 +139,14 @@ form.formtastic li {
     form.formtastic li ol {
         margin: 0px;
         padding: 0px;
-        padding-left: 230px;
+        padding-left: 240px;
     }
 	form.formtastic li ol li {
         padding: 0px;
 	}
 	form.formtastic li ol li input {
 		width: auto;
-	}
-	form.formtastic li ol li label {
-		width: 400px;
+		margin-left: 0px;
 	}
 
 	form.formtastic li.grid, form.formtastic li.form {
@@ -154,10 +169,13 @@ form.formtastic li {
 		padding-bottom: 10px;
 	}
 		form.formtastic li.boolean label input {
-			margin-left: 240px;
+			margin-left: 428px;
 			position: absolute;
 			width: auto;
 			height: 24px;
+		}
+		form.formtastic fieldset li.boolean label input {
+		    margin-left: 410px;
 		}
 	form.formtastic li.group {
 		width: 100%;
@@ -193,6 +211,16 @@ div.clean {
 .errorExplanation {
 	color: red;
 }
+
+div.dialog-box form.formtastic li {
+    width: 645px;
+}
+    div.dialog-box form.formtastic li label {
+        width: 230px;
+    }
+    div.dialog-box form.formtastic li ol li label {
+        width: 400px;
+    }
 /*
 .dialog-box form.formtastic {
 	overflow-y: scroll;
@@ -247,7 +275,7 @@ form.formtastic ul.scroll_container {
 #scrollbar_track {  
     position:absolute;  
     top:0;  
-    rightright:0;  
+    right:0;
     height:100%;  
     width:10px;  
     background-color:transparent;  

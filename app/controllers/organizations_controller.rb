@@ -216,7 +216,6 @@ class OrganizationsController < ApplicationController
   
   def ceo
     if form_params =  Ceo.find_by_user( s4_user )
-      
       attestats = CeoAttestat.find_all_by_parent_id( form_params[:id] )
       
       attestats.collect do |row|
@@ -238,6 +237,7 @@ class OrganizationsController < ApplicationController
         :doc_number => form_params[:doc_number],
         :doc_date => form_params[:doc_date],
         :organs_in_place => form_params[:organs_in_place],
+        :no_attestats => form_params[:no_attestats],
         :organs_place_other => form_params[:organs_place_other],
         :certificates => grid
       }
@@ -325,7 +325,13 @@ class OrganizationsController < ApplicationController
     srochni_grid.rowset = convertForRowset(Contacts.find_all_by_kind_and_user('srochnii', s4_user))
     cenii_grid.rowset = convertForRowset(Contacts.find_all_by_kind_and_user('cenii', s4_user))
 
+    userSyncRow = UserCardsSyncS4.find_by_user(s4_user)
     formParams = {
+      :no_contact_valuta => userSyncRow.no_contact_valuta,
+      :no_contact_fondovii => userSyncRow.no_contact_fondovii,
+      :no_contact_srochnii => userSyncRow.no_contact_srochnii,
+      :no_contact_cenii => userSyncRow.no_contact_cenii,
+      
       :valuta => valuta_grid,
       :fondovii => fondovi_grid,
       :srochnii => srochni_grid,
@@ -353,7 +359,13 @@ class OrganizationsController < ApplicationController
     phones_s_grid.rowset = convertForRowset(Phones.find_all_by_kind_and_user('srochnii', s4_user))
     phones_c_grid.rowset = convertForRowset(Phones.find_all_by_kind_and_user('cenii', s4_user))
 
+    userSyncRow = UserCardsSyncS4.find_by_user(s4_user)
     formParams = {
+      :no_phone_valuta => userSyncRow.no_phone_valuta,
+      :no_phone_fondovii => userSyncRow.no_phone_fondovii,
+      :no_phone_srochnii => userSyncRow.no_phone_srochnii,
+      :no_phone_cenii => userSyncRow.no_phone_cenii,
+      
       :valuta => phones_v_grid,
       :fondovii => phones_f_grid,
       :srochnii => phones_s_grid,
@@ -427,6 +439,7 @@ class OrganizationsController < ApplicationController
       data[:user] = s4_user
       controllersSave(data.nil? ? {} : data)
       session["edit_form"] = 1
+      validateS4([:controller, :controller_attestat])
       redirect_to :action => :controllers
     else
       session["controlleradd"] = @controlleradd
@@ -457,6 +470,7 @@ class OrganizationsController < ApplicationController
       ControllersAttestat.delete_all(['parent_id = ?', params[:id]])
       session["edit_form"] = 1
     end
+    validateS4([:controller, :controller_attestat])
     redirect_to :action => :controllers
   end
 
@@ -508,8 +522,9 @@ class OrganizationsController < ApplicationController
   
   def controllers
     @data = Controller.find_all_by_user(s4_user)
-    @admin = Organizations::Grids::Controllers::Controllers.new
-    @admin.rowset = @data
+    @controllers = Organizations::Grids::Controllers::Controllers.new
+    @controllers.rowset = @data
+    @form = Organizations::Controllers.new({:controllers => @controllers})
   end
   
   def ncc_federal_law
@@ -600,7 +615,6 @@ private
   def get_edited_form
     row = UserCardsSyncS4.find_by_user(s4_user)
     @form_edit = !row[:card_edited].nil? && row[:card_edited] == true
-    @form_reset = !row[params[:action]].nil? && row[params[:action]] == true
   end
 
   def show_errors_by_resource

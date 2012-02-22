@@ -138,7 +138,7 @@ ru:
           
           
         structure:
-          no_executive_commitee: 'Отсутствует'
+          no_executive_commitee: 'Не предусмотренно уставом'
           main_commitee_name: "Наименование высшего органа управления"
           executive_commitee_name: "Наименование коллегиального исполнительного органа управления"
           kollegial_organ:

@@ -62,7 +62,8 @@ module Formtastic #:nodoc:
 
         t = input(column_options[:empty_checkbox].to_sym, empty_grid_opts)
         t = t.gsub(/^(.*)?(<label[^>]*>.*<\/label>)(.*)?/, '\2')
-        html << template.content_tag(:br) << 
+        html << template.content_tag(:br) <<
+             input(column_options[:empty_checkbox].to_sym, {:as => :hidden, :value => 0}).gsub(/<li[^>]+>(.*)<\/li>/, '\1') <<
              template.content_tag(:div, t, {:class => :empty_grid})
       end
 

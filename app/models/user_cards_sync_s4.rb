@@ -10,6 +10,12 @@ class UserCardsSyncS4 < ActiveRecord::Base
         Capitals.destroy_all ["user = ?", s4_user]
       when :contactlist, 'contactlist' then
         Contacts.destroy_all ["user = ?", s4_user]
+        UserCardsSyncS4.update_all({
+          :no_contact_valuta => nil,
+          :no_contact_fondovii => nil,
+          :no_contact_srochnii => nil,
+          :no_contact_cenii => nil
+        }, ["user = ?", s4_user])
       when :controllers, 'controllers' then
         Controller.destroy_all ["user = ?", s4_user]
       when :filials, 'filials' then
@@ -22,6 +28,12 @@ class UserCardsSyncS4 < ActiveRecord::Base
         Organization.destroy_all ["user = ?", s4_user]
       when :phones, 'phones' then
         Phones.destroy_all ["user = ?", s4_user]
+        UserCardsSyncS4.update_all({
+          :no_phone_valuta => nil,
+          :no_phone_fondovii => nil,
+          :no_phone_srochnii => nil,
+          :no_phone_cenii => nil
+        }, ["user = ?", s4_user])
       when :sendcard, 'sendcard'
         RegCardExecutor.destroy_all ["user = ?", s4_user]
       when :structure, 'structure' then
@@ -38,6 +50,17 @@ class UserCardsSyncS4 < ActiveRecord::Base
         Phones.destroy_all ["user = ?", s4_user]
         RegCardExecutor.destroy_all ["user = ?", s4_user]
         Structure.destroy_all ["user = ?", s4_user]
+        UserCardsSyncS4.update_all({
+          :no_contact_valuta => nil,
+          :no_contact_fondovii => nil, 
+          :no_contact_srochnii => nil, 
+          :no_contact_cenii => nil,
+          :no_phone_valuta => nil,
+          :no_phone_fondovii => nil, 
+          :no_phone_srochnii => nil, 
+          :no_phone_cenii => nil,
+        }, ["user = ?", s4_user])
+        
       end
     if section.nil?
       # after fully updates (sync once)
@@ -47,12 +70,12 @@ class UserCardsSyncS4 < ActiveRecord::Base
       self.organization_sync(s4_user)
       self.licenses_sync(s4_user)
       self.ceo_sync(s4_user)
-      self.controller_sync(s4_user)
-      self.authority_sync(s4_user)
+      self.controllers_sync(s4_user)
+      self.structure_sync(s4_user)
       self.capital_sync(s4_user)
       self.ncc_federal_law_sync(s4_user)
-      self.filial_info(s4_user)
-      self.contacts_sync(s4_user)
+      self.filials_sync(s4_user)
+      self.contactlist_sync(s4_user)
       self.phones_sync(s4_user)
       self.reg_card_executor_sync(s4_user)
     else
@@ -86,7 +109,7 @@ private
   end
 
   # Контактные лица (5.9)
-  def self.contacts_sync(s4_user)
+  def self.contactlist_sync(s4_user)
     contactGroup = S4::ContactGroup.all(s4_user)
     contactsDoc = Nokogiri::XML::parse S4::Contact.get_xml(s4_user)
     contacts = S4::Contact.all(s4_user)
@@ -138,7 +161,7 @@ private
   end
 
   # Филиалы (5.7)
-  def self.filial_info(s4_user)
+  def self.filials_sync(s4_user)
     filialInfo = S4::FilialInfo.all(s4_user)
     data = filialInfo.first.attributes.symbolize_keys
     data[:s4_id] = data[:id]
@@ -192,7 +215,7 @@ private
   end
 
   # Структура управления (5.4)
-  def self.authority_sync(s4_user)
+  def self.structure_sync(s4_user)
     directorsHead = S4::DirectorsCommitteeHead.all(s4_user)
     #xml = S4::DirectorsCommitteeHead.get_xml(s4_user)
     authority = S4::Authority.all(s4_user)
@@ -243,7 +266,7 @@ private
   end
 
   # Контролеры (5.3)
-  def self.controller_sync(s4_user)
+  def self.controllers_sync(s4_user)
     controllers = S4::Controller.all(s4_user);
 
     qualifications = Organizations::Attestatadd.qualification_select

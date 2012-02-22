@@ -17,7 +17,7 @@ class Organizations::Controllersadd < Base
   def buttons
     [
       {:input => :submit},
-      {:input => :button, :label =>'Назад', :onclick => "window.location = '/organization/ceo';return false;"}
+      {:input => :button, :label =>'Назад', :onclick => "window.location = '/organization/controllers';return false;"}
     ]
   end
   

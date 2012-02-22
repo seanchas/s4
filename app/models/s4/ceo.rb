@@ -10,6 +10,7 @@ module S4
           row.organs_place_other = nil
         end
       end
+      row.s4_id = -1 * row.id.to_i
       S4::Card.create_common_single_xml('ceo', row, ["user", "no_attestats"], true)
     end
   end

@@ -61,6 +61,7 @@ class ApplicationController < ActionController::Base
       RegCardErrors.update_all(errorsDbFields, {:user => s4_user})
 
       S4::Card.scope = scope
+      
       S4::Card.set_with_scope_xml(s4_user)
     rescue Exception => e
       logger.debug "SEND CARD ERROR MESSAGE: #{e.message}\n#{e.backtrace.to_yaml}\n\n" if /^<resources>/.match(e.message).nil?
@@ -106,12 +107,26 @@ private
   end
 
   def getAlertPhoneXML
-    alertPhonesRowset = Phones.find_all_by_user(s4_user)
+    row = UserCardsSyncS4.find_by_user(s4_user)
+    kinds = []
+    kinds << 'valuta' if !row.no_phone_valuta
+    kinds << 'fondovii' if !row.no_phone_fondovii
+    kinds << 'srochnii' if !row.no_phone_srochnii
+    kinds << 'cenii' if !row.no_phone_cenii
+
+    alertPhonesRowset = Phones.find_all_by_user_and_kind(s4_user, kinds)
     S4::AlertPhone.create_xml(alertPhonesRowset)
   end
 
   def getContactXML
-    contactRowset = Contacts.find_all_by_user(s4_user)
+    row = UserCardsSyncS4.find_by_user(s4_user)
+    kinds = []
+    kinds << 'valuta' if !row.no_contact_valuta
+    kinds << 'fondovii' if !row.no_contact_fondovii
+    kinds << 'srochnii' if !row.no_contact_srochnii
+    kinds << 'cenii' if !row.no_contact_cenii
+
+    contactRowset = Contacts.find_all_by_user_and_kind(s4_user, kinds)
     S4::Contact.create_xml(contactRowset)
   end
 
@@ -165,8 +180,8 @@ private
   def getDirectionXML
     authorityRow = Structure.find_by_user(s4_user)
     directionRowset = [] 
-    directionRowset = StrukturesControl.find_all_by_parent_id_and_gridname(authorityRow.id, 'direction') if !authorityRow.nil? && authorityRow.no_executive_commitee != true
-    S4::DirectorsCommittee.create_xml(directionRowset)
+    directionRowset = StrukturesControl.find_all_by_parent_id_and_gridname(authorityRow.id, 'direction') if !authorityRow.nil? && !authorityRow.no_executive_commitee?
+    S4::Direction.create_xml(directionRowset)
   end
 
   def getDirectorsCommitteeXML
@@ -205,6 +220,7 @@ private
 
   def init_s4_user_in_models
     Organizations::Grids::GridStore.s4_user = s4_user
+    Organizations::AbstractForm.s4_user = s4_user
   end
 
   def authenticate_with_s4!

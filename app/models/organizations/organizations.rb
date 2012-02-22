@@ -1,7 +1,7 @@
-class Organizations::Organizations < Base
+class Organizations::Organizations < Organizations::AbstractForm
   column :item_id, {:as => :hidden}
   
-  column :s4_id, {:input_html => {:readonly => true}}
+  #column :s4_id, {:input_html => {:readonly => true}}
   column :full_name, {:description => true}
   column :short_name, {:description => true}
   column :full_name_eng, {:description => true}
@@ -44,6 +44,20 @@ class Organizations::Organizations < Base
   column :okato, {:group => :codes_group}
   column :okveds, {:as => :grid, :group => :codes_group}, Organizations::Grids::Organization::Okved.new
 
+  def buttons
+    cancelDisabled = false
+    row = UserCardsSyncS4.find_by_user(s4_user)
+    
+    cancelButton = {
+        :input => :button,
+        :label => ::Formtastic::I18n.t(:grid_cancel, :scope => [:buttons]),
+        :onclick => 'window.location = "/organization/reset?section=show";return false;'
+    }
+    cancelButton[:disabled] = :disabled if !row.show
+    [
+      {:input => :submit}
+    ] << cancelButton
+  end
 
   validates_presence_of :full_name, :short_name, :full_name_eng, :short_name_eng, :mesto, :post_addr, :fact_addr, :internet, :tel_areacode, :tel, :fax_areacode, :fax, :email, :inn, :kpp, :bik, :swift, :oksm, :comment1, :registry_number_2002, :reg_date, :registry_organ_2002, :ogrn, :ogrn_date, :registry_organ, :registry_place, :okpo, :okogu, :okfs, :okopf, :okato 
   def self.human_attribute_name(attr)

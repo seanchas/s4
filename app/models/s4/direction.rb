@@ -5,7 +5,7 @@ module S4
     self.resource_type = :direction
 
     def self.create_xml(rowset)
-      S4::Card.create_common_xml('direction', rowset, ["parent_id", "gridname"], true)
+      S4::Card.create_common_xml('direction', rowset, ["parent_id", "gridname", "user"], true)
     end
   end
   

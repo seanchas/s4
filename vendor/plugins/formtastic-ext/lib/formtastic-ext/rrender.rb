@@ -45,8 +45,9 @@ module Formtastic #:nodoc:
               f.rrender(d, pr)
             end.compact.join("\n")
             out << template.content_tag(:li, :class => :form) do 
-              template.content_tag(:fieldset) do 
-                rend = template.content_tag :ul, rend
+              template.content_tag(:fieldset) do
+                oForm = {:class => "subform"}
+                rend = template.content_tag :ul, rend, oForm
                 template.content_tag(:legend, ::Formtastic::I18n.t("labels.#{labelPath}.#{column.name}")) <<
                   rend
               end
@@ -65,9 +66,9 @@ module Formtastic #:nodoc:
             # get collection of options for select
             opts[:collection] = form.send("get_#{column.name}_select") if (type == :select || type == 'select') && form.respond_to?("get_#{column.name}_select") 
             
-            opts[:input_html] ||= {}
-            opts[:input_html][:class] ||= []
-            
+            opts[:input_html] = {}
+            opts[:input_html][:class] = []
+
             if (type == :boolean) && (form.attributes[column.name] == '1' || form.attributes[column.name] == true)
               opts[:input_html][:checked] = :checked
             end
@@ -107,7 +108,7 @@ module Formtastic #:nodoc:
         end if form.respond_to?("buttons")
         html << template.content_tag(:li, btns, :class => 'buttons');
       end
-      html = [template.content_tag :ul, html]
+      html = [template.content_tag(:ul, html)]
       html << template.content_tag(:div, '', :class => :clean)
     end
     
