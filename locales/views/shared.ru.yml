@@ -9,6 +9,15 @@ ru:
       blank: 'Отсутствует'
   
   shared:
+    search_form:
+      include_blank:
+        all_types: 'Все типы'
+      placeholder:
+        date_start: "Например: 01.01.2011"
+        date_end: "Например: 31.12.2011"
+      date_from: с
+      date_to: по
+
     dialogbox:
       ok: 'OK'
       cancel: 'Отмена'

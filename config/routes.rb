@@ -4,15 +4,19 @@ ActionController::Routing::Routes.draw do |map|
 
   map.xmlrpc "/xml-rpc", :controller => :welcome, :action => :xmlrpc
 
+
   map.resource :organization, :only => :show, :member => {
     :news => :get,
     :notice => :get,
+    :notice_filter => :post,
     :messages => :get,
     :management => :get, 
     :manager => :get, 
     :codes => :get, 
     :controldebt => :get,
     :starbox => :post,
+    :notice_subscribe => :get,
+    :notice_unsubscribe => :get,
 
     :licenses => :get,
     :licensessave => :post,
@@ -45,7 +49,12 @@ ActionController::Routing::Routes.draw do |map|
     :sendcardsave => :post,
     :organizationsave => :post,
     :reset => :get
+  },
+  :path_names => {
+    :notice_unsubscribe => 'notice-unsubscribe',
+    :notice_subscribe => 'notice-subscribe'
   }
+  
   
   map.resources :markets
 

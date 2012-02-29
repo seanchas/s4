@@ -1,5 +1,19 @@
 ru:
+  shared:
+    notice:
+      columns:
+        type_label: 'Степень важности:'
+        status_label: 'Статус:'
+        status_satisfied_label: Исполнено
+        status_no_satisfied_label: Не исполнено
+        search_text: 'По заголовке или тексту '
+      create_button: 'Отправить '
+
   organizations:
+    unsubscribe: |
+      Чтобы отменить подписку на уведомления нажмите "здесь":/organization/notice-unsubscribe.
+    subscribe: |
+      Чтобы начать получать уведомления нажмите "здесь":/organization/notice-subscribe.
     reset:
       reset_message: |
         Все изменения были отменены.
@@ -129,9 +143,9 @@ ru:
         organizations/indirectowner:
           attributes:
             surname:
-              blank: 'Не заполнено имя'
-            firstname:
               blank: 'Не заполнена фамилия'
+            firstname:
+              blank: 'Не заполнено имя'
             patronymic:
               blank: 'Не заполнено отчество'
             share:
@@ -140,9 +154,9 @@ ru:
         organizations/tostructure:
           attributes:
             surname:
-              blank: 'Не заполнено имя'
-            firstname:
               blank: 'Не заполнена фамилия'
+            firstname:
+              blank: 'Не заполнено имя'
             patronymic:
               blank: 'Не заполнено отчество'
         
@@ -217,9 +231,6 @@ ru:
           comment3: 'Сведения о наличии (отсутствии) корреспондентских счетов, открытых в банках государств или территорий, о которых из международных источников известно, что в них незаконно производятся или переправляются наркотические вещества, а также государств или территорий, разрешающих свободный оборот наркотических веществ (кроме государств или территорий, использующих наркотические вещества исключительно в медицинских целях)(если "имеются", то перечислить страны)'
           comment4: 'Сведения об осуществлении мероприятий по противодействию легализации (отмыванию) доходов, полученных преступным путем, и финансированию терроризма' 
           comment5: 'Назначен уполномоченный сотрудник:'
-
-        controllersadd:
-          comment1: 'Документ о назначении на должность'
           
         grids:
           structure:
@@ -296,7 +307,8 @@ ru:
           requisites_group: Реквизиты
           codes_group: Коды форм Федерального Государственного статического наблюдения
           reg_data_group: Государственная регистрация юридического лица
-
+        controllersadd:
+          position_group: 'Документ о назначении на должность'
         ceo:
           firstname: 'Имя'
           surname: 'Фамилия'
@@ -447,8 +459,8 @@ ru:
         structure:
           directors_committee: 'Коллегиальный орган управления'
         tostructure:
-          firstname: 'Фамилия'
-          surname: 'Имя'
+          firstname: 'Имя'
+          surname: 'Фамилия'
           patronymic: 'Отчество'
         vigodopreobretateli:
           name: 'Наименование выгодоприобретателя'

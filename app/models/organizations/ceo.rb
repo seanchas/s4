@@ -2,8 +2,8 @@ class Organizations::Ceo < Organizations::AbstractForm
   
   column :id_item, {:as => :hidden}
   
-  column :firstname, {:group => :fio_group}
   column :surname, {:group => :fio_group}
+  column :firstname, {:group => :fio_group}
   column :patronymic, {:group => :fio_group}
   column :position
   

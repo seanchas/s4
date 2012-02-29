@@ -1,7 +1,7 @@
 class Organizations::Grids::Controllers::Controllers < Base
   
-  column :firstname
   column :surname
+  column :firstname
   column :patronymic
   column :position
   column :doc_name

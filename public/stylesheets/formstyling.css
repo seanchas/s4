@@ -1,6 +1,14 @@
 	h1 {
 		color:#006299;
 	}
+.legend {
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+    border-top: 1px solid #DDD;
+    color: #999;
+    padding-left: 10px;
+}
 div.formstyling {
 		  margin: 10px 0;
 		  padding: 0;

@@ -2,14 +2,14 @@ class Organizations::Controllersadd < Base
 
   column :id_item, {:as => :hidden}
   
-  column :firstname
   column :surname
+  column :firstname
   column :patronymic
-  column :comment1, {:as => :comment}
   column :position
-  column :doc_name
-  column :doc_number
-  column :doc_date, {:as => :date}
+
+  column :doc_name, {:group => :position_group}
+  column :doc_number, {:group => :position_group}
+  column :doc_date, {:as => :date, :group => :position_group}
   
   column :no_attestats, {:as => :hidden, :input_html => {:id => "", :value => "0"}}
   column :controllers, {:as => :grid, :empty_checkbox => :no_attestats}, Organizations::Grids::Controllers::Attestat.new

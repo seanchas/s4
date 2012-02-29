@@ -194,7 +194,7 @@ ru:
               
           structure:
             structure_organa_ypravleniya:
-              firstname: "Фамилия"
-              surname: "Имя"
+              firstname: "Имя"
+              surname: "Фамилия"
               patronymic: "Отчество"
             

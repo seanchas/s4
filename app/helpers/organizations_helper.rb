@@ -315,4 +315,8 @@ module OrganizationsHelper
       end
     end
   end
+  
+  def default_search_filter(data, allow_keys)
+    return data.delete_if {|key, value| value == '' || value.nil? || allow_keys.index(key.to_sym).nil? }
+  end
 end

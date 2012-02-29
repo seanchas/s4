@@ -1,12 +1,12 @@
 class Cards::SendCard < Base
   column :item_id, {:as => :hidden}
   column :comment1, {:as => :comment, :i18n => {:textilize => true, :doc_form => I18n.t(:menu_title, :scope => [:shared, :sendmessages])}}
-  column :last_name
-  column :firstname
-  column :patronymic
-  column :tel_areacode
-  column :tel
-  column :extension, {:required => false}
+  column :last_name, {:group => :group1}
+  column :firstname, {:group => :group1}
+  column :patronymic, {:group => :group1}
+  column :tel_areacode, {:group => :group1}
+  column :tel, {:group => :group1}
+  column :extension, {:required => false, :group => :group1}
   column :reg_card_date, {:as => :date}
   
   def buttons

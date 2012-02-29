@@ -1,13 +1,27 @@
 <%= stylesheet_link_tag 'managerStyle' %>
 <%= stylesheet_link_tag 'dialog' %>
+<%= stylesheet_link_tag("formstyling") %>
+
+<%= javascript_include_tag("calendar") %>
+<%= stylesheet_link_tag("calendarview") %>
+<%= javascript_include_tag("organization/notice_list") %>
 <h1>
     <%= @organization.full_name %>
 </h1>
-
 <%= contextual_menu %>
+
+<%= render :partial => "search_notice", :locals => {:form => @search_form} %>
 
 <% if @notices.size != 0 %>
 <%= table_listing(S4::Notice.schema, @notices) %>
 <%else%>
 	Уведомлений нет
 <%end%>
+
+<div class="legend">
+    <% if @subscribe.subscription == '1' %>
+    <%= textilize t(:unsubscribe, :scope => [:organizations]) %>
+    <% else %>
+    <%= textilize t(:subscribe, :scope => [:organizations]) %>
+    <% end %>
+</div>

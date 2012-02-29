@@ -1,0 +1,47 @@
+
+<div id="form_finder_document" class="formstyling" style="margin:0 0 20px 0;">
+<% form_for form, :url => { :action => "notice_filter"}, :html => { :method => "post" } do |f| %>
+  <div>
+    <p>
+        <span class="label_span"><%= f.label :by_type, t(:type_label, :scope => [:shared, :notice, :columns]) %></span>
+        <%= f.select(:notice_priority, @noticePriority.collect {|prioritiesListing| [prioritiesListing.name, prioritiesListing.id]},
+            {:include_blank => t(:all_types, :scope => [:shared, :search_form, :include_blank])}) %>
+    </p>
+  </div>
+  
+  <div>
+    <p>
+        <span class="label_span"><%= f.label :status, t(:status_label, :scope => [:shared, :notice, :columns]) %></span>
+        <%= f.select(:status, [
+            [t(:status_satisfied_label, :scope => [:shared, :notice, :columns]), 0],
+            [t(:status_no_satisfied_label, :scope => [:shared, :notice, :columns]), 1]],
+            {:include_blank => t(:all_types, :scope => [:shared, :search_form, :include_blank])}) %>
+    </p>
+  </div>
+
+  <div class="date">
+    <p class="date_fields">
+      <span class="label_span"><label >По дате:</label></span>
+        <%= f.label :start_date, t(:date_from, :scope => [:shared, :search_form]), :id => "start_date_input" %>
+        <%= f.text_field :start_date, :placeholder => t(:date_start, :scope => [:shared, :search_form, :placeholder]) %>
+        <%= f.label :end_date, t(:date_to, :scope => [:shared, :search_form], :id => ":end_date_input") %>
+        <%= f.text_field :end_date, :placeholder => t(:date_end, :scope => [:shared, :search_form, :placeholder]) %>
+    </p>
+  </div>
+
+  <div>
+      <p>
+        <span class="label_span"><%= f.label :search_text, t(:search_text, :scope => [:shared, :notice, :columns]) %></span>
+        <%= f.text_field :search_text %>
+      </p>
+  </div>
+
+  <div class="submit">
+    <p>
+      <span class="label_span"><label>&nbsp;</label></span>
+      <%= f.submit t(:create_button, :scope => [:shared, :documentfilter]) %>
+      <input type="reset" onclick="do_reset();return false;"  id="input_for_resetForm" name="reset_form" value="Очистить" />
+    </p>
+  </div>
+<% end %>
+</div>

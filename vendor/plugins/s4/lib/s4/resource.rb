@@ -44,6 +44,10 @@ module S4
        new(params.first, parse_one(call_with_session("s4.setResource", resource_type.to_param, params.first, scope, '')))
     end
     
+    def self.get_resource_scope(*params)
+      call_with_session("s4.getResourceScope", resource_type.to_param)
+    end
+
     def self.resource_type=(resource_type)
       @resource_type = resource_type
     end

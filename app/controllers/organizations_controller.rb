@@ -587,8 +587,44 @@ class OrganizationsController < ApplicationController
   def notice 
     @organization = S4::Organization.find(s4_user)
     
-    S4::Notice.scope = {'notice_type' => '2','status' => '0'}
+    search_params = {}
+    if !session['organizations_search_notice'].nil?
+      search_params = session.delete('organizations_search_notice')
+    end
+
+    @search_form = Organizations::Search::Notice.new(search_params)
+    @noticePriority = S4::NoticePriority.all(s4_user)
+    
+    search_params = default_search_filter(search_params, [:start_date, :notice_priority, :notice_type, :search_text, :end_date, :status])
+    search_params[:notice_type] = '2'
+    search_params[:status] = '0'if !search_params[:status]
+
+    S4::Notice.scope = search_params
     @notices = S4::Notice.all_with_scope(s4_user)
+    
+
+    subscribe = S4::Subscription.find(s4_user)
+
+    S4::Subscription.scope = {}
+    @subscribe = S4::Subscription.find_with_scope(s4_user)
+  end
+  
+  def notice_filter
+    session['organizations_search_notice'] = params[:organizations_search_notice]
+
+    redirect_to :action => :notice
+  end
+  
+  def notice_subscribe
+    S4::Subscription.scope = {:subscription => 1}
+    S4::Subscription.set_with_scope(s4_user)
+    redirect_to :action => :notice
+  end
+
+  def notice_unsubscribe
+    S4::Subscription.scope = {:subscription => 0}
+    S4::Subscription.set_with_scope(s4_user)
+    redirect_to :action => :notice
   end
   
   def messages
