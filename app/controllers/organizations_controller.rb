@@ -598,7 +598,6 @@ class OrganizationsController < ApplicationController
     
     search_params = default_search_filter(search_params, [:start_date, :notice_priority, :notice_type, :search_text, :end_date, :status])
     search_params[:notice_type] = '2'
-    search_params[:status] = '0'if !search_params[:status]
 
     S4::Notice.scope = search_params
     @notices = S4::Notice.all_with_scope(s4_user)
