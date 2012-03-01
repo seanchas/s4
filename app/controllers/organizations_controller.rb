@@ -594,6 +594,7 @@ class OrganizationsController < ApplicationController
 
     @search_form = Organizations::Search::Notice.new(search_params)
     @noticePriority = S4::NoticePriority.all(s4_user)
+    @noticeStatus = S4::NoticeStatus.all(s4_user)
     
     search_params = default_search_filter(search_params, [:start_date, :notice_priority, :notice_type, :search_text, :end_date, :status])
     search_params[:notice_type] = '2'
