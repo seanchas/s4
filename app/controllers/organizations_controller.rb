@@ -637,7 +637,7 @@ class OrganizationsController < ApplicationController
   def controldebt
     @organization = S4::Organization.find(s4_user)
     
-    S4::Notice.scope = {'notice_type' => '3','status' => '0'}
+    S4::Notice.scope = {'notice_type' => '3','status' => '1'}
     @notices = S4::Notice.all_with_scope(s4_user)
   end
 
