@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-
   map.root :controller => :welcome
 
   map.xmlrpc "/xml-rpc", :controller => :welcome, :action => :xmlrpc
@@ -76,6 +75,8 @@ ActionController::Routing::Routes.draw do |map|
     :warrant => :get,
     :list_filter => :post
   }
+  map.senddocumentsrk '/senddocuments/form/type_id/14', :controller => :senddocuments, :action => :form, :type_id => 14
+  
   map.resources :authorities
   
   #map.insider     "/insider", :controller => :insiders, :action => :new,    :conditions => { :method => :get }

@@ -8,11 +8,16 @@ class Organizations::Structure < Organizations::AbstractForm
 
   column :directors_committee, {:as => :form}, Organizations::Structure::Kollegial_organ.new
 
-  column :no_executive_commitee, {:as => :boolean, :group => :group1, :required => false}
-  column :executive_commitee_name, {:group => :group1, :description => true}
+  column :no_executive_commitee, {:as => :boolean, :group => :directors_committee_executive, :required => false}
+  column :executive_commitee_name, {:group => :directors_committee_executive, :description => true}
   
-  column :direction, {:as => :grid, :group => :group1}, Organizations::Grids::Structure::Structure_organa_ypravleniya.new
+  column :direction, {:as => :grid, :group => :directors_committee_executive}, Organizations::Grids::Structure::Structure_organa_ypravleniya.new
   
+  def initialize(*params)
+    @change_alert = true
+    super
+  end
+
   def buttons
     cancelDisabled = false
     row = UserCardsSyncS4.find_by_user(s4_user)

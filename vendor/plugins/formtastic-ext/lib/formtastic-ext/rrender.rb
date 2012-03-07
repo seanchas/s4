@@ -1,7 +1,16 @@
 module Formtastic #:nodoc:
   class SemanticFormBuilder 
     def rrender(form, prefix = '')
+      formName = input(form.class.columns.first.name).sub(/.*?name=\"([^\[]+).*/, '\1')
       template.stylesheet_include_once "formstyling.css"
+
+      # проверка на изменения в форме
+      if (form.respond_to?('change_alert') && form.change_alert)
+        template.javascript_include_once "form_function.js"
+        template.content_for :js do
+          template.javascript_tag "document.on('dom:loaded', function() { form_change_alert ('#{formName}'); });"
+        end
+      end
 
       labelPath = form.class.name.downcase.gsub("::", ".")
       currentGroup = nil

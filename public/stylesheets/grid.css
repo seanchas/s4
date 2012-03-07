@@ -9,6 +9,19 @@ table.resource tr.empty_table td {
 	padding-top: 4px;
 }
 
-table.resource td.actions {
-	width: 140px;
+table.resource td.actions, table.resource th.actions{
+	width: 100px;
+}
+
+table.resource td.actions div {
+    float: left;
+    padding-right: 5px;
+}
+
+table.resource thead th {
+  color: #4d4d4d;
+  font-size: .9em;
+  padding: 0 0 3px 10px;
+  text-align: left;
+  vertical-align: top;
 }

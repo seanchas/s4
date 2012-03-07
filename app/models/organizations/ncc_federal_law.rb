@@ -16,8 +16,6 @@ class Organizations::NccFederalLaw < Organizations::AbstractForm
   column :no_shell_bank_acc, {:as => :hidden, :input_html => {:id => "", :value => "0"}}
   column :shell_bank_acc, {:as => :grid, :empty_checkbox => :no_shell_bank_acc}, Organizations::Grids::Ncc_federal_law::Shell_bank_acc.new
 
-  
-  
   column :comment4, {:as => :comment, :group => :group4}
   column :comment5, {:as => :comment, :group => :group4}
   column :at_control_employee_f, {:group => :group4}
@@ -29,6 +27,11 @@ class Organizations::NccFederalLaw < Organizations::AbstractForm
   column :at_identification, {:as => :boolean, :required => false, :group => :group4}
   column :at_control_of_operation, {:as => :boolean, :required => false, :group => :group4}
   column :at_control_training, {:as => :boolean, :required => false, :group => :group4}
+  
+  def initialize(*params)
+    @change_alert = true
+    super
+  end
   
   def buttons
     cancelDisabled = false

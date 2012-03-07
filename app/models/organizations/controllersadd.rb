@@ -1,4 +1,4 @@
-class Organizations::Controllersadd < Base
+class Organizations::Controllersadd < Organizations::AbstractForm
 
   column :id_item, {:as => :hidden}
   
@@ -13,6 +13,11 @@ class Organizations::Controllersadd < Base
   
   column :no_attestats, {:as => :hidden, :input_html => {:id => "", :value => "0"}}
   column :controllers, {:as => :grid, :empty_checkbox => :no_attestats}, Organizations::Grids::Controllers::Attestat.new
+
+  def initialize(*params)
+    @change_alert = true
+    super
+  end
 
   def buttons
     [

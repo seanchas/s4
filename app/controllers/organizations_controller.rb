@@ -136,7 +136,6 @@ class OrganizationsController < ApplicationController
           :board_fio => form_params[:board_fio],
           :board_firstname => form_params[:board_firstname],
           :board_patronymic => form_params[:board_patronymic],
-          :board_position => form_params[:board_position],
           :directors_committee => directors_committee,
         })
 
@@ -264,10 +263,8 @@ class OrganizationsController < ApplicationController
       formParams = {
         :id_item => form_params[:id],
         :auth_capital_vol => form_params[:auth_capital_vol],
-        :auth_capital_vollit => form_params[:auth_capital_vollit],
         :fully_paid => form_params[:fully_paid],
         :unpaid_auth_capital_vol => form_params[:unpaid_auth_capital_vol],
-        :unpaid_auth_capital_vollit => form_params[:unpaid_auth_capital_vollit]
       }
       @capital = Organizations::Capital.new(formParams)
     else

@@ -10,6 +10,11 @@ class Organizations::Contacts < Base
   column :fax
   column :email
   
+  def initialize(*params)
+    @change_alert = true
+    super
+  end
+  
   def buttons
     [
       {:input => :submit},

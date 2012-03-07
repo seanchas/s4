@@ -14,6 +14,11 @@ class Organizations::Filials < Organizations::AbstractForm
   
   column :filial_num
   
+  def initialize(*params)
+    @change_alert = true
+    super
+  end
+  
   def buttons
     cancelDisabled = false
     row = UserCardsSyncS4.find_by_user(s4_user)

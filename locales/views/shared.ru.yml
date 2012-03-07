@@ -21,6 +21,7 @@ ru:
     dialogbox:
       ok: 'OK'
       cancel: 'Отмена'
+      changedform: 'Некоторый поля формы были изменены.'
 
     header:
       title: 'Личный кабинет участника'

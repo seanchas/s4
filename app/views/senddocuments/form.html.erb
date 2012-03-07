@@ -14,7 +14,7 @@
 	<div class="l-field">
 		<p>
 			<span class="label_span"><%= f.label :type_id, t(:type_label, :scope => [:shared, :senddocument, :columns]) %></span>
-			<%= f.select(:type_id, @document_types.collect {|document| [document.name, document.id]}) %>
+			<%= f.select(:type_id, options_for_select(@document_types.collect {|document| [document.name, document.id]}, @type_id.to_s)) %>
 		</p>
 	</div>
 	

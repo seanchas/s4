@@ -105,7 +105,11 @@ formtasticGrid.prototype = {
 		Event.stop(e);
 		Dialog.Box.Confirm(this.options.delete_row_title, this.options.delete_row_message, {
 			'ok': function(){
-				var id = $(target).readAttribute('rowid');
+				var el = target;
+				if (target.nodeName.toLowerCase() != 'a') {
+					el = $(target).up('a');
+				}
+				var id = $(el).readAttribute('rowid');
 				var self = this;
 				$(this.name).getElementsBySelector('tbody tr[rowid=' + id + ']').first().remove();
 
@@ -138,6 +142,7 @@ formtasticGrid.prototype = {
 
 				this._refreshRows();
 				this._checkEmptyTable();
+				document.fire('grid:change', {grid: this, row: null, tr: null, type: 'delete'});
 			}.bind(this)
 		});
 	},
@@ -206,7 +211,11 @@ formtasticGrid.prototype = {
 
 		this._rebindButtons();
 
-		var id = $(target).readAttribute('rowid');
+		var el = target;
+		if (target.nodeName.toLowerCase() != 'a') {
+			el = $(target).up('a');
+		}
+		var id = $(el).readAttribute('rowid');
 		this._clearAddForm();
 		var data = this.rowset.data[id];
 		var form = this.addFormDialog.select('form').first();
@@ -216,7 +225,7 @@ formtasticGrid.prototype = {
 			var name = self._getNameMetaItem(item);
 			self._setViewValue(data[item.key], name, item);
 		});
-		this.currentRowId = $(target).readAttribute('rowid');
+		this.currentRowId = $(el).readAttribute('rowid');
 
 		var errDiv = $(this.addFormDialog).select('div.errorDiv').first();
 		if (typeof(errDiv) != 'undefined') {
@@ -344,6 +353,7 @@ formtasticGrid.prototype = {
 		// update global UI
 		this._checkEmptyTable();
 		this.currentRowId = null;
+		document.fire('grid:change', {grid: this, row: row, tr: newTr, type: 'edit'});
 		this.addFormDialog.hide();
 	},
 	_addSave: function(row, rowView)
@@ -368,6 +378,7 @@ formtasticGrid.prototype = {
 		// update UI
 		this._checkEmptyTable();
 		this.currentRowId = null;
+		document.fire('grid:change', {grid: this, row: row, tr: tr, type: 'add'});
 		this.addFormDialog.hide();
 	},
 	save: function(event, target)
@@ -416,6 +427,5 @@ formtasticGrid.prototype = {
 				}
 			}
 		});
-
 	}
 }

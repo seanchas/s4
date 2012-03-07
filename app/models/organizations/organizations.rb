@@ -59,6 +59,11 @@ class Organizations::Organizations < Organizations::AbstractForm
     ] << cancelButton
   end
 
+  def initialize(*params)
+    @change_alert = true
+    super
+  end
+
   validates_presence_of :full_name, :short_name, :full_name_eng, :short_name_eng, :mesto, :post_addr, :fact_addr, :internet, :tel_areacode, :tel, :fax_areacode, :fax, :email, :inn, :kpp, :bik, :swift, :oksm, :comment1, :registry_number_2002, :reg_date, :registry_organ_2002, :ogrn, :ogrn_date, :registry_organ, :registry_place, :okpo, :okogu, :okfs, :okopf, :okato 
   def self.human_attribute_name(attr)
     case attr

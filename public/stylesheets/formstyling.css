@@ -321,3 +321,29 @@ div.editFormA .reg_card_reset {
 	text-align: center;
 	background: #ededed;
 }
+
+/* страница organization/licenses */
+form.licenses table th.number {width: 150px;}
+form.licenses table th.licence_organ {width: 150px;}
+form.licenses table th.date_begin {width: 70px;}
+form.licenses table th.date_end {width: 90px;}
+
+/* страница /organization/phones */
+form.phone table th.country {width: 130px;}
+form.phone table th.operator {width: 50px;}
+form.phone table th.number {width: 100px;}
+form.phone table th.main {width: 65px;}
+form.phone table th.fio {width: 150px;}
+form.phone table th.position {width: 120px;}
+form.phone table th.alert_phone_category {width: 90px;}
+
+
+form.contactlist th.fio {width: 90px;}
+form.contactlist th.firstname {width: 90px;}
+form.contactlist th.patronymic {width: 90px;}
+form.contactlist th.position {width: 150px}
+form.contactlist th.phone_areacode {width: 40px;}
+form.contactlist th.phone {width: 60px;}
+form.contactlist th.fax_areacode {width: 40px;}
+form.contactlist th.fax {width: 60px;}
+form.contactlist th.email {width:70px;}

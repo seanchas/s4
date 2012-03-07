@@ -1,5 +1,4 @@
 class Organizations::Ceo < Organizations::AbstractForm
-  
   column :id_item, {:as => :hidden}
   
   column :surname, {:group => :fio_group}
@@ -17,7 +16,12 @@ class Organizations::Ceo < Organizations::AbstractForm
   column :comment1, {:as => :comment, :group => :supplier_group}
   column :organs_in_place, {:as => :boolean, :group => :supplier_group}
   column :organs_place_other, {:group => :supplier_group}
-  
+
+  def initialize(*params)
+    @change_alert = true
+    super
+  end
+
   def buttons
     cancelDisabled = false
     row = UserCardsSyncS4.find_by_user(s4_user)

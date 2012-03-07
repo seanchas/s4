@@ -1,7 +1,12 @@
-class Organizations::Controllers <  Organizations::AbstractForm
+class Organizations::Controllers < Organizations::AbstractForm
   
   column :controllers, {:as => :grid}, Organizations::Grids::Controllers::Controllers.new
-  
+
+  def initialize(*params)
+    @change_alert = true
+    super
+  end
+
   def buttons
     cancelDisabled = false
     row = UserCardsSyncS4.find_by_user(s4_user)

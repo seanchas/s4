@@ -24,6 +24,7 @@ class SenddocumentsController < ApplicationController
   end
   
   def form
+    @type_id = params[:type_id]
     @organization = S4::Organization.find(s4_user)
     if !session['form'].nil?
       @senddocument = session.delete('form')

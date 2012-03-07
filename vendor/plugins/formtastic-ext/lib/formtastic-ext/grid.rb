@@ -139,7 +139,7 @@ private
       cells = grid.class.columns.collect do |column|
         tpl << template.content_tag(:td, '#{' << "#{column.name}" << '}') #template
         columnsKeys << column.name
-        template.content_tag(:td, :class => column.name) do
+        template.content_tag(:th, :class => column.name) do
           if grid.respond_to?("scope")
             ::Formtastic::I18n.t("#{grid.scope}.#{column.name}")
           else
@@ -156,12 +156,19 @@ private
       tpl << template.content_tag(:td, diff, :style => 'display: none;')
       
       if grid.respond_to?("getActions")
-        cells << template.content_tag(:td, ::Formtastic::I18n.t("grids.actions_title"))
+        cells << template.content_tag(:th, ::Formtastic::I18n.t("grids.actions_title"), :class => :actions)
         
         # template
         tplActions ||= []
-        tplActions << template.content_tag(:div, template.content_tag(:a, ::Formtastic::I18n.t("actions.edit"), :href => '#', :type => "edit"))
-        tplActions << template.content_tag(:div, template.content_tag(:a, ::Formtastic::I18n.t("actions.delete"), :href => '#', :type => "delete"))
+        editImg = template.image_tag('/images/icons/edit.gif', 
+          :alt => ::Formtastic::I18n.t("actions.edit"),  
+          :title => ::Formtastic::I18n.t("actions.edit"))
+        tplActions << template.content_tag(:div, template.content_tag(:a, editImg, :href => '#', :type => "edit"))
+        
+        deleteImg = template.image_tag("/images/icons/delete.gif",
+          :alt => ::Formtastic::I18n.t("actions.delete"),
+          :title => ::Formtastic::I18n.t("actions.delete"))
+        tplActions << template.content_tag(:div, template.content_tag(:a, deleteImg, :href => '#', :type => "delete"))
         tpl << template.content_tag(:td, tplActions, {:class => "actions"}) 
       end
       
@@ -227,7 +234,9 @@ private
             when :url, "url" then
               link_to h(value), value.start_with?("http://") ? value : "http://#{value}"
             else
-              value.blank? ? template.t(:blank, :scope => [:table_listing, :cell]) : h(value)
+              t = value.blank? ? template.t(:blank, :scope => [:table_listing, :cell]) : h(value)
+              t = t.split[0..3].join(' ') + "..." if t.split.size > 3
+              t
           end
           hidden << value
         end
@@ -242,10 +251,15 @@ private
           tpath = action[:label].is_a?(::Symbol) ? "actions.#{action[:label]}" : action[:label] 
           
           url = action[:url] ? h(action[:url]) : '#'
-          action[:options] ||= {}
-          action[:options][:rowid] = rowid
-          action[:options][:type] = action[:label]
-          template.content_tag(:div, template.link_to(::Formtastic::I18n.t(tpath), url, action[:options]))
+          # action[:options] ||= {}
+          # action[:options][:rowid] = rowid
+          # action[:options][:type] = action[:label]
+          #template.content_tag(:div, template.link_to(::Formtastic::I18n.t(tpath), url, action[:options]))
+          
+          img = template.image_tag("/images/icons/#{action[:label]}.gif", 
+            :alt => ::Formtastic::I18n.t(tpath),  
+            :title => ::Formtastic::I18n.t(tpath))
+          template.content_tag(:div, template.content_tag(:a, img, :href => url, :type => action[:label], :rowid => rowid))
         end
         html << template.content_tag(:td, actions, {:class => "actions"})
       end

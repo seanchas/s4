@@ -11,6 +11,11 @@ class Organizations::Phones < Organizations::AbstractForm
   column :no_phone_cenii, {:as => :hidden, :input_html => {:id => "", :value => "0"}}
   column :cenii, {:as => :grid, :empty_checkbox => :no_phone_cenii}, Organizations::Grids::Phones::Phones_c.new
   
+  def initialize(*params)
+    @change_alert = true
+    super
+  end
+  
   def buttons
     cancelDisabled = false
     row = UserCardsSyncS4.find_by_user(s4_user)
