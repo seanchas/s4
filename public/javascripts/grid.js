@@ -101,7 +101,6 @@ formtasticGrid.prototype = {
 	},
 	deleteRow: function(e, target)
 	{
-		if (this.addFormDialog == null) return;
 		Event.stop(e);
 		Dialog.Box.Confirm(this.options.delete_row_title, this.options.delete_row_message, {
 			'ok': function(){
