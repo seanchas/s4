@@ -1,7 +1,7 @@
 module Formtastic #:nodoc:
   class SemanticFormBuilder 
     def rrender(form, prefix = '')
-      formName = input(form.class.columns.first.name).sub(/.*?name=\"([^\[]+).*/, '\1')
+      formName = "#{@object_name.to_s}"
       template.stylesheet_include_once "formstyling.css"
 
       # проверка на изменения в форме

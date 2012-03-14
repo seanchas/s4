@@ -347,3 +347,11 @@ form.contactlist th.phone {width: 60px;}
 form.contactlist th.fax_areacode {width: 40px;}
 form.contactlist th.fax {width: 60px;}
 form.contactlist th.email {width:70px;}
+
+/* страница cards/sendcard */
+form #card_executor_comment1_input ol {
+    padding-left: 40px;
+}
+form #card_executor_comment1_input li {
+    list-style: inherit;
+}

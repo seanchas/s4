@@ -23,7 +23,7 @@ Dialog.Box.Confirm = function(title, text, funcs){
 		.insert(buttonCancel, {position: 'after'}));
 	
 	dialog.show();
-}
+};
 Object.extend(Dialog.Box.prototype, {
   initialize: function(id, options) {
     this.createOverlay();

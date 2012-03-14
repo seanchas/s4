@@ -154,7 +154,7 @@ ru:
           
         
     grids:
-      actions_title: 'Действия'
+      actions_title: ''
       empty_table: 'Записей нет'
       organizations:
         grids:
