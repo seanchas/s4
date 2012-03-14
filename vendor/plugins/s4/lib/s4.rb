@@ -21,7 +21,7 @@ module S4
   @@site = nil
   
   mattr_accessor :connection_retry_count
-  @@connection_retry_count = 1
+  @@connection_retry_count = 2
   
   mattr_accessor :connection_timeout
   @@connection_timeout = 1.second
