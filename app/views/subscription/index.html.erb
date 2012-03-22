@@ -1,0 +1,16 @@
+<%= stylesheet_link_tag 'managerStyle' %>
+<%= stylesheet_link_tag 'dialog' %>
+<%= stylesheet_link_tag("formstyling") %>
+
+<h1>
+    <%= @organization.full_name %>
+</h1>
+<%= contextual_menu %>
+
+<% if @subscribe.subscription == '1' %>
+	Вы подписаны на извещение по электронной почте о публикации сообщений Личном кабинете Участника.<br>
+	<%= textilize t(:subscription_unsubscribe, :scope => [:organizations]) %>
+<% else %>
+	Вы не подписаны на извещение по электронной почте о публикации сообщений Личном кабинете Участника.<br>
+	<%= textilize t(:subscription_subscribe, :scope => [:organizations]) %>
+<% end %>

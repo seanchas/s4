@@ -604,6 +604,9 @@ class OrganizationsController < ApplicationController
 
     S4::Subscription.scope = {}
     @subscribe = S4::Subscription.find_with_scope(s4_user)
+    
+    @schemaForTable = S4::Notice.schema
+    @schemaForTable.columns.delete_if { |column| column.name == "id" or column.name == "status" or column.name == "end_date" }
   end
   
   def notice_filter
@@ -615,27 +618,31 @@ class OrganizationsController < ApplicationController
   def notice_subscribe
     S4::Subscription.scope = {:subscription => 1}
     S4::Subscription.set_with_scope(s4_user)
-    redirect_to :action => :notice
+    redirect_to :back
   end
 
   def notice_unsubscribe
     S4::Subscription.scope = {:subscription => 0}
     S4::Subscription.set_with_scope(s4_user)
-    redirect_to :action => :notice
+    redirect_to :back
   end
   
   def messages
     @organization = S4::Organization.find(s4_user)
     
-    S4::Notice.scope = {'notice_type' => '1'}
-    @notices = S4::Notice.all_with_scope(s4_user)
+    S4::ImportantNotice.scope = {'notice_type' => '1'}
+    @notices = S4::ImportantNotice.all_with_scope(s4_user)
+    @schemaForTable = S4::ImportantNotice.schema
+    @schemaForTable.columns.delete_if { |column| column.name == "id" }
   end
   
   def controldebt
     @organization = S4::Organization.find(s4_user)
     
-    S4::Notice.scope = {'notice_type' => '3','status' => '1'}
-    @notices = S4::Notice.all_with_scope(s4_user)
+    S4::DebtNotice.scope = {'notice_type' => '3','status' => '1'}
+    @notices = S4::DebtNotice.all_with_scope(s4_user)
+    @schemaForTable = S4::DebtNotice.schema
+    @schemaForTable.columns.delete_if { |column| column.name == "id" }
   end
 
 private

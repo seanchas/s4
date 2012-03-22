@@ -3,7 +3,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.xmlrpc "/xml-rpc", :controller => :welcome, :action => :xmlrpc
 
-
   map.resource :organization, :only => :show, :member => {
     :news => :get,
     :notice => :get,
@@ -78,6 +77,11 @@ ActionController::Routing::Routes.draw do |map|
   map.senddocumentsrk '/senddocuments/form/type_id/14', :controller => :senddocuments, :action => :form, :type_id => 14
   
   map.resources :authorities
+  
+  map.view_notice 'organization/notice/:id/type/1', :controller => 'notice', :action => 'show_message'
+  map.view_notice 'organization/notice/:id/type/2', :controller => 'notice', :action => 'show_notice'
+  map.view_notice 'organization/notice/:id/type/3', :controller => 'notice', :action => 'show_debt'
+  map.subscription 'organization/subscription', :controller => 'subscription', :action => 'index', :path_names => :subscription_path
   
   #map.insider     "/insider", :controller => :insiders, :action => :new,    :conditions => { :method => :get }
   #map.rat_insider "/insider", :controller => :insiders, :action => :create, :conditions => { :method => :post }

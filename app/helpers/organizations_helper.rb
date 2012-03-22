@@ -30,11 +30,12 @@ module OrganizationsHelper
         arrow << submenu.to_s 
       end 
       #ul.li(t(:organization_edit, :scope => [:organizations, :contextual_menu]), sendcard_organization_path, :organizations => [:sendcard, :licenses, :ceo, :controllersadd, :controllersedit, :structure, :capital, :ncc_federal_law, :filials, :phones, :contactlist])
-      ul.li t(:manager,     :scope => [:organizations, :contextual_menu]), manager_organization_path,     :organizations => :manager
-      #ul.li t(:news,     :scope => [:organizations, :contextual_menu]), news_organization_path,     :organizations => :news
-      ul.li t(:notice,     :scope => [:organizations, :contextual_menu]), notice_organization_path,     :organizations => :notice
-      ul.li t(:messages,     :scope => [:organizations, :contextual_menu]), messages_organization_path,     :organizations => :messages
-      ul.li t(:controldebt,     :scope => [:organizations, :contextual_menu]), controldebt_organization_path,     :organizations => :controldebt
+      ul.li t(:manager,      :scope => [:organizations, :contextual_menu]), manager_organization_path,      :organizations => :manager
+      #ul.li t(:news,         :scope => [:organizations, :contextual_menu]), news_organization_path,         :organizations => :news
+      ul.li t(:notice,       :scope => [:organizations, :contextual_menu]), notice_organization_path,       :organizations => :notice, :notice => :show_notice
+      ul.li t(:messages,     :scope => [:organizations, :contextual_menu]), messages_organization_path,     :organizations => :messages, :notice => :show_message
+      ul.li t(:controldebt,  :scope => [:organizations, :contextual_menu]), controldebt_organization_path,  :organizations => :controldebt, :notice => :show_debt
+      ul.li t(:subscription, :scope => [:organizations, :contextual_menu]), subscription_path, :subscription
     end
     
     content_tag :div, menu, {:id => "dropdownmenu"}

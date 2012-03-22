@@ -8,14 +8,6 @@
             {:include_blank => t(:all_types, :scope => [:shared, :search_form, :include_blank])}) %>
     </p>
   </div>
-  
-  <div>
-    <p>
-        <span class="label_span"><%= f.label :status, t(:status_label, :scope => [:shared, :notice, :columns]) %></span>
-        <%= f.select(:status, @noticeStatus.collect {|prioritiesListing| [prioritiesListing.name, prioritiesListing.id]},
-            {:include_blank => t(:all_types, :scope => [:shared, :search_form, :include_blank])}) %>
-    </p>
-  </div>
 
   <div class="date">
     <p class="date_fields">

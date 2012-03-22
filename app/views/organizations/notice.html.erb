@@ -13,7 +13,7 @@
 <%= render :partial => "search_notice", :locals => {:form => @search_form} %>
 
 <% if @notices.size != 0 %>
-<%= table_listing(S4::Notice.schema, @notices) %>
+<%= table_listing(@schemaForTable, @notices, [{"title" => "Просмотреть", "img" => "/images/icons/view.gif", "link" => "/organization/notice/:id/type/2"}]) %>
 <%else%>
 	Уведомлений нет
 <%end%>

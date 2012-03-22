@@ -8,12 +8,20 @@ ru:
         status_no_satisfied_label: Не исполнено
         search_text: 'По заголовке или тексту '
       create_button: 'Отправить '
-
+  
+  notice:
+    button:
+      back: 'Назад'
+  
   organizations:
     unsubscribe: |
       Чтобы отменить подписку на уведомления нажмите "здесь":/organization/notice-unsubscribe.
     subscribe: |
       Чтобы начать получать уведомления нажмите "здесь":/organization/notice-subscribe.
+    subscription_unsubscribe: |
+      "Отказаться":/organization/notice-unsubscribe
+    subscription_subscribe: |
+      "Подписаться":/organization/notice-subscribe
     reset:
       reset_message: |
         Все изменения были отменены.
@@ -54,6 +62,7 @@ ru:
       messages: 'Важные сообщения'
       reset: 'Отменить изменения'
       controldebt: 'Контроль задолженности'
+      subscription: 'Подписка'
       
     controldebt:
       tableNoRows: 'Задолженностей нет'

@@ -1,0 +1,11 @@
+<%= stylesheet_link_tag 'managerStyle' %>
+<%= stylesheet_link_tag 'dialog' %>
+<%= stylesheet_link_tag("formstyling") %>
+
+<h1>
+    <%= @organization.full_name %>
+</h1>
+<%= contextual_menu %>
+
+<%= form_view(@schema, @notice) %>
+<%= button_to I18n.t(:back, :scope => [:notice, :button]), :back, :method => :get %>

@@ -11,6 +11,7 @@ ru:
     actions:
       edit: 'Редактировать'
       delete: 'Удалить'
+      view: 'Просмотреть'
 
     buttons:
       grid_add: "Добавить"

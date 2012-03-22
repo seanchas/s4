@@ -95,23 +95,23 @@ module ApplicationHelper
     "#{s4_user}_#{key}"
   end
   
-  def table_listing(schema, resources)
+  def table_listing(schema, resources, actions = nil)
     reset_cycle
     content_tag(:table, :class => "resource") do
-      [table_listing_schema(schema), table_listing_rows(schema, resources).join].join
+      [table_listing_schema(schema, actions), table_listing_rows(schema, resources, actions).join].join
     end
   end
   
-  def table_listing_schema(schema)
+  def table_listing_schema(schema, actions = nil)
     cells = schema.columns.collect { |column| content_tag(:td, column.title) }.join
     content_tag(:thead) do
       content_tag(:tr, cells)
     end
   end
   
-  def table_listing_rows(schema, resources)
+  def table_listing_rows(schema, resources, actions = nil)
     resources.collect do |resource|
-      content_tag(:tr, table_listing_cells(schema, resource).join, :class => cycle("odd", "even"))
+      content_tag(:tr, [table_listing_cells(schema, resource).join, (actions.nil? ? "" : table_actions_cell(:td, resource, actions))].join, :class => cycle("odd", "even"))
     end
   end
   
@@ -123,6 +123,12 @@ module ApplicationHelper
   
   def table_listing_cell(column, resource)
     t_resource_value(:td, column, resource)
+  end
+  
+  def table_actions_cell(tag, resource, actions)
+    content_tag(tag, actions.collect {|action| link_to action["img"].nil? ? h(action["title"]) : image_tag(action["img"], 
+      :alt => ::Formtastic::I18n.t("actions.view"),  
+      :title => ::Formtastic::I18n.t("actions.view")), action["link"].sub(":id", resource.id)}.join(" "))
   end
   
   def t_resource_value(tag, column, resource)
@@ -343,5 +349,17 @@ RTF
       out << ["%#{item.text}%", t(item.text.to_sym, :scope => [:formtastic, :labels, :cards, resource.to_sym])]
     end
     out
+  end
+  
+  def form_view(schema, resource)
+    stylesheet_include_once("form_view_resource")
+    
+    content_tag(:table, :class => "form_view_resource", :cellspacing => "0", :cellpadding => "5px") do
+      form_view_row(schema, resource)
+    end
+  end
+  
+  def form_view_row(schema, resource)
+    schema.columns.collect {|column| content_tag(:tr, [content_tag(:td, column.title + ": ", :class => "form_view_title"), t_resource_value(:td, column, resource)].join)}
   end
 end
