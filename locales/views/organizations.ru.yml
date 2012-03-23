@@ -277,7 +277,7 @@ ru:
     labels:
       organizations:
         okvedadd:
-          okved: Код ОКВЭД
+          okved: Код по ОКВЭД
         organizations:
           full_name: Полное наименование организации
           short_name: Краткое наименование организации
@@ -294,7 +294,7 @@ ru:
           internet: Сайт
           inn: ИНН
           kpp: КПП
-          kpp2: КПП
+          kpp2: КПП крупнейшего налогоплательщика
           bik: БИК
           swift: SWIFT-код
           oksm: Цифровой код страны
@@ -394,7 +394,7 @@ ru:
 
         grids:
           organization:
-            okved: Коды ОКВЭД
+            okved: Коды по ОКВЭД
           licenses:
             banking: 'Банковские лицензии'
             professionalmember: 'Лицензии профессионального участника ценных бумаг'
@@ -481,7 +481,7 @@ ru:
       organizations:
         grids:
           organization:
-            okved: Код ОКВЭД
+            okved: ''
           controllers:
             attestat: 'Сведения о действующем квалификационном аттестате'
           ceo:
@@ -515,7 +515,7 @@ ru:
         grids:
           organization:
             okved:
-              okved: Код ОКВЭД
+              okved: Значение
           ceo:
             certificates:
               series: 'Серия'
