@@ -4,7 +4,7 @@
     </h4>
     <div class="description">
         <%= textilize market.description %>
-        <%= resource_table(S4::Agent.schema, market.agents) unless market.agents.empty? %>
+        <%= resource_table(@schemaForForm, market.agents) unless market.agents.empty? %>
     </div>
 </div>
 

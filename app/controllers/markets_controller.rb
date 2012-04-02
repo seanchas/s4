@@ -4,6 +4,8 @@ class MarketsController < ApplicationController
   
   def index
     @organization = S4::Organization.find(s4_user)
+    @schemaForForm = S4::Agent.schema.clone
+    @schemaForForm.columns.delete_if {|column| column.name == "id"}
   end
   
   def show
