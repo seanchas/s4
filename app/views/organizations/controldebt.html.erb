@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag 'managerStyle' %>
 <%= stylesheet_link_tag 'dialog' %>
+<%= stylesheet_link_tag("formstyling") %>
 <h1>
     <%= @organization.full_name %>
 </h1>
@@ -12,3 +13,7 @@
 <%else%>
 	<%= I18n.t(:tableNoRows, :scope => [:organizations, :controldebt]) %>
 <%end%>
+<div class="legend">
+<%= textilize I18n.t(:text1, :scope => [:organizations, :controldebt]) %>
+<%= textilize I18n.t(:text2, :scope => [:organizations, :controldebt]) %>
+</div>
