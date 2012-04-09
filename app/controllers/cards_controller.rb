@@ -27,7 +27,7 @@ class CardsController < ApplicationController
       data.delete(:user)
       @card_executor = Cards::SendCard.new(data)
     else
-      @card_executor = Cards::SendCard.new({:id_item => 0})
+      @card_executor = Cards::SendCard.new({:item_id => 0})
     end
   end
 
