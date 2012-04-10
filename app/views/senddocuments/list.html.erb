@@ -12,35 +12,11 @@
 
 <%= render :partial => 'search_form', :locals => {'documentfilter' => @documentfilter} %>
 
-
-<% if @documentListing.size != 0 %>
-  <%= table_listing(S4::SendedForm.schema, @documentListing) %>
-<%else%>
-	<table class="resource">
-		<thead>
-			<tr>
-				<td>Код отправленного документа</td>
-				<td>Дата отправки</td>
-				<td>Заголовок сообщения</td>
-				<td>Текст сообщения</td>
-				<td>Тип процедуры (документа)</td>
-				<td>Дата, год-квартал</td>
-				<td>ФИО отправителя</td>
-				<td>Название файла</td>
-				<td>Статус</td>
-				<td>Комментарий сотрудника биржы</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td colspan="10">
-					<div style="padding:10px;background:#ccc;text-align:center;">
-						<strong>Соответствующие вашему запросу документы отсутствуют</strong>
-					</div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+<%= table_listing(S4::SendedForm.schema, @documentListing) %>
+<% if @documentListing.size == 0 %>
+	<div style="padding:10px;background:#ccc;text-align:center;">
+        <strong>Соответствующие вашему запросу документы отсутствуют</strong>
+    </div>
 <%end%>
 
 <%= javascript_include_tag("document_list") %>
