@@ -19,7 +19,7 @@ module OrganizationsHelper
       ul.li t(:capital, :scope => [:organizations, :contextual_menu]), capital_organization_path,             :organizations => :capital
       ul.li t(:ncc_federal_law, :scope => [:organizations, :contextual_menu]), ncc_federal_law_organization_path,             :organizations => :ncc_federal_law
       ul.li t(:filials, :scope => [:organizations, :contextual_menu]), filials_organization_path,             :organizations => :filials
-      #ul.li t(:phones, :scope => [:organizations, :contextual_menu]), phones_organization_path,             :organizations => :phones
+      ul.li t(:phones, :scope => [:organizations, :contextual_menu]), phones_organization_path,             :organizations => :phones
       ul.li t(:contactlist, :scope => [:organizations, :contextual_menu]), contactlist_organization_path,             :organizations => :contactlist
       #ul.li t(:reset, :scope => [:organizations, :contextual_menu]), reset_organization_path,             :organizations => :reset
     end

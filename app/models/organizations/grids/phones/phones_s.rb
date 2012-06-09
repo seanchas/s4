@@ -6,11 +6,7 @@ class Organizations::Grids::Phones::Phones_s < Organizations::Grids::GridStore
   column :fio
   column :position
   column :alert_phone_category, {:as => :select}
-  
-  def rowset 
-     Phones.find_all_by_kind('srochnii')
-  end
-  
+
   def getActions(data)
     [
       {:label => :edit},

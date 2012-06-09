@@ -7,10 +7,6 @@ class Organizations::Grids::Phones::Phones_f < Organizations::Grids::GridStore
   column :position
   column :alert_phone_category, {:as => :select}
   
-  def rowset 
-     Phones.find_all_by_kind('fondovii')
-  end
-  
   def getActions(data)
     [
       {:label => :edit},
