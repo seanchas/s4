@@ -618,13 +618,17 @@ class OrganizationsController < ApplicationController
   def notice_subscribe
     S4::Subscription.scope = {:subscription => 1}
     S4::Subscription.set_with_scope(s4_user)
-    redirect_to :back
+    
+    redirect_to :back if :back.nil?
+    redirect_to :action => :notice
   end
 
   def notice_unsubscribe
     S4::Subscription.scope = {:subscription => 0}
     S4::Subscription.set_with_scope(s4_user)
-    redirect_to :back
+    
+    redirect_to :back if :back.nil?
+    redirect_to :action => :notice
   end
   
   def messages
