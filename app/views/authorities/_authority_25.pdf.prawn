@@ -4,7 +4,7 @@ render :partial => "header_authority_4",
          :vars       => @vars
        }
 parent_pdf.text_field("ya", 45, 524, 18, 15)
-parent_pdf.text_field("vtv_id", 58, 473, 175, 15)
+parent_pdf.text_field("vtv_id", 150, 473, 175, 15)
 #parent_pdf.text_field("podpis", 255, 387, 125, 15)
 #parent_pdf.text_field("phones", 115, 353, 340, 15)
 

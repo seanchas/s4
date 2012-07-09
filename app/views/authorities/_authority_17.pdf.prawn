@@ -14,47 +14,47 @@ parent_pdf.text_field("name_supplier", 140, 698, 383, 15, :default => first_stri
 #parent_pdf.text_field("name_supplier2512", 0, 674, 523, 15, :default => first_string(383, @vars['organization_name'],1))
 parent_pdf.text_field("id_supplier", 0, 674, 385, 15)
 
-parent_pdf.text_field("position_supplier", 35, 650, 487, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
+parent_pdf.text_field("position_supplier", 35, 657, 487, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 
-parent_pdf.text_field("deistv", 58, 626, 20, 15)
-parent_pdf.text_field("gustav", 150, 626, 240, 15, :default => @vars['document_name'])
+parent_pdf.text_field("deistv", 58, 634, 20, 15)
+parent_pdf.text_field("gustav", 150, 634, 240, 15, :default => @vars['document_name'])
 
-#parent_pdf.text_field("position_agent", 237, 609, 285, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
-parent_pdf.text_field("position_agent", 0, 609, 432, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
+#parent_pdf.text_field("position_agent", 237, 616, 285, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
+parent_pdf.text_field("position_agent", 0, 616, 432, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
 
-parent_pdf.text_field("passport_serial", 74, 585, 37, 15)
-parent_pdf.text_field("passport_num", 130, 585, 60, 15)
-parent_pdf.text_field("passport_date", 230, 585, 290, 15)
-parent_pdf.text_field("passport_date2", 0, 561, 523, 15)
+parent_pdf.text_field("passport_serial", 74, 592, 37, 15)
+parent_pdf.text_field("passport_num", 130, 592, 60, 15)
+parent_pdf.text_field("passport_date", 230, 592, 290, 15)
+parent_pdf.text_field("passport_date2", 0, 568, 523, 15)
 
 # Идентификатор Участника
-parent_pdf.text_field("id_supplier2", 12, 465, 155, 15)
+parent_pdf.text_field("id_supplier2", 12, 472, 155, 15)
 
-#parent_pdf.text_field("name_supplier2", 50, 527, 473, 15, :default => first_string(473, @vars['organization_name'],0))
-#parent_pdf.text_field("name_supplier3", 0, 503, 523, 15, :default => first_string(473, @vars['organization_name'],1))
+#parent_pdf.text_field("name_supplier2", 50, 534, 473, 15, :default => first_string(473, @vars['organization_name'],0))
+#parent_pdf.text_field("name_supplier3", 0, 510, 523, 15, :default => first_string(473, @vars['organization_name'],1))
 
 #parent_pdf.text_field("position_agent2", 0, 418, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
-parent_pdf.text_field("position_agent2", 47, 442, 218, 15, :default => "#{@vars['agent_fio']}")
+parent_pdf.text_field("position_agent2", 47, 449, 218, 15, :default => "#{@vars['agent_fio']}")
 
 #parent_pdf.text_field("name_supplier4", 50, 345, 473, 15, :default => first_string(473, @vars['organization_name'],0))
 #parent_pdf.text_field("name_supplier5", 0, 320, 523, 15, :default => first_string(473, @vars['organization_name'],1))
 
-parent_pdf.text_field("auth_create_day", 6, 381, 20, 15, :align => 1)
-parent_pdf.text_field("auth_create_month", 33, 381, 122, 15, :align => 1)
-parent_pdf.text_field("auth_create_year", 167, 381, 20, 15, :align => 1)
+parent_pdf.text_field("auth_create_day", 6, 388, 20, 15, :align => 1)
+parent_pdf.text_field("auth_create_month", 33, 388, 122, 15, :align => 1)
+parent_pdf.text_field("auth_create_year", 167, 388, 20, 15, :align => 1)
 
 #parent_pdf.text_field("name_for_podpis", 90, 237, 360, 15, :default => "#{@vars['agent_fio']}")
 
 # Контактный телефон
 #parent_pdf.text_field("phone_code", 209, 213, 23, 15)
-parent_pdf.text_field("phone", 163, 348, 240, 15)
+parent_pdf.text_field("phone", 163, 355, 240, 15)
 
 # Адрес электронной почты
-parent_pdf.text_field("email", 190, 325, 240, 15)
+parent_pdf.text_field("email", 190, 332, 240, 15)
 
-parent_pdf.text_field("position", 0, 268, 210, 15, :default => @vars['ceo_position'])
-parent_pdf.text_field("name_podp", 423, 268, 85, 15, :default => @vars['cfs'])
+parent_pdf.text_field("position", 0, 275, 210, 15, :default => @vars['ceo_position'])
+parent_pdf.text_field("name_podp", 423, 275, 85, 15, :default => @vars['cfs'])
 
 #### Текст формы
 parent_pdf.text "\n\n"
@@ -62,7 +62,7 @@ parent_pdf.text "Настоящей доверенностью #{"_"*63}", :lead
 parent_pdf.text "<sup>(наименование Участника торгов)</sup>", :inline_format => true, :indent_paragraphs => 250
 #parent_pdf.text "#{"_"*87}", :leading => 4
 parent_pdf.text "#{"_"*64}(далее – Участник торгов)", :leading => 4
-parent_pdf.text "<sup>(идентификатор Участника торгов)</sup>", :inline_format => true, :align => :center
+#parent_pdf.text "<sup>(идентификатор Участника торгов)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "в лице #{"_"*81}", :leading => 4
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>",  :inline_format => true, :align => :center
 parent_pdf.text "действующ___ на основании #{"_"*40}, уполномочивает", :leading => 4, :align => :justify
@@ -84,7 +84,7 @@ parent_pdf.text "#{"_"*87}", :leading => 4
 #parent_pdf.text " –#{" "*5}получать информацию и отчетные документы по результатам торгов иностранными валютами, предусмотренные Правилами ЕТС.", :align => :justify
 parent_pdf.text "объявлять (подавать, изменять, отзывать ранее поданные) заявки и заключать сделки, получать, предоставлять и подписывать документы и осуществлять иные действия, предусмотренные внутренними документами ОАО Московская Биржа, устанавливающими требования к организации торговли на валютном рынке ОАО Московская Биржа.", :leading => 4, :align => :justify
 parent_pdf.text "Идентификатор Участника  торгов  на  валютном  рынке  ОАО  Московская  Биржа", :indent_paragraphs => 30, :align => :justify
-parent_pdf.text "№#{"_"*26})", :leading => 10
+parent_pdf.text "№#{"_"*26}", :leading => 10
 
 parent_pdf.text "Подпись #{"_"*36}        #{"_"*14} удостоверяем.", :leading => 4
 parent_pdf.text "<sup>(Ф.И.О. представителя Участника торгов)#{" "*55}(подпись)</sup>", :padding => 10,:inline_format => true, :indent_paragraphs => 100
