@@ -6,13 +6,15 @@ ru:
         status_label: 'Статус:'
         status_satisfied_label: Исполнено
         status_no_satisfied_label: Не исполнено
-        search_text: 'По заголовке или тексту '
+        search_text: 'По заголовку или тексту '
       create_button: 'Отправить '
   
   notice:
     button:
       back: 'Назад'
   
+  subscription:
+    title: 'Организация'
   organizations:
     unsubscribe: |
       Чтобы отменить подписку на уведомления нажмите "здесь":/organization/notice-unsubscribe.
