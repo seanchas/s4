@@ -26,17 +26,20 @@ class Organizations::Organizations < Organizations::AbstractForm
   column :oksm
 
   
-  column :comment1, {:as => :comment, :group => :reg_data_group}
-  column :registry_number_2002, {:group => :reg_data_group}
+#  column :comment1, {:as => :hidden, :group => :reg_data_group}
+  column :registry_number_2002, {:as => :hidden, :group => :reg_data_group}
   column :reg_date, {:as => :date, :description => true, :group => :reg_data_group}
-  column :registry_organ_2002, {:group => :reg_data_group}
+  column :registry_organ_2002, {:as => :hidden, :group => :reg_data_group}
 
-  column :comment2, {:as => :comment, :group => :reg_data_group}
+#  column :comment2, {:as => :comment, :group => :reg_data_group}
   column :ogrn, {:group => :reg_data_group}
   column :ogrn_date, {:as => :date, :description => true, :group => :reg_data_group}
-  column :registry_organ, {:group => :reg_data_group}
+  column :registry_organ, {:group => :reg_data_group, :description => true}
   column :registry_place, {:description => true, :group => :reg_data_group}
-  
+
+  column :registry_confirm_series, {:description => true, :group => :reg_data_group}
+  column :registry_confirm_number, {:description => true, :group => :reg_data_group}
+
   column :okpo, {:group => :codes_group}
   column :okogu, {:group => :codes_group}
   column :okfs, {:group => :codes_group}
@@ -64,10 +67,10 @@ class Organizations::Organizations < Organizations::AbstractForm
     super
   end
 
-  validates_presence_of :full_name, :short_name, :full_name_eng, :short_name_eng, :mesto, :post_addr, :fact_addr, :internet, :tel_areacode, :tel, :fax_areacode, :fax, :email, :inn, :kpp, :bik, :swift, :oksm, :comment1, :registry_number_2002, :reg_date, :registry_organ_2002, :ogrn, :ogrn_date, :registry_organ, :registry_place, :okpo, :okogu, :okfs, :okopf, :okato 
+  validates_presence_of :full_name, :short_name, :full_name_eng, :short_name_eng, :mesto, :post_addr, :fact_addr, :internet, :tel_areacode, :tel, :fax_areacode, :fax, :email, :inn, :kpp, :bik, :swift, :oksm, :comment1, :registry_number_2002, :reg_date, :registry_organ_2002, :ogrn, :ogrn_date, :registry_organ, :registry_place, :okpo, :okogu, :okfs, :okopf, :okato, :registry_confirm_series, :registry_confirm_number
   def self.human_attribute_name(attr)
     case attr
-    when 'full_name', 'short_name', 'full_name_eng', 'short_name_eng', 'mesto', 'post_addr', 'fact_addr', 'internet', 'tel_areacode', 'tel', 'fax_areacode', 'fax', 'email', 'inn', 'kpp', 'bik', 'swift', 'oksm', 'comment1', 'registry_number_2002', 'reg_date', 'registry_organ_2002', 'ogrn', 'ogrn_date', 'registry_organ', 'registry_place', 'okpo', 'okogu', 'okfs', 'okopf', 'okato',  
+    when 'full_name', 'short_name', 'full_name_eng', 'short_name_eng', 'mesto', 'post_addr', 'fact_addr', 'internet', 'tel_areacode', 'tel', 'fax_areacode', 'fax', 'email', 'inn', 'kpp', 'bik', 'swift', 'oksm', 'comment1', 'registry_number_2002', 'reg_date', 'registry_organ_2002', 'ogrn', 'ogrn_date', 'registry_organ', 'registry_place', 'okpo', 'okogu', 'okfs', 'okopf', 'okato', 'registry_confirm_series', 'registry_confirm_number'
       ''
     else
       super

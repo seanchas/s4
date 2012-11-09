@@ -76,7 +76,7 @@ module ApplicationHelper
   end
   
   def resource_value(tag, column, resource)
-    value = resource.try(column.name)
+    value = resource.try(column.name) rescue nil
     content_tag(tag, :class => [column.type, column.nowrap? ? :nowrap : nil].compact.join(" ")) do
       case column.type
         when "string"

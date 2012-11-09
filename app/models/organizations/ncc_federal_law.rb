@@ -21,7 +21,12 @@ class Organizations::NccFederalLaw < Organizations::AbstractForm
   column :at_control_employee_f, {:group => :group4}
   column :at_control_employee_i, {:group => :group4}
   column :at_control_employee_o, {:group => :group4}
-  
+
+  column :at_control_employee_position, {:group => :group4, :required => true}
+  column :at_control_employee_phone, {:group => :group4, :required => true}
+  column :at_control_employee_contact_phone_add, {:group => :group4}
+  column :at_control_employee_mail, {:group => :group4, :required => true}
+
   column :at_control_rules, {:as => :boolean, :required => false, :group => :group4}
   column :at_control_rules_contr, {:as => :boolean, :required => false, :group => :group4}
   column :at_identification, {:as => :boolean, :required => false, :group => :group4}

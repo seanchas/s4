@@ -550,6 +550,10 @@ class OrganizationsController < ApplicationController
         :at_identification => form_params[:at_identification],
         :at_control_of_operation => form_params[:at_control_of_operation],
         :at_control_training => form_params[:at_control_training],
+        :at_control_employee_mail => form_params[:at_control_employee_mail],
+        :at_control_employee_phone => form_params[:at_control_employee_phone],
+        :at_control_employee_position => form_params[:at_control_employee_position],
+        :at_control_employee_contact_phone_add => form_params[:at_control_employee_contact_phone_add],
         :shell_bank_acc => shell_bank_acc_grid
       }
       @ncc_federal_law = Organizations::NccFederalLaw.new(formParams)

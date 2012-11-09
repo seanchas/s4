@@ -127,8 +127,13 @@ private
       name = name.join('_')
       desc = template.content_tag(:span, '?', :class => 'description', :id => "#{name}_description") <<
              template.javascript_tag("new Tip('#{name}_description', '#{Formtastic::Util.html_safe(str)}', {hook: {target: 'bottomRight', tip: 'topLeft'}});")
-      
-      html.gsub(/^(.*)?(<\/label>)(.*)/, "\\1#{desc}\\2\\3")
+      htmlClone = html.clone
+      htmlClone = html.gsub(/^(.*)?(<\/label>)(.*)/, "\\1#{desc}\\2\\3")
+      if htmlClone == html
+        html.gsub(/^(.*)?(<\/li>)(.*)/, "\\1#{desc}\\2\\3")
+      else
+        html = htmlClone
+      end
     end
   end
 end

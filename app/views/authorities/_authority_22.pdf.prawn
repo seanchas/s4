@@ -21,8 +21,8 @@ parent_pdf.text_field("auth_create_year", 330, 364, 17, 15)
 parent_pdf.text_field("phone_code", 92, 326, 22, 15)
 parent_pdf.text_field("phone", 120, 326, 265, 15)
 
-parent_pdf.text_field("agent_podpis", 0, 301, 300, 15, :default => @vars['ceo_position'])
-parent_pdf.text_field("name_podp", 426, 301, 95, 15, :default => @vars['cfs'])
+parent_pdf.text_field("agent_podpis", 50, 301, 300, 15, :default => @vars['ceo_position'])
+parent_pdf.text_field("name_podp", 400, 301, 95, 15, :default => @vars['cfs'])
 
 parent_pdf.text "именуем___ в дальнейшем Участник, при заключении кредитных сделок согласно установленным ОАО Московская Биржа Правилам проведения кредитных аукционов при предоставлении Банком России кредитным организациям кредитов без обеспечения с использованием Системы электронных торгов ОАО Московская Биржа с использованием следующих идентификаторов Участника", :align => :justify
 parent_pdf.text "торговый идентификатор Участника: _____________________________________"

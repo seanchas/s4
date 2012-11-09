@@ -43,7 +43,7 @@ class AuthoritiesController < ApplicationController
     @warrant_types = S4::WarrantType.all(s4_user)
     
     #@warrant_agents = S4::WarrantAgent.all(s4_user)
-    
+
     if @authority_params_type_id
       S4::WarrantAgent.scope = {'warrant_type_id' => @authority_params_type_id}
       @warrant_agents = S4::WarrantAgent.all_with_scope(s4_user)

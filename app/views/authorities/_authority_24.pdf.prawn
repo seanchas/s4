@@ -5,8 +5,8 @@ render :partial => "header_authority_2",
        }
 parent_pdf.text_field("yaya",45, 528, 19, 15)
 
-parent_pdf.text_field("depozit", 280, 527, 243, 15, :default => first_string(243, "#{@vars['agent_fio']}" ,0))
-parent_pdf.text_field("kredit", 0, 515, 330, 15, :default => first_string(243, "#{@vars['agent_fio']}" ,1))
+#parent_pdf.text_field("depozit", 280, 527, 243, 15, :default => first_string(243, "#{@vars['agent_fio']}" ,0))
+#parent_pdf.text_field("kredit", 0, 515, 330, 15, :default => first_string(243, "#{@vars['agent_fio']}" ,1))
  
 parent_pdf.text_field("tid_one", 0, 452, 187, 15)
 parent_pdf.text_field("tid_two", 0, 439, 187, 15)
@@ -27,12 +27,12 @@ parent_pdf.text_field("auth_create_year", 330, 301, 17, 15)
 parent_pdf.text_field("phone_code", 92, 263, 22, 15)
 parent_pdf.text_field("phone", 120, 263, 265, 15) 
 
-parent_pdf.text_field("agent_podpis", 0, 237, 300, 15, :default => @vars['ceo_position'])
-parent_pdf.text_field("name_podp", 426, 237, 95, 15, :default => @vars['cfs'])
+parent_pdf.text_field("agent_podpis", 50, 237, 300, 15, :default => @vars['ceo_position'])
+parent_pdf.text_field("name_podp", 400, 237, 95, 15, :default => @vars['cfs'])
 
 
-parent_pdf.text "именуем___ в дальнейшем Участник, при заключении ________________________________________"
-parent_pdf.text "_______________________________________________________ депозитных и кредитных сделок согласно установленным ОАО Московская Биржа Правилам заключения Банком России сделок с кредитными организациями с использованием Системы электронных торгов ОАО Московская Биржа при проведении Банком России депозитных и кредитных операций с использованием следующих торговых идентификаторов Участника:", :align => :justify
+parent_pdf.text "именуем___ в дальнейшем Участник, при заключении кредитных сделок согласно установленным ОАО Московская Биржа «Правилам заключения Банком России сделок с кредитными организациями с использованием Системы электронных торгов ЗАО ММВБ при проведении Банком России депозитных и кредитных операций» с использованием следующих торговых идентификаторов Участника:", :align => :justify
+parent_pdf.text "                               "
 parent_pdf.text "_______________________________"
 parent_pdf.text "_______________________________"
 parent_pdf.text "_______________________________"
