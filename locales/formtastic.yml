@@ -104,10 +104,10 @@ ru:
           
           
         capital:
-          auth_capital_vol: "Цифрами"
+          auth_capital_vol: "Цифрами (руб.)"
           auth_capital_vollit: "Прописью"
           fully_paid: "Оплачен полностью"
-          unpaid_auth_capital_vol: "Цифрами"
+          unpaid_auth_capital_vol: "Цифрами (руб.)"
           unpaid_auth_capital_vollit: "Прописью"
           no_indirect_owners: 'Отсутствуют лица, прямо и/или косвенно оказывающие существенное влияние на решения'
           no_ncc_profiters: 'Отсутствуют выгодоприобретатели в расчетах с ЗАО АКБ «Национальный Клиринговый Центр»'

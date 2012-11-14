@@ -12,6 +12,8 @@
 
 #dropdownmenu .dropdownmenu_arrow {
 	margin-left: 5px;
+    color: red;
+    font-size: 17px;
 }
 #dropdownmenu ul.level2 li {
 	background-image: none;

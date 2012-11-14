@@ -4,7 +4,7 @@ class Organizations::Structure < Organizations::AbstractForm
   column :main_commitee_name, {:description => true}
   
   column :no_shareholder, {:as => :norender}
-  column :shareholder, {:as => :grid, :comment => true, :empty_checkbox => :no_shareholder}, Organizations::Grids::Structure::Structure.new
+  column :shareholder, {:as => :grid, :comment => true}, Organizations::Grids::Structure::Structure.new
 
   column :directors_committee, {:as => :form}, Organizations::Structure::Kollegial_organ.new
 

@@ -1,26 +1,28 @@
+parent_pdf.move_down(350)
+
 parent_pdf.text "ДОВЕРЕННОСТЬ №______\n\n", :align => :center, :style => :bold
 parent_pdf.text_field("auth_num", 303, 775, 35, 15)
 parent_pdf.text "г. ____________________#{" "*87}«___» __________ 20___г."
-parent_pdf.text_field("year", 10, 749, 120, 15)
-parent_pdf.text_field("auth_day", 395, 749, 20, 15, :align => 1)
-parent_pdf.text_field("auth_month", 425, 749, 60, 15, :align => 1)
-parent_pdf.text_field("auth_year", 497, 749, 20, 15, :align => 1)
+parent_pdf.text_field("year", 10, 399, 120, 15)
+parent_pdf.text_field("auth_day", 395, 399, 20, 15, :align => 1)
+parent_pdf.text_field("auth_month", 425, 399, 60, 15, :align => 1)
+parent_pdf.text_field("auth_year", 497, 399, 20, 15, :align => 1)
 
-parent_pdf.text_field("position_agent2", 144, 711, 379, 15, :default => first_string(379, "#{@vars['organization_name']}" ,0))
-parent_pdf.text_field("position_agent32", 0, 687, 523, 15, :default => first_string(379, "#{@vars['organization_name']}" ,1))
+parent_pdf.text_field("position_agent2", 144, 361, 379, 15, :default => first_string(379, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("position_agent32", 0, 337, 523, 15, :default => first_string(379, "#{@vars['organization_name']}" ,1))
 
-parent_pdf.text_field("position_agent212", 40, 670, 483, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
-parent_pdf.text_field("deistv", 58, 647, 20, 15)
-parent_pdf.text_field("gustav", 148, 646, 242, 15, :default => @vars['document_name'])
-parent_pdf.text_field("position_agent223", 0, 629, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
+parent_pdf.text_field("position_agent212", 40, 320, 483, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
+parent_pdf.text_field("deistv", 58, 297, 20, 15)
+parent_pdf.text_field("gustav", 148, 296, 242, 15, :default => @vars['document_name'])
+parent_pdf.text_field("position_agent223", 0, 279, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
-parent_pdf.text_field("passport_ser", 74, 605, 40, 15)
-parent_pdf.text_field("passport_num", 129, 605, 60, 15)
-parent_pdf.text_field("passport_date", 230, 605, 293, 15)
-parent_pdf.text_field("passport_date2", 0, 581, 523, 15)
+parent_pdf.text_field("passport_ser", 74, 255, 40, 15)
+parent_pdf.text_field("passport_num", 129, 255, 60, 15)
+parent_pdf.text_field("passport_date", 230, 255, 293, 15)
+parent_pdf.text_field("passport_date2", 0, 231, 523, 15)
 
-parent_pdf.text_field("position_agent2234", 70, 564, 453, 15, :default => first_string(453, "#{@vars['organization_name']}" ,0))
-parent_pdf.text_field("position_agent32", 0, 547, 523, 15, :default => first_string(379, "#{@vars['organization_name']}" ,1))
+parent_pdf.text_field("position_agent2234", 70, 214, 453, 15, :default => first_string(453, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("position_agent32", 0, 197, 523, 15, :default => first_string(379, "#{@vars['organization_name']}" ,1))
 
 parent_pdf.text "\n\n"
 parent_pdf.text "Настоящей Доверенностью #{"_"*63}", :leading => 4

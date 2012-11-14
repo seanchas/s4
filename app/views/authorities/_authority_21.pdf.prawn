@@ -4,11 +4,11 @@ render :partial => 'header_authority_3',
          :vars => @vars
        }
        
-#parent_pdf.text_field("yaya",45, 524, 16, 15)
-parent_pdf.text_field("tid_one", 0, 513, 187, 15)
-parent_pdf.text_field("tid_two", 0, 500, 187, 15)
-parent_pdf.text_field("tid_free", 0, 487, 187, 15)
-parent_pdf.text_field("tid_four", 0, 474, 187, 15)
+#parent_pdf.text_field("yaya",45, 174, 16, 15)
+parent_pdf.text_field("tid_one", 0, 163, 187, 15)
+parent_pdf.text_field("tid_two", 0, 150, 187, 15)
+parent_pdf.text_field("tid_free", 0, 137, 187, 15)
+parent_pdf.text_field("tid_four", 0, 124, 187, 15)
 
 parent_pdf.text "представлять Участника при совершении сделок с Облигациями согласно установленному ОАО Московская Биржа “Регламенту проведения операций в Системе электронных торгов по сделкам с государственными и иными ценными бумагами” с использованием следующих торговых идентификаторов Участника", :align => :justify
 parent_pdf.text "_______________________________"

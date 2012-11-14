@@ -1,18 +1,13 @@
 #parent_pdf.text_field("phones", 115, 252, 343, 15)
 
-parent_pdf.text_field("agent_fio1", 50, 437, 370, 15, :default => @vars['agent_fio'])
-#parent_pdf.text_field("agent_fio1", 48, 388, 370, 15, :default => @vars['agent_fio'])
+parent_pdf.text_field("agent_fio1", 50, 87, 370, 15, :default => @vars['agent_fio'])
+#parent_pdf.text_field("agent_fio1", 48, 38, 370, 15, :default => @vars['agent_fio'])
 
 
-parent_pdf.text_field("auth_create_day", 400, 413, 16, 15)
-parent_pdf.text_field("auth_create_month", 423, 413, 60, 15)
-parent_pdf.text_field("auth_create_year", 499, 413, 16, 15)
+parent_pdf.text_field("auth_create_day", 400, 63, 16, 15)
+parent_pdf.text_field("auth_create_month", 423, 63, 60, 15)
+parent_pdf.text_field("auth_create_year", 499, 63, 16, 15)
 
-parent_pdf.text_field("phone_code", 141, 354, 23, 15)
-parent_pdf.text_field("phone", 170, 354, 265, 15)
-
-parent_pdf.text_field("agent_podpis", 0, 305, 300, 15, :default => @vars['ceo_position'])
-parent_pdf.text_field("name_podp", 426, 305, 95, 15, :default => @vars['cfs'])
 
 parent_pdf.text "\n\n"
 
@@ -49,3 +44,12 @@ parent_pdf.text "\n\nПримечание:\n\n",:leading => 4
 parent_pdf.text "<i>Если лицо, подписавшее данную доверенность, действует на основании доверенности, то дополнительно предоставляется:</i>\n\n", :inline_format => true
 parent_pdf.text "<i>Нотариально заверенная копия доверенности, подтверждающая полномочия лица на подписание доверенности;</i>\n\n", :inline_format => true, :indent_paragraphs => 20
 parent_pdf.text "<i>Документ, подтверждающий полномочия лица, выдавшего доверенность, либо его нотариально заверенная копия,  либо выписка из него, заверенная подписью уполномоченного лица и скрепленная печатью доверителя.</i>\n", :inline_format => true, :indent_paragraphs => 20
+
+
+parent_pdf.go_to_page 2
+
+parent_pdf.text_field("phone_code", 141, 773, 23, 15)
+parent_pdf.text_field("phone", 170, 773, 265, 15)
+
+parent_pdf.text_field("agent_podpis", 0, 723, 300, 15, :default => @vars['ceo_position'])
+parent_pdf.text_field("name_podp", 426, 723, 95, 15, :default => @vars['cfs'])
