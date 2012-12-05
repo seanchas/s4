@@ -34,7 +34,11 @@ module S4
       end
       
       def call_with_session(*args)
-        call(args.shift, S4.session, *args)
+        begin
+          call(args.shift, S4.session_pool.pull_session, *args)
+        ensure
+          S4.session_pool.push_session
+        end
       end
     
     private

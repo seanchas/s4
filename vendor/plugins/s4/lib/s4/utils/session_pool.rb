@@ -25,6 +25,8 @@ module S4
         checkin(session) if session
       end
       
+    private
+    
       def checkout
         @mutex.synchronize do
           session = if @checked_out.size < @sessions.size
@@ -41,8 +43,6 @@ module S4
         end
       end
     
-    private
-    
       def current_session_id
         Thread.current.object_id
       end
@@ -55,7 +55,7 @@ module S4
       
       def checkout_existing_session
         session = (@sessions - @checked_out).first
-        close_session(session) and return checkout_new_session unless check_session(session)
+        return checkout_new_session unless check_session(session)
         check_out_session(session)
       end
       

@@ -44,10 +44,6 @@ module S4
     @@session_pool ||= S4::Utils::SessionPool.new
   end
   
-  def self.session
-    session_pool.pull_session
-  end
-  
   
   def self.configure(&block)
     if block_given?
