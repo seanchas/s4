@@ -281,6 +281,7 @@ class OrganizationsController < ApplicationController
   
   def filials
     row = FilialInfo.find_by_user(s4_user)
+    puts YAML::dump(row)
     data = {}
     if !row.nil?
       data = row.attributes.symbolize_keys

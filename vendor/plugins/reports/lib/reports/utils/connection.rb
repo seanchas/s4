@@ -21,6 +21,7 @@ module Reports
       end
       
       def call(*args)
+        puts YAML::dump(connection.inspect)
         begin
           connection.call(*args)
         rescue Exception => error

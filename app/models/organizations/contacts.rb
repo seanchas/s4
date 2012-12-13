@@ -4,10 +4,16 @@ class Organizations::Contacts < Base
   column :firstname
   column :patronymic
   column :position
-  column :phone_areacode
-  column :phone
-  column :fax_areacode
-  column :fax
+  column :phone_country_code, {:as => :hidden}
+  column :phone_areacode, {:as => :hidden}
+  column :phone_number, {:as => :hidden}
+  column :phone_internal_number, {:as => :hidden}
+  column :phone_display, {:as => :phonejs}
+  column :fax_country_code, {:as => :hidden}
+  column :fax_areacode, {:as => :hidden}
+  column :fax_number, {:as => :hidden}
+  column :fax_internal_number, {:as => :hidden}
+  column :fax_display, {:as => :phonejs}
   column :email
   
   def initialize(*params)
@@ -22,10 +28,10 @@ class Organizations::Contacts < Base
     ]
   end
 
-  validates_presence_of :fio, :firstname, :patronymic, :position, :phone_areacode, :phone, :fax_areacode, :fax, :email
+  validates_presence_of :fio, :firstname, :patronymic, :position, :phone_country_code, :phone_areacode, :phone_display, :phone_number, :phone_internal_number, :fax_country_code, :fax_areacode, :fax_display, :fax_number, :fax_internal_number, :email
     def self.human_attribute_name(attr)
     case attr
-    when 'fio', 'firstname', 'patronymic', 'position', 'phone_areacode', 'phone', 'fax_areacode', 'fax', 'email'
+    when 'fio', 'firstname', 'patronymic', 'position', 'phone_country_code', 'phone_areacode', 'phone_display', 'phone_number', 'phone_internal_number', 'fax_country_code', 'fax_areacode', 'fax_display', 'fax_number', 'fax_internal_number', 'email'
       ''
     else
       super

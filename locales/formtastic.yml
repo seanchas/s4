@@ -62,7 +62,10 @@ ru:
           codetwo: "Код города"
           fax: "Факс"
           email: "E-mail"
-          
+
+        contacts:
+          phone_display: "Телефон"
+          fax_display: "Факс"
         
         phonesadd:
           country: "Страна (код страны)"
@@ -76,7 +79,7 @@ ru:
         filials:
           moscow_addr: "Адрес филиала (представительства)"
           moscow_tel_areacode: "Код города"
-          moscow_tel: "Телефон"
+          moscow_tel_display: "Телефон"
           moscow_boss: "Фамилия руководителя"
           moscow_boss_firstname: "Имя"
           moscow_boss_patronymic: "Отчество"

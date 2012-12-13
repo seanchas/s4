@@ -113,14 +113,26 @@ ru:
               blank: 'Не заполнена должность'
             phone_areacode:
               blank: 'Не заполнен код'
-            phone:
+            phone_display:
               blank: 'Не заполнен телефон'
             fax_areacode:
               blank: 'Не заполнен код факса'
-            fax:
+            fax_display:
               blank: 'Не заполнен факс'
             email:
               blank: 'Не заполнена эл. почта'
+            phone_country_code:
+              blank: 'Не заполнен код страны'
+            phone_number:
+              blank: 'Не заполнен номер'
+            phone_internal_number:
+              blank: 'Не заполнен дополнительный номер телефона'
+            fax_country_code:
+              blank: 'Не заполнен код страны'
+            fax_number:
+              blank: 'Не заполнен номер факса'
+            fax_internal_number:
+              blank: 'Не заполнен дополнительный номер факса'
 
         organizations/phonesadd:
           attributes:
@@ -293,12 +305,12 @@ ru:
           full_name_eng: Полное наименование организации на английском языке
           short_name_eng: Краткое наименование организации на английском языке
           mesto: Место нахождения
-          post_addr: Почтовый адрес
+          post_addr_display: Почтовый адрес
           fact_addr: Фактический адрес
-          tel: Телефон
+          tel_display: Телефон
           tel_areacode: Код города для телефона
           fax_areacode: Код города для факса
-          fax: Факс
+          fax_display: Факс
           email: E-mail
           internet: Сайт
           inn: ИНН

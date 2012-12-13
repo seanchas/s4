@@ -1,7 +1,4 @@
 <ul id="contextual_menu" class="tabbed_menu">
-    <li data-context-anchor="weekly" class="first">
-        <%= link_to t(".weekly"), reports_path(:anchor => "weekly") %>
-    </li>
     <li data-context-anchor="monthly" class="last">
         <%= link_to t(".monthly")[@monthly_reports.first.organization_type], reports_path(:anchor => "monthly") %>
     </li>

@@ -5,6 +5,8 @@ require 'formtastic-ext/date'
 require 'formtastic-ext/checkboxes.rb'
 require 'formtastic-ext/comment.rb'
 require 'formtastic-ext/norender.rb'
+require 'formtastic-ext/phonejsInput.rb'
+require 'formtastic-ext/postInput.rb'
 
 module Formtastic #:nodoc:
   class SemanticFormBuilder
