@@ -9,7 +9,6 @@ module Formtastic
       end
       options[:countries].each do | country |
         if !country.attributes["tel_code"].nil? && country.attributes["tel_code"] != ''
-         # @countriesShow += "<option value=#{country.attributes["tel_code"]}>#{country.attributes["name"]}</option>"
           @countriesShow += "{'id' : \"#{country.attributes["tel_code"]}\", 'name' :\"#{country.attributes["name"]}\"},"
         end
       end
@@ -23,7 +22,7 @@ module Formtastic
       template.content_for :js do
         template.javascript_tag "document.on('dom:loaded', function() { $('#{options[:id]}').observe('click', respondToClick);
 
-// Функция ввода информации в основное окно.
+
 function functionSave(event){
     var element = Event.element(event);
     var id = element.getAttribute('id');
@@ -52,7 +51,7 @@ function respondToClick(event) {
 
     var label = document.createElement('label');
     label.htmlFor = 'country_'+id;
-    label.innerHTML = 'Код страны';
+    label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.country_code"}';
     var index = document.createElement('select');
     var obj = #{@countriesShow};
     for(var key in obj){
@@ -76,7 +75,7 @@ function respondToClick(event) {
 
     var label = document.createElement('label');
     label.htmlFor = 'towncode_'+id;
-    label.innerHTML = 'Код города';
+    label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.town_code"}';
     var index = document.createElement('input');
     index.id='towncode_'+id;
     index.value=$(withoutDisplay+'_areacode').getValue();
@@ -91,7 +90,7 @@ function respondToClick(event) {
 
     var label = document.createElement('label');
     label.htmlFor = 'phone_'+id;
-    label.innerHTML = 'Номер телефона';
+    label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.phone_number"}';
     var index = document.createElement('input');
     index.id = 'phone_'+id;
     index.value = $(withoutDisplay+'_number').getValue();
@@ -103,7 +102,7 @@ function respondToClick(event) {
 
     var label = document.createElement('label');
     label.htmlFor = 'additional_'+id;
-    label.innerHTML = 'Добавочный';
+    label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.phone_add"}';
     var index = document.createElement('input');
     index.id ='additional_'+id;
     index.value = $(withoutDisplay+'_internal_number').getValue();
@@ -114,11 +113,11 @@ function respondToClick(event) {
 
     var saveButton = document.createElement('button');
     saveButton.id = 'save_'+id;
-    saveButton.innerHTML = 'Сохранить';
+    saveButton.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.save"}';
     inputs.appendChild(saveButton);
 
 
-    var tip = new Tip(elementClicked, inputs, { hook : {target: 'bottomMiddle', tip: 'topMiddle'}, showOn: false, closeButton:true, hideOn: 'closeButton', fixed: false, title: 'Телефоны' });
+    var tip = new Tip(elementClicked, inputs, { hook : {target: 'bottomMiddle', tip: 'topMiddle'}, showOn: false, closeButton:true, hideOn: 'closeButton', fixed: false, title: '#{ ::Formtastic::I18n::t "labels.popup.title_phones"}' });
     saveButton.observe('click', functionSave);
     elementClicked.prototip.show();
 }

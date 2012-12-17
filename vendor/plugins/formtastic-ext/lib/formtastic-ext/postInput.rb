@@ -32,7 +32,7 @@ module Formtastic
       template.content_for :js do
         template.javascript_tag "document.on('dom:loaded', function() { $('#{options[:id]}').observe('click', respondToClickPost);
 
-// Функция ввода информации в основное окно.
+
 function functionSavePost(event){
     var element = Event.element(event);
     var id = element.getAttribute('id');
@@ -68,7 +68,7 @@ function respondToClickPost(event) {
 
     var label = document.createElement('label');
     label.htmlFor = 'index_'+id;
-    label.innerHTML = 'Индекс';
+    label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.index"}';
     var index = document.createElement('input');
     index.id = 'index_'+id;
     index.value = $(withoutDisplay+'_index').getValue();
@@ -81,7 +81,7 @@ function respondToClickPost(event) {
 
     var label = document.createElement('label');
     label.htmlFor = 'country_'+id;
-    label.innerHTML = 'Код страны';
+    label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.country_code"}';
     var index = document.createElement('select');
     var obj = #{@countriesShow};
     for(var key in obj){
@@ -105,7 +105,7 @@ function respondToClickPost(event) {
 
     var label = document.createElement('label');
     label.htmlFor = 'region_'+id;
-    label.innerHTML = 'Регион';
+    label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.region"}';
     var index = document.createElement('input');
     index.id = 'region_'+id;
     index.value = $(withoutDisplay+'_region').getValue();
@@ -117,7 +117,7 @@ function respondToClickPost(event) {
 
     var label = document.createElement('label');
     label.htmlFor = 'district_'+id;
-    label.innerHTML = 'Район';
+    label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.district"}';
     var index = document.createElement('input');
     index.id = 'district_'+id;
     index.value = $(withoutDisplay+'_district').getValue();
@@ -129,7 +129,7 @@ function respondToClickPost(event) {
 
     var label = document.createElement('label');
     label.htmlFor = 'city_'+id;
-    label.innerHTML = 'Населенный пункт';
+    label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.settlement"}';
     var index = document.createElement('input');
     index.id = 'city_'+id;
     index.value= $(withoutDisplay+'_city').getValue();
@@ -141,7 +141,7 @@ function respondToClickPost(event) {
 
     var label = document.createElement('label');
     label.htmlFor = 'street_'+id;
-    label.innerHTML = 'Улица';
+    label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.street"}';
     var index = document.createElement('input');
     index.id = 'street_'+id;
     index.value = $(withoutDisplay+'_street').getValue();
@@ -152,7 +152,7 @@ function respondToClickPost(event) {
 
     var label = document.createElement('label');
     label.htmlFor = 'building_'+id;
-    label.innerHTML = 'Номер дома';
+    label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.house_number"}';
     inputs.appendChild(document.createElement('br'));
     var index = document.createElement('input');
     index.id = 'building_'+id;
@@ -164,7 +164,7 @@ function respondToClickPost(event) {
 
     var label = document.createElement('label');
     label.htmlFor = 'additional_'+id;
-    label.innerHTML = 'Дополнительная информация';
+    label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.additional"}';
     var index = document.createElement('input');
     index.id = 'additional_'+id;
     index.value = $(withoutDisplay+'_additional').getValue();
@@ -175,11 +175,11 @@ function respondToClickPost(event) {
 
     var saveButton = document.createElement('button');
     saveButton.id =  'save_'+id;
-    saveButton.innerHTML = 'Сохранить';
+    saveButton.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.save"}';
     inputs.appendChild(saveButton);
 
 
-    var tip = new Tip(elementClicked, inputs, { hook : {target: 'bottomMiddle', tip: 'topMiddle'}, showOn: false, closeButton:true, hideOn: 'closeButton', fixed: false, title: 'Адрес' });
+    var tip = new Tip(elementClicked, inputs, { hook : {target: 'bottomMiddle', tip: 'topMiddle'}, showOn: false, closeButton:true, hideOn: 'closeButton', fixed: false, title: '#{ ::Formtastic::I18n::t "labels.popup.title_address"}' });
     saveButton.observe('click', functionSavePost);
     elementClicked.prototip.show();
 }

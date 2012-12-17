@@ -17,6 +17,21 @@ ru:
       grid_add: "Добавить"
       grid_cancel: 'Отменить'
     labels:
+      popup:
+        title_address: "Адрес"
+        title_phones: "Телефоны"
+        country_code: "Код страны"
+        town_code: "Код города"
+        phone_number: "Номер телефона"
+        phone_add: "Добавочный"
+        index: "Индекс"
+        region: "Регион"
+        district: "Район"
+        settlement: "Населенный пункт"
+        street: "Улица"
+        house_number: "Номер дома"
+        additional: "Дополнительная информация"
+        save: "Сохранить"
       empty_grid: 'Отсутствуют'
       checkboxes:
         activity:
@@ -169,7 +184,10 @@ ru:
           ncc_federal_law:
             shell_bank_acc:
               name: "Наименование и реквизиты счетов"
-              
+          contactlist:
+            contacts_v:
+              phone_display: "Телефон"
+              fax_display: "Факс"
           capital:
             indirectowner:
               surname: "Фамилия"

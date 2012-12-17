@@ -3,10 +3,10 @@ class Organizations::Grids::Contactlist::Contacts_c < Base
   column :firstname
   column :patronymic
   column :position
-  column :phone_areacode
-  column :phone
-  column :fax_areacode
-  column :fax
+  #column :phone_areacode
+  column :phone_display
+  #column :fax_areacode
+  column :fax_display
   column :email
 
   def scope

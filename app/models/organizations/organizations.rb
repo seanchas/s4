@@ -38,13 +38,16 @@ class Organizations::Organizations < Organizations::AbstractForm
 
 
   column :email
-  
+
+  column :organisation_type, {:description => true}
+
   column :inn, {:group => :requisites_group}
   column :kpp, {:group => :requisites_group}
   column :kpp2, {:description => true, :required => false, :group => :requisites_group}
 
-  column :bik, {:group => :requisites_group}
-  column :swift, {:group => :requisites_group}
+
+  column :bik, {:group => :requisites_group, :description => true, :required => false}
+  column :swift, {:group => :requisites_group, :description => true, :required => false}
   column :oksm
 
   
@@ -72,7 +75,7 @@ class Organizations::Organizations < Organizations::AbstractForm
   def buttons
     cancelDisabled = false
     row = UserCardsSyncS4.find_by_user(s4_user)
-    
+
     cancelButton = {
         :input => :button,
         :label => ::Formtastic::I18n.t(:grid_cancel, :scope => [:buttons]),
