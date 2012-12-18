@@ -18,13 +18,6 @@ class Organizations::Controllersadd < Organizations::AbstractForm
     @change_alert = true
     super
   end
-
-  def buttons
-    [
-      {:input => :submit},
-      {:input => :button, :label =>'Назад', :onclick => "window.location = '/organization/controllers';return false;"}
-    ]
-  end
   
   validates_presence_of :firstname, :surname, :patronymic, :position, :doc_name, :doc_number, :doc_date
   def self.human_attribute_name(attr)

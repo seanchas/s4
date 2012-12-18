@@ -3,4 +3,8 @@
 <%= error_messages_for :controllersadd %>
 <% semantic_form_for :controllersadd, :url => '/organization/controlleraddsave' do |f| %>
   <%= f.rrender @controllersadd %>
+    <li class="buttons">
+      <input class="submit" name="commit" type="submit" value="Сохранить" id="controllersadd_submit">
+      <button onclick="window.location = '/organization/controllers';return false;">Назад</button>
+    </li>
 <% end %>

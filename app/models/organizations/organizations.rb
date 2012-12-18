@@ -39,7 +39,7 @@ class Organizations::Organizations < Organizations::AbstractForm
 
   column :email
 
-  column :organisation_type, {:description => true}
+  column :organization_type, {:description => true}
 
   column :inn, {:group => :requisites_group}
   column :kpp, {:group => :requisites_group}
@@ -72,30 +72,17 @@ class Organizations::Organizations < Organizations::AbstractForm
   column :okato, {:group => :codes_group}
   column :okveds, {:as => :grid, :group => :codes_group}, Organizations::Grids::Organization::Okved.new
 
-  def buttons
-    cancelDisabled = false
-    row = UserCardsSyncS4.find_by_user(s4_user)
 
-    cancelButton = {
-        :input => :button,
-        :label => ::Formtastic::I18n.t(:grid_cancel, :scope => [:buttons]),
-        :onclick => 'window.location = "/organization/reset?section=show";return false;'
-    }
-    cancelButton[:disabled] = :disabled if !row.show
-    [
-      {:input => :submit}
-    ] << cancelButton
-  end
 
   def initialize(*params)
     @change_alert = true
     super
   end
 
-  validates_presence_of :full_name, :short_name, :full_name_eng, :short_name_eng, :mesto, :post_addr_display, :post_addr_index, :post_addr_country, :post_addr_region, :post_addr_district, :post_addr_city, :post_addr_street, :post_addr_building, :post_addr_additional, :fact_addr, :internet, :tel_areacode, :tel_display, :tel_country_code, :tel_number, :tel_internal_number, :fax_areacode, :fax_display, :fax_country_code, :fax_number, :fax_internal_number, :email, :inn, :kpp, :bik, :swift, :oksm, :comment1, :registry_number_2002, :reg_date, :registry_organ_2002, :ogrn, :ogrn_date, :registry_organ, :registry_place, :okpo, :okogu, :okfs, :okopf, :okato, :registry_confirm_series, :registry_confirm_number
+  validates_presence_of :full_name, :short_name, :full_name_eng, :short_name_eng, :mesto, :post_addr_display, :post_addr_index, :post_addr_country, :post_addr_region, :post_addr_district, :post_addr_city, :post_addr_street, :post_addr_building, :post_addr_additional, :fact_addr, :internet, :tel_areacode, :tel_display, :tel_country_code, :tel_number, :tel_internal_number, :fax_areacode, :fax_display, :fax_country_code, :fax_number, :fax_internal_number, :email, :inn, :kpp, :bik, :swift, :oksm, :comment1, :registry_number_2002, :reg_date, :registry_organ_2002, :ogrn, :ogrn_date, :registry_organ, :registry_place, :okpo, :okogu, :okfs, :okopf, :okato, :registry_confirm_series, :registry_confirm_number, :organization_type
   def self.human_attribute_name(attr)
     case attr
-    when 'full_name', 'short_name', 'full_name_eng', 'short_name_eng', 'mesto', 'post_addr_display', 'post_addr_index', 'post_addr_country', 'post_addr_region', 'post_addr_district', 'post_addr_city', 'post_addr_street', 'post_addr_building', 'post_addr_additional', 'fact_addr', 'internet', 'tel_areacode', 'tel_display', 'tel_country_code', 'tel_number', 'tel_internal_number', 'fax_areacode', 'fax_display', 'fax_country_code', 'fax_number', 'fax_internal_number', 'email', 'inn', 'kpp', 'bik', 'swift', 'oksm', 'comment1', 'registry_number_2002', 'reg_date', 'registry_organ_2002', 'ogrn', 'ogrn_date', 'registry_organ', 'registry_place', 'okpo', 'okogu', 'okfs', 'okopf', 'okato', 'registry_confirm_series', 'registry_confirm_number'
+    when 'full_name', 'short_name', 'full_name_eng', 'short_name_eng', 'mesto', 'post_addr_display', 'post_addr_index', 'post_addr_country', 'post_addr_region', 'post_addr_district', 'post_addr_city', 'post_addr_street', 'post_addr_building', 'post_addr_additional', 'fact_addr', 'internet', 'tel_areacode', 'tel_display', 'tel_country_code', 'tel_number', 'tel_internal_number', 'fax_areacode', 'fax_display', 'fax_country_code', 'fax_number', 'fax_internal_number', 'email', 'inn', 'kpp', 'bik', 'swift', 'oksm', 'comment1', 'registry_number_2002', 'reg_date', 'registry_organ_2002', 'ogrn', 'ogrn_date', 'registry_organ', 'registry_place', 'okpo', 'okogu', 'okfs', 'okopf', 'okato', 'registry_confirm_series', 'registry_confirm_number', 'organization_type'
       ''
     else
       super

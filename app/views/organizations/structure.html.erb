@@ -5,4 +5,8 @@
 <%= render "reg_card_errors_list" %>
 <% semantic_form_for :structure, :url => '/organization/structureedit' do |f| %>
   <%= f.rrender @structure %>
+    <li class="buttons">
+      <input class="submit" name="commit" type="submit" value="Сохранить" id="structure_submit">
+      <button onclick="window.location = '/organization/reset?section=structure';return false;">Отменить</button>
+    </li>
 <% end %>

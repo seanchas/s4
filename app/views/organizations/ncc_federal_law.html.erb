@@ -5,4 +5,8 @@
 <%= render "reg_card_errors_list" %>
 <% semantic_form_for :ncc_federal_law, :url => '/organization/ncc_federal_law_edit'  do |f| %>
   <%= f.rrender @ncc_federal_law %>
+    <li class="buttons">
+      <input class="submit" name="commit" type="submit" value="Сохранить" id="ncc_federal_law_submit">
+      <button onclick="window.location = '/organization/reset?section=ncc_federal_law';return false;">Отменить</button>
+    </li>
 <% end %>

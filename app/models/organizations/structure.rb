@@ -17,19 +17,4 @@ class Organizations::Structure < Organizations::AbstractForm
     @change_alert = true
     super
   end
-
-  def buttons
-    cancelDisabled = false
-    row = UserCardsSyncS4.find_by_user(s4_user)
-    
-    cancelButton = {
-        :input => :button,
-        :label => ::Formtastic::I18n.t(:grid_cancel, :scope => [:buttons]),
-        :onclick => "window.location = '/organization/reset?section=structure';return false;"
-    }
-    cancelButton[:disabled] = :disabled if !row.structure
-    [
-      {:input => :submit}
-    ] << cancelButton
-  end
 end

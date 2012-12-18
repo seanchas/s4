@@ -5,4 +5,8 @@
 <%= render "reg_card_errors_list" %>
 <% semantic_form_for :licenses, :url => "/organization/licensessave" do |f| %>
   <%= f.rrender @licenses %>
+<li class="buttons">
+  <input class="submit" name="commit" type="submit" value="Сохранить" id="licenses_submit">
+  <button onclick="window.location = '/organization/reset?section=licenses';return false;">Отменить</button>
+</li>
 <% end %>

@@ -5,4 +5,8 @@
 <%= render "reg_card_errors_list" %>
 <% semantic_form_for :controllers do |f| %>
   <%= f.rrender @form %>
+  <li class="buttons">
+    <button onclick="window.location = '/organization/controllersadd/';return false;">Добавить</button>
+    <button onclick="window.location = '/organization/reset?section=controllers';return false;">Отменить</button>
+  </li>
 <% end %>

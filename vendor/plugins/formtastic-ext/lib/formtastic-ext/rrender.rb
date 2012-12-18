@@ -106,7 +106,8 @@ module Formtastic #:nodoc:
       end
 
       if prefix == ''
-        btns = commit_button().gsub(/<li[^>]*>(.*)?<\/li>$/, '\1') if !form.respond_to?("buttons")
+      #  btns = commit_button().gsub(/<li[^>]*>(.*)?<\/li>$/, '\1') if !form.respond_to?("buttons")
+      #  puts YAML::dump(btns)
         btns = form.buttons.collect do |btn|
           input = btn.delete(:input)
 

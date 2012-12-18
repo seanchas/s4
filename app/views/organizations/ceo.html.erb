@@ -5,4 +5,8 @@
 <%= render "reg_card_errors_list" %>
 <% semantic_form_for 'ceo', :url => '/organization/ceo_new' do |f| %>
   <%= f.rrender @ceo %>
+  <li class="buttons">
+    <input class="submit" name="commit" type="submit" value="Сохранить" id="ceo_submit">
+    <button onclick="window.location = '/organization/reset?section=ceo';return false;">Отменить</button>
+  </li>
 <% end %>
