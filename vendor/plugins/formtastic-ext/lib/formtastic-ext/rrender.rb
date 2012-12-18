@@ -68,6 +68,8 @@ module Formtastic #:nodoc:
 
             opts ||= {}
             opts = column.options if column.respond_to?('options')
+
+            opts[:countries] ||= form.countries if form.respond_to?('countries')
             
             opts[:label] = ::Formtastic::I18n.t("labels.#{labelPath}.#{column.name}")
             opts[:labelPath] = labelPath

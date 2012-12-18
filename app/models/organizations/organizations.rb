@@ -9,7 +9,7 @@ class Organizations::Organizations < Organizations::AbstractForm
   column :mesto, {:description => true}
 
 
-  column :post_addr_display, {:as => :post, :countries => S4::Country.all(s4_user)}
+  column :post_addr_display, {:as => :post}
   column :post_addr_index, {:as => :hidden }
   column :post_addr_country, {:as => :hidden }
   column :post_addr_region, {:as => :hidden }
@@ -27,14 +27,14 @@ class Organizations::Organizations < Organizations::AbstractForm
   column :tel_areacode, {:as => :hidden}
   column :tel_number, {:as => :hidden}
   column :tel_internal_number, {:as => :hidden}
-  column :tel_display, {:as => :phonejs, :countries => S4::Country.all(s4_user) }
+  column :tel_display, {:as => :phonejs}
 
 
   column :fax_country_code, {:as => :hidden}
   column :fax_areacode, {:as => :hidden}
   column :fax_number, {:as => :hidden}
   column :fax_internal_number, {:as => :hidden}
-  column :fax_display, {:as => :phonejs, :countries => S4::Country.all(s4_user)}
+  column :fax_display, {:as => :phonejs}
 
 
   column :email

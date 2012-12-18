@@ -1,4 +1,4 @@
-class Organizations::Contacts < Base
+class Organizations::Contacts < Organizations::AbstractForm
   
   column :fio
   column :firstname
