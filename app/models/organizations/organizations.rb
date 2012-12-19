@@ -39,7 +39,7 @@ class Organizations::Organizations < Organizations::AbstractForm
 
   column :email
 
-  column :organization_type, {:description => true}
+  column :organization_type, {:description => true, :as => :select, :collection => [["Кредитная", "Кредитная"], ["Некредитная", "Некредитная"]]}
 
   column :inn, {:group => :requisites_group}
   column :kpp, {:group => :requisites_group}
