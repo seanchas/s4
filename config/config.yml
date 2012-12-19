@@ -1,0 +1,8 @@
+development:
+  reports_url: "http://s4rp.beta.micex.ru/orgdatatest/xmlrpc"
+
+test:
+  reports_url: false
+
+production:
+  reports_url: "http://172.20.16.220:7777/orgdata/xmlrpc"

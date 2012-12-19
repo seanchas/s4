@@ -1,6 +1,5 @@
 Reports.configure do |config|
-  
-  config.site = "http://172.20.16.220:7777/orgdata/xmlrpc"
-  #config.site = "http://s4rp.beta.micex.ru/orgdatatest/xmlrpc"
-
+  if(!APP_CONFIG['reports_url'].nil?)
+    config.site = APP_CONFIG['reports_url']
+  end
 end
