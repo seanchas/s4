@@ -1,17 +1,17 @@
 class Cards::SendCard < Base
   column :item_id, {:as => :hidden}
   column :comment1, {:as => :comment, :i18n => {:textilize => true, :doc_form => I18n.t(:menu_title, :scope => [:shared, :sendmessages])}}
-  column :last_name, {:group => :group1}
-  column :firstname, {:group => :group1}
-  column :patronymic, {:group => :group1}
-  column :tel_areacode, {:group => :group1}
-  column :tel, {:group => :group1}
-  column :extension, {:required => false, :group => :group1}
-  column :reg_card_date, {:as => :date}
+  column :last_name, {:group => :group1, :disabled => true}
+  column :firstname, {:group => :group1, :disabled => true}
+  column :patronymic, {:group => :group1, :disabled => true}
+  column :tel_areacode, {:group => :group1, :disabled => true}
+  column :tel, {:group => :group1, :disabled => true}
+  column :extension, {:required => false, :group => :group1, :disabled => true}
+  column :reg_card_date, {:as => :date, :disabled => true}
   
   def buttons
     [
-      {:input => :button, :label => I18n.t(:send_card_button, :scope => [:formtastic, :labels, :cards, :sendcard]), :onclick => 'this.form.submit();return false;'}
+      {:input => :button, :label => I18n.t(:send_card_button, :scope => [:formtastic, :labels, :cards, :sendcard]), :disabled => true}#, :onclick => 'this.form.submit();return false;'}
     ]
   end
 

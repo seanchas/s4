@@ -70,7 +70,7 @@ module Formtastic #:nodoc:
             opts = column.options if column.respond_to?('options')
 
             opts[:countries] ||= form.countries if form.respond_to?('countries')
-            
+
             opts[:label] = ::Formtastic::I18n.t("labels.#{labelPath}.#{column.name}")
             opts[:labelPath] = labelPath
 
@@ -91,6 +91,10 @@ module Formtastic #:nodoc:
             if type == :date && !form.attributes[column.name].nil?
               v = form.attributes[column.name] 
               opts[:input_html][:value] = template.l(v.to_date) if !v.nil? && v != ""
+            end
+
+            if column.respond_to?('options') && column.options[:disabled]
+              opts[:input_html][:disabled] = true
             end
             
             out << input(column.name, opts)
