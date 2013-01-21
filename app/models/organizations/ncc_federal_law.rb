@@ -26,12 +26,13 @@ class Organizations::NccFederalLaw < Organizations::AbstractForm
   column :at_control_employee_phone, {:group => :group4, :required => true}
   column :at_control_employee_contact_phone_add, {:group => :group4, :required => false}
   column :at_control_employee_mail, {:group => :group4, :required => true}
-
-  column :at_control_rules, {:as => :boolean, :required => false, :group => :group4}
-  column :at_control_rules_contr, {:as => :boolean, :required => false, :group => :group4}
-  column :at_identification, {:as => :boolean, :required => false, :group => :group4}
-  column :at_control_of_operation, {:as => :boolean, :required => false, :group => :group4}
-  column :at_control_training, {:as => :boolean, :required => false, :group => :group4}
+  yes = ::Formtastic::I18n.t('yes_word')
+  no = ::Formtastic::I18n.t('no_word')
+  column :at_control_rules, {:as => :select, :required => false, :group => :group4, :collection => [[yes , 1], [no, 0 ]], :include_blank => false }
+  column :at_control_rules_contr, {:as => :select, :required => false, :group => :group4, :collection => [[yes , 1], [no, 0 ]], :include_blank => false }
+  column :at_identification, {:as => :select, :required => false, :group => :group4, :collection => [[yes , 1], [no, 0 ]], :include_blank => false }
+  column :at_control_of_operation, {:as => :select, :required => false, :group => :group4, :collection => [[yes , 1], [no, 0 ]], :include_blank => false }
+  column :at_control_training, {:as => :select, :required => false, :group => :group4, :collection => [[yes , 1], [no, 0 ]], :include_blank => false }
   
   def initialize(*params)
     @change_alert = true
