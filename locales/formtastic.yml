@@ -18,8 +18,9 @@ ru:
       grid_cancel: 'Отменить'
     labels:
       popup:
-        title_address: "Адрес"
-        title_phones: "Телефоны"
+        title_address: "Почтовый адрес"
+        title_phones: "Телефон"
+        title_fax: "Факс"
         country_code: "Код страны"
         town_code: "Код города"
         phone_number: "Номер телефона"
@@ -27,11 +28,12 @@ ru:
         index: "Индекс"
         region: "Регион"
         district: "Район"
-        settlement: "Населенный пункт"
-        street: "Улица"
-        house_number: "Номер дома"
+        settlement: "Населенный пункт(город, поселок и т.п.)"
+        street: "Улица (проспект, шоссе и т.п.)"
+        house_number: "Номер дома (корпуса, строения, офиса и т.п.)"
         additional: "Дополнительная информация"
         save: "Сохранить"
+        error: "<font color=red>Заполните поле!</font> "
       empty_grid: 'Отсутствуют'
       checkboxes:
         activity:
@@ -57,6 +59,8 @@ ru:
           date_attest_comission: "Дата протокола решения Аттестационной комиссии"
           number_attest_protocol: "Номер протокола решения Аттестационной комиссии"
       organizations:
+        credit: "Кредитная"
+        notcredit: "Некредитная"
         circulation:
           name: "Имя"
           surname: "Фамилия"

@@ -27,19 +27,22 @@ class Organizations::Organizations < Organizations::AbstractForm
   column :tel_areacode, {:as => :hidden}
   column :tel_number, {:as => :hidden}
   column :tel_internal_number, {:as => :hidden}
-  column :tel_display, {:as => :phonejs}
+  column :tel_display, {:as => :phonejs, :title => "labels.popup.title_phones"}
 
 
   column :fax_country_code, {:as => :hidden}
   column :fax_areacode, {:as => :hidden}
   column :fax_number, {:as => :hidden}
   column :fax_internal_number, {:as => :hidden}
-  column :fax_display, {:as => :phonejs}
+  column :fax_display, {:as => :phonejs, :title => "labels.popup.title_fax"}
 
 
   column :email
 
-  column :organization_type, {:description => true, :as => :select, :collection => [["Кредитная", "Кредитная"], ["Некредитная", "Некредитная"]]}
+  credit = ::Formtastic::I18n.t('labels.organizations.credit')
+  notcredit = ::Formtastic::I18n.t('labels.organizations.notcredit')
+
+  column :organization_type, {:description => true, :as => :select, :collection => [[notcredit, notcredit], [credit, credit]], :include_blank => false}
 
   column :inn, {:group => :requisites_group}
   column :kpp, {:group => :requisites_group}

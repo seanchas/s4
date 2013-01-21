@@ -8,12 +8,12 @@ class Organizations::Contacts < Organizations::AbstractForm
   column :phone_areacode, {:as => :hidden}
   column :phone_number, {:as => :hidden}
   column :phone_internal_number, {:as => :hidden}
-  column :phone_display, {:as => :phonejs}
+  column :phone_display, {:as => :phonejs, :title => "labels.popup.title_phones"}
   column :fax_country_code, {:as => :hidden}
   column :fax_areacode, {:as => :hidden}
   column :fax_number, {:as => :hidden}
   column :fax_internal_number, {:as => :hidden}
-  column :fax_display, {:as => :phonejs}
+  column :fax_display, {:as => :phonejs, :title => "labels.popup.title_fax"}
   column :email
   
   def initialize(*params)

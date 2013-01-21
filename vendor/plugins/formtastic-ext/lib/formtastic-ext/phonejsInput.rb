@@ -13,7 +13,7 @@ module Formtastic
         end
       end
       @countriesShow += ']'
-
+      title = options.delete(:title)
       options.delete(:countries)
       options[:id] = generate_html_id(method, "")
       options[:input_html] ||= {}
@@ -22,6 +22,22 @@ module Formtastic
       template.content_for :js do
         template.javascript_tag "document.on('dom:loaded', function() { $('#{options[:id]}').observe('click', respondToClick);
 
+function checkEmpty(array, id) {
+    var text = '';
+    var errorCounter = 0;
+    array.each(function(item)
+    {
+        if($(item).getValue() == null || $(item).getValue() == ''){
+            text = text + '#{ ::Formtastic::I18n::t "labels.popup.error"}' + $$('label[for='+item+']').first().innerHTML + '<br>';
+            errorCounter++;
+        }
+    });
+    $('errors_'+id).innerHTML = text+'<br>';
+    if(errorCounter != 0){
+        return false;
+    }
+    return true;
+}
 
 function functionSave(event){
     var element = Event.element(event);
@@ -29,7 +45,8 @@ function functionSave(event){
     id = id.split('save_').join('');
 
     var withoutDisplay = id.split('_display').join('');
-
+    var ids = ['country_'+id, 'towncode_'+id, 'phone_'+id];
+    if(!checkEmpty(ids, id)){return false;};
     $(id).value = $('country_'+id).getValue() + ' (' + $('towncode_'+id).getValue() + ') ' + $('phone_'+id).getValue();
     $(withoutDisplay+'_country_code').value = $('country_'+id).getValue();
     $(withoutDisplay+'_number').value = $('phone_'+id).getValue();
@@ -41,6 +58,18 @@ function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+function valueReset(value) {
+  if(value.length == 0)
+           return '';
+
+      first = value.charAt(0);
+      value = value.replace(/[^0-9]/g,'');
+
+      if(first == '-')
+          value = first + value;
+      return value;
+}
+
 function respondToClick(event) {
 
     var elementClicked = Event.element(event);
@@ -48,6 +77,10 @@ function respondToClick(event) {
     var withoutDisplay = id.split('_display').join('');
 
     var inputs = document.createElement('div');
+
+    var errors = document.createElement('div');
+    errors.id = 'errors_'+id;
+    inputs.appendChild(errors);
 
     var label = document.createElement('label');
     label.htmlFor = 'country_'+id;
@@ -82,11 +115,15 @@ function respondToClick(event) {
     index.type='text';
     index.maxlength= 5;
     index.width=10;
-
     inputs.appendChild(label);
     inputs.appendChild(document.createElement('br'));
     inputs.appendChild(index);
     inputs.appendChild(document.createElement('br'));
+    index.observe('keyup', function(){
+      var value = this.value, first;
+      this.value = valueReset(value);
+      return true;
+    });
 
     var label = document.createElement('label');
     label.htmlFor = 'phone_'+id;
@@ -99,6 +136,11 @@ function respondToClick(event) {
     inputs.appendChild(document.createElement('br'));
     inputs.appendChild(index);
     inputs.appendChild(document.createElement('br'));
+    index.observe('keyup', function(){
+      var value = this.value, first;
+      this.value = valueReset(value);
+      return true;
+    });
 
     var label = document.createElement('label');
     label.htmlFor = 'additional_'+id;
@@ -110,6 +152,11 @@ function respondToClick(event) {
     inputs.appendChild(label);
     inputs.appendChild(document.createElement('br'));
     inputs.appendChild(index);
+    index.observe('keyup', function(){
+      var value = this.value, first;
+      this.value = valueReset(value);
+      return true;
+    });
 
     var saveButton = document.createElement('button');
     saveButton.id = 'save_'+id;
@@ -117,7 +164,7 @@ function respondToClick(event) {
     inputs.appendChild(saveButton);
 
 
-    var tip = new Tip(elementClicked, inputs, { hook : {target: 'bottomMiddle', tip: 'topMiddle'}, showOn: false, closeButton:true, hideOn: 'closeButton', fixed: false, title: '#{ ::Formtastic::I18n::t "labels.popup.title_phones"}' });
+    var tip = new Tip(elementClicked, inputs, { hook : {target: 'bottomMiddle', tip: 'topMiddle'}, showOn: false, closeButton:true, hideOn: 'closeButton', fixed: false, title: '#{ ::Formtastic::I18n::t title}' });
     saveButton.observe('click', functionSave);
     elementClicked.prototip.show();
 }

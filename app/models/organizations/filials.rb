@@ -6,7 +6,7 @@ class Organizations::Filials < Organizations::AbstractForm
   column :moscow_tel_areacode, {:group => :filial_group, :as => :hidden}
   column :moscow_tel_number, {:group => :filial_group, :as => :hidden}
   column :moscow_tel_internal_number, {:group => :filial_group, :as => :hidden}
-  column :moscow_tel_display, {:required => false, :group => :filial_group, :as => :phonejs}
+  column :moscow_tel_display, {:required => false, :group => :filial_group, :as => :phonejs, :title => "labels.popup.title_phones"}
   
   column :moscow_boss, {:required => false, :group => :filial_group}
   column :moscow_boss_firstname, {:required => false, :group => :filial_group}

@@ -1,0 +1,25 @@
+<h1><%= S4::Organization.find(s4_user).full_name %></h1>
+<h2>Торговые отчеты по итогам торгов</h2>
+
+
+<form method="post">
+    <select name="report_type">
+      <option value="all">Все отчеты</option>
+      <option value="SE">Торговые отчеты Фондового рынка (ФР)</option>
+      <option value="EQ">Клиринговые отчеты ФР и отчеты рынка внебиржевого РЕПО</option>
+      <option value="CU">Торговые отчеты Валютного рынка (ВР)</option>
+      <option value="CC">Клиринговые отчеты ВР</option>
+      <option value="BL">Отчеты денежного рынка</option>
+    </select>
+
+  <label for="date_from">Дата от:</label>
+    <input type="text" id="date_from" name="date_from">
+  <label for="date_to">Дата до:</label>
+    <input type="text" id="date_to" name="date_to">
+  <input type="submit" value="Выбрать">
+</form>
+<hr>
+
+Список рынков и ссылок
+<br>
+<a href="#" style="">Структура XML файлов, рассылаемых по итогам торгов</a>

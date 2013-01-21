@@ -3,6 +3,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.xmlrpc "/xml-rpc", :controller => :welcome, :action => :xmlrpc
 
+  map.resource :tradereports, :only => :show, :member => {
+      :download => :get,
+      :show => :get
+  }
+
   map.resource :organization, :only => :show, :member => {
     :news => :get,
     :notice => :get,

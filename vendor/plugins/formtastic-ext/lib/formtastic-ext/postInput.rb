@@ -32,6 +32,22 @@ module Formtastic
       template.content_for :js do
         template.javascript_tag "document.on('dom:loaded', function() { $('#{options[:id]}').observe('click', respondToClickPost);
 
+function checkEmptyPost(array, id) {
+    var text = '';
+    var errorCounter = 0;
+    array.each(function(item)
+    {
+        if($(item).getValue() == null || $(item).getValue() == ''){
+            text = text + '#{ ::Formtastic::I18n::t "labels.popup.error"}' + $$('label[for='+item+']').first().innerHTML + '<br>';
+            errorCounter++;
+        }
+    });
+    $('errors_'+id).innerHTML = text+'<br>';
+    if(errorCounter != 0){
+        return false;
+    }
+    return true;
+}
 
 function functionSavePost(event){
     var element = Event.element(event);
@@ -39,7 +55,9 @@ function functionSavePost(event){
     id = id.split('save_').join('');
 
     var withoutDisplay = id.split('_display').join('');
+    var ids = ['index_'+id, 'country_'+id, 'region_'+id, 'district_'+id, 'city_'+id, 'street_'+id, 'building_'+id];
 
+    if(!checkEmptyPost(ids, id)){return false;};
     $(id).value = $('index_'+id).getValue() + ', ' + $('country_'+id).options[$('country_'+id).selectedIndex].text + ', ' + $('region_'+id).getValue() + ', '
         + $('district_'+id).getValue() + ', ' + $('city_'+id).getValue() + ', ' +
         $('street_'+id).getValue() + ', ' + $('building_'+id).getValue() + ', ' + $('additional_'+id).getValue();
@@ -65,6 +83,10 @@ function respondToClickPost(event) {
     var withoutDisplay = id.split('_display').join('');
 
     var inputs = document.createElement('div');
+
+    var errors = document.createElement('label');
+    errors.id = 'errors_' + id;
+    inputs.appendChild(errors);
 
     var label = document.createElement('label');
     label.htmlFor = 'index_'+id;
