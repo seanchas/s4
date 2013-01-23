@@ -47,7 +47,7 @@ function functionSave(event){
     var withoutDisplay = id.split('_display').join('');
     var ids = ['country_'+id, 'towncode_'+id, 'phone_'+id];
     if(!checkEmpty(ids, id)){return false;};
-    $(id).value = $('country_'+id).getValue() + ' (' + $('towncode_'+id).getValue() + ') ' + $('phone_'+id).getValue();
+    $(id).value = $('country_'+id).options[$('country_'+id).selectedIndex].id + ' (' + $('towncode_'+id).getValue() + ') ' + $('phone_'+id).getValue();
     $(withoutDisplay+'_country_code').value = $('country_'+id).getValue();
     $(withoutDisplay+'_number').value = $('phone_'+id).getValue();
     $(withoutDisplay+'_areacode').value = $('towncode_'+id).getValue();
@@ -91,7 +91,8 @@ function respondToClick(event) {
         if(isNumber(obj[key].id)){
             var child = document.createElement('option');
             child.innerHTML = obj[key].name;
-            child.value = obj[key].id;
+            child.value = obj[key].name;
+            child.id = obj[key].id;
             index.appendChild(child);
         }
     }

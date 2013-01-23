@@ -10,7 +10,7 @@ module Formtastic
       options[:countries].each do | country |
         if !country.attributes["tel_code"].nil? && country.attributes["tel_code"] != ''
           # @countriesShow += "<option value=#{country.attributes["tel_code"]}>#{country.attributes["name"]}</option>"
-          @countriesShow += "{'id' : \"#{country.attributes["tel_code"]}\", 'name' :\"#{country.attributes["name"]}\"},"
+          @countriesShow += "{'id' : \"#{country.attributes["tel_code"]}\", 'name' :\"#{country.attributes["country_name"]}\"},"
         end
       end
       @countriesShow += ']'
@@ -110,7 +110,7 @@ function respondToClickPost(event) {
         if(isNumber(obj[key].id)){
             var child = document.createElement('option');
             child.innerHTML = obj[key].name;
-            child.value = obj[key].id;
+            child.value = obj[key].name;
             index.appendChild(child);
         }
     }
