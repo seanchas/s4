@@ -112,7 +112,9 @@ function respondToClick(event) {
     label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.town_code"}';
     var index = document.createElement('input');
     index.id='towncode_'+id;
-    index.value=$(withoutDisplay+'_areacode').getValue();
+    var value = $(withoutDisplay+'_areacode').getValue();
+    if(value == 'null'){value = '';}
+    index.value = value;
     index.type='text';
     index.maxlength= 5;
     index.width=10;
@@ -131,7 +133,9 @@ function respondToClick(event) {
     label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.phone_number"}';
     var index = document.createElement('input');
     index.id = 'phone_'+id;
-    index.value = $(withoutDisplay+'_number').getValue();
+    var value = $(withoutDisplay+'_number').getValue();
+    if(value == 'null'){value = '';}
+    index.value = value;
     index.type = 'text';
     inputs.appendChild(label);
     inputs.appendChild(document.createElement('br'));
@@ -148,7 +152,9 @@ function respondToClick(event) {
     label.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.phone_add"}';
     var index = document.createElement('input');
     index.id ='additional_'+id;
-    index.value = $(withoutDisplay+'_internal_number').getValue();
+    var value = $(withoutDisplay+'_internal_number').getValue();
+    if(value == 'null'){value = '';}
+    index.value = value;
     index.type ='text';
     inputs.appendChild(label);
     inputs.appendChild(document.createElement('br'));
