@@ -7,5 +7,5 @@
 
 
 <% @marketsIdsArray.each do | market | %>
-<%= render :partial => "market", :collection => market.markets, :locals => {:clearings => @organization.clearings} %>
+<%= render :partial => "market", :collection => market.markets %>
 <% end %>
