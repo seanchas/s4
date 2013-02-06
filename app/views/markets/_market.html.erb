@@ -1,10 +1,11 @@
-<div class="market list_item" data-market="<%= market.to_param %>" style="display: none;">
+<div class="market list_item">
     <h4>
         <%= market.name %>
     </h4>
     <div class="description">
-        <%= textilize market.description %>
-        <%= resource_table(@schemaForForm, market.agents) unless market.agents.empty? %>
+      <div style="float: left;"><h2>Организатор торгов</h2><%= textilize market.description %></div>
+      <div style="float: right;"><h2>Клиринговая организация</h2><%= textilize market.clearing %></div>
+      <div style="height: 100px; width: 100%;"><br></div>
+      <%= resource_table(market.schema, market.users) unless market.users.empty? %>
     </div>
 </div>
-

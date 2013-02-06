@@ -60,6 +60,7 @@ ActionController::Routing::Routes.draw do |map|
   
   
   map.resources :markets
+  map.markets '/market/:id', :controller => 'markets', :action => 'index', :id => 1
 
   map.resources :documents
   

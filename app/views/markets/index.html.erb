@@ -4,4 +4,8 @@
 
 <%= render "contextual_menu" %>
 
-<%= render :partial => "market", :collection => @organization.markets %>
+
+
+<% @marketsIdsArray.each do | market | %>
+<%= render :partial => "market", :collection => market.markets, :locals => {:clearings => @organization.clearings} %>
+<% end %>
