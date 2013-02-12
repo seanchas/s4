@@ -82,7 +82,9 @@ ActionController::Routing::Routes.draw do |map|
   }
   map.senddocumentsrk '/senddocuments/form/type_id/14', :controller => :senddocuments, :action => :form, :type_id => 14
   
-  map.resources :authorities
+  map.resources :authorities, :collection => {
+      :withdraw_create => :get
+  }
   
   map.view_notice 'organization/notice/:id/type/1', :controller => 'notice', :action => 'show_message'
   map.view_notice 'organization/notice/:id/type/2', :controller => 'notice', :action => 'show_notice'

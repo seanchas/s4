@@ -1,9 +1,11 @@
 ru:
   authorities:
     title: 'Доверенности'
+    create_document: 'Сформировать документ'
   shared:
     authority:
-      header: 'Доверенности'
+      header: 'Сформировать доверенность/заявление'
+      withdraw: 'Отозвать доверенность/заявление'
       columns:
         type_label: 'Тип доверенности: '
         user_label: 'Сотрудник организации: '
@@ -11,7 +13,7 @@ ru:
         new_firstname_label: 'Имя: '
         new_middlename_label: 'Отчество: '
         new_position_label: 'Должность: '
-      create_button: 'Создать доверенность'
+      create_button: 'Создать документ'
       find_button: 'Получить список сотрудников'
       menu_title: 'Создание доверенностей'
   activerecord:
