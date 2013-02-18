@@ -146,6 +146,10 @@ ul.tabbed_menu li {
   position: relative;
 }
 
+li.hidden {
+    display: none;
+}
+
 /* headline */
 
 #headline {
