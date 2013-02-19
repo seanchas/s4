@@ -122,6 +122,7 @@ function respondToClick(event) {
     inputs.appendChild(document.createElement('br'));
     inputs.appendChild(index);
     inputs.appendChild(document.createElement('br'));
+    index = $(index);
     index.observe('keyup', function(){
       var value = this.value, first;
       this.value = valueReset(value);
@@ -141,6 +142,7 @@ function respondToClick(event) {
     inputs.appendChild(document.createElement('br'));
     inputs.appendChild(index);
     inputs.appendChild(document.createElement('br'));
+    index = $(index);
     index.observe('keyup', function(){
       var value = this.value, first;
       this.value = valueReset(value);
@@ -159,6 +161,7 @@ function respondToClick(event) {
     inputs.appendChild(label);
     inputs.appendChild(document.createElement('br'));
     inputs.appendChild(index);
+    index = $(index);
     index.observe('keyup', function(){
       var value = this.value, first;
       this.value = valueReset(value);
@@ -170,6 +173,9 @@ function respondToClick(event) {
     saveButton.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.save"}';
     inputs.appendChild(saveButton);
 
+    saveButton = $(saveButton);
+    elementClicked = $(elementClicked);
+    inputs = $(inputs);
 
     var tip = new Tip(elementClicked, inputs, { hook : {target: 'bottomMiddle', tip: 'topMiddle'}, showOn: false, closeButton:true, hideOn: 'closeButton', fixed: false, title: '#{ ::Formtastic::I18n::t title}' });
     saveButton.observe('click', functionSave);

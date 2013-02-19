@@ -42,7 +42,7 @@ class CardsController < ApplicationController
         row = RegCardExecutor.new(sendcardData)
         row.save
       end
-      
+
       begin
         @data = send_card(sendcardData)
         RegCardErrors.delete_all ["user = ?", s4_user]

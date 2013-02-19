@@ -14,7 +14,6 @@ class MarketsController < ApplicationController
     @marketsIdsArray = @organization.market_groups.select{ |market_group| market_group.id == params[:id] }
     @marketsIdsArray.each{ |market_group|
       market_group.markets.collect{|market|
-        puts YAML::dump(market)
         agentLink = marketAgentLinks.find{ |agents| agents.market == market.id }
         agentLink = agentLink.agent_resource.to_sym
 

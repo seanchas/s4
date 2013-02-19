@@ -200,6 +200,9 @@ function respondToClickPost(event) {
     saveButton.innerHTML = '#{ ::Formtastic::I18n::t "labels.popup.save"}';
     inputs.appendChild(saveButton);
 
+    saveButton = $(saveButton);
+    elementClicked = $(elementClicked);
+    inputs = $(inputs);
 
     var tip = new Tip(elementClicked, inputs, { hook : {target: 'bottomMiddle', tip: 'topMiddle'}, showOn: false, closeButton:true, hideOn: 'closeButton', fixed: false, title: '#{ ::Formtastic::I18n::t "labels.popup.title_address"}' });
     saveButton.observe('click', functionSavePost);
