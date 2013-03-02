@@ -20,7 +20,7 @@ parent_pdf.text_field("passport_vidan", 230, 610-move, 285, 15)
 
 parent_pdf.text_field("passport_pole", 0, 585-move, 523, 15)
 parent_pdf.text_field("passport_pole2", 0, 555-move, 523, 15)
-parent_pdf.text_field("passport_pole3", 0, 523-move, 523, 15)
+parent_pdf.text_field("passport_pole3", 0, 523-move, 523, 15, :default => "#{@vars['agent_document']}")
 
 parent_pdf.text_field("phone", 160, 84, 350, 15)
 parent_pdf.text_field("email", 185, 70, 300, 15)
