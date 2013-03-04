@@ -22,7 +22,7 @@
 <div class="authority formstyling">
 
   <% if (@warrant_agents && @warrant_agents.size != 0) || (!@warrant_agents.nil? && @warrant_agents.size == 0 && @authority_params_type_id) %>
-      <% form_for @authority, :url => withdraw_create_authorities_path(@authority, :format => 'pdf') do |f| %>
+      <% form_for @authority, :url => withdraws_path(@authority, :format => 'pdf') do |f| %>
 
           <div class="l-field">
             <p>

@@ -1,17 +1,19 @@
 require 'prawn'
 require 'prawn/forms'
 
-class AuthoritiesController < ApplicationController
-  include AuthoritiesHelper
+class WithdrawsController < ApplicationController
+  include WithdrawsHelper
   
   helper :members_menu, :create_document_menu
-  
+
+
+
   def index
     @organization = S4::Organization.find(s4_user)
     @authority_params_type_id = nil
-    
+
     @supo_params = params
-    
+
     if !@supo_params['warrant_type_id'].nil?
       @authority_params_type_id = @supo_params['warrant_type_id']
       params[:authority] = {:type_id => @authority_params_type_id}
@@ -19,7 +21,7 @@ class AuthoritiesController < ApplicationController
       @authority_params_type_id = 17
       params[:authority] = {:type_id => @authority_params_type_id}
     end
-    
+
     if !session['form'].nil?
       @authority = session['form']
       session.delete('form')
@@ -31,14 +33,14 @@ class AuthoritiesController < ApplicationController
 
     @warrant_types = S4::WarrantType.all(s4_user)
 
-    #@warrant_agents = S4::WarrantAgent.all(s4_user)
-
     if @authority_params_type_id
-      S4::WarrantAgent.scope = {'warrant_type_id' => @authority_params_type_id}
-      @warrant_agents = S4::WarrantAgent.all_with_scope(s4_user)
+      @resource = S4::Resource
+      @resource.resource_type = :cancel_warrant_person
+      @resource.scope =  {'warrant_type_id' => @authority_params_type_id}
+      @warrant_agents = @resource.all_with_scope(s4_user)
     end
   end
-  
+
   def create
     authority = params[:authority]
     @authority = Authority.new(authority)
@@ -100,5 +102,6 @@ class AuthoritiesController < ApplicationController
     end
 
   end
+
 
 end

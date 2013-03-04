@@ -1,11 +1,11 @@
 var form = document.getElementById('new_authority');
 document.getElementById('authority_type_id').onchange = function() {
 	
-	form.action = "/authorities/withdraw_create"
+	form.action = "/withdraws"
 	form.method = "get"
 	
 	var choice_val = document.getElementById('authority_type_id').value;
-	window.location.href = "/authorities/withdraw_create?warrant_type_id=" + choice_val
+	window.location.href = "/withdraws?warrant_type_id=" + choice_val
 	
 	//var fields = form.getElementsByClassName('l-field');
 	
