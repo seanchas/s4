@@ -43,7 +43,7 @@ module SenddocumentsHelper
     
     regex = /\d{2}\.\d{2}\.\d{4}/
     regexShortDate = /\d{2}\.\d{2}\.\d{2}/
-    
+
     if( documentfilter['by_date_start'] =~ regexShortDate && documentfilter['by_date_start'].length == 8 )
         @startDate = documentfilter['by_date_start']
         documentfilter['by_date_start'] = @startDate.insert(6, "20")

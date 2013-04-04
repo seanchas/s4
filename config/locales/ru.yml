@@ -6,12 +6,12 @@ ru:
 
     headline:
       domains:
-        - ['ММВБ',            'http://beta.micex.ru']
+        - ['Московская Биржа',            'http://rts.micex.ru/']
         - ['Паспорт',         'http://passport-beta.micex.ru']
-        - ['Сервисы',         'http://services-local.micex.ru']
+        - ['Услуги',         'https://services.micex.ru/services']
         - ['Личный кабинет',  'http://cabinet-local.micex.ru']
-        - ['PDA',             'http://pda-beta.micex.ru']
-        - ['Форумы',          'http://forums-beta.micex.ru']
+#        - ['PDA',             'http://pda-beta.micex.ru']
+        - ['Форум',          'http://forum.rts.micex.ru/']
         - ['Музей',           'http://museum.micex.ru']
       locales:
         - ['ru', 'Русский']
@@ -26,8 +26,7 @@ ru:
 
     footer:
       copyright: |
-        &copy; 1998-%{year} ЗАО &laquo;Московская межбанковская валютная биржа&raquo;
-        "Условия распространения информации":http://beta.micex.ru/services/marketdata/delayed_data
+        Copyright © <a href="http://rts.micex.ru">Московская Биржа</a>, 2011 – 2013. Все права на информацию и аналитические материалы, размещенные на настоящем интернет-представительстве Биржи, защищены в соответствии с российским законодательством. Воспроизведение, распространение и иное использование информации, размещенной на сайте Биржи, или ее части допускается только с предварительного письменного согласия Биржи.
       contacts: |
         Телефон: +7 (495) 234-48-11, Факс: +7 (495) 705-96-22
         "Отправить письмо на ММВБ":http://beta.micex.ru/group/profile/feedback

@@ -204,23 +204,23 @@ li.hidden {
 /* header */
 
 #header {
-  background-color: #fff;
-  height: 50px;
+  background-color: #FFF;
+  height: 70px;
   padding: 0 10px;
   position: relative;
   float: none !important;
 }
 
 #header a.logo {
-  background: url(/images/logo.png) no-repeat center center;
+  background: url(/images/logo_me_ru.png) no-repeat center left;
   display: block;
-  height: 24px;
-  left: 8px;
+  height: 51px;
+  left: 0;
   overflow: hidden;
   position: absolute;
-  top: 13px;
+  top: 10px;
   text-indent: -1000px;
-  width: 198px;
+  width: 250px;
 }
 
 #header .authentication_menu {
