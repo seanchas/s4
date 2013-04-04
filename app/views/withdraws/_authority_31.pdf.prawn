@@ -1,93 +1,44 @@
 move = 350
 parent_pdf.move_down(move)
 
-parent_pdf.text "ДОВЕРЕННОСТЬ №______\n\n", :style => :bold, :align => :center
-parent_pdf.text_field("auth_num", 303, 774-move, 35, 15)
+parent_pdf.text "<<_____>>_______________  20__ .г\n\n"
+parent_pdf.text "Уведомление об отмене аккредитации Трейдера\n\n", :style => :bold, :align => :center
+parent_pdf.text_field("organisation_name",60, 724-move, 463, 15, :default => first_string(378, "#{@vars['organization_name']}" ,0))
 
-parent_pdf.text "г.____________________                                                                               \"____\"______________20___г.\n\n"
-parent_pdf.text_field("year", 8, 750-move, 118, 15)
+parent_pdf.text_field("position_agent32", 30, 665-move, 493, 15, :default => "#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
-parent_pdf.text_field("position_agent2", 0, 724-move, 523, 15, :default => first_string(378, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("vsvyazy", 0, 600-move, 436, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 
-parent_pdf.text_field("position_agent212", 37, 699-move, 486, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
+parent_pdf.text_field("position_agent212", 0, 565-move, 436, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 
-parent_pdf.text_field("ya",58, 675-move, 13, 15)
-parent_pdf.text_field("gustav", 145, 675-move, 240, 15, :default => @vars['document_name'])
-
-#first place
-
-parent_pdf.text_field("position_agent2234", 20, 275, 503, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
-
-parent_pdf.text_field("passport_ser", 74, 252, 40, 15)
-parent_pdf.text_field("passport_num", 129, 252, 60, 15)
-parent_pdf.text_field("passport_date", 230, 252, 293, 15)
-parent_pdf.text_field("passport_date2", 0, 228, 523, 15)
-
-parent_pdf.text_field("position_agent2244", 95, 198, 370, 15, :default => @vars['agent_fio'])
-
-#second place
-
-parent_pdf.text_field("position_agent21a", 20, 162, 503, 15)
-
-parent_pdf.text_field("passport_ser2a", 74, 136, 40, 15)
-parent_pdf.text_field("passport_num2a", 129, 136, 60, 15)
-parent_pdf.text_field("passport_date2a", 230, 136, 293, 15)
-parent_pdf.text_field("passport_date22a", 0, 113, 523, 15)
-
-parent_pdf.text_field("position_agent22a", 95, 83, 370, 15)
-#second end
-
-parent_pdf.text_field("auth_create_day", 369, 400, 23, 15)
-parent_pdf.text_field("auth_create_month", 403, 400, 60, 15)
-parent_pdf.text_field("auth_create_year", 496, 398, 17, 15)
-
-parent_pdf.text "_______________________________________________________________________________________", :leading => 4
-
-parent_pdf.text "<sup>(наименование организации - Участника торгов )</sup>", :inline_format => true, :align => :center
-
-parent_pdf.text "в лице #{"_"*80},", :leading => 4
-
-parent_pdf.text "<sup>(должность, Фамилия, Имя, Отчество)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "действующ__ на основании #{"_"*40} \nуполномачивает:", :leading => 4
-
-parent_pdf.text "\n1. #{"_"*85}", :leading => 4
+parent_pdf.text_field("birth_year", 0, 633-move, 523, 15)
 
 
-parent_pdf.text "<sup>(занимаемая должность сотрудника, Ф.И.О.)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "паспорт серия ______ № __________, выдан ________________________________________________,", :leading => 4
-parent_pdf.text "<sup>(когда, кем)</sup>", :inline_format => true, :indent_paragraphs => 400
-parent_pdf.text "#{"_"*85}", :leading => 4
-parent_pdf.text "\nОбразец подписи__________________________________________________________________"
-parent_pdf.text "<sup>(Фамилия, Имя, Отчество и подпись Представителя)</sup>", :inline_format => true, :align => :center
+parent_pdf.text_field("dayx", 337, 700-move, 23, 15)
+parent_pdf.text_field("monthx", 365, 700-move, 80, 15)
+parent_pdf.text_field("yearx", 460, 700-move, 23, 15)
 
-parent_pdf.text "\n2. #{"_"*85}", :leading => 4
+parent_pdf.text_field("auth_create_day", 16, 423, 25, 15)
+parent_pdf.text_field("auth_create_month", 60, 423, 80, 15)
+parent_pdf.text_field("auth_create_year", 165, 423, 15, 15)
 
+parent_pdf.text "Настоящим ___________________________________________________________________________", :leading => 4
 
-parent_pdf.text "<sup>(занимаемая должность сотрудника, Ф.И.О.)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "паспорт серия ______ № __________, выдан ________________________________________________,", :leading => 4
-parent_pdf.text "<sup>(когда, кем)</sup>", :inline_format => true, :indent_paragraphs => 400
-parent_pdf.text "#{"_"*87}", :leading => 4
-parent_pdf.text "\nОбразец подписи__________________________________________________________________"
-parent_pdf.text "<sup>(Фамилия, Имя, Отчество и подпись Представителя)</sup>", :inline_format => true, :align => :center
+parent_pdf.text "<sup>(наименование организации - Участника торгов ЗАО «ФБ ММВБ»)</sup>", :inline_format => true, :align => :center
 
-parent_pdf.text "предоставлять и получать документы (включая отчетные документы) в Закрытом акционерном обществе «Фондовая бирже ММВБ» (далее - ЗАО «ФБ ММВБ»),  оформляемые  в соответствии с внутренними документами ЗАО «ФБ ММВБ», регламентирующими проведение операций, связанных с заключением сделок в ЗАО «ФБ ММВБ».
-                 Подпись(и) вышеуказанного(ых) уполномоченного(ых) лиц(а) удостоверяю.
-                 Настоящая доверенность выдана без права передоверия и действительна по  «___»__________ 20__г. включительно.
-                 Контактный телефон: _______________________", :align => :justify
+parent_pdf.text "уведомляет ЗАО «Фондовая биржа ММВБ» об отмене (отзыве) с '____' _____________ 20___г.\nДоверенности(ей)  № ____   _______г.", :leading => 4
 
-parent_pdf.text "\n\n"
+parent_pdf.text "на ___________________________________________________________________________________", :align => :justify
+parent_pdf.text "<sup>(ФИО аккредитованного Представителя Участника торгов ЗАО «Фондовая биржа ММВБ»)</sup>", :inline_format => true, :align => :center
+parent_pdf.text "аккредитованного на  ЗАО  «Фондовая биржа ММВБ» в качестве", :align => :justify
+parent_pdf.text "______________________________________________________________________________________", :align => :justify
+parent_pdf.text "<sup>(Трейдера/Курьера)</sup>", :inline_format => true, :align => :center
 
-parent_pdf.text "Подпись #{"_"*62}.", :leading => 4
+parent_pdf.text "в связи с", :align => :justify
+parent_pdf.text "______________________________________________________________________________________", :align => :justify
+parent_pdf.text "<sup>(необходимо указать причину отмены  аккредитации)</sup>", :inline_format => true, :align => :center
 
-parent_pdf.text "<sup>(занимаемая должность и Ф.И.О. лица, выдавшего Доверенность)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "\n\nМ.П.#{" "*20}", :align => :left, :indent_paragraphs => 50
+parent_pdf.text "Руководитель Участника торгов ЗАО « ФБ ММВБ»  #{"_"*78}.", :leading => 4
 
-
-
-parent_pdf.go_to_page 2
-parent_pdf.text_field("as", 404, 761, 19, 15)
-parent_pdf.text_field("sd", 435, 761, 50, 15)
-parent_pdf.text_field("xc", 506, 761, 12, 15)
-
-parent_pdf.text_field("rt", 91, 700, 300, 15)
-parent_pdf.text_field("yu", 120, 735, 125, 15)
+parent_pdf.text "<sup>(должность, Ф.И.О., подпись)</sup>", :inline_format => true, :align => :center
+parent_pdf.text "М.П.#{" "*20}", :align => :right, :indent_paragraphs => 50

@@ -16,7 +16,7 @@ parent_pdf.text_field("position_agent212", 40, 320, 483, 15, :default => "#{@var
 parent_pdf.text_field("deistv", 57, 296, 18, 15)
 parent_pdf.text_field("gustav", 150, 296, 240, 15, :default => @vars['document_name'])
 
-parent_pdf.text_field("position_agent2234", 0, 283, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
+parent_pdf.text_field("position_agent2234", 0, 282, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
 parent_pdf.text_field("passport_ser", 74, 259, 40, 15)
 parent_pdf.text_field("passport_num", 129, 259, 60, 15)
