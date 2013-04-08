@@ -28,7 +28,7 @@ parent_pdf.text_field("passport_date2", 0, 202, 523, 15)
 
 parent_pdf.text_field("bank_id", 12, 122, 155, 15)
 
-parent_pdf.text_field("podist_ydostover", 50, 109, 240, 15, :default => @vars['agent_fio'])
+parent_pdf.text_field("podist_ydostover", 50, 108, 240, 15, :default => @vars['agent_fio'])
 
 parent_pdf.text_field("auth_create_day", 7, 68, 17, 15, :align => 1)
 parent_pdf.text_field("auth_create_month", 33, 68, 122, 15, :align => 1)
