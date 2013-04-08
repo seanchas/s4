@@ -16,15 +16,15 @@ parent_pdf.text_field("position_agent212", 40, 320, 483, 15, :default => "#{@var
 parent_pdf.text_field("deistv", 57, 296, 18, 15)
 parent_pdf.text_field("gustav", 150, 296, 240, 15, :default => @vars['document_name'])
 
-parent_pdf.text_field("position_agent2234", 0, 282, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
+parent_pdf.text_field("position_agent2234", 0, 282-3, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
-parent_pdf.text_field("passport_ser", 74, 259, 40, 15)
-parent_pdf.text_field("passport_num", 129, 259, 60, 15)
-parent_pdf.text_field("passport_date", 230, 259, 293, 15)
-parent_pdf.text_field("passport_date2", 0, 235, 523, 15)
+parent_pdf.text_field("passport_ser", 74, 259-3, 40, 15)
+parent_pdf.text_field("passport_num", 129, 259-3, 60, 15)
+parent_pdf.text_field("passport_date", 230, 259-3, 293, 15)
+parent_pdf.text_field("passport_date2", 0, 235-3, 523, 15)
 
-parent_pdf.text_field("bankk", 70, 219, 453, 15, :default => first_string(453, "#{@vars['organization_name']}" ,0))
-parent_pdf.text_field("yazz", 0, 194, 523, 15, :default => first_string(453, "#{@vars['organization_name']}" ,1))
+parent_pdf.text_field("bankk", 70, 219-5, 453, 15, :default => first_string(453, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("yazz", 0, 194-5, 523, 15, :default => first_string(453, "#{@vars['organization_name']}" ,1))
 
 
 parent_pdf.text " "
@@ -40,7 +40,7 @@ parent_pdf.text "в лице #{"_"*80},", :leading => 4
 
 
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "действующ___ на основании #{"_"*40}, доверяет сотруднику"
+parent_pdf.text "действующ___ на основании #{"_"*40}, доверяет сотруднику", :leading => 4
 
 parent_pdf.text "#{"_"*87}", :leading => 4
 parent_pdf.text "<sup>(занимаемая должность сотрудника, Ф.И.О.)</sup>", :inline_format => true, :indent_paragraphs => 200

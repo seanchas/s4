@@ -19,23 +19,23 @@ parent_pdf.text_field("v_lice_to", 0, 283, 523, 15, :default => first_string(383
 #parent_pdf.text_field("ypolnomachivaet", 275, 266, 248, 15)
 parent_pdf.text_field("deistv", 58, 266, 20, 15)
 parent_pdf.text_field("gustav", 148, 266, 240, 15, :default => @vars['document_name'])
-parent_pdf.text_field("ypolnomachivaet_to", 0, 250, 423, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
+parent_pdf.text_field("ypolnomachivaet_to", 0, 250-2, 423, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
 parent_pdf.text_field("passport_num", 43, 226, 80, 15)
 parent_pdf.text_field("passport_date", 160, 226, 363, 15)
 parent_pdf.text_field("passport_date2", 0, 202, 523, 15)
 
 
-parent_pdf.text_field("bank_id", 12, 122, 155, 15)
+parent_pdf.text_field("bank_id", 12, 122-5, 155, 15)
 
-parent_pdf.text_field("podist_ydostover", 50, 108, 240, 15, :default => @vars['agent_fio'])
+parent_pdf.text_field("podist_ydostover", 50, 108-7, 240, 15, :default => @vars['agent_fio'])
 
-parent_pdf.text_field("auth_create_day", 7, 68, 17, 15, :align => 1)
-parent_pdf.text_field("auth_create_month", 33, 68, 122, 15, :align => 1)
-parent_pdf.text_field("auth_create_year", 168, 68, 17, 15, :align => 1)
+parent_pdf.text_field("auth_create_day", 7, 68-7, 17, 15, :align => 1)
+parent_pdf.text_field("auth_create_month", 33, 68-7, 122, 15, :align => 1)
+parent_pdf.text_field("auth_create_year", 168, 68-7, 17, 15, :align => 1)
 
-parent_pdf.text_field("phone_code", 167, 23, 23, 15)
-parent_pdf.text_field("phone", 196, 23, 265, 15)
+parent_pdf.text_field("phone_code", 167, 23+5, 23, 15)
+parent_pdf.text_field("phone", 196, 23+5, 265, 15)
 
 
 parent_pdf.text "\n\n"
@@ -53,7 +53,7 @@ parent_pdf.text "<sup>(кем и когда выдан) </sup>", :inline_format 
 parent_pdf.text "#{"_"*87}", :leading => 4
 
 parent_pdf.text "объявлять (подавать, изменять, отзывать ранее поданные) заявки и заключать сделки, получать, предоставлять и подписывать документы и осуществлять иные действия, предусмотренные внутренними документами ЗАО «ФБ ММВБ», устанавливающими требования к организации торговли в ЗАО «ФБ ММВБ». ", :align => :justify
-parent_pdf.text "(Идентификатор Участника торгов ЗАО «ФБ ММВБ» (для Сектора рынка Основной рынок)  №__________________________)"
+parent_pdf.text "(Идентификатор Участника торгов ЗАО «ФБ ММВБ» (для Сектора рынка Основной рынок)  №__________________________)", :leading => 4
 
 
 parent_pdf.text "Подпись  #{"_"*40} _____________________ удостоверяю.", :leading => 4
@@ -62,10 +62,10 @@ parent_pdf.text "<sup>(Ф.И.О. представителя Участника �
 parent_pdf.text "Настоящая доверенность выдана без права передоверия и действительна по", :leading => 4
 parent_pdf.text "«___» ____________________ 20___г. включительно.", :leading => 20
 
-parent_pdf.text "\n"
+#parent_pdf.text "\n"
 
 
-parent_pdf.text "Контактные телефон Трейдера :(____)____________________________________________"
+parent_pdf.text "Контактный телефон Трейдера :(____)____________________________________________"
 parent_pdf.text "\n"
 parent_pdf.text "Адрес электронной почты Трейдера :_________________________________________________"
 parent_pdf.text "\n"
