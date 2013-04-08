@@ -14,9 +14,9 @@ parent_pdf.text_field("position_agent212", 0, 565-move-13, 436, 15, :default => 
 parent_pdf.text_field("birth_year", 0, 633-move-4, 523, 15)
 
 
-parent_pdf.text_field("dayx", 312, 700-move, 23, 15)
-parent_pdf.text_field("monthx", 340, 700-move, 80, 15)
-parent_pdf.text_field("yearx", 435, 700-move, 23, 15)
+parent_pdf.text_field("dayx", 337, 700-move, 23, 15)
+parent_pdf.text_field("monthx", 365, 700-move, 80, 15)
+parent_pdf.text_field("yearx", 460, 700-move, 23, 15)
 
 parent_pdf.text_field("auth_create_day", 16, 423, 25, 15)
 parent_pdf.text_field("auth_create_month", 60, 423, 80, 15)
@@ -24,13 +24,13 @@ parent_pdf.text_field("auth_create_year", 165, 423, 15, 15)
 
 parent_pdf.text "Настоящим ___________________________________________________________________________", :leading => 4
 
-parent_pdf.text "<sup>(наименование организации - Участника торгов)</sup>", :inline_format => true, :align => :center
+parent_pdf.text "<sup>(наименование организации - Участника торгов ЗАО «ФБ ММВБ»)</sup>", :inline_format => true, :align => :center
 
-parent_pdf.text "уведомляет «ОАО Московская Биржа» об отмене (отзыве) с '____' _____________ 20___г.\nДоверенности(ей)  № ____   _______г.", :leading => 4
+parent_pdf.text "уведомляет ЗАО «Фондовая биржа ММВБ» об отмене (отзыве) с '____' _____________ 20___г.\nДоверенности(ей)  № ____   _______г.", :leading => 4
 
 parent_pdf.text "на ___________________________________________________________________________________", :align => :justify, :leading => 4
-parent_pdf.text "<sup>(ФИО аккредитованного Представителя Участника торгов)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "аккредитованного на  «ОАО Московская Биржа» в качестве", :align => :justify
+parent_pdf.text "<sup>(ФИО аккредитованного Представителя Участника торгов ЗАО «Фондовая биржа ММВБ»)</sup>", :inline_format => true, :align => :center
+parent_pdf.text "аккредитованного на  ЗАО  «Фондовая биржа ММВБ» в качестве", :align => :justify
 parent_pdf.text "______________________________________________________________________________________", :align => :justify, :leading => 4
 parent_pdf.text "<sup>(Трейдера/Курьера)</sup>", :inline_format => true, :align => :center
 
@@ -38,7 +38,7 @@ parent_pdf.text "в связи с", :align => :justify
 parent_pdf.text "______________________________________________________________________________________", :align => :justify, :leading => 4
 parent_pdf.text "<sup>(необходимо указать причину отмены  аккредитации)</sup>", :inline_format => true, :align => :center
 
-parent_pdf.text "Руководитель Участника торгов #{"_"*78}.", :leading => 4
+parent_pdf.text "Руководитель Участника торгов ЗАО « ФБ ММВБ»  #{"_"*78}.", :leading => 4
 
 parent_pdf.text "<sup>(должность, Ф.И.О., подпись)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "М.П.#{" "*20}", :align => :right, :indent_paragraphs => 50
