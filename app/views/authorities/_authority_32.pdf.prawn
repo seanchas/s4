@@ -8,11 +8,12 @@ parent_pdf.text "г.____________________                                        
 parent_pdf.text_field("year", 8, 750-move, 118, 15)
 
 parent_pdf.text_field("position_agent2", 0, 724-move, 523, 15, :default => first_string(378, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("position_agent2222", 0, 724-move-24, 523, 15, :default => first_string(378, "#{@vars['organization_name']}" ,1))
 
-parent_pdf.text_field("position_agent212", 37, 699-move, 486, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
+parent_pdf.text_field("position_agent212", 37, 699-move-17, 486, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 
-parent_pdf.text_field("ya",58, 675-move, 13, 15)
-parent_pdf.text_field("gustav", 145, 675-move, 240, 15, :default => @vars['document_name'])
+parent_pdf.text_field("ya",58, 675-move-17, 13, 15)
+parent_pdf.text_field("gustav", 145, 675-move-17, 240, 15, :default => @vars['document_name'])
 
 #first place
 
@@ -45,12 +46,14 @@ parent_pdf.text "_______________________________________________________________
 
 parent_pdf.text "<sup>(наименование организации - Участника торгов )</sup>", :inline_format => true, :align => :center
 
+parent_pdf.text "_______________________________________________________________________________________", :leading => 4
+
 parent_pdf.text "в лице #{"_"*80},", :leading => 4
 
 parent_pdf.text "<sup>(должность, Фамилия, Имя, Отчество)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "действующ__ на основании #{"_"*40} \nуполномачивает:", :leading => 4
 
-parent_pdf.text "\n1. #{"_"*85}", :leading => 4
+parent_pdf.text "1. #{"_"*85}", :leading => 4
 
 
 parent_pdf.text "<sup>(занимаемая должность сотрудника, Ф.И.О.)</sup>", :inline_format => true, :align => :center

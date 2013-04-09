@@ -13,7 +13,7 @@ parent_pdf.text_field("auth_year", 497, 386, 20, 15, :align => 1)
 parent_pdf.text_field("name_supplier", 140, 348, 383, 15, :default => first_string(383, @vars['organization_name'],0))
 
 #parent_pdf.text_field("name_supplier2512", 0, 324, 523, 15, :default => first_string(383, @vars['organization_name'],1))
-parent_pdf.text_field("id_supplier", 0, 324, 385, 15)
+parent_pdf.text_field("id_supplier", 0, 324, 385, 15, :default => first_string(383, @vars['organization_name'],1))
 
 parent_pdf.text_field("position_supplier", 35, 307, 487, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 
@@ -110,13 +110,13 @@ parent_pdf.text "<sup>(Должность)</sup>", :inline_format => true, :inde
 #parent_pdf.text "", :align => :right, :leading => 4
 #parent_pdf.text "<sup>(Подпись)</sup>#{" "*15}<sup>(Фамилия И.О.)</sup>", :inline_format => true, :indent_paragraphs => 380
 #parent_pdf.text "\n\nМ.П.#{" "*20}", :align => :right, :indent_paragraphs => -50
-parent_pdf.text "\n"
-
-
-
-parent_pdf.text "<i>Если лицо, подписавшее данную доверенность, действует на основании доверенности, то дополнительно предоставляется:</i>", :inline_format => true, :size => 10
-parent_pdf.text "<i>1. Нотариально заверенная копия доверенности, подтверждающая полномочия лица на подписание доверенности;</i>",:inline_format => true, :size => 10
-parent_pdf.text "<i>2. Документ, подтверждающий полномочия лица, выдавшего доверенность, либо его нотариально заверенная копия, либо выписка из него, заверенная подписью уполномоченного лица и скрепленная печатью заявителя.</i>", :inline_format => true, :size => 10,:align => :justify
+#parent_pdf.text "\n"
+#
+#
+#
+#parent_pdf.text "<i>Если лицо, подписавшее данную доверенность, действует на основании доверенности, то дополнительно предоставляется:</i>", :inline_format => true, :size => 10
+#parent_pdf.text "<i>1. Нотариально заверенная копия доверенности, подтверждающая полномочия лица на подписание доверенности;</i>",:inline_format => true, :size => 10
+#parent_pdf.text "<i>2. Документ, подтверждающий полномочия лица, выдавшего доверенность, либо его нотариально заверенная копия, либо выписка из него, заверенная подписью уполномоченного лица и скрепленная печатью заявителя.</i>", :inline_format => true, :size => 10,:align => :justify
 
 #переход на вторую страницу. Сами инпуты на нее не попадут без этого.
 parent_pdf.go_to_page 2

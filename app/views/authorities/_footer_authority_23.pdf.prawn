@@ -1,5 +1,5 @@
 
-parent_pdf.text " "
+parent_pdf.text "\n\n"
 parent_pdf.text "Права и обязанности по указанным в настоящей Доверенности сделкам, заключенным", :leading => 4
 
 parent_pdf.text "#{"_"*87}", :leading => 4
@@ -27,23 +27,20 @@ parent_pdf.text "\n\nМ.П.#{" "*20}", :align => :left, :indent_paragraphs => 50
 
 
 parent_pdf.go_to_page 2
-parent_pdf.text_field("agent_fio1", 48, 745, 400, 15, :default => @vars['agent_fio'])
+
+parent_pdf.text_field("position_agent21512", 0, 774-17, 523, 15, :default => "#{@vars['agent_fio']}")
+
+parent_pdf.text_field("agent_fio1", 48, 728-17, 400, 15, :default => @vars['agent_fio'])
 
 
-parent_pdf.text_field("auth_create_day", 232, 721, 17, 15)
-parent_pdf.text_field("auth_create_month", 255, 721, 60, 15)
-parent_pdf.text_field("auth_create_year", 330, 721, 17, 15)
+parent_pdf.text_field("auth_create_day", 232, 704-17, 17, 15)
+parent_pdf.text_field("auth_create_month", 255, 704-17, 60, 15)
+parent_pdf.text_field("auth_create_year", 330, 704-17, 17, 15)
 
-#parent_pdf.text_field("name_supplier4", 348, 527, 165, 15)
-#parent_pdf.text_field("name_supplier4", 0, 514, 333, 15)
+parent_pdf.text_field("phone_code", 87, 683-17-17, 30, 15)
+parent_pdf.text_field("phone", 120, 683-17-17, 265, 15)
 
-#parent_pdf.text_field("podp", 48, 237, 300, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
-
-#parent_pdf.text_field("phones", 85, 263, 344, 15)
-parent_pdf.text_field("phone_code", 92, 683, 22, 15)
-parent_pdf.text_field("phone", 120, 683, 265, 15)
-
-parent_pdf.text_field("agent_podpis", 50, 657, 300, 15, :default => @vars['ceo_position'])
-parent_pdf.text_field("name_podp", 400, 657, 95, 15, :default => @vars['cfs'])
+parent_pdf.text_field("agent_podpis", 50, 657-17-17, 300, 15, :default => @vars['ceo_position'])
+parent_pdf.text_field("name_podp", 390, 657-17-17, 95, 15, :default => @vars['cfs'])
 
 

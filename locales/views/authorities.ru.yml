@@ -7,7 +7,7 @@ ru:
       header: 'Сформировать доверенность/заявление'
       withdraw: 'Отозвать доверенность/заявление'
       columns:
-        type_label: 'Тип доверенности: '
+        type_label: 'Тип документа: '
         user_label: 'Сотрудник организации: '
         new_lastname_label: 'Фамилия: '
         new_firstname_label: 'Имя: '

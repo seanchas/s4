@@ -7,7 +7,8 @@ parent_pdf.text_field("organisation_name",60, 724-move, 463, 15, :default => fir
 
 parent_pdf.text_field("position_agent32", 0, 665-move+1, 523, 15, :default => "#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
-parent_pdf.text_field("position_agent212", 0, 597-move-7, 436, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
+parent_pdf.text_field("position_agent212", 0, 597-move-7, 218, 15, :default => "#{@vars['ceo_position']}")
+parent_pdf.text_field("position_agent212a", 245, 597-move-7, 150, 15, :default => "#{@vars['ceo_fio']}")
 
 parent_pdf.text_field("birth_year", 0, 633-move-4, 523, 15)
 
@@ -32,7 +33,8 @@ parent_pdf.text "аккредитованного на  Срочном рынк�
 parent_pdf.text "______________________________________________________________________________________", :align => :justify, :leading => 4
 parent_pdf.text "<sup>(необходимо указать причину отмены  аккредитации)</sup>", :inline_format => true, :align => :center
 
-parent_pdf.text "Руководитель участника торгов #{"_"*78}.", :leading => 4
+parent_pdf.text "Руководитель участника торгов", :leading => 4
+parent_pdf.text "_____________________________________       ___________________________/_____________", :leading => 4
 
 parent_pdf.text "<sup>(должность, Ф.И.О., подпись)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "М.П.#{" "*20}", :align => :right, :indent_paragraphs => 50

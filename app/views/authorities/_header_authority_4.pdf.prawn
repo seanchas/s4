@@ -1,7 +1,6 @@
 parent_pdf.move_down(350)
 
 parent_pdf.text "ДОВЕРЕННОСТЬ №______\n\n", :align => :center, :style => :bold
-parent_pdf.text_field("auth_num", 303, 775, 35, 15)
 parent_pdf.text "г. ____________________#{" "*87}«___» __________ 20___г."
 parent_pdf.text_field("year", 10, 399, 120, 15)
 parent_pdf.text_field("auth_day", 395, 399, 20, 15, :align => 1)
@@ -31,18 +30,10 @@ parent_pdf.text "#{"_"*87}", :leading => 4
 parent_pdf.text "в лице #{"_"*80},", :leading => 4
 
 
-#parent_pdf.text "Настоящей Доверенностью #{@vars['organization_name']}", :indent_paragraphs => 30, :align => :justify, :leading => 4
-#parent_pdf.text "<sup>(наименование кредитной организации - Участника)</sup>", :inline_format => true, :indent_paragraphs => 250 
-#parent_pdf.text "в лице #{@vars['ceo_position']}, #{@vars['ceo_fio']},", :leading => 4
-
-
-
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "действующ___ на основании #{"_"*40} доверяет сотруднику", :leading => 4
 
 parent_pdf.text " #{"_"*87}", :leading => 4
-
-#parent_pdf.text "доверяет сотруднику #{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}", :leading => 4
 
 
 parent_pdf.text "<sup>(занимаемая должность сотрудника, Ф.И.О.)</sup>", :inline_format => true, :align => :center

@@ -1,4 +1,4 @@
-render :partial => 'header_authority_2', 
+render :partial => 'header_authority_2',
        :locals => {
          :parent_pdf => parent_pdf,
          :vars => @vars

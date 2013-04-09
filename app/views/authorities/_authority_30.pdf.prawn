@@ -8,7 +8,7 @@ parent_pdf.text "г.____________________                                        
 parent_pdf.text_field("year", 8, 750-move, 118, 15)
 
 parent_pdf.text_field("position_agent2", 0, 724-move, 523, 15, :default => first_string(378, "#{@vars['organization_name']}" ,0))
-parent_pdf.text_field("position_agent2field", 0, 724-move-17, 523, 15)
+parent_pdf.text_field("position_agent2field", 0, 724-move-17, 523, 15, :default => first_string(378, "#{@vars['organization_name']}" ,1))
 
 parent_pdf.text_field("position_agent212", 37, 682-move, 486, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 
