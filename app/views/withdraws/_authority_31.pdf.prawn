@@ -1,23 +1,27 @@
 move = 350
 parent_pdf.move_down(move)
 
-parent_pdf.text "<<_____>>_______________  20__ .г                                                                        в ЗАО «ФБ ММВБ»\n\n"
+parent_pdf.text "<<_____>>_______________  20__ .г                                                                        в ЗАО «ФБ ММВБ»\n\n\n\n"
 parent_pdf.text "Уведомление об отмене Доверенности(ей)\n\n", :style => :bold, :align => :center
-parent_pdf.text_field("organisation_name",60, 724-move, 463, 15, :default => first_string(378, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("organisation_name",60, 724-move-26, 463, 15, :default => first_string(378, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("organisation_name2",0, 724-move-25-26, 520, 15, :default => first_string(378, "#{@vars['organization_name']}" ,1))
 
-parent_pdf.text_field("position_agent32", 30, 665-move, 493, 15, :default => "#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
+parent_pdf.text_field("position_agent32", 30, 665-move-17-25, 493, 15, :default => "#{@vars['agent_fio']}")
 
-parent_pdf.text_field("vsvyazy", 0, 600-move-8, 436, 15)
+parent_pdf.text_field("authority_num", 114, 665-move-24, 86, 15, :default => "#{@vars['authority_num']}")
+parent_pdf.text_field("authority_date", 210, 665-move-24, 86, 15, :default => "#{@vars['authority_date']}")
 
-parent_pdf.text_field("position_agent212", 0, 565-move-13, 218, 15, :default => "#{@vars['ceo_position']}")
-parent_pdf.text_field("position_agent212a", 245, 565-move-13, 150, 15, :default => "#{@vars['ceo_fio']}")
+parent_pdf.text_field("vsvyazy", 0, 600-move-8-17-26, 436, 15)
 
-parent_pdf.text_field("birth_year", 0, 633-move-4, 523, 15)
+parent_pdf.text_field("position_agent212", 0, 565-move-13-17-26, 218, 15, :default => "#{@vars['ceo_position']}")
+parent_pdf.text_field("position_agent212a", 245, 565-move-13-17-26, 150, 15, :default => "#{@vars['ceo_fio']}")
+
+parent_pdf.text_field("birth_year", 0, 633-move-4-17-26, 523, 15)
 
 
-parent_pdf.text_field("dayx", 337, 700-move, 23, 15)
-parent_pdf.text_field("monthx", 365, 700-move, 80, 15)
-parent_pdf.text_field("yearx", 460, 700-move, 23, 15)
+parent_pdf.text_field("dayx", 337, 700-move-17-26, 23, 15)
+parent_pdf.text_field("monthx", 365, 700-move-17-26, 80, 15)
+parent_pdf.text_field("yearx", 460, 700-move-17-26, 23, 15)
 
 parent_pdf.text_field("auth_create_day", 16, 423, 25, 15)
 parent_pdf.text_field("auth_create_month", 60, 423, 80, 15)
@@ -27,7 +31,9 @@ parent_pdf.text "Настоящим ____________________________________________
 
 parent_pdf.text "<sup>(наименование организации - Участника торгов ЗАО «ФБ ММВБ»)</sup>", :inline_format => true, :align => :center
 
-parent_pdf.text "уведомляет ЗАО «Фондовая биржа ММВБ» об отмене (отзыве) с '____' _____________ 20___г.\nДоверенности(ей)  № ____   _______г.", :leading => 4
+parent_pdf.text "_____________________________________________________________________________________", :leading => 4
+
+parent_pdf.text "уведомляет ЗАО «Фондовая биржа ММВБ» об отмене (отзыве) с '____' _____________ 20___г.\nДоверенности(ей)  № _______________   ______________г.", :leading => 4
 
 parent_pdf.text "на ___________________________________________________________________________________", :align => :justify, :leading => 4
 parent_pdf.text "<sup>(ФИО аккредитованного Представителя Участника торгов ЗАО «Фондовая биржа ММВБ»)</sup>", :inline_format => true, :align => :center
