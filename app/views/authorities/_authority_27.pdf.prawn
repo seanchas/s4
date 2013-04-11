@@ -13,8 +13,8 @@ parent_pdf.text_field("auth_year", 497, 386, 20, 15, :align => 1)
 parent_pdf.text_field("organization_name__first", 140, 348, 383, 15, :default => first_string(383, "#{@vars['organization_name']}" ,0))
 parent_pdf.text_field("organization_name__first_to", 0, 324, 523, 15, :default => first_string(383, "#{@vars['organization_name']}" ,1))
 
-parent_pdf.text_field("v_lice", 170, 306, 353, 15, :default => first_string(383, "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}" ,0))
-parent_pdf.text_field("v_lice_to", 0, 283, 523, 15, :default => first_string(383, "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}" ,1))
+parent_pdf.text_field("v_lice", 170, 306, 353, 15, :default => first_string(353, "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}" ,0))
+parent_pdf.text_field("v_lice_to", 0, 283, 523, 15, :default => first_string(353, "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}" ,1))
 
 #parent_pdf.text_field("ypolnomachivaet", 275, 266, 248, 15)
 parent_pdf.text_field("deistv", 58, 266, 20, 15)

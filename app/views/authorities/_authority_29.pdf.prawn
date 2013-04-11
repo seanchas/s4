@@ -3,8 +3,8 @@ parent_pdf.move_down(move)
 
 parent_pdf.text "<<_____>>_______________  20__ .г\n"
 parent_pdf.text "ЗАЯВЛЕНИЕ\n\n", :style => :bold, :align => :center
-parent_pdf.text_field("organisation_name", 0, 724-move+14, 523, 15, :default => first_string(378, "#{@vars['organization_name']}" ,0))
-parent_pdf.text_field("organisation_name2", 0, 724-move+14-25, 523, 15, :default => first_string(378, "#{@vars['organization_name']}" ,1))
+parent_pdf.text_field("organisation_name", 0, 724-move+14, 523, 15, :default => first_string(523, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("organisation_name2", 0, 724-move+14-25, 523, 15, :default => first_string(523, "#{@vars['organization_name']}" ,1))
 
 parent_pdf.text_field("position_agent32", 0, 665-move+14-18, 523, 15, :default => "#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 

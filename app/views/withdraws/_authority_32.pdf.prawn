@@ -3,8 +3,8 @@ parent_pdf.move_down(move)
 
 parent_pdf.text "<<_____>>_______________  20__ .г                                                            в ОАО Московская Биржа\n\n\n\n"
 parent_pdf.text "Уведомление об отмене Доверенности\n\n", :style => :bold, :align => :center
-parent_pdf.text_field("organisation_name",60, 724-move-26, 463, 15, :default => first_string(378, "#{@vars['organization_name']}" ,0))
-parent_pdf.text_field("organisation_name2",0, 724-move-25-26, 520, 15, :default => first_string(378, "#{@vars['organization_name']}" ,1))
+parent_pdf.text_field("organisation_name",60, 724-move-26, 463, 15, :default => first_string(463, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("organisation_name2",0, 724-move-25-26, 520, 15, :default => first_string(463, "#{@vars['organization_name']}" ,1))
 
 parent_pdf.text_field("position_agent32", 30, 665-move-17-25, 493, 15, :default => "#{@vars['agent_fio']}")
 
