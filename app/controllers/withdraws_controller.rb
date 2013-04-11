@@ -53,22 +53,20 @@ class WithdrawsController < ApplicationController
         scope.delete('agent_id')
       end
 
-
-      @resource = S4::Resource
-      @resource.resource_type = :cancel_warrant_person
-      @resource.scope =  {'warrant_type_id' => authority['type_id']}
-      @warrant_agents = @resource.all_with_scope(s4_user)
-      agent = @warrant_agents.find{|agent| agent.id == authority['user_id']}
-
-
       S4::WarrantField.scope = scope
       @vars = S4::WarrantField.find_with_scope(s4_user).attributes
 
-      attibutesFromS4 = agent.attributes
-
-      @vars['authority_num'] = attibutesFromS4['document_number']
-      @vars['authority_date'] = attibutesFromS4['document_date_begin'][0,10].split('-')
-      @vars['authority_date'] = "#{@vars['authority_date'][2]}.#{@vars['authority_date'][1]}.#{@vars['authority_date'][0]}"
+      if !(authority[:user_id] == '')
+        @resource = S4::Resource
+        @resource.resource_type = :cancel_warrant_person
+        @resource.scope =  {'warrant_type_id' => authority['type_id']}
+        @warrant_agents = @resource.all_with_scope(s4_user)
+        agent = @warrant_agents.find{|agent| agent.id == authority['user_id']}
+        attibutesFromS4 = agent.attributes
+        @vars['authority_num'] = attibutesFromS4['document_number']
+        @vars['authority_date'] = attibutesFromS4['document_date_begin'][0,10].split('-')
+        @vars['authority_date'] = "#{@vars['authority_date'][2]}.#{@vars['authority_date'][1]}.#{@vars['authority_date'][0]}"
+      end
 
       @vars["ceo_fio_short"] = @vars["ceo_fio"]
       @vars["ceo_fio_short"] = @vars["ceo_fio_short"].split(" ")
