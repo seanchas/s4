@@ -80,7 +80,7 @@ parent_pdf.text "предоставлять и получать документ
 
 parent_pdf.text "\n\n"
 
-parent_pdf.text "Подпись #{"_"*62}.", :leading => 4
+parent_pdf.text "Подпись #{"_"*76}", :leading => 4
 
 parent_pdf.text "<sup>(занимаемая должность и Ф.И.О. лица, выдавшего Доверенность)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "\n\nМ.П.#{" "*20}", :align => :left, :indent_paragraphs => 50
