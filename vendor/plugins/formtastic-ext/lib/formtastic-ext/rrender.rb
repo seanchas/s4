@@ -132,6 +132,8 @@ private
     def adddescription(html, name, labelPath)
       str = ::Formtastic::I18n.t("descriptions.#{labelPath}.#{name.last}")
       name = name.join('_')
+      name = name.gsub("]", "")
+      name = name.gsub("[", "")
       desc = template.content_tag(:span, '?', :class => 'description', :id => "#{name}_description") <<
              template.javascript_tag("new Tip('#{name}_description', '#{Formtastic::Util.html_safe(str)}', {hook: {target: 'bottomRight', tip: 'topLeft'}});")
       htmlClone = html.clone
