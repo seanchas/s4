@@ -2,6 +2,7 @@ parent_pdf.move_down(350)
 
 parent_pdf.text "ДОВЕРЕННОСТЬ №______\n\n", :align => :center, :style => :bold
 parent_pdf.text "г. ____________________#{" "*87}«___» __________ 20___г."
+parent_pdf.text_field("auth_num", 303, 424, 35, 15)
 parent_pdf.text_field("year", 10, 399, 120, 15)
 parent_pdf.text_field("auth_day", 395, 399, 20, 15, :align => 1)
 parent_pdf.text_field("auth_month", 425, 399, 60, 15, :align => 1)
