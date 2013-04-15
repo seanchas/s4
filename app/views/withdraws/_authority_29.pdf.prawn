@@ -13,9 +13,9 @@ parent_pdf.text_field("position_agent212a", 245+40, 565-move+6, 150, 15, :defaul
 
 parent_pdf.text_field("birth_year", 0, 633-move-4-17, 523, 15, :default => "Трейдера")
 
-parent_pdf.text_field("dayx", 260, 700-move-17, 23, 15)
-parent_pdf.text_field("monthx", 288, 700-move-17, 80, 15)
-parent_pdf.text_field("yearx", 383, 700-move-17, 23, 15)
+parent_pdf.text_field("dayx", 263, 700-move-17, 23, 15)
+parent_pdf.text_field("monthx", 294, 700-move-17, 80, 15)
+parent_pdf.text_field("yearx", 387, 700-move-17, 23, 15)
 
 parent_pdf.text_field("auth_create_day", 16, 423, 25, 15)
 parent_pdf.text_field("auth_create_month", 60, 423, 80, 15)
