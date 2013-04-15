@@ -11,17 +11,17 @@ parent_pdf.text_field("position_agent32", 30, 665-move-17-25, 493, 15, :default 
 parent_pdf.text_field("authority_num", 95, 665-move-24, 86, 15, :default => "#{@vars['authority_num']}")
 parent_pdf.text_field("authority_date", 190, 665-move-24, 86, 15, :default => "#{@vars['authority_date']}")
 
-parent_pdf.text_field("vsvyazy", 0, 600-move-17-26, 436, 15)
+parent_pdf.text_field("vsvyazy", 0, 600-move-17-26, 523, 15)
 
-parent_pdf.text_field("position_agent212", 0, 565-move-13-17-26+8+1, 258, 15, :default => "#{@vars['ceo_position']}")
-parent_pdf.text_field("position_agent212a", 285, 565-move-13-17-26+8+1, 150, 15, :default => "#{@vars['ceo_fio']}")
+parent_pdf.text_field("position_agent212", 0, 565-move-13-17-26+8+1, 228, 15, :default => "#{@vars['ceo_position']}")
+parent_pdf.text_field("position_agent212a", 250, 565-move-13-17-26+8+1, 185, 15, :default => "#{@vars['ceo_fio']}")
 
 parent_pdf.text_field("birth_year", 0, 633-move-4-17-26, 523, 15, :default => "Трейдера")
 
 
 parent_pdf.text_field("dayx", 352-10, 700-move-17-26, 23, 15)
 parent_pdf.text_field("monthx", 378-8, 700-move-17-26, 80, 15)
-parent_pdf.text_field("yearx", 474-8, 700-move-17-26, 23, 15)
+parent_pdf.text_field("yearx", 474-8, 700-move-17-26, 16, 15)
 
 parent_pdf.text_field("auth_create_day", 16, 423, 25, 15)
 parent_pdf.text_field("auth_create_month", 60, 423, 80, 15)
@@ -43,10 +43,10 @@ parent_pdf.text "<sup></sup>", :inline_format => true, :align => :center
 
 parent_pdf.text "в связи с", :align => :justify
 parent_pdf.text "______________________________________________________________________________________", :align => :justify, :leading => 4
-parent_pdf.text "<sup>(необходимо указать причину отмены  аккредитации)</sup>", :inline_format => true, :align => :center
+parent_pdf.text "<sup>(необходимо указать причину отмены  вышеуказанной  доверенности)</sup>", :inline_format => true, :align => :center
 
 parent_pdf.text "Руководитель Участника торгов ЗАО « ФБ ММВБ»", :leading => 4
-parent_pdf.text "___________________________________________       ___________________________/_____________", :leading => 4
+parent_pdf.text "______________________________________       ________________________________/_____________", :leading => 4
 
 parent_pdf.text "<sup>.                                    (должность)                                                                                                                       (Ф.И.О.)                                                 (подпись)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "М.П.#{" "*20}", :align => :right, :indent_paragraphs => 50
