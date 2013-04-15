@@ -8,14 +8,14 @@ parent_pdf.text_field("organisation_name2",0, 724-move-25, 520, 15, :default => 
 
 parent_pdf.text_field("position_agent32", 0, 665-move-17, 523, 15, :default => "#{@vars['agent_fio']}")
 
-parent_pdf.text_field("position_agent212", 0, 565-move+6, 218+40, 15, :default => "#{@vars['ceo_position']}")
-parent_pdf.text_field("position_agent212a", 245+40, 565-move+6, 150, 15, :default => "#{@vars['ceo_fio']}")
+parent_pdf.text_field("position_agent212", 0, 565-move+6, 228, 15, :default => "#{@vars['ceo_position']}")
+parent_pdf.text_field("position_agent212a", 250, 565-move+6, 185, 15, :default => "#{@vars['ceo_fio']}")
 
 parent_pdf.text_field("birth_year", 0, 633-move-4-17, 523, 15)
 
 parent_pdf.text_field("dayx", 263, 700-move-17, 23, 15)
 parent_pdf.text_field("monthx", 294, 700-move-17, 80, 15)
-parent_pdf.text_field("yearx", 387, 700-move-17, 23, 15)
+parent_pdf.text_field("yearx", 388, 700-move-17, 16, 15)
 
 parent_pdf.text_field("auth_create_day", 16, 423, 25, 15)
 parent_pdf.text_field("auth_create_month", 60, 423, 80, 15)
@@ -36,7 +36,7 @@ parent_pdf.text "_______________________________________________________________
 parent_pdf.text "<sup>(необходимо указать причину отмены  аккредитации)</sup>", :inline_format => true, :align => :center
 
 parent_pdf.text "Руководитель участника торгов", :leading => 4
-parent_pdf.text "___________________________________________       ___________________________/_____________", :leading => 4
+parent_pdf.text "______________________________________       ________________________________/_____________", :leading => 4
 
 parent_pdf.text "<sup>.                                    (должность)                                                                                                                       (Ф.И.О.)                                                 (подпись)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "М.П.#{" "*20}", :align => :right, :indent_paragraphs => 50
