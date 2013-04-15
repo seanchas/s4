@@ -11,7 +11,7 @@ parent_pdf.text_field("position_agent32", 0, 665-move-17, 523, 15, :default => "
 parent_pdf.text_field("position_agent212", 0, 565-move+6, 228, 15, :default => "#{@vars['ceo_position']}")
 parent_pdf.text_field("position_agent212a", 250, 565-move+6, 185, 15, :default => "#{@vars['ceo_fio']}")
 
-parent_pdf.text_field("birth_year", 0, 633-move-4-17, 523, 15, :default => "Трейдера")
+parent_pdf.text_field("birth_year", 0, 633-move-4-17, 523, 15)
 
 parent_pdf.text_field("dayx", 263, 700-move-17, 23, 15)
 parent_pdf.text_field("monthx", 294, 700-move-17, 80, 15)
