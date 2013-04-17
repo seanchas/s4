@@ -1,10 +1,10 @@
 
-parent_pdf.text " "
+#parent_pdf.text " "
 parent_pdf.text "Права и обязанности по указанным в настоящей Доверенности сделкам, заключенным", :leading => 4
 
 parent_pdf.text "#{"_"*87}", :leading => 4
 parent_pdf.text "<sup>(Ф.И.О. сотрудника)</sup>", :inline_format => true, :indent_paragraphs => 200
-parent_pdf.text "от имени Участника, принадлежат Участнику.", :leading => 10
+parent_pdf.text "от имени Участника, принадлежат Участнику.", :leading => 6
 
 
 parent_pdf.text "Подпись #{"_"*67} удостоверяю.", :leading => 4

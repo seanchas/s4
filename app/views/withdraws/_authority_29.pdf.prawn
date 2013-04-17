@@ -38,5 +38,5 @@ parent_pdf.text "<sup>(необходимо указать причину отм
 parent_pdf.text "Руководитель участника торгов", :leading => 4
 parent_pdf.text "______________________________________       ________________________________/_____________", :leading => 4
 
-parent_pdf.text "<sup>.                                    (должность)                                                                                                                       (Ф.И.О.)                                                 (подпись)</sup>", :inline_format => true, :align => :center
+parent_pdf.text "<sup>(должность)#{" "*115}(Ф.И.О.)#{" "*54}(подпись)</sup>", :inline_format => true, :indent_paragraphs => 100
 parent_pdf.text "М.П.#{" "*20}", :align => :right, :indent_paragraphs => 50
