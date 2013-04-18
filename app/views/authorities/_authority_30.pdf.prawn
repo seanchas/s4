@@ -12,8 +12,8 @@ parent_pdf.text_field("position_agent2field", 0, 724-move-17, 523, 15, :default 
 
 parent_pdf.text_field("position_agent212", 39, 682-move, 484, 15, :default => "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}")
 
-parent_pdf.text_field("ya",58, 675-move-17, 13, 15)
-parent_pdf.text_field("gustav", 145, 675-move-17, 240, 15, :default => @vars['document_name'])
+parent_pdf.text_field("ya",58, 675-move-17, 24, 15)
+parent_pdf.text_field("gustav", 157, 675-move-17, 240, 15, :default => @vars['document_name'])
 
 #first place
 
@@ -42,7 +42,7 @@ parent_pdf.text "<sup>(наименование организации - Уча�
 parent_pdf.text "в лице  #{"_"*80},", :leading => 4, :align => :right
 
 parent_pdf.text "<sup>(должность, Фамилия, Имя, Отчество)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "действующ__ на основании #{"_"*40} \nдоверяет сотруднику:", :leading => 4
+parent_pdf.text "действующ____ на основании #{"_"*40} \nдоверяет сотруднику:", :leading => 4
 
 parent_pdf.text "#{"_"*87}", :leading => 4
 
