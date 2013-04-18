@@ -16,19 +16,19 @@ parent_pdf.text_field("deistv", 58, 297, 20, 15)
 parent_pdf.text_field("gustav", 148, 296, 242, 15, :default => @vars['document_name'])
 parent_pdf.text_field("position_agent223", 0, 279, 523, 15, :default => "#{@vars['agent_position']}#{@vars["nbsp_a"]} #{@vars['agent_fio']}")
 
-parent_pdf.text_field("passport_ser", 74, 255, 40, 15)
-parent_pdf.text_field("passport_num", 129, 255, 60, 15)
-parent_pdf.text_field("passport_date", 230, 255, 293, 15)
+parent_pdf.text_field("passport_ser", 77, 255, 40, 15)
+parent_pdf.text_field("passport_num", 132, 255, 60, 15)
+parent_pdf.text_field("passport_date", 232, 255, 291, 15)
 parent_pdf.text_field("passport_date2", 0, 231, 523, 15)
 
 parent_pdf.text_field("position_agent2234", 70, 214, 453, 15, :default => first_string(453, "#{@vars['organization_name']}" ,0))
 parent_pdf.text_field("position_agent32", 0, 197, 523, 15, :default => first_string(379, "#{@vars['organization_name']}" ,1))
 
 parent_pdf.text "\n\n"
-parent_pdf.text "Настоящей Доверенностью #{"_"*63}", :leading => 4
+parent_pdf.text "Настоящей Доверенностью #{"_"*63}", :leading => 4, :align => :right
 parent_pdf.text "<sup>(наименование кредитной организации - Участника)</sup>", :inline_format => true, :indent_paragraphs => 250
 parent_pdf.text "#{"_"*87}", :leading => 4
-parent_pdf.text "в лице #{"_"*80},", :leading => 4
+parent_pdf.text "в лице  #{"_"*80},", :leading => 4, :align => :right
 
 
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>", :inline_format => true, :align => :center
@@ -38,7 +38,7 @@ parent_pdf.text " #{"_"*87}", :leading => 4
 
 
 parent_pdf.text "<sup>(занимаемая должность сотрудника, Ф.И.О.)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "паспорт серия ______ № __________, выдан ________________________________________________,", :leading => 4
+parent_pdf.text "паспорт серия  ______ № __________, выдан ________________________________________________,", :leading => 4, :align => :right
 parent_pdf.text "<sup>(когда, кем)</sup>", :inline_format => true, :indent_paragraphs => 350
 parent_pdf.text "#{"_"*86},", :leading => 4
 

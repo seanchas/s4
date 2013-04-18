@@ -10,10 +10,10 @@ parent_pdf.text_field("auth_day", 395, 386, 20, 15, :align => 1)
 parent_pdf.text_field("auth_month", 425, 386, 60, 15, :align => 1)
 parent_pdf.text_field("auth_year", 497, 386, 20, 15, :align => 1)
 
-parent_pdf.text_field("organization_name__first", 140, 348, 383, 15, :default => first_string(383, "#{@vars['organization_name']}" ,0))
+parent_pdf.text_field("organization_name__first", 145, 348, 378, 15, :default => first_string(383, "#{@vars['organization_name']}" ,0))
 parent_pdf.text_field("organization_name__first_to", 0, 324, 523, 15, :default => first_string(383, "#{@vars['organization_name']}" ,1))
 
-parent_pdf.text_field("v_lice", 170, 306, 353, 15, :default => first_string(353, "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}" ,0))
+parent_pdf.text_field("v_lice", 175, 306, 348, 15, :default => first_string(353, "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}" ,0))
 parent_pdf.text_field("v_lice_to", 0, 283, 523, 15, :default => first_string(353, "#{@vars['ceo_position']}#{@vars["nbsp_c"]} #{@vars['ceo_fio']}" ,1))
 
 #parent_pdf.text_field("ypolnomachivaet", 275, 266, 248, 15)
@@ -39,18 +39,18 @@ parent_pdf.text_field("phone", 196, 23+5, 265, 15)
 
 
 parent_pdf.text "\n\n"
-parent_pdf.text "Настоящей доверенностью #{"_"*63}", :leading => 4, :align => :justify
+parent_pdf.text "Настоящей доверенностью  #{"_"*63}", :leading => 4, :align => :justify, :align => :right
 parent_pdf.text "<sup>(наименование организации - Участника торгов)</sup>", :inline_format => true, :indent_paragraphs => 250
-parent_pdf.text "#{"_"*87}", :leading => 4
-parent_pdf.text "(далее –Участник торгов) в лице  #{"_"*58}", :leading => 4
+parent_pdf.text "#{"_"*87}", :leading => 4, :align => :right
+parent_pdf.text "(далее –Участник торгов) в лице  #{"_"*58}", :leading => 4, :align => :right
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>",  :inline_format => true, :indent_paragraphs => 200
-parent_pdf.text "#{"_"*87}", :leading => 4
+parent_pdf.text "#{"_"*87}", :leading => 4, :align => :right
 parent_pdf.text "действующ___ на основании #{"_"*40}, уполномочивает ", :leading => 4, :align => :justify
 parent_pdf.text "#{"_"*71} (далее - Трейдер)", :leading => 4
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О. представителя Участника торгов)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "паспорт #{"_"*13}, выдан #{"_"*60}", :leading => 4
 parent_pdf.text "<sup>(кем и когда выдан) </sup>", :inline_format => true, :indent_paragraphs => 300
-parent_pdf.text "#{"_"*87}", :leading => 4
+parent_pdf.text "#{"_"*87}", :leading => 4, :align => :right
 
 parent_pdf.text "объявлять (подавать, изменять, отзывать ранее поданные) заявки и заключать сделки, получать, предоставлять и подписывать документы и осуществлять иные действия, предусмотренные внутренними документами ЗАО «ФБ ММВБ», устанавливающими требования к организации торговли в ЗАО «ФБ ММВБ». ", :align => :justify
 parent_pdf.text "(Идентификатор Участника торгов ЗАО «ФБ ММВБ» (для Сектора рынка Основной рынок)  №__________________________)", :leading => 4
