@@ -9,7 +9,7 @@ parent_pdf.text_field("organisation_name2",0, 724-move-25-26, 523, 15, :default 
 parent_pdf.text_field("position_agent32", 30, 665-move-17-25, 493, 15, :default => "#{@vars['agent_fio']}")
 
 parent_pdf.text_field("authority_num", 95, 665-move-24, 86, 15, :default => "#{@vars['authority_num']}")
-parent_pdf.text_field("authority_date", 190, 665-move-24, 86, 15, :default => "#{@vars['authority_date']}")
+parent_pdf.text_field("authority_date", 200, 665-move-24, 66, 15, :default => "#{@vars['authority_date']}")
 
 parent_pdf.text_field("vsvyazy", 0, 600-move-17-26, 523, 15)
 
@@ -33,7 +33,7 @@ parent_pdf.text "<sup>(наименование организации - Уча�
 
 parent_pdf.text "#{"_"*87}", :leading => 4
 
-parent_pdf.text "уведомляет ОАО Московская Биржа об отмене (отзыве) с \"____\" _____________ 20___г.\nДоверенности  № _______________   ______________г.", :leading => 4
+parent_pdf.text "уведомляет ОАО Московская Биржа об отмене (отзыве) с \"____\" _____________ 20___г.\nДоверенности  № _______________ от ___________г.", :leading => 4
 
 parent_pdf.text "на  ____________________________________________________________________________________", :align => :right, :leading => 4
 parent_pdf.text "<sup>(ФИО  представителя Участника торгов)</sup>", :inline_format => true, :align => :center

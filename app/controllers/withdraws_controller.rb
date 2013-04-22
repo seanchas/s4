@@ -65,6 +65,11 @@ class WithdrawsController < ApplicationController
         attibutesFromS4 = agent.attributes
         @vars['authority_num'] = attibutesFromS4['document_number']
         @vars['authority_date'] = attibutesFromS4['document_date_begin'][0,10].split('-')
+
+        #@vars['authority_date_day'] = "#{@vars['authority_date'][2]}"
+        #@vars['authority_date_month'] = "#{@vars['authority_date'][1]}"
+        #@vars['authority_date_year'] = "#{@vars['authority_date'][0]}"
+
         @vars['authority_date'] = "#{@vars['authority_date'][2]}.#{@vars['authority_date'][1]}.#{@vars['authority_date'][0]}"
       end
 
