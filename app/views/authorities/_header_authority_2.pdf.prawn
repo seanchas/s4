@@ -35,19 +35,19 @@ parent_pdf.text " "
 parent_pdf.text "Настоящей Доверенностью #{"_"*63}", :leading => 4, :align => :right
 parent_pdf.text "<sup>(наименование кредитной организации - Участника)</sup>", :inline_format => true, :indent_paragraphs => 250
 parent_pdf.text "#{"_"*87}", :leading => 4
-parent_pdf.text "в лице  #{"_"*80},", :leading => 4, :align => :right
+parent_pdf.text "в лице #{"_"*81}", :leading => 4, :align => :right
 
 
 
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>", :inline_format => true, :align => :center
 parent_pdf.text "действующ___ на основании #{"_"*40}, доверяет сотруднику", :leading => 4
 
-parent_pdf.text "#{"_"*87}", :leading => 4
+parent_pdf.text "#{"_"*86} ,", :leading => 4
 parent_pdf.text "<sup>(занимаемая должность сотрудника, Ф.И.О.)</sup>", :inline_format => true, :indent_paragraphs => 200
 
-parent_pdf.text "паспорт серия ______ № __________,  выдан ________________________________________________,", :leading => 4
+parent_pdf.text "паспорт серия ______ № __________, выдан _________________________________________________", :leading => 4
 parent_pdf.text "<sup>(когда, кем)</sup>", :inline_format => true, :indent_paragraphs => 300
-parent_pdf.text "#{"_"*87}", :leading => 4
+parent_pdf.text "#{"_"*86} ,", :leading => 4
 
 
 parent_pdf.text "представлять #{"_"*75}", :leading => 4, :align => :right

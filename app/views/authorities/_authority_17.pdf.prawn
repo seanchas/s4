@@ -93,7 +93,7 @@ parent_pdf.text "\n", :leading => 4
 #parent_pdf.text "возникают у Участника торгов."
 
 parent_pdf.text "Настоящая доверенность выдана без права передоверия и действительна по", :indent_paragraphs => 30, :leading => 4
-parent_pdf.text "«___» ____________________ 20___г. включительно", :leading => 20
+parent_pdf.text "«___» ____________________ 20___г. включительно.", :leading => 20
 
 #parent_pdf.text "Образец подписи #{"_"*60} удостоверяю.", :leading => 4
 #parent_pdf.text "<sup>(Ф.И.О. и подпись сотрудника)</sup>", :inline_format => true, :align => :center
