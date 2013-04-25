@@ -1,7 +1,7 @@
 move = 350
 parent_pdf.move_down(move)
 
-parent_pdf.text "<<_____>>_______________  20__ г.                                                                         в ЗАО «ФБММВБ»\n\n\n\n"
+parent_pdf.text "<<_____>>_______________  20__ г.                                                                         в ЗАО «ФБ ММВБ»\n\n\n\n"
 parent_pdf.text "Уведомление об отмене Доверенности\n\n", :style => :bold, :align => :center
 parent_pdf.text_field("organisation_name",68, 724-move-26, 455, 15, :default => first_string(463, "#{@vars['organization_name']}" ,0))
 parent_pdf.text_field("organisation_name2",0, 724-move-25-26, 523, 15, :default => first_string(463, "#{@vars['organization_name']}" ,1))
@@ -45,7 +45,7 @@ parent_pdf.text "в связи с", :align => :justify
 parent_pdf.text "#{"_"*87}", :align => :justify, :leading => 4
 parent_pdf.text "<sup>(необходимо указать причину отмены  вышеуказанной  доверенности)</sup>", :inline_format => true, :align => :center
 
-parent_pdf.text "Руководитель Участника торгов ЗАО «ФБММВБ»", :leading => 4
+parent_pdf.text "Руководитель Участника торгов ЗАО «ФБ ММВБ»", :leading => 4
 parent_pdf.text "________________________________       ______________________________________/_____________", :leading => 4
 
 parent_pdf.text "<sup>(Ф.И.О.)#{" "*115}(должность)#{" "*70}(подпись)</sup>", :inline_format => true, :indent_paragraphs => 80
