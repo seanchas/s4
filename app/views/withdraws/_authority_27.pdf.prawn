@@ -45,7 +45,7 @@ parent_pdf.text "в связи с", :align => :justify
 parent_pdf.text "#{"_"*87}", :align => :justify, :leading => 4
 parent_pdf.text "<sup>(необходимо указать причину отмены  вышеуказанной  доверенности)</sup>", :inline_format => true, :align => :center
 
-parent_pdf.text "Руководитель Участника торгов ЗАО « ФБ ММВБ»", :leading => 4
+parent_pdf.text "Руководитель Участника торгов ЗАО «ФБММВБ»", :leading => 4
 parent_pdf.text "________________________________       ______________________________________/_____________", :leading => 4
 
 parent_pdf.text "<sup>(Ф.И.О.)#{" "*115}(должность)#{" "*70}(подпись)</sup>", :inline_format => true, :indent_paragraphs => 80
