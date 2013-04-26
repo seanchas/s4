@@ -36,7 +36,7 @@ parent_pdf.text "#{"_"*87}", :align => :justify, :leading => 4
 parent_pdf.text "<sup>(необходимо указать причину отмены  аккредитации)</sup>", :inline_format => true, :align => :center
 
 parent_pdf.text "Руководитель участника торгов", :leading => 4
-parent_pdf.text "______________________________________    _____________    ________________________________", :leading => 4
+parent_pdf.text "______________________________________    ______________/________________________________", :leading => 4
 
 parent_pdf.text "<sup>(должность)#{" "*80}(подпись)#{" "*71}(Ф.И.О.)</sup>", :inline_format => true, :indent_paragraphs => 89
 parent_pdf.text "М.П.#{" "*20}", :align => :right, :indent_paragraphs => 50
