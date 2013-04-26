@@ -32,7 +32,7 @@ parent_pdf.text "в лице  #{"_"*80},", :leading => 4, :align => :right
 
 
 parent_pdf.text "<sup>(занимаемая должность лица, Ф.И.О.)</sup>", :inline_format => true, :align => :center
-parent_pdf.text "действующ___ на основании #{"_"*40} доверяет сотруднику", :leading => 4
+parent_pdf.text "действующ___ на основании #{"_"*40}, доверяет сотруднику", :leading => 4
 
 parent_pdf.text " #{"_"*86} ,", :leading => 4
 
@@ -43,6 +43,6 @@ parent_pdf.text "<sup>(когда, кем)</sup>", :inline_format => true, :inde
 parent_pdf.text "#{"_"*86} ,", :leading => 4
 
 parent_pdf.text "представлять #{"_"*75}", :leading => 4
-parent_pdf.text " #{"_"*87}", :leading => 4
+parent_pdf.text " #{"_"*86} ,", :leading => 4
 
 parent_pdf.text "<sup>(Наименование кредитной организации - участника)</sup>", :inline_format => true, :align => :center
